@@ -4,15 +4,16 @@ package ee.ut.cs.dsg.confcheck.trie;
 
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class Trie {
 
     private final TrieNode root;
     private List<TrieNode> leaves;
+    private final HashMap<String, TreeMap<Integer, TrieNode>> warmStart;
     private final int maxChildren;
     private int internalTraceIndex=0;
     private int size=0;
@@ -25,6 +26,8 @@ public class Trie {
         root = new TrieNode("dummy", maxChildren, Integer.MAX_VALUE, Integer.MIN_VALUE, false,null);
         traceIndexer = new HashMap<>();
         leaves = new ArrayList<>();
+        // initial capacity for hashmap = maxChildren
+        warmStart = new HashMap<>(maxChildren);
     }
     public int getMaxChildren()
     {
@@ -54,10 +57,23 @@ public class Trie {
                     size++;
                 }
                 current = returned;
+
                 minLengthToEnd--;
                 sb.append(event);
-                if (returned.isEndOfTrace())
+                if (returned.isEndOfTrace()) {
                     leaves.add(returned);
+                }
+                else {
+                    // build warm start map
+                    if (warmStart.containsKey(current.getContent()))
+                    {
+                        warmStart.get(current.getContent()).put(current.getLevel()-1, current);
+                    }
+                    else{
+                        warmStart.put(current.getContent(), new TreeMap<>());
+                        warmStart.get(current.getContent()).put(current.getLevel()-1, current);
+                    }
+                }
             }
             current.addLinkedTraceIndex(traceIndex);
             numberOfEvents+=sb.length();
@@ -195,6 +211,11 @@ public class Trie {
         return numberOfEvents;
     }
 
+    public HashMap<String, TreeMap<Integer, TrieNode>> getWarmStart() {
+        return warmStart;
+    }
+
+
     public TrieNode getNodeOnShortestTrace()
     {
         int currentMinLevel = 99999;
@@ -233,4 +254,39 @@ public class Trie {
         return result;
     }
 
+    public void computeConfidenceCostForAllNodes(String costType){
+        switch (costType){
+            case "standard":
+                computeConfidenceCostStandard(root);
+                break;
+            case "avg":
+                computeConfidenceCostAVG();
+                break;
+            default: break;
+        }
+    }
+
+    private void computeConfidenceCostStandard(TrieNode root_) {
+        if(!root_.isEndOfTrace()) {
+            for (TrieNode n : root_.getAllChildren()) {
+                n.setConfidenceCost(n.getMinPathLengthToEnd());
+                computeConfidenceCostStandard(n);
+            }
+        }
+    }
+
+    private void computeConfidenceCostAVG(){
+        for(TrieNode n:root.getAllChildren()){
+            List<TrieNode> leavesOfChildNode = getLeavesFromNode(n, Integer.MAX_VALUE);
+            int confidenceCost = leavesOfChildNode.stream().map(TrieNode::getLevel).mapToInt(Integer::intValue).sum() / leavesOfChildNode.size();
+            n.setConfidenceCost(confidenceCost);
+            n.getAllChildren().forEach(x -> computeConfidenceCostAVG(x, confidenceCost));
+        }
+    }
+    private void computeConfidenceCostAVG(TrieNode root_, int confidenceCost){
+        if(!root_.isEndOfTrace()) {
+            root_.setConfidenceCost(confidenceCost-1);
+            root_.getAllChildren().forEach(x -> computeConfidenceCostAVG(x,confidenceCost-1));
+        }
+    }
 }

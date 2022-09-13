@@ -18,6 +18,7 @@ public class TrieNode {
     private List<Integer> linkedTraces;
     private int level=0;
     private int numChildren=0;
+    private int confidenceCost;
 
     public State getAlignmentState() {
         return alignmentState;
@@ -241,6 +242,13 @@ public class TrieNode {
             return null;
         else
             return  child;
+    }
+    public int getConfidenceCost() {
+        return confidenceCost;
+    }
+
+    public void setConfidenceCost(int confidenceCost) {
+        this.confidenceCost = confidenceCost;
     }
 
 }

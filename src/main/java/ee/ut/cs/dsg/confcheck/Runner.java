@@ -63,6 +63,7 @@ import java.util.*;
 
 import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.LogSortType;
+import static sun.misc.Version.print;
 
 
 public class Runner {
@@ -73,7 +74,6 @@ public class Runner {
 
 
         String executionType = "cost_diff"; // "stress_test" or "cost_diff"
-
 
         // Cost difference
 
@@ -132,11 +132,11 @@ public class Runner {
             ConformanceCheckerType checkerType = ConformanceCheckerType.TRIE_STREAMING;
             System.out.println(checkerType.toString());
 
-            String runType = "general"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs
+            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "Sepsis";
+                String sLog = "BPI2015";
                 String sLogType = "frequency";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
@@ -272,6 +272,7 @@ public class Runner {
         init();
         long start = System.currentTimeMillis();
         Trie t = constructTrie(inputLog);
+
         //System.out.println(String.format("Time taken for trie construction: %d", System.currentTimeMillis()-start));
         //System.out.println("Trie size: "+t.getSize());
 
@@ -805,6 +806,17 @@ public class Runner {
                     //System.out.println(String.format("Trie avg length: %d",t.getAvgTraceLength()));
                 }*/
             }
+            t.computeConfidenceCostForAllNodes("avg");
+            for(TrieNode c:t.getRoot().getAllChildren()){
+                System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getConfidenceCost());
+            }
+
+            System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
+
+            for (Map.Entry<Integer,TrieNode> entry : t.getWarmStart().get("A").entrySet())
+                System.out.println("Key = " + entry.getKey() +
+                        ", Value = " + entry.getValue());
+
             return t;
         }
         catch (Exception e)

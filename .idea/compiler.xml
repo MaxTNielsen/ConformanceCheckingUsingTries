@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ConformanceCheckingUsingTries" target="8" />
+      <module name="ConformanceCheckingUsingTries" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
