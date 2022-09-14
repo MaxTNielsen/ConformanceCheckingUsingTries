@@ -79,7 +79,7 @@ public class Runner {
 
         if (executionType == "cost_diff") {
             long unixTime = Instant.now().getEpochSecond();
-            Date date = new Date(unixTime*1000L);
+            Date date = new Date(unixTime * 1000L);
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
             String formattedDate = dateFormat.format(date);
 
@@ -240,16 +240,15 @@ public class Runner {
             } else {
                 System.out.println("Run type not implemented");
             }
-        } else if (executionType == "stress_test")
-        {
+        } else if (executionType == "stress_test") {
 
             String proxyLog = null;
             String logSize = "small";
-            if (logSize=="small")
+            if (logSize == "small")
                 proxyLog = "input\\Stress_test\\Simulated_Log_Small.xes.gz";
-            else if (logSize=="medium")
+            else if (logSize == "medium")
                 proxyLog = "input\\Stress_test\\Simulated_Log_Medium.xes.gz";
-            else if (logSize=="large")
+            else if (logSize == "large")
                 proxyLog = "input\\Stress_test\\Simulated_Log_Large.xes.gz";
             else
                 System.out.println("log size undefined");
@@ -281,20 +280,24 @@ public class Runner {
         System.out.println("Waiting for stream to start...");
         start = System.currentTimeMillis();
 
-        while(!streamStarted){
+        while (!streamStarted) {
             try {
                 s = new Socket(address, port);
                 streamStarted = true;
             } catch (IOException e) {
-                if (System.currentTimeMillis()-start >= 60000){
+                if (System.currentTimeMillis() - start >= 60000) {
                     System.out.println("Unable to establish connection");
                     break;
                 }
-                try {Thread.sleep(1);} catch (InterruptedException ex) {ex.printStackTrace();}
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
 
         }
-        if(streamStarted){
+        if (streamStarted) {
             try {
 
                 System.out.println("Stream started");
@@ -331,7 +334,7 @@ public class Runner {
 
         */
 
-                StreamingConformanceChecker cnfChecker = new StreamingConformanceChecker(t,1,1,100000, 100000);
+                StreamingConformanceChecker cnfChecker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
 
                 Alignment alg;
                 List<String> events = new ArrayList<>();
@@ -342,7 +345,7 @@ public class Runner {
                     //System.out.println((eventsReceived++) + " events observed");
                     eventsReceived++;
                     eventReceivedTime = System.currentTimeMillis();
-                    idleTime = eventReceivedTime-eventHandledTime;
+                    idleTime = eventReceivedTime - eventHandledTime;
                     /*if (eventsReceived % 1000 == 0)
                     {
                         System.out.println(String.format("Events observed: %d",eventsReceived));
@@ -372,7 +375,7 @@ public class Runner {
                     eventPreparedToHandled += eventHandledTime - eventPreparedTime;
                     totalIdleTime += idleTime;
                     //System.out.println(String.format("%d\t%d\t%d\t%d", eventPrepared-eventReceived, eventHandled-eventReceived, eventHandled-eventPrepared, idleTime));
-                    if(System.currentTimeMillis()-start>=runTimeMillis){
+                    if (System.currentTimeMillis() - start >= runTimeMillis) {
                         System.out.println(String.format("Run time exhausted. Run time: %d", runTimeMillis));
                         System.out.println("Received to prepared, Received to handled, Prepared to handled, Idle time");
                         System.out.println(String.format("%d, %d, %d, %d", eventReceivedToPrepared, eventReceivedToHandled, eventPreparedToHandled, totalIdleTime));
@@ -401,9 +404,9 @@ public class Runner {
                 br.close();
                 s.close();
                 long endTime = System.currentTimeMillis();
-                System.out.println(String.format("Time taken in milliseconds: %d",endTime- start));
-                System.out.println(String.format("Events observed: %d",eventsReceived));
-                System.out.println(String.format("Cases observed: %d",cases.size()));
+                System.out.println(String.format("Time taken in milliseconds: %d", endTime - start));
+                System.out.println(String.format("Events observed: %d", eventsReceived));
+                System.out.println(String.format("Cases observed: %d", cases.size()));
                 // get prefix alignments
                 /*System.out.println("Prefix alignments:");
                 long algStart = System.currentTimeMillis();
@@ -470,14 +473,12 @@ public class Runner {
         }
     }
 
-    private static void init()
-    {
+    private static void init() {
         service = new AlphabetService();
     }
 
 
-    private static void printLogStatistics(String inputLog)
-    {
+    private static void printLogStatistics(String inputLog) {
         init();
         long startTs = System.currentTimeMillis();
         Trie t = constructTrie(inputLog);
@@ -489,12 +490,11 @@ public class Runner {
         System.out.println(String.format("Avg length of a trace %d", t.getAvgTraceLength()));
         System.out.println(String.format("Number of nodes in the trie %d", t.getSize()));
         System.out.println(String.format("Total number of events %d", t.getNumberOfEvents()));
-        System.out.println(String.format("Trie construction time %d ms", (endTs-startTs)));
+        System.out.println(String.format("Trie construction time %d ms", (endTs - startTs)));
     }
 
 
-    private static ArrayList<String> testOnConformanceApproximationResults(String inputProxyLogFile, String inputSampleLogFile, ConformanceCheckerType confCheckerType, LogSortType sortType)
-    {
+    private static ArrayList<String> testOnConformanceApproximationResults(String inputProxyLogFile, String inputSampleLogFile, ConformanceCheckerType confCheckerType, LogSortType sortType) {
         init();
         Trie t = constructTrie(inputProxyLogFile);
 
@@ -502,7 +502,7 @@ public class Runner {
 
         //Configuration variables
 
-        boolean sortTraces=true;
+        boolean sortTraces = true;
 
 //      t.printTraces();
 //        System.out.println(t);
@@ -511,14 +511,14 @@ public class Runner {
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
         XesXmlParser parser = new XesXmlParser();
 
-        try{
+        try {
             InputStream is = new FileInputStream(inputSampleLogFile);
             inputSamplelog = parser.parse(is).get(0);
 
 
             List<String> templist = new ArrayList<>();
             List<String> tracesToSort = new ArrayList<>();
-           // AlphabetService service = new AlphabetService();
+            // AlphabetService service = new AlphabetService();
 
 
             ConformanceChecker checker;
@@ -530,14 +530,13 @@ public class Runner {
             } else {
 
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
-                    checker = new PrefixConformanceChecker(t,1,1, false);
+                    checker = new PrefixConformanceChecker(t, 1, 1, false);
                 else if (confCheckerType == ConformanceCheckerType.TRIE_RANDOM)
-                    checker = new RandomConformanceChecker(t,1,1, 100000, 100000);//Integer.MAX_VALUE);
+                    checker = new RandomConformanceChecker(t, 1, 1, 100000, 100000);//Integer.MAX_VALUE);
                 else if (confCheckerType == ConformanceCheckerType.TRIE_RANDOM_STATEFUL)
-                    checker = new StatefulRandomConformanceChecker(t,1,1, 50000, 420000);//Integer.MAX_VALUE);
-                else
-                {
-                    testVanellaConformanceApproximation(inputProxyLogFile,inputSampleLogFile, result);
+                    checker = new StatefulRandomConformanceChecker(t, 1, 1, 50000, 420000);//Integer.MAX_VALUE);
+                else {
+                    testVanellaConformanceApproximation(inputProxyLogFile, inputSampleLogFile, result);
                     return result;
                 }
             }
@@ -546,34 +545,32 @@ public class Runner {
             Alignment alg;
             HashMap<String, Integer> sampleTracesMap = new HashMap<>();
             long start;
-            long totalTime=0;
-            int skipTo =0;
+            long totalTime = 0;
+            int skipTo = 0;
             int current = -1;
             int takeTo = 100;
             DeviationChecker devChecker = new DeviationChecker(service);
             int cnt = 0;
-            for (XTrace trace: inputSamplelog)
-            {
+            for (XTrace trace : inputSamplelog) {
                 current++;
                 if (current < skipTo)
                     continue;
-                if (current> takeTo)
+                if (current > takeTo)
                     break;
                 templist = new ArrayList<String>();
 
-                for (XEvent e: trace)
-                {
+                for (XEvent e : trace) {
                     String label = e.getAttributes().get(inputSamplelog.getClassifiers().get(0).getDefiningAttributeKeys()[0]).toString();
                     templist.add(Character.toString(service.alphabetize(label)));
                 }
 //                System.out.println(templist.toString());
 
                 StringBuilder sb = new StringBuilder(templist.size());
-                sb.append(cnt).append((char)63); // we prefix the trace with its ID
+                sb.append(cnt).append((char) 63); // we prefix the trace with its ID
 
-                Arrays.stream(templist.toArray()).forEach( e-> sb.append(e));
+                Arrays.stream(templist.toArray()).forEach(e -> sb.append(e));
 
-                sampleTracesMap.put(sb.toString(),cnt);
+                sampleTracesMap.put(sb.toString(), cnt);
                 cnt++;
 
                 tracesToSort.add(sb.toString());
@@ -589,10 +586,8 @@ public class Runner {
             //System.out.println("Trace#, Alignment cost");
             //result.add("TraceId,Cost,ExecutionTime,ConfCheckerType");
 
-            if (sortType == LogSortType.LEXICOGRAPHIC_DESC || sortType == LogSortType.TRACE_LENGTH_DESC)
-            {
-                for (int i = tracesToSort.size() -1; i>=0; i--)
-                {
+            if (sortType == LogSortType.LEXICOGRAPHIC_DESC || sortType == LogSortType.TRACE_LENGTH_DESC) {
+                for (int i = tracesToSort.size() - 1; i >= 0; i--) {
                     if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
                         totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     } else {
@@ -612,15 +607,13 @@ public class Runner {
             }
 
 
-            System.out.println(String.format("Time taken for trie-based conformance checking %d milliseconds",totalTime));
+            System.out.println(String.format("Time taken for trie-based conformance checking %d milliseconds", totalTime));
 
 //            for (String label: devChecker.getAllActivities())
 //            {
 //                System.out.println(String.format("%s, %f",label, devChecker.getDeviationPercentage(label)));
 //            }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -677,10 +670,10 @@ public class Runner {
         Alignment alg;
         List<String> trace = new ArrayList<String>();
 
-        int pos = tracesToSort.get(i).indexOf((char)63);
-        int traceNum = Integer.parseInt(tracesToSort.get(i).substring(0,pos));
+        int pos = tracesToSort.get(i).indexOf((char) 63);
+        int traceNum = Integer.parseInt(tracesToSort.get(i).substring(0, pos));
 
-        String actualTrace = tracesToSort.get(i).substring(pos+1);
+        String actualTrace = tracesToSort.get(i).substring(pos + 1);
 //        System.out.println(actualTrace);
         for (char c : actualTrace.toCharArray()) {
             trace.add(new StringBuilder().append(c).toString());
@@ -721,13 +714,12 @@ public class Runner {
         return totalTime;
     }
 
-    private static XLog loadLog(String inputProxyLogFile)
-    {
+    private static XLog loadLog(String inputProxyLogFile) {
         XLog inputProxyLog;//, inputSamplelog;
         XEventClass dummyEvClass = new XEventClass("DUMMY", 99999);
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
         XesXmlParser parser = null;
-        if (inputProxyLogFile.substring(inputProxyLogFile.length()-6).equals("xes.gz"))
+        if (inputProxyLogFile.substring(inputProxyLogFile.length() - 6).equals("xes.gz"))
             parser = new XesXmlGZIPParser();
         else
             parser = new XesXmlParser();
@@ -738,15 +730,13 @@ public class Runner {
 //            XLogInfo logInfo = inputProxyLog.getInfo(eventClassifier);
 //            logInfo = XLogInfoFactory.createLogInfo(inputProxyLog, inputProxyLog.getClassifiers().get(0));
             return inputProxyLog;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    private static Trie constructTrie(String inputProxyLogFile)
-    {
+
+    private static Trie constructTrie(String inputProxyLogFile) {
         XLog inputProxyLog = loadLog(inputProxyLogFile);
         XEventClass dummyEvClass = new XEventClass("DUMMY", 99999);
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
@@ -756,13 +746,13 @@ public class Runner {
 
             //
             XEventClassifier attClassifier = null;
-            if (inputProxyLog.getClassifiers().size()>0)
+            if (inputProxyLog.getClassifiers().size() > 0)
                 attClassifier = inputProxyLog.getClassifiers().get(0);
             else
-                attClassifier = new XEventAttributeClassifier("concept:name",new String[]{"concept:name"});
-            XLogInfo logInfo = XLogInfoFactory.createLogInfo(inputProxyLog,attClassifier);
+                attClassifier = new XEventAttributeClassifier("concept:name", new String[]{"concept:name"});
+            XLogInfo logInfo = XLogInfoFactory.createLogInfo(inputProxyLog, attClassifier);
             int count = 999;
-            if (logInfo.getNameClasses().getClasses().size()>0) {
+            if (logInfo.getNameClasses().getClasses().size() > 0) {
                 count = 0;
                 for (XEventClass clazz : logInfo.getNameClasses().getClasses()) {
                     count++;
@@ -787,7 +777,7 @@ public class Runner {
                 }
 //                count++;
                 //System.out.println(templist.toString());
-                if (templist.size() > 0 ) {
+                if (templist.size() > 0) {
 
                     //System.out.println(templist.toString());
 //                    if (count == 37)
@@ -806,27 +796,39 @@ public class Runner {
                     //System.out.println(String.format("Trie avg length: %d",t.getAvgTraceLength()));
                 }*/
             }
-            t.computeConfidenceCostForAllNodes("avg");
-            for(TrieNode c:t.getRoot().getAllChildren()){
-                System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getConfidenceCost());
-            }
-
-            System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
-
-            for (Map.Entry<Integer,TrieNode> entry : t.getWarmStart().get("A").entrySet())
-                System.out.println("Key = " + entry.getKey() +
-                        ", Value = " + entry.getValue());
+            validateTrieEnrichmentLogic(t);
 
             return t;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    private static void testVanellaConformanceApproximation(String inputProxyLogFile, String inputSampleLogFile, ArrayList<String> result)
-    {
+
+    private static void validateTrieEnrichmentLogic(Trie t) {
+        t.computeConfidenceCostForAllNodes("standard");
+        System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
+        for (TrieNode c : t.getRoot().getAllChildren()) {
+            System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getConfidenceCost());
+            getConfidenceCost(c);
+            System.out.printf("WarmStart map: %s%n", c.getContent());
+            for (Map.Entry<Integer, TrieNode> entry : t.getWarmStart().get(c.getContent()).entrySet())
+                System.out.println("Key = " + entry.getKey() +
+                        ", Value = " + entry.getValue());
+            System.out.print("\n");
+        }
+    }
+
+    private static void getConfidenceCost(TrieNode node) {
+        if (!node.isEndOfTrace()) {
+            for (TrieNode c_ : node.getAllChildren()) {
+                System.out.printf("Node: %s - confidence cost: %s%n", c_.getContent(), c_.getConfidenceCost());
+                getConfidenceCost(c_);
+            }
+        }
+    }
+
+    private static void testVanellaConformanceApproximation(String inputProxyLogFile, String inputSampleLogFile, ArrayList<String> result) {
         XLog proxyLog, sampleLog;
         StringBuilder sb;
         List<String> proxyTraces = new ArrayList<>();
@@ -846,7 +848,7 @@ public class Runner {
             proxyTraces.add(sb.toString());
 
         }
-        int cnt=0;
+        int cnt = 0;
         for (XTrace trace : sampleLog) {
             sb = new StringBuilder();
             for (XEvent e : trace) {
@@ -861,9 +863,9 @@ public class Runner {
 
         DeviationChecker deviationChecker = new DeviationChecker(service);
         // Now compute the alignments
-        long start=System.currentTimeMillis(),timeTaken=0 ;
+        long start = System.currentTimeMillis(), timeTaken = 0;
         long executionTime;
-        int skipTo =0;
+        int skipTo = 0;
         int current = -1;
         int takeTo = 100;
         try {
@@ -883,11 +885,11 @@ public class Runner {
                 String bestAlignment = "";
                 start = System.currentTimeMillis();
 
-                if(i==55)
+                if (i == 55)
                     System.out.println("debug");
                 for (String proxyTrace : proxyTraces) {
 
-                    if (proxyTrace.length()==0){
+                    if (proxyTrace.length() == 0) {
                         continue;
                     }
 
@@ -895,7 +897,7 @@ public class Runner {
                     ProtoTypeSelectionAlgo.AlignObj obj = ProtoTypeSelectionAlgo.levenshteinDistancewithAlignment(logTrace, proxyTrace);
                     if (obj.cost < minCost) {
                         minCost = (int) obj.cost;
-                        if (logTrace.length()==0)
+                        if (logTrace.length() == 0)
                             minCost++; // small fix if log trace is empty, then levenshteinDistancewithAlignment wrongly discounts the cost by 1
                         bestAlignment = obj.Alignment;
                         bestTrace = proxyTrace;
@@ -912,7 +914,7 @@ public class Runner {
 //            System.out.println("Total candidate traces to inspect "+proxyTraces.size());
                 //print trace number
 
-                result.add(i+","+minCost+","+executionTime);
+                result.add(i + "," + minCost + "," + executionTime);
 //                System.out.print(sampleTracesMap.get(logTrace));
                 // print cost
 //                System.out.println(", " + minCost);
@@ -924,24 +926,22 @@ public class Runner {
 //            System.out.println("Aligned trace "+bestTrace);
 //            System.out.println("Trace number "+sampleTracesMap.get(bestTrace));
             }
-            System.out.println(String.format("Time taken for Distance-based approximate conformance checking %d milliseconds", timeTaken ));
+            System.out.println(String.format("Time taken for Distance-based approximate conformance checking %d milliseconds", timeTaken));
 
 //            for (String label: deviationChecker.getAllActivities())
 //            {
 //                System.out.println(String.format("%s, %f",label, deviationChecker.getDeviationPercentage(label)));
 //            }
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(String.format("Time taken for Distance-based approximate conformance checking %d milliseconds", System.currentTimeMillis() - start));
             e.printStackTrace();
 
         }
 
     }
-    private static void testConformanceApproximation()
-    {
+
+    private static void testConformanceApproximation() {
         //This method is used to test the approach by Fani Sani
         XEventClass dummyEvClass = new XEventClass("DUMMY", 99999);
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
@@ -953,13 +953,13 @@ public class Runner {
             inputLog = parser.parse(is).get(0);
             Pnml pnml = importPnmlFromStream(new FileInputStream("C:\\Work\\DSG\\Data\\IM_Petrinet.pnml"));
             Petrinet pn = PetrinetFactory.newPetrinet(pnml.getLabel());
-            Marking imk=new Marking();
+            Marking imk = new Marking();
             Collection<Marking> fmks = new HashSet<>();
             GraphLayoutConnection glc = new GraphLayoutConnection(pn);
-            pnml.convertToNet(pn,imk, fmks,glc);
+            pnml.convertToNet(pn, imk, fmks, glc);
             MatrixFilterParameter parameter = new MatrixFilterParameter(10, inputLog.getClassifiers().get(0), SimilarityMeasure.Levenstein, SamplingReturnType.Traces, PrototypeType.KMeansClusteringApprox);
             //now the target
-            String result = ProtoTypeSelectionAlgo.apply(inputLog,pn,parameter,null);
+            String result = ProtoTypeSelectionAlgo.apply(inputLog, pn, parameter, null);
 
             System.out.println(result);
 
@@ -972,8 +972,8 @@ public class Runner {
 
 
     }
-    private static void testJNI()
-    {
+
+    private static void testJNI() {
         try {
             // Create a problem with 4 variables and 0 constraints
             LpSolve solver = LpSolve.makeLp(0, 4);
@@ -997,8 +997,7 @@ public class Runner {
 
             // delete the problem and free memory
             solver.deleteLp();
-        }
-        catch (LpSolveException e) {
+        } catch (LpSolveException e) {
             e.printStackTrace();
         }
     }

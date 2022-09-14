@@ -1,13 +1,13 @@
 package ee.ut.cs.dsg.confcheck.trie;
 
 
-
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class Trie {
 
@@ -15,44 +15,41 @@ public class Trie {
     private List<TrieNode> leaves;
     private final HashMap<String, TreeMap<Integer, TrieNode>> warmStart;
     private final int maxChildren;
-    private int internalTraceIndex=0;
-    private int size=0;
-    private int numberOfEvents=0;
-    protected HashMap<Integer,String> traceIndexer;
+    private int internalTraceIndex = 0;
+    private int size = 0;
+    private int numberOfEvents = 0;
+    protected HashMap<Integer, String> traceIndexer;
 
-    public Trie(int maxChildren)
-    {
+    public Trie(int maxChildren) {
         this.maxChildren = Utils.nextPrime(maxChildren);
-        root = new TrieNode("dummy", maxChildren, Integer.MAX_VALUE, Integer.MIN_VALUE, false,null);
+        root = new TrieNode("dummy", maxChildren, Integer.MAX_VALUE, Integer.MIN_VALUE, false, null);
         traceIndexer = new HashMap<>();
         leaves = new ArrayList<>();
         // initial capacity for hashmap = maxChildren
         warmStart = new HashMap<>(maxChildren);
     }
-    public int getMaxChildren()
-    {
+
+    public int getMaxChildren() {
         return maxChildren;
     }
-    public void addTrace(List<String> trace)
-    {
+
+    public void addTrace(List<String> trace) {
         ++internalTraceIndex;
         addTrace(trace, internalTraceIndex);
 
     }
-    public void addTrace(List<String> trace, int traceIndex)
-    {
+
+    public void addTrace(List<String> trace, int traceIndex) {
         TrieNode current = root;
         int minLengthToEnd = trace.size();
-        if (minLengthToEnd > 0)
-        {
+        if (minLengthToEnd > 0) {
             StringBuilder sb = new StringBuilder(trace.size());
-            for (String event : trace)
-            {
+            for (String event : trace) {
                 current.addLinkedTraceIndex(traceIndex);
-                TrieNode child = new TrieNode(event,maxChildren,minLengthToEnd-1, minLengthToEnd-1, minLengthToEnd-1==0? true: false,current);
+                TrieNode child = new TrieNode(event, maxChildren, minLengthToEnd - 1, minLengthToEnd - 1, minLengthToEnd - 1 == 0 ? true : false, current);
                 TrieNode returned;
                 returned = current.addChild(child);
-                if (returned  == child ) // we added a new node to the trie
+                if (returned == child) // we added a new node to the trie
                 {
                     size++;
                 }
@@ -62,43 +59,39 @@ public class Trie {
                 sb.append(event);
                 if (returned.isEndOfTrace()) {
                     leaves.add(returned);
-                }
-                else {
+                } else {
                     // build warm start map
-                    if (warmStart.containsKey(current.getContent()))
-                    {
-                        warmStart.get(current.getContent()).put(current.getLevel()-1, current);
-                    }
-                    else{
+                    if (warmStart.containsKey(current.getContent())) {
+                        warmStart.get(current.getContent()).put(current.getLevel() - 1, current);
+                    } else {
                         warmStart.put(current.getContent(), new TreeMap<>());
-                        warmStart.get(current.getContent()).put(current.getLevel()-1, current);
+                        warmStart.get(current.getContent()).put(current.getLevel() - 1, current);
                     }
                 }
             }
             current.addLinkedTraceIndex(traceIndex);
-            numberOfEvents+=sb.length();
+            numberOfEvents += sb.length();
             traceIndexer.put(traceIndex, sb.toString());
         }
 
     }
-    public TrieNode getRoot()
-    {
+
+    public TrieNode getRoot() {
         return root;
     }
-    public String toString()
-    {
 
-            return root.toString();
+    public String toString() {
+
+        return root.toString();
 
 
     }
-    public String getTrace(int index)
-    {
+
+    public String getTrace(int index) {
         return traceIndexer.get(index);
     }
 
-    public void printTraces()
-    {
+    public void printTraces() {
 //        StringBuilder result = new StringBuilder();
 //        TrieNode current;
 //        for (TrieNode  leaf: leaves)
@@ -113,22 +106,23 @@ public class Trie {
 //
 //            System.out.println(result.reverse().toString());
 //        }
-        for (String s: traceIndexer.values())
+        for (String s : traceIndexer.values())
             System.out.println(s);
     }
+
     /**
      * This method finds the deepest node in the trie that provides the longest prefix match to the trace.
      * If there is no match at all, the method returns null.
+     *
      * @param trace is a list of strings that define the trace to search a match for
      * @return a trie node
      */
-    public TrieNode match(List<String> trace, TrieNode startFromThisNode)
-    {
+    public TrieNode match(List<String> trace, TrieNode startFromThisNode) {
         TrieNode current = startFromThisNode;
         TrieNode result;
         int size = trace.size();
         int lengthDifference = Integer.MAX_VALUE;
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
 //        for (String event : trace)
         {
             result = current.getChild(trace.get(i));
@@ -156,18 +150,16 @@ public class Trie {
         }
         return current;
     }
-    public TrieNode match(List<String> trace)
-    {
+
+    public TrieNode match(List<String> trace) {
         return match(trace, root);
     }
 
-    public TrieNode matchCompletely(List<String> trace, TrieNode startFromThisNode)
-    {
+    public TrieNode matchCompletely(List<String> trace, TrieNode startFromThisNode) {
         TrieNode current = startFromThisNode;
         TrieNode result;
         int size = trace.size();
-        for(int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             result = current.getChild(trace.get(i));
             if (result == null)
                 return null;
@@ -179,35 +171,29 @@ public class Trie {
         return current;
     }
 
-    public int getMaxTraceLength()
-    {
-        int maxLength = leaves.stream().map( node -> node.getLevel()).reduce(Integer.MIN_VALUE, (minSoFar, element) -> Math.max(minSoFar, element));
+    public int getMaxTraceLength() {
+        int maxLength = leaves.stream().map(node -> node.getLevel()).reduce(Integer.MIN_VALUE, (minSoFar, element) -> Math.max(minSoFar, element));
         return maxLength;
     }
 
-    public int getMinTraceLength()
-    {
-        int minLength =leaves.stream().map( node -> node.getLevel()).reduce(Integer.MAX_VALUE, (minSoFar, element) -> Math.min(minSoFar, element));
+    public int getMinTraceLength() {
+        int minLength = leaves.stream().map(node -> node.getLevel()).reduce(Integer.MAX_VALUE, (minSoFar, element) -> Math.min(minSoFar, element));
         return minLength;
     }
 
 
-    public int getAvgTraceLength()
-    {
-        int sumlength = leaves.stream().map( node -> node.getLevel()).reduce(0, (subtotal, element) -> subtotal+element);
+    public int getAvgTraceLength() {
+        int sumlength = leaves.stream().map(node -> node.getLevel()).reduce(0, (subtotal, element) -> subtotal + element);
 
 
-
-       return  sumlength/leaves.size();
+        return sumlength / leaves.size();
     }
 
-    public int getSize()
-    {
+    public int getSize() {
         return size;
     }
 
-    public int getNumberOfEvents()
-    {
+    public int getNumberOfEvents() {
         return numberOfEvents;
     }
 
@@ -216,12 +202,11 @@ public class Trie {
     }
 
 
-    public TrieNode getNodeOnShortestTrace()
-    {
+    public TrieNode getNodeOnShortestTrace() {
         int currentMinLevel = 99999;
         TrieNode currentMinNode = null;
-        for (TrieNode n:leaves){
-            if(n.getLevel()<currentMinLevel){
+        for (TrieNode n : leaves) {
+            if (n.getLevel() < currentMinLevel) {
                 currentMinNode = n;
                 currentMinLevel = n.getLevel();
             }
@@ -229,23 +214,23 @@ public class Trie {
         return currentMinNode;
     }
 
-    public List<TrieNode> getLeavesFromNode(TrieNode startNode, int maxLevel){
-        List <TrieNode> result = new ArrayList<>();
+    public List<TrieNode> getLeavesFromNode(TrieNode startNode, int maxLevel) {
+        List<TrieNode> result = new ArrayList<>();
         TrieNode currentNode;
         int startNodeLevel = startNode.getLevel();
         int currentNodeLevel;
-        for (TrieNode n:leaves){
+        for (TrieNode n : leaves) {
 
             currentNodeLevel = n.getLevel();
             currentNode = n;
-            if(currentNodeLevel>startNodeLevel & n.getLevel()<=maxLevel){
-                if(result.contains(n)){
+            if (currentNodeLevel > startNodeLevel & n.getLevel() <= maxLevel) {
+                if (result.contains(n)) {
                     continue;
                 }
-                while(currentNodeLevel>startNodeLevel){
+                while (currentNodeLevel > startNodeLevel) {
                     currentNode = currentNode.getParent();
                     currentNodeLevel = currentNode.getLevel();
-                    if(currentNodeLevel==startNodeLevel & currentNode==startNode){
+                    if (currentNodeLevel == startNodeLevel & currentNode == startNode) {
                         result.add(n);
                     }
                 }
@@ -254,20 +239,21 @@ public class Trie {
         return result;
     }
 
-    public void computeConfidenceCostForAllNodes(String costType){
-        switch (costType){
+    public void computeConfidenceCostForAllNodes(String costType) {
+        switch (costType) {
             case "standard":
-                computeConfidenceCostStandard(root);
+                computeConfidenceCostStandard(this.root);
                 break;
             case "avg":
-                computeConfidenceCostAVG();
+                computeConfidenceCostAVG(this.root);
                 break;
-            default: break;
+            default:
+                break;
         }
     }
 
     private void computeConfidenceCostStandard(TrieNode root_) {
-        if(!root_.isEndOfTrace()) {
+        if (!root_.isEndOfTrace()) {
             for (TrieNode n : root_.getAllChildren()) {
                 n.setConfidenceCost(n.getMinPathLengthToEnd());
                 computeConfidenceCostStandard(n);
@@ -275,18 +261,19 @@ public class Trie {
         }
     }
 
-    private void computeConfidenceCostAVG(){
-        for(TrieNode n:root.getAllChildren()){
-            List<TrieNode> leavesOfChildNode = getLeavesFromNode(n, Integer.MAX_VALUE);
-            int confidenceCost = leavesOfChildNode.stream().map(TrieNode::getLevel).mapToInt(Integer::intValue).sum() / leavesOfChildNode.size();
-            n.setConfidenceCost(confidenceCost);
-            n.getAllChildren().forEach(x -> computeConfidenceCostAVG(x, confidenceCost));
-        }
-    }
-    private void computeConfidenceCostAVG(TrieNode root_, int confidenceCost){
-        if(!root_.isEndOfTrace()) {
-            root_.setConfidenceCost(confidenceCost-1);
-            root_.getAllChildren().forEach(x -> computeConfidenceCostAVG(x,confidenceCost-1));
+    private void computeConfidenceCostAVG(TrieNode root_) {
+        if (!root_.isEndOfTrace() & root_.hasChildren()) {
+            List<TrieNode> rLeaves = getLeavesFromNode(root_, Integer.MAX_VALUE);
+            root_.setConfidenceCost(rLeaves.stream().map(x -> x.getLevel() - root_.getLevel()).mapToInt(Integer::intValue).sum() / rLeaves.size());
+            for (TrieNode n : root_.getAllChildren()) {
+                List<TrieNode> leavesOfChildNode = getLeavesFromNode(n, Integer.MAX_VALUE);
+                if (leavesOfChildNode.size() == 0) {
+                    continue;
+                }
+                int confidenceCost = leavesOfChildNode.stream().map(x -> x.getLevel() - n.getLevel()).mapToInt(Integer::intValue).sum() / leavesOfChildNode.size();
+                n.setConfidenceCost(confidenceCost);
+                n.getAllChildren().forEach(this::computeConfidenceCostAVG);
+            }
         }
     }
 }
