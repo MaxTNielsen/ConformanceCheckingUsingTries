@@ -1,20 +1,11 @@
 package ee.ut.cs.dsg.confcheck;
 
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
-import ee.ut.cs.dsg.confcheck.alignment.AlignmentFactory;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
-import ee.ut.cs.dsg.confcheck.util.Configuration;
-import ee.ut.cs.dsg.confcheck.StatefulRandomConformanceChecker;
-import ee.ut.cs.dsg.confcheck.util.Utils;
-import gnu.trove.impl.sync.TSynchronizedShortByteMap;
-import gnu.trove.impl.sync.TSynchronizedShortCharMap;
 import lpsolve.LpSolve;
 import lpsolve.LpSolveException;
-import org.apache.commons.math3.analysis.function.Add;
 import org.deckfour.xes.classification.XEventAttributeClassifier;
 import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.classification.XEventClassifier;
@@ -27,7 +18,6 @@ import org.deckfour.xes.info.impl.XLogInfoImpl;
 import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
-import org.deckfour.xes.out.XesXmlSerializer;
 import org.processmining.logfiltering.algorithms.ProtoTypeSelectionAlgo;
 import org.processmining.logfiltering.legacy.plugins.logfiltering.enumtypes.PrototypeType;
 import org.processmining.logfiltering.legacy.plugins.logfiltering.enumtypes.SimilarityMeasure;
@@ -36,12 +26,10 @@ import org.processmining.logfiltering.parameters.SamplingReturnType;
 import org.processmining.models.connections.GraphLayoutConnection;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 import org.processmining.models.graphbased.directed.petrinet.impl.PetrinetFactory;
-import org.processmining.models.graphbased.directed.petrinet.impl.PetrinetImpl;
 import org.processmining.models.semantics.petrinet.Marking;
 import org.processmining.operationalsupport.xml.OSXMLConverter;
 import org.processmining.plugins.pnml.base.FullPnmlElementFactory;
 import org.processmining.plugins.pnml.base.Pnml;
-import org.processmining.plugins.pnml.elements.extensions.opennet.PnmlLabel;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -56,7 +44,6 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
@@ -806,10 +793,12 @@ public class Runner {
     }
 
     private static void validateTrieEnrichmentLogic(Trie t) {
-        t.computeConfidenceCostForAllNodes("standard");
+        t.computeConfidenceCostForAllNodes("avg");
+        t.computeScaledConfidenceCost(t.getRoot());
+        System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf,t.minConf);
         System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
         for (TrieNode c : t.getRoot().getAllChildren()) {
-            System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getConfidenceCost());
+            System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getScaledConfCost());
             getConfidenceCost(c);
             System.out.printf("WarmStart map: %s%n", c.getContent());
             for (Map.Entry<Integer, TrieNode> entry : t.getWarmStart().get(c.getContent()).entrySet())
@@ -822,7 +811,7 @@ public class Runner {
     private static void getConfidenceCost(TrieNode node) {
         if (!node.isEndOfTrace()) {
             for (TrieNode c_ : node.getAllChildren()) {
-                System.out.printf("Node: %s - confidence cost: %s%n", c_.getContent(), c_.getConfidenceCost());
+                System.out.printf("Node: %s - confidence cost: %s%n", c_.getContent(), c_.getScaledConfCost());
                 getConfidenceCost(c_);
             }
         }

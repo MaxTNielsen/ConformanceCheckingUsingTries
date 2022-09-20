@@ -20,6 +20,8 @@ public class TrieNode {
     private int numChildren=0;
     private int confidenceCost;
 
+    private double scaledConfCost;
+
     public State getAlignmentState() {
         return alignmentState;
     }
@@ -59,6 +61,8 @@ public class TrieNode {
 
         this.isEndOfTrace = isEndOfTrace;
         this.linkedTraces = new ArrayList<>();
+        this.confidenceCost = 0;
+        this.scaledConfCost = 0.0f;
     }
 
     public int getLevel() {
@@ -251,4 +255,11 @@ public class TrieNode {
         this.confidenceCost = confidenceCost;
     }
 
+    public void setScaledConfCost(double scaledConfCost) {
+        this.scaledConfCost = scaledConfCost;
+    }
+
+    public double getScaledConfCost() {
+        return scaledConfCost;
+    }
 }

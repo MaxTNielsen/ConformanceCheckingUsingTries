@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 public class Trie {
 
@@ -18,6 +17,9 @@ public class Trie {
     private int internalTraceIndex = 0;
     private int size = 0;
     private int numberOfEvents = 0;
+    public int minConf = 0;
+    public int maxConf = Integer.MIN_VALUE;
+
     protected HashMap<Integer, String> traceIndexer;
 
     public Trie(int maxChildren) {
@@ -255,24 +257,39 @@ public class Trie {
     private void computeConfidenceCostStandard(TrieNode root_) {
         if (!root_.isEndOfTrace()) {
             for (TrieNode n : root_.getAllChildren()) {
-                n.setConfidenceCost(n.getMinPathLengthToEnd());
+                int confCost = n.getMinPathLengthToEnd();
+                if (confCost > maxConf) {
+                    maxConf = confCost;
+                }
+                n.setConfidenceCost(confCost);
                 computeConfidenceCostStandard(n);
             }
         }
     }
 
     private void computeConfidenceCostAVG(TrieNode root_) {
-        if (!root_.isEndOfTrace() & root_.hasChildren()) {
-            List<TrieNode> rLeaves = getLeavesFromNode(root_, Integer.MAX_VALUE);
-            root_.setConfidenceCost(rLeaves.stream().map(x -> x.getLevel() - root_.getLevel()).mapToInt(Integer::intValue).sum() / rLeaves.size());
+        if (!root_.isEndOfTrace()) {
             for (TrieNode n : root_.getAllChildren()) {
                 List<TrieNode> leavesOfChildNode = getLeavesFromNode(n, Integer.MAX_VALUE);
                 if (leavesOfChildNode.size() == 0) {
                     continue;
                 }
-                int confidenceCost = leavesOfChildNode.stream().map(x -> x.getLevel() - n.getLevel()).mapToInt(Integer::intValue).sum() / leavesOfChildNode.size();
-                n.setConfidenceCost(confidenceCost);
-                n.getAllChildren().forEach(this::computeConfidenceCostAVG);
+                int confCost = leavesOfChildNode.stream().map(x -> x.getLevel() - n.getLevel()).mapToInt(Integer::intValue).sum() / leavesOfChildNode.size();
+                if (confCost > maxConf) {
+                    maxConf = confCost;
+                }
+                n.setConfidenceCost(confCost);
+                computeConfidenceCostAVG(n);
+            }
+        }
+    }
+
+    public void computeScaledConfidenceCost(TrieNode root_) {
+        for (TrieNode n : root_.getAllChildren()) {
+            if (!n.isEndOfTrace()) {
+                double x_std = Math.round((((double) n.getConfidenceCost() - minConf) / (maxConf - minConf))*100.0) / 100.0;
+                n.setScaledConfCost(x_std);
+                computeScaledConfidenceCost(n);
             }
         }
     }
