@@ -3,7 +3,6 @@ package ee.ut.cs.dsg.confcheck;
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +11,9 @@ public class State implements Comparable<State>{
     private List<String> tracePostfix;
     private TrieNode node;
     private int costSoFar;
+    private double weightedSumOfCosts;
     private State parentState;
+
     private int decayTime;
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar)
@@ -25,7 +26,6 @@ public class State implements Comparable<State>{
         this.parentState = null;
         this.decayTime = 999999;
     }
-
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar, final State parentState)
     {
@@ -49,6 +49,28 @@ public class State implements Comparable<State>{
         this.decayTime = decayTime;
     }
 
+    public State(Alignment alignment, List<String> tracePostfix, TrieNode node, double weightedSumOfCosts, int decayTime)
+    {
+        this.alignment = alignment;
+        this.tracePostfix = new LinkedList<>();
+        this.tracePostfix.addAll(tracePostfix);
+        this.node = node;
+        this.weightedSumOfCosts = weightedSumOfCosts;
+        this.parentState = null;
+        this.decayTime = decayTime;
+    }
+
+    public State(Alignment alignment, List<String> tracePostfix, TrieNode node, double weightedSumOfCosts, final State parentState, int decayTime)
+    {
+        this.alignment = alignment;
+        this.tracePostfix = new LinkedList<>();
+        this.tracePostfix.addAll(tracePostfix);
+        this.node = node;
+        this.weightedSumOfCosts = weightedSumOfCosts;
+        this.parentState = parentState;
+        this.decayTime = decayTime;
+    }
+
     // This new constructor was added to link back to previous states and track the cost of partial alignments
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar, final State parentState, int decayTime)
     {
@@ -60,6 +82,7 @@ public class State implements Comparable<State>{
         this.parentState = parentState;
         this.decayTime = decayTime;
     }
+
     @Override
     public int compareTo(State other)
     {
@@ -119,5 +142,9 @@ public class State implements Comparable<State>{
 
     public void setDecayTime(int decayTime) {
         this.decayTime = decayTime;
+    }
+
+    public double getWightedSumOfCosts() {
+        return weightedSumOfCosts;
     }
 }

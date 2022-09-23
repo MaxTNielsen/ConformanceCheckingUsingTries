@@ -12,11 +12,11 @@ public abstract class ConformanceChecker {
     protected final Trie modelTrie;
     protected final int logMoveCost ;
     protected final int modelMoveCost ;
+
     protected PriorityQueue<State> nextChecks;
 
     protected HashMap<String, State> tracesInBuffer;
     protected HashMap<String, StatesBuffer> statesInBuffer;
-
     protected int cntr=1;
     protected int maxStatesInQueue;
 //    private HashSet<State> seenBefore;
@@ -237,6 +237,7 @@ public abstract class ConformanceChecker {
     protected abstract List<State> handleModelMoves(List<String> traceSuffix, State state, State candidateState);
 
     protected abstract State handleLogMove(List<String> traceSuffix, State state, String event);
+
 
     protected void addStateToTheQueue(State state, State candidateState) {
 
