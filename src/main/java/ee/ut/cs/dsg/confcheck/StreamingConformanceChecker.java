@@ -304,6 +304,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
                                     (s.getTracePostfix().size() == 0 && s.getNode().isEndOfTrace()))
                                     && s.getCostSoFar() == 0
                     ) {
+                        System.out.printf("End of trace %n state:%s", s.toString());
                         return s;
                     }
 

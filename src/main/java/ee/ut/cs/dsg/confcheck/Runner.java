@@ -511,12 +511,12 @@ public class Runner {
             ConformanceChecker checker;
 
             if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
-                checker = new TripleCOCC(t, 1, 1, 100000, true, false);
-                //checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
+                checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
                 //System.out.print("Average trie size: ");
                 //System.out.println(checker.modelTrie.getAvgTraceLength());
-            }
-            else {
+            } else if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
+                checker = new TripleCOCC(t, 1, 1, 100000, true, false);
+            } else {
 
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
                     checker = new PrefixConformanceChecker(t, 1, 1, false);
@@ -577,7 +577,7 @@ public class Runner {
 
             if (sortType == LogSortType.LEXICOGRAPHIC_DESC || sortType == LogSortType.TRACE_LENGTH_DESC) {
                 for (int i = tracesToSort.size() - 1; i >= 0; i--) {
-                    if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
+                    if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING || confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
                         totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
@@ -587,7 +587,7 @@ public class Runner {
 //
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
-                    if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
+                    if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING || confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
                         totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
@@ -616,8 +616,8 @@ public class Runner {
         long executionTime;
         Alignment alg;
         List<String> trace = new ArrayList<String>();
-        //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
-        TripleCOCC checker = (TripleCOCC) checkerC;
+        StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
+        //TripleCOCC checker = (TripleCOCC) checkerC;
 
         int pos = tracesToSort.get(i).indexOf((char) 63);
 
@@ -786,8 +786,6 @@ public class Runner {
                     //System.out.println(String.format("Trie avg length: %d",t.getAvgTraceLength()));
                 }*/
             }
-            validateTrieEnrichmentLogic(t);
-
             return t;
         } catch (Exception e) {
             e.printStackTrace();
