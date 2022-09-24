@@ -511,10 +511,12 @@ public class Runner {
             ConformanceChecker checker;
 
             if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
-                checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
+                checker = new TripleCOCC(t, 1, 1, 100000, true, false);
+                //checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
                 //System.out.print("Average trie size: ");
                 //System.out.println(checker.modelTrie.getAvgTraceLength());
-            } else {
+            }
+            else {
 
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
                     checker = new PrefixConformanceChecker(t, 1, 1, false);
@@ -614,7 +616,8 @@ public class Runner {
         long executionTime;
         Alignment alg;
         List<String> trace = new ArrayList<String>();
-        StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
+        //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
+        TripleCOCC checker = (TripleCOCC) checkerC;
 
         int pos = tracesToSort.get(i).indexOf((char) 63);
 
