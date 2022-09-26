@@ -8,7 +8,7 @@ import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
 import java.util.*;
 
-public class    TripleCOCC extends ConformanceChecker {
+public class TripleCOCC extends ConformanceChecker {
     final protected int defaultDecayTime = 2;
     final protected int minDecayTime = 1;
     final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
@@ -38,6 +38,11 @@ public class    TripleCOCC extends ConformanceChecker {
         return null;
     }
 
+    @Override
+    protected List<State> handleModelMoves(List<String> traceSuffix, State state, State candidateState) {
+        return null;
+    }
+
     public HashMap<String, State> check(List<String> trace, String caseId) {
         HashMap<String, State> states = new HashMap<>();
         List<State> syncMoveStates = new ArrayList<>();
@@ -53,7 +58,7 @@ public class    TripleCOCC extends ConformanceChecker {
         if (statesInBuffer.containsKey(caseId)) {
             sBuffer = statesInBuffer.get(caseId);
             states = sBuffer.getCurrentStates();
-            boundedCost = Math.max(getMaxCostOfStates(states), minCost);
+            boundedCost = Math.max(getMaxCostOfStates(states) + 1, minCost);
         } else {
             boundedCost = minCost;
             states.put(new Alignment().toString(), new State(new Alignment(), new ArrayList<>(), modelTrie.getRoot(), 0.0, computeDecayTime()));
@@ -97,6 +102,8 @@ public class    TripleCOCC extends ConformanceChecker {
 
             HashMap<String, State> statesToIterate = new HashMap<>(states);
             List<String> traceEvent = new ArrayList<>();
+            traceEvent.add(event);
+
             List<String> traceSuffix;
             List<State> nonSynchronousStates = new ArrayList<>();
 
@@ -112,12 +119,12 @@ public class    TripleCOCC extends ConformanceChecker {
                 traceSuffix = previousState.getTracePostfix();
                 traceSuffix.addAll(traceEvent);
 
-                if (suffixLength + 1 + previousState.getWightedSumOfCosts() <= boundedCost) {
-                    nonSynchronousStates.addAll(handleModelMoves(traceSuffix, previousState, null));
+                if (suffixLength + previousState.getWightedSumOfCosts() <= boundedCost) {
+                    nonSynchronousStates.addAll(handleModelMoves(traceSuffix, previousState, null, boundedCost));
                 }
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
-                    nonSynchronousStates.addAll(handleWarmStartMove(event, previousState, boundedCost));
+                    nonSynchronousStates.addAll(handleWarmStartMove(traceEvent, previousState, boundedCost));
                 }
 
                 if (previousState.getDecayTime() < minDecayTime)
@@ -141,8 +148,7 @@ public class    TripleCOCC extends ConformanceChecker {
         return states;
     }
 
-    @Override
-    protected List<State> handleModelMoves(List<String> traceSuffix, State state, State candidateState) {
+    protected List<State> handleModelMoves(List<String> traceSuffix, State state, State candidateState, double boundedCost) {
         TrieNode matchNode;
         Alignment alg;
         //make a new list and add to it
@@ -192,7 +198,7 @@ public class    TripleCOCC extends ConformanceChecker {
             // because we need correct alignment and cost
             for (TrieNode n : matchingNodes) {
                 alg = state.getAlignment();
-                int cost = state.getCostSoFar();
+                double cost = state.getWightedSumOfCosts();
                 TrieNode currentNode = n;
                 TrieNode parentNode = n.getParent();
                 TrieNode lastMatchingNode = state.getNode();
@@ -237,10 +243,12 @@ public class    TripleCOCC extends ConformanceChecker {
                     }
                 }
                 // matching states
-                for (Move m : moves) {
-                    alg.appendMove(m);
+                if (n.getScaledConfCost() + cost <= boundedCost) {
+                    for (Move m : moves) {
+                        alg.appendMove(m);
+                    }
+                    matchingStates.add(new State(alg, new ArrayList<>(), n, n.getScaledConfCost() + cost, computeDecayTime()));
                 }
-                matchingStates.add(new State(alg, new ArrayList<>(), n, n.getScaledConfCost() + cost, computeDecayTime()));
             }
         }
         return matchingStates;
@@ -252,10 +260,11 @@ public class    TripleCOCC extends ConformanceChecker {
         List<String> suffix = new ArrayList<>(state.getTracePostfix());
         suffix.addAll(traceEvent);
 
-        for (String e : suffix) {
+        for(String e : suffix) {
             Move logMove = new Move(e, ">>", 1);
             a.appendMove(logMove);
         }
+
         return new State(a, new ArrayList<>(), state.getNode(), updateCost(state.getWightedSumOfCosts(), MoveType.LOG_MOVE, state.getNode(), state.getNode()) + suffix.size(), computeDecayTime());
     }
 
@@ -276,14 +285,16 @@ public class    TripleCOCC extends ConformanceChecker {
         }
     }
 
-    protected List<State> handleWarmStartMove(String event, State state, double boundedCost) {
-        TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(event);
+    protected List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
         List<State> warmStartStates = new ArrayList<>();
-
+        List<String> suffix = state.getTracePostfix();
+        suffix.addAll(event);
+        TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
+        System.out.println("in warmstart");
+        System.out.printf("%d", boundedCost);
         for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
             int completenessCost = entry.getKey();
             TrieNode warmStartNode = entry.getValue();
-            TrieNode childNode = warmStartNode.getChild(event);
 
             // we only consider warm-start moves that are within the bounded cost
             if (completenessCost + warmStartNode.getScaledConfCost() <= boundedCost) {
@@ -291,23 +302,23 @@ public class    TripleCOCC extends ConformanceChecker {
                 a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
 
                 // we can make a synchronous move on the warm-start node if the suffix is empty
-                if (state.getTracePostfix().size() == 0 & childNode != null) {
-                    a.appendMove((new Move(event, event, 0)));
-                    warmStartStates.add(new State(a, new ArrayList<>(), childNode, updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, childNode), computeDecayTime()));
+                if (state.getTracePostfix().size() == 0) {
+                    warmStartStates.add(new State(a, new ArrayList<>(), warmStartNode, updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime()));
 
-                    // again, we check if the maximum cost will be exceeded by computing warm-start log or model prefix-alignments
-                } else if (completenessCost + warmStartNode.getScaledConfCost() + state.getTracePostfix().size() + 1 <= boundedCost) {
-                    List<String> suffix = new ArrayList<>(state.getTracePostfix());
-                    suffix.add(event);
+                // again, we check if the maximum cost will be exceeded by computing warm-start log or model prefix-alignments
+                } else if (completenessCost + warmStartNode.getScaledConfCost() + suffix.size() - 1 <= boundedCost) {
+                    System.out.println(suffix.remove(0).toString());
+                    System.out.println(warmStartNode.toString());
+
                     State s = new State(a, suffix, warmStartNode,
-                            updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.MODEL_MOVE, warmStartNode, childNode), computeDecayTime());
+                            updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.LOG_MOVE, warmStartNode, warmStartNode), computeDecayTime());
 
                     // compute log move state from warm-start node
                     State logMove = handleLogMove(new ArrayList<>(), s, "");
                     warmStartStates.add(logMove);
 
                     // compute model move state from warm-start node
-                    warmStartStates.addAll(handleModelMoves(suffix, s, null));
+                    warmStartStates.addAll(handleModelMoves(suffix, s, null, boundedCost));
                 }
             }
         }
@@ -315,26 +326,20 @@ public class    TripleCOCC extends ConformanceChecker {
     }
 
     public State getCurrentOptimalState(String caseId, boolean finalState) {
-        State state;
         StatesBuffer caseStatesInBuffer;
         HashMap<String, State> currentStates;
-        List<State> statesList = new ArrayList<>();
 
-        List<State> optimalStates = new ArrayList<>();
-        int postfixSize;
-        int minLengthToEnd;
-        int minAdditionalCost = 99999;
-        int currentCost;
+        double  currentCost;
         int decayTime;
         State newestState = null;
         State oldestState = null;
         List<State> newestStates = new ArrayList<>();
         List<State> oldestStates = new ArrayList<>();
-        boolean isEndOfTrace;
+
         if (statesInBuffer.containsKey(caseId)) {
             caseStatesInBuffer = statesInBuffer.get(caseId);
             currentStates = caseStatesInBuffer.getCurrentStates();
-            statesList.addAll(currentStates.values());
+            List<State> statesList = new ArrayList<>(currentStates.values());
             for (State s : statesList) {
                 if (finalState) {
 
@@ -342,7 +347,7 @@ public class    TripleCOCC extends ConformanceChecker {
                     if (
                             ((s.getTracePostfix().size() + s.getNode().getMinPathLengthToEnd()) == 0 ||
                                     (s.getTracePostfix().size() == 0 && s.getNode().isEndOfTrace()))
-                                    && s.getCostSoFar() == 0
+                                    && s.getWightedSumOfCosts() == 0
                     ) {
                         //System.out.printf("End of trace %n state:%s", s.toString());
                         return s;
@@ -388,12 +393,12 @@ public class    TripleCOCC extends ConformanceChecker {
             }
 
             // calculate cost from newestState
-            int optimalCost = 9999999;
+            double optimalCost = 9999999;
             Alignment optimalAlg = null;
             TrieNode optimalNode = null;
 
             for (State s : newestStates) {
-                currentCost = s.getCostSoFar();
+                currentCost = s.getWightedSumOfCosts();
 
                 Alignment alg = s.getAlignment();
                 TrieNode currentNode = s.getNode();
@@ -469,10 +474,10 @@ public class    TripleCOCC extends ConformanceChecker {
         return null;
     }
 
-    public HashMap<TrieNode, Alignment> findOptimalLeafNode(State state, int costLimit) {
+    public HashMap<TrieNode, Alignment> findOptimalLeafNode(State state, double costLimit) {
 
-        int baseCost = state.getCostSoFar();
-        int cost;
+        double baseCost = state.getWightedSumOfCosts();
+        double cost;
         int lastIndex;
         int checkpointLevel;
         int currentLevel;
@@ -486,8 +491,8 @@ public class    TripleCOCC extends ConformanceChecker {
         int originalPostfixSize = originalPostfix.size();
         int postfixSize;
         int logMovesDone;
-        int maxLevel = stateLevel + originalPostfixSize + costLimit - 1;
-        List<TrieNode> leaves = modelTrie.getLeavesFromNode(state.getNode(), maxLevel);
+        double maxLevel = stateLevel + originalPostfixSize + costLimit - 1;
+        List<TrieNode> leaves = modelTrie.getLeavesFromNode(state.getNode(), (int) maxLevel);
         Map<Integer, String> optimalMoves = new HashMap<>();
         Map<Integer, String> moves;
 
@@ -544,7 +549,7 @@ public class    TripleCOCC extends ConformanceChecker {
                 if (currentLevel == stateLevel & cost < costLimit & postfix.size() == 0) {
                     // handle new cost limit
                     maxLevel = stateLevel + originalPostfixSize + cost - 1;
-                    costLimit = state.getCostSoFar() + cost;
+                    costLimit = state.getWightedSumOfCosts() + cost;
                     optimalNode = n;
                     optimalMoves = moves;
                     break;
@@ -590,10 +595,10 @@ public class    TripleCOCC extends ConformanceChecker {
     }
 
     protected double getMaxCostOfStates(HashMap<String, State> s) {
-        double maxCost = Double.MAX_VALUE;
+        double maxCost = Double.MIN_VALUE;
         Collection<State> states = s.values();
         for (State st : states) {
-            if (st.getWightedSumOfCosts() <= maxCost)
+            if (st.getWightedSumOfCosts() >= maxCost)
                 maxCost = st.getWightedSumOfCosts();
         }
         return maxCost;
