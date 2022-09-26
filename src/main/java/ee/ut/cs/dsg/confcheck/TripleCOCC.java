@@ -9,7 +9,7 @@ import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
 import java.util.*;
 
-public class TripleCOCC extends ConformanceChecker {
+public class    TripleCOCC extends ConformanceChecker {
     final protected int defaultDecayTime = 2;
     final protected int minDecayTime = 1;
     final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();

@@ -70,49 +70,49 @@ public class Runner {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
             String formattedDate = dateFormat.format(date);
 
-            String pathPrefix = "output\\disc3\\";
+            String pathPrefix = "output/disc3/";
             String fileType = ".csv";
 
             HashMap<String, HashMap<String, String>> logs = new HashMap<>();
             HashMap<String, String> subLog = new HashMap<>();
-            subLog.put("log", "input\\BPI2012\\sampledLog.xml");
-            subLog.put("simulated", "input\\BPI2012\\simulatedLog.xml");
-            subLog.put("clustered", "input\\BPI2012\\sampledClusteredLog.xml");
-            subLog.put("random", "input\\BPI2012\\randomLog.xml");
-            subLog.put("frequency", "input\\BPI2012\\frequencyLog.xml");
-            subLog.put("reduced", "input\\BPI2012\\reducedLogActivity.xml");
+            subLog.put("log", "input/BPI2012/sampledLog.xml");
+            subLog.put("simulated", "input/BPI2012/simulatedLog.xml");
+            subLog.put("clustered", "input/BPI2012/sampledClusteredLog.xml");
+            subLog.put("random", "input/BPI2012/randomLog.xml");
+            subLog.put("frequency", "input/BPI2012/frequencyLog.xml");
+            subLog.put("reduced", "input/BPI2012/reducedLogActivity.xml");
             logs.put("BPI2012", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input\\BPI2015\\sampledLog.xml");
-            subLog.put("simulated", "input\\BPI2015\\simulatedLog.xml");
-            subLog.put("clustered", "input\\BPI2015\\sampledClusteredLog.xml");
-            subLog.put("random", "input\\BPI2015\\randomLog.xml");
-            subLog.put("frequency", "input\\BPI2015\\frequencyLog.xml");
-            subLog.put("reduced", "input\\BPI2015\\reducedLogActivity.xml");
+            subLog.put("log", "input/BPI2015/sampledLog.xml");
+            subLog.put("simulated", "input/BPI2015/simulatedLog.xml");
+            subLog.put("clustered", "input/BPI2015/sampledClusteredLog.xml");
+            subLog.put("random", "input/BPI2015/randomLog.xml");
+            subLog.put("frequency", "input/BPI2015/frequencyLog.xml");
+            subLog.put("reduced", "input/BPI2015/reducedLogActivity.xml");
             logs.put("BPI2015", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input\\BPI2017\\sampledLog.xml");
-            subLog.put("simulated", "input\\BPI2017\\simulatedLog.xml");
-            subLog.put("clustered", "input\\BPI2017\\sampledClusteredLog.xml");
-            subLog.put("random", "input\\BPI2017\\randomLog.xml");
-            subLog.put("frequency", "input\\BPI2017\\frequencyLog.xml");
-            subLog.put("reduced", "input\\BPI2017\\reducedLogActivity.xml");
+            subLog.put("log", "input/BPI2017/sampledLog.xml");
+            subLog.put("simulated", "input/BPI2017/simulatedLog.xml");
+            subLog.put("clustered", "input/BPI2017/sampledClusteredLog.xml");
+            subLog.put("random", "input/BPI2017/randomLog.xml");
+            subLog.put("frequency", "input/BPI2017/frequencyLog.xml");
+            subLog.put("reduced", "input/BPI2017/reducedLogActivity.xml");
             logs.put("BPI2017", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input\\BPI2019\\sampledLog.xml");
-            subLog.put("simulated", "input\\BPI2019\\simulatedLog.xml");
-            subLog.put("clustered", "input\\BPI2019\\sampledClusteredLog.xml");
-            subLog.put("random", "input\\BPI2019\\randomLog.xml");
-            subLog.put("frequency", "input\\BPI2019\\frequencyLog.xml");
-            subLog.put("reduced", "input\\BPI2019\\reducedLogActivity.xml");
+            subLog.put("log", "input/BPI2019/sampledLog.xml");
+            subLog.put("simulated", "input/BPI2019/simulatedLog.xml");
+            subLog.put("clustered", "input/BPI2019/sampledClusteredLog.xml");
+            subLog.put("random", "input/BPI2019/randomLog.xml");
+            subLog.put("frequency", "input/BPI2019/frequencyLog.xml");
+            subLog.put("reduced", "input/BPI2019/reducedLogActivity.xml");
             logs.put("BPI2019", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input\\Sepsis\\sampledLog.xml");
-            subLog.put("simulated", "input\\Sepsis\\simulatedLog.xml");
-            subLog.put("clustered", "input\\Sepsis\\sampledClusteredLog.xml");
-            subLog.put("random", "input\\Sepsis\\randomLog.xml");
-            subLog.put("frequency", "input\\Sepsis\\frequencyLog.xml");
-            subLog.put("reduced", "input\\Sepsis\\reducedLogActivity.xml");
+            subLog.put("log", "input/Sepsis/sampledLog.xml");
+            subLog.put("simulated", "input/Sepsis/simulatedLog.xml");
+            subLog.put("clustered", "input/Sepsis/sampledClusteredLog.xml");
+            subLog.put("random", "input/Sepsis/randomLog.xml");
+            subLog.put("frequency", "input/Sepsis/frequencyLog.xml");
+            subLog.put("reduced", "input/Sepsis/reducedLogActivity.xml");
             logs.put("Sepsis", new HashMap<>(subLog));
             subLog.clear();
 
@@ -232,11 +232,11 @@ public class Runner {
             String proxyLog = null;
             String logSize = "small";
             if (logSize == "small")
-                proxyLog = "input\\Stress_test\\Simulated_Log_Small.xes.gz";
+                proxyLog = "input/Stress_test/Simulated_Log_Small.xes.gz";
             else if (logSize == "medium")
-                proxyLog = "input\\Stress_test\\Simulated_Log_Medium.xes.gz";
+                proxyLog = "input/Stress_test/Simulated_Log_Medium.xes.gz";
             else if (logSize == "large")
-                proxyLog = "input\\Stress_test\\Simulated_Log_Large.xes.gz";
+                proxyLog = "input/Stress_test/Simulated_Log_Large.xes.gz";
             else
                 System.out.println("log size undefined");
             listenToEvents(proxyLog);
@@ -308,7 +308,7 @@ public class Runner {
                 long idleTime = 0;
         /*
                 try {
-                    FileWriter writer = new FileWriter(String.format("Executions\\%d.txt",start), true);
+                    FileWriter writer = new FileWriter(String.format("Executions/%d.txt",start), true);
                     writer.write("Log path: "+inputLog);
                     writer.write("\r\n");
                     writer.write("Random Conf Checker"); // store the settings dynamically here. Conformance checker type and checker settings, cost function
@@ -375,7 +375,7 @@ public class Runner {
                     /*
                     // this is for writing every alignment to a file
                     try {
-                        FileWriter writer = new FileWriter(String.format("Executions\\%d.txt",start), true);
+                        FileWriter writer = new FileWriter(String.format("Executions/%d.txt",start), true);
                         writer.write("CaseId: "+caseId);
                         writer.write("\r\n");
                         writer.write("Alignment: ");
@@ -938,9 +938,9 @@ public class Runner {
         XLog inputLog;
 
         try {
-            InputStream is = new FileInputStream("C:\\Work\\DSG\\Data\\BPI2015Reduced2014.xml");
+            InputStream is = new FileInputStream("C:/Work/DSG/Data/BPI2015Reduced2014.xml");
             inputLog = parser.parse(is).get(0);
-            Pnml pnml = importPnmlFromStream(new FileInputStream("C:\\Work\\DSG\\Data\\IM_Petrinet.pnml"));
+            Pnml pnml = importPnmlFromStream(new FileInputStream("C:/Work/DSG/Data/IM_Petrinet.pnml"));
             Petrinet pn = PetrinetFactory.newPetrinet(pnml.getLabel());
             Marking imk = new Marking();
             Collection<Marking> fmks = new HashSet<>();
