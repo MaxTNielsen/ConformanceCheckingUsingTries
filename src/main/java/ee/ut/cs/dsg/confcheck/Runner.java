@@ -507,7 +507,6 @@ public class Runner {
             List<String> tracesToSort = new ArrayList<>();
             // AlphabetService service = new AlphabetService();
 
-
             ConformanceChecker checker;
 
             if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
