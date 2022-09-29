@@ -125,8 +125,8 @@ public class TripleCOCC extends ConformanceChecker {
                 }
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
-                    System.out.printf("Bounded cost %.2f%n", boundedCost);
-                    System.out.printf("Cost %.2f - alignment trace size %s - suffix size %s%n", previousState.getNode().getScaledConfCost(), previousState.getAlignment().getTraceSize() ,suffixLength);
+                    //System.out.printf("Bounded cost %.2f%n", boundedCost);
+                    //System.out.printf("Cost %.2f - alignment trace size %s - suffix size %s%n", previousState.getNode().getScaledConfCost(), previousState.getAlignment().getTraceSize() ,suffixLength);
                     nonSynchronousStates.addAll(handleWarmStartMove(traceEvent, previousState, boundedCost));
                 }
 
