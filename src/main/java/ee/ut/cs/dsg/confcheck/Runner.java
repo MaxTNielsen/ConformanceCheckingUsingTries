@@ -116,7 +116,7 @@ public class Runner {
             logs.put("Sepsis", new HashMap<>(subLog));
             subLog.clear();
 
-            ConformanceCheckerType checkerType = ConformanceCheckerType.TRIE_STREAMING; //_TRIPLECOCC;
+            ConformanceCheckerType checkerType = ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC;
             System.out.println(checkerType.toString());
 
             String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs
@@ -594,7 +594,6 @@ public class Runner {
                 }
             }
 
-
             System.out.println(String.format("Time taken for trie-based conformance checking %d milliseconds", totalTime));
 
 //            for (String label: devChecker.getAllActivities())
@@ -613,8 +612,8 @@ public class Runner {
         long executionTime;
         Alignment alg;
         List<String> trace = new ArrayList<String>();
-        StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
-        //TripleCOCC checker = (TripleCOCC) checkerC;
+        //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
+        TripleCOCC checker = (TripleCOCC) checkerC;
 
         int pos = tracesToSort.get(i).indexOf((char) 63);
 

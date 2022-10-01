@@ -155,7 +155,7 @@ public class State implements Comparable<State>{
         this.decayTime = decayTime;
     }
 
-    public double getWightedSumOfCosts() {
+    public double getWeightedSumOfCosts() {
         return weightedSumOfCosts;
     }
 }
