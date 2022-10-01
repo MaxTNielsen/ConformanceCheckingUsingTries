@@ -116,7 +116,7 @@ public class Runner {
             logs.put("Sepsis", new HashMap<>(subLog));
             subLog.clear();
 
-            ConformanceCheckerType checkerType = ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC;
+            ConformanceCheckerType checkerType = ConformanceCheckerType.TRIE_STREAMING; //_TRIPLECOCC;
             System.out.println(checkerType.toString());
 
             String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs
@@ -514,7 +514,7 @@ public class Runner {
                 //System.out.print("Average trie size: ");
                 //System.out.println(checker.modelTrie.getAvgTraceLength());
             } else if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
-                checker = new TripleCOCC(t, 1, 1, 100000, true, false);
+                checker = new TripleCOCC(t, 1, 1, 100000, 100000);
             } else {
 
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
@@ -613,8 +613,8 @@ public class Runner {
         long executionTime;
         Alignment alg;
         List<String> trace = new ArrayList<String>();
-        //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
-        TripleCOCC checker = (TripleCOCC) checkerC;
+        StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
+        //TripleCOCC checker = (TripleCOCC) checkerC;
 
         int pos = tracesToSort.get(i).indexOf((char) 63);
 
@@ -634,7 +634,7 @@ public class Runner {
             checker.check(tempList, Integer.toString(i));
         }
 
-        alg = checker.getCurrentOptimalState(Integer.toString(i), true).getAlignment();
+        alg = checker.getCurrentOptimalState(Integer.toString(i), false).getAlignment();
 
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;
