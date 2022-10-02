@@ -12,6 +12,8 @@ public class State implements Comparable<State>{
     private TrieNode node;
     private int costSoFar;
     private double weightedSumOfCosts;
+
+    private int completenessCost = 0;
     private State parentState;
 
     private int decayTime;
@@ -58,6 +60,18 @@ public class State implements Comparable<State>{
         this.weightedSumOfCosts = weightedSumOfCosts;
         this.parentState = null;
         this.decayTime = decayTime;
+    }
+
+    public State(Alignment alignment, List<String> tracePostfix, TrieNode node, double weightedSumOfCosts, int decayTime, int completenessCost)
+    {
+        this.alignment = alignment;
+        this.tracePostfix = new LinkedList<>();
+        this.tracePostfix.addAll(tracePostfix);
+        this.node = node;
+        this.weightedSumOfCosts = weightedSumOfCosts;
+        this.parentState = null;
+        this.decayTime = decayTime;
+        this.completenessCost = completenessCost;
     }
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, double weightedSumOfCosts, final State parentState, int decayTime)
@@ -157,5 +171,9 @@ public class State implements Comparable<State>{
 
     public double getWeightedSumOfCosts() {
         return weightedSumOfCosts;
+    }
+
+    public int getCompletenessCost() {
+        return completenessCost;
     }
 }

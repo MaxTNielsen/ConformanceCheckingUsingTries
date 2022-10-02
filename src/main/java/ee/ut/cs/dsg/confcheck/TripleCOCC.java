@@ -163,11 +163,11 @@ public class TripleCOCC extends ConformanceChecker {
 
                 List<State> warmStartMoves = new ArrayList<>();
 
-               /* if (previousState.getAlignment().getTraceSize() == 0) {
+                if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
-                }*/
+                }
 
-                warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
+                //warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
                 for (State s : warmStartMoves) {
                     if (s.getWeightedSumOfCosts() < currentMinCost) {
@@ -354,7 +354,7 @@ public class TripleCOCC extends ConformanceChecker {
         TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
         suffix.remove(0);
         for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
-            double completenessCost = entry.getKey();
+            int completenessCost = entry.getKey();
             TrieNode warmStartNode = entry.getValue();
             //System.out.printf("Sum of warm-start, completeness and suffix size-1 %.2f%n", completenessCost+warmStartNode.getScaledConfCost()+suffix.size() - 1);
             //System.out.printf("max of bounded cost and current cost %.2f%n", Math.max(boundedCost, currMinCost));
@@ -382,7 +382,7 @@ public class TripleCOCC extends ConformanceChecker {
 
                 if (syncAlign.getTraceSize() == suffix.size()) {
                     State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(),
-                            MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign));
+                            MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
                     warmStartStates.add(syncState);
                     break;
                 }
@@ -391,7 +391,7 @@ public class TripleCOCC extends ConformanceChecker {
                 //if (completenessCost + warmStartNode.getScaledConfCost() + suffix.size() - 1 <= <= Math.max(currMinCost, boundedCost)) {
 
                 State s = new State(a, suffix, warmStartNode,
-                        updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a));
+                        updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a),completenessCost);
 
                 // compute log move state from warm-start node
                 State logMove = handleLogMove(new ArrayList<>(), s, "");

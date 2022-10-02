@@ -131,7 +131,7 @@ public class Runner {
                 try {
 
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE);
-                    res.add(0, String.format("TraceId, Cost_%1$s, ExecutionTime_%1$s", checkerType));
+                    res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
                     FileWriter wr = new FileWriter(pathName);
                     for (String s : res) {
                         wr.write(s);
@@ -611,6 +611,7 @@ public class Runner {
         long start;
         long executionTime;
         Alignment alg;
+        State state;
         List<String> trace = new ArrayList<String>();
         //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
         TripleCOCC checker = (TripleCOCC) checkerC;
@@ -633,13 +634,17 @@ public class Runner {
             checker.check(tempList, Integer.toString(i));
         }
 
-        alg = checker.getCurrentOptimalState(Integer.toString(i), false).getAlignment();
+        state = checker.getCurrentOptimalState(Integer.toString(i), false);
+        alg = state.getAlignment();
 
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;
         if (alg != null) {
-
-            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + executionTime);
+            int conformanceCost = alg.getTotalCost();
+            int completenessCost = state.getCompletenessCost();
+            double confidenceCost = state.getNode().getScaledConfCost();
+            double totalCost = conformanceCost+completenessCost+confidenceCost;
+            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + totalCost + "," + executionTime);
 
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
