@@ -514,7 +514,7 @@ public class Runner {
                 //System.out.print("Average trie size: ");
                 //System.out.println(checker.modelTrie.getAvgTraceLength());
             } else if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
-                checker = new TripleCOCC(t, 1, 1, 100000, 100000);
+                checker = new TripleCOCC(t, 1, 1, 100000, 100000, true);
             } else {
 
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
@@ -644,7 +644,7 @@ public class Runner {
             int completenessCost = state.getCompletenessCost();
             double confidenceCost = state.getNode().getScaledConfCost();
             double totalCost = conformanceCost+completenessCost+confidenceCost;
-            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + totalCost + "," + executionTime);
+            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
 
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
