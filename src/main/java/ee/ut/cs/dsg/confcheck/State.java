@@ -12,10 +12,8 @@ public class State implements Comparable<State>{
     private TrieNode node;
     private int costSoFar;
     private double weightedSumOfCosts;
-
     private int completenessCost = 0;
     private State parentState;
-
     private int decayTime;
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar)

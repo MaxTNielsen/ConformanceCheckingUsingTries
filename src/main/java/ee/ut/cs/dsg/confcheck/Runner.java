@@ -361,6 +361,7 @@ public class Runner {
                     eventReceivedToHandled += eventHandledTime - eventReceivedTime;
                     eventPreparedToHandled += eventHandledTime - eventPreparedTime;
                     totalIdleTime += idleTime;
+
                     //System.out.println(String.format("%d\t%d\t%d\t%d", eventPrepared-eventReceived, eventHandled-eventReceived, eventHandled-eventPrepared, idleTime));
                     if (System.currentTimeMillis() - start >= runTimeMillis) {
                         System.out.println(String.format("Run time exhausted. Run time: %d", runTimeMillis));
