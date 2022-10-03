@@ -503,7 +503,6 @@ public class Runner {
             InputStream is = new FileInputStream(inputSampleLogFile);
             inputSamplelog = parser.parse(is).get(0);
 
-
             List<String> templist = new ArrayList<>();
             List<String> tracesToSort = new ArrayList<>();
             // AlphabetService service = new AlphabetService();
@@ -645,7 +644,7 @@ public class Runner {
             int completenessCost = state.getCompletenessCost();
             double confidenceCost = state.getNode().getScaledConfCost();
             double totalCost = conformanceCost+completenessCost+confidenceCost;
-            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime); //Math.round(state.getWeightedSumOfCosts())
 
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
