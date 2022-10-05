@@ -253,7 +253,6 @@ public class Runner {
                     System.out.printf("checkerType %s%n",c);
                     for (String logPath : logPaths) {
                         int pos = logPath.lastIndexOf("/");
-                        //String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + "_" + logPath.substring(pos+1) + "_" + c.toString().length() + "_" + fileType;
                         String pathName = pathPrefix + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + c.toString().length() + "_" + fileType;
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE);

@@ -66,3 +66,45 @@ for file_name in warm_start_runs_new:
             l.append(lines[4]) # 4 = cost, 5 = execution time
         l = [float(i) for i in l[1:-1]]
         print("Avg {} for {} ".format(round(mean(l), 2), file_name))
+
+
+"""
+Run with bounded cost:
+
+Avg 5.29 for M1_simulated_M1.xes_14_.csv
+Avg 6.75 for M1_simulated_M1_warm_2.xes_14_.csv
+Avg 7.03 for M1_simulated_M1_warm_5.xes_14_.csv
+
+Avg 5.29 for M1_simulated_M1.xes_25_.csv
+Avg 6.8 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg 7.52 for M1_simulated_M1_warm_5.xes_25_.csv
+
+------------------------------------------------
+
+Run with old minimisation:
+
+Avg 5.29 for M1_simulated_M1.xes_14_.csv
+Avg 6.75 for M1_simulated_M1_warm_2.xes_14_.csv
+Avg 7.03 for M1_simulated_M1_warm_5.xes_14_.csv
+
+Avg 5.29 for M1_simulated_M1.xes_25_.csv
+Avg 6.8 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg 7.52 for M1_simulated_M1_warm_5.xes_25_.csv
+
+------------------------------------------------
+
+Run with old minimisation and warm-start all states
+
+completeness only
+
+Avg 4.03 for M1_simulated_M1.xes_25_.csv
+Avg 4.81 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg 5.04 for M1_simulated_M1_warm_5.xes_25_.csv
+
+completeness + alignment length
+
+Avg 4.41 for M1_simulated_M1.xes_25_.csv
+Avg 5.38 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg 5.7 for M1_simulated_M1_warm_5.xes_25_.csv
+
+"""
