@@ -31,6 +31,6 @@ for file_name in new_csv_files:
         csvFile = csv.reader(file)
         l = list()
         for lines in csvFile:
-            l.append(lines[4])
+            l.append(lines[5])
         l = [float(i) for i in l[1:-1]]
         print("Avg {} for {} ".format(round(mean(l),2), file_name))
