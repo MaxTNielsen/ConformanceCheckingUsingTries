@@ -1,7 +1,6 @@
 package ee.ut.cs.dsg.confcheck.cost;
 
 import ee.ut.cs.dsg.confcheck.ConformanceChecker;
-import ee.ut.cs.dsg.confcheck.RandomConformanceChecker;
 import ee.ut.cs.dsg.confcheck.State;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 import ee.ut.cs.dsg.confcheck.util.Configuration;

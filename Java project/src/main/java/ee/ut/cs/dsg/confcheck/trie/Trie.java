@@ -47,6 +47,10 @@ public class Trie {
         if (minLengthToEnd > 0) {
             StringBuilder sb = new StringBuilder(trace.size());
             for (String event : trace) {
+
+                /*if(event.equals("O"))
+                    System.out.println("");*/
+
                 current.addLinkedTraceIndex(traceIndex);
                 TrieNode child = new TrieNode(event, maxChildren, minLengthToEnd - 1, minLengthToEnd - 1, minLengthToEnd - 1 == 0 ? true : false, current);
                 TrieNode returned;
@@ -183,11 +187,8 @@ public class Trie {
         return minLength;
     }
 
-
     public int getAvgTraceLength() {
         int sumlength = leaves.stream().map(node -> node.getLevel()).reduce(0, (subtotal, element) -> subtotal + element);
-
-
         return sumlength / leaves.size();
     }
 
@@ -202,7 +203,6 @@ public class Trie {
     public HashMap<String, TreeMap<Integer, TrieNode>> getWarmStart() {
         return warmStart;
     }
-
 
     public TrieNode getNodeOnShortestTrace() {
         int currentMinLevel = 99999;
@@ -287,10 +287,14 @@ public class Trie {
     public void computeScaledConfidenceCost(TrieNode root_) {
         for (TrieNode n : root_.getAllChildren()) {
             if (!n.isEndOfTrace()) {
-                double x_std = Math.round((((double) n.getConfidenceCost() - minConf) / (maxConf - minConf))*100.0) / 100.0;
+                double x_std = Math.round((((double) n.getConfidenceCost() - minConf) / (maxConf - minConf)) * 100.0) / 100.0;
                 n.setScaledConfCost(x_std);
                 computeScaledConfidenceCost(n);
             }
         }
+    }
+
+    public List<TrieNode> getLeaves() {
+        return leaves;
     }
 }

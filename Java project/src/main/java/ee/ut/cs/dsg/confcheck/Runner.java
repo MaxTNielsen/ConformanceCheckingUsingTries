@@ -4,6 +4,7 @@ import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
+import ee.ut.cs.dsg.confcheck.util.JavaClassLoader;
 import lpsolve.LpSolve;
 import lpsolve.LpSolveException;
 import org.deckfour.xes.classification.XEventAttributeClassifier;
@@ -49,7 +50,10 @@ import java.time.Instant;
 import java.util.*;
 
 import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType;
+import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING;
+import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.LogSortType;
+
 import static sun.misc.Version.print;
 
 
@@ -61,7 +65,6 @@ public class Runner {
 
 
         String executionType = "cost_diff"; // "stress_test" or "cost_diff"
-
         // Cost difference
 
         if (executionType == "cost_diff") {
@@ -115,11 +118,17 @@ public class Runner {
             subLog.put("reduced", "input/Sepsis/reducedLogActivity.xml");
             logs.put("Sepsis", new HashMap<>(subLog));
             subLog.clear();
+            subLog.put("log", "input/M-models/M1.xes");
+            subLog.put("simulated", "input/M-models/M1_sim.xes");
+            subLog.put("warm_2", "input/M-models/M1_warm_2.xes");
+            subLog.put("warm_5", "input/M-models/M1_warm_5.xes");
+            logs.put("M1", new HashMap<>(subLog));
+            subLog.clear();
 
-            ConformanceCheckerType checkerType = ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC;
-            System.out.println(checkerType.toString());
 
-            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs
+            ConformanceCheckerType checkerType = TRIE_STREAMING_TRIPLECOCC;
+
+            String runType = "warm-start"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
@@ -131,7 +140,7 @@ public class Runner {
                 try {
 
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE);
-                    res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
+                    res.add(0, String.format("TraceId, total cost, ExecutionTime_%1$s", checkerType));
                     FileWriter wr = new FileWriter(pathName);
                     for (String s : res) {
                         wr.write(s);
@@ -223,6 +232,47 @@ public class Runner {
 
                     }
 
+                }
+            } else if (runType == "warm-start") {
+                // run for specific log
+                String sLog = "M1";
+                String sLogType = "simulated";
+                String sLogPath_complete = logs.get(sLog).get("log");
+                String sLogPathWarm2 = logs.get(sLog).get("warm_2");
+                String sLogPathWarm5 = logs.get(sLog).get("warm_5");
+                String[] logPaths = new String[3];
+                logPaths[0] = sLogPath_complete;
+                logPaths[1] = sLogPathWarm2;
+                logPaths[2] = sLogPathWarm5;
+                String sProxyLogPath = logs.get(sLog).get(sLogType);
+                ConformanceCheckerType checkerType1 = checkerType == TRIE_STREAMING_TRIPLECOCC ? TRIE_STREAMING : TRIE_STREAMING_TRIPLECOCC;
+                ConformanceCheckerType[] checkers = new ConformanceCheckerType[2];
+                checkers[0] = checkerType;
+                checkers[1] = checkerType1;
+                for (ConformanceCheckerType c : checkers) {
+                    System.out.printf("checkerType %s%n",c);
+                    for (String logPath : logPaths) {
+                        int pos = logPath.lastIndexOf("/");
+                        //String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + "_" + logPath.substring(pos+1) + "_" + c.toString().length() + "_" + fileType;
+                        String pathName = pathPrefix + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + c.toString().length() + "_" + fileType;
+                        try {
+                            List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE);
+                            if(c == TRIE_STREAMING_TRIPLECOCC)
+                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
+                            else
+                                res.add(0, String.format("TraceId, total cost, ExecutionTime_%1$s", c));
+
+                            FileWriter wr = new FileWriter(pathName);
+                            for (String s : res) {
+                                wr.write(s);
+                                wr.write(System.lineSeparator());
+                            }
+                            wr.close();
+                        } catch (IOException e) {
+                            System.out.println("Error occurred!");
+                            e.printStackTrace();
+                        }
+                    }
                 }
             } else {
                 System.out.println("Run type not implemented");
@@ -481,7 +531,6 @@ public class Runner {
         System.out.println(String.format("Trie construction time %d ms", (endTs - startTs)));
     }
 
-
     private static ArrayList<String> testOnConformanceApproximationResults(String inputProxyLogFile, String inputSampleLogFile, ConformanceCheckerType confCheckerType, LogSortType sortType) {
         init();
         Trie t = constructTrie(inputProxyLogFile);
@@ -508,15 +557,25 @@ public class Runner {
             // AlphabetService service = new AlphabetService();
 
             ConformanceChecker checker;
+            String className = confCheckerType == TRIE_STREAMING_TRIPLECOCC ? "ee.ut.cs.dsg.confcheck.TripleCOCC" : "ee.ut.cs.dsg.confcheck.StreamingConformanceChecker";
+            JavaClassLoader javaClassLoader = new JavaClassLoader();
+            Class<?>[] type;
+            Object[] params;
 
-            if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING) {
-                checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
-                //System.out.print("Average trie size: ");
-                //System.out.println(checker.modelTrie.getAvgTraceLength());
-            } else if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
-                checker = new TripleCOCC(t, 1, 1, 100000, 100000, true);
+
+            if (confCheckerType == TRIE_STREAMING) {
+                //checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
+                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class};
+                params = new Object[]{t, 1, 1, 100000, 100000};
+                javaClassLoader.invokeClass(className, type, params);
+
+            } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+                //checker = new TripleCOCC(t, 1, 1, 100000, 100000, true);
+                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
+                params = new Object[]{t, 1, 1, 100000, 100000, true};
+                javaClassLoader.invokeClass(className, type, params);
+
             } else {
-
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
                     checker = new PrefixConformanceChecker(t, 1, 1, false);
                 else if (confCheckerType == ConformanceCheckerType.TRIE_RANDOM)
@@ -573,11 +632,11 @@ public class Runner {
 
             //System.out.println("Trace#, Alignment cost");
             //result.add("TraceId,Cost,ExecutionTime,ConfCheckerType");
-
+            checker = null;
             if (sortType == LogSortType.LEXICOGRAPHIC_DESC || sortType == LogSortType.TRACE_LENGTH_DESC) {
                 for (int i = tracesToSort.size() - 1; i >= 0; i--) {
-                    if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING || confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
-                        totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
+                    if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+                        totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     }
@@ -586,11 +645,11 @@ public class Runner {
 //
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
-                    if (confCheckerType == ConformanceCheckerType.TRIE_STREAMING || confCheckerType == ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC) {
-                        totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
-                    } else {
+                    if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+                        totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
+                    } /*else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
-                    }
+                    }*/
                 }
             }
 
@@ -606,15 +665,15 @@ public class Runner {
         return result;
     }
 
-
-    private static long computeAlignment2(List<String> tracesToSort, ConformanceChecker checkerC, HashMap<String, Integer> sampleTracesMap, long totalTime, DeviationChecker devChecker, int i, ArrayList<String> result) {
+    private static long computeAlignment2(List<String> tracesToSort, ConformanceChecker checkerC, HashMap<String, Integer> sampleTracesMap, long totalTime, DeviationChecker devChecker, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType) {
         long start;
         long executionTime;
         Alignment alg;
         State state;
         List<String> trace = new ArrayList<String>();
+
         //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
-        TripleCOCC checker = (TripleCOCC) checkerC;
+        //TripleCOCC checker = (TripleCOCC) checkerC;
 
         int pos = tracesToSort.get(i).indexOf((char) 63);
 
@@ -623,29 +682,33 @@ public class Runner {
             trace.add(new StringBuilder().append(c).toString());
         }
 
-        //System.out.println("Case id: "+Integer.toString(i));
-        //System.out.println(trace);
-
         start = System.currentTimeMillis();
+        Class<?>[] types;
+        Object[] params;
 
         for (String e : trace) {
             List<String> tempList = new ArrayList<String>();
             tempList.add(e);
-            checker.check(tempList, Integer.toString(i));
+            params = new Object[]{tempList, Integer.toString(i)};
+            types = new Class[]{List.class, String.class};
+            javaClassLoader.invokeCheck(params, types);
+            //checker.check(tempList, Integer.toString(i));
         }
 
-        state = checker.getCurrentOptimalState(Integer.toString(i), false);
+        params = new Object[]{Integer.toString(i), false};
+        types = new Class[]{String.class, boolean.class};
+
+        //state = checker.getCurrentOptimalState(Integer.toString(i), false);
+        state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
         alg = state.getAlignment();
 
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;
         if (alg != null) {
-            int conformanceCost = alg.getTotalCost();
-            int completenessCost = state.getCompletenessCost();
-            double confidenceCost = state.getNode().getScaledConfCost();
-            double totalCost = conformanceCost+completenessCost+confidenceCost;
-            result.add(Integer.toString(i) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime); //Math.round(state.getWeightedSumOfCosts())
-
+            if(checkerType == TRIE_STREAMING_TRIPLECOCC)
+                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+            else
+                result.add(i + "," + alg.getTotalCost() + "," + executionTime);
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
             result.add(Integer.toString(i) + ",9999999," + executionTime);
@@ -680,14 +743,14 @@ public class Runner {
 
         //alg = null;
 
-        /*
+
         for (String e : trace) {
             List<String> tempList = new ArrayList<String>();
             tempList.add(e);
             alg = checker.check2(tempList, true, Integer.toString((i)));
             //System.out.println(", " + alg.getTotalCost());
             //System.out.println(alg.toString());
-        }*/
+        }
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;
         if (alg != null) {
@@ -796,7 +859,7 @@ public class Runner {
     private static void validateTrieEnrichmentLogic(Trie t) {
         t.computeConfidenceCostForAllNodes("avg");
         t.computeScaledConfidenceCost(t.getRoot());
-        System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf,t.minConf);
+        System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf, t.minConf);
         System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
         for (TrieNode c : t.getRoot().getAllChildren()) {
             System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getScaledConfCost());

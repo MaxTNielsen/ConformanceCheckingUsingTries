@@ -171,16 +171,16 @@ public class TripleCOCC extends ConformanceChecker {
 
                 //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
-                /*List<State> warmStartMoves = new ArrayList<>();
+                List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, boundedCost);
-                }*/
+                }
 
-                /*for (State wm : warmStartMoves) {
+                for (State wm : warmStartMoves) {
                     if (wm.getWeightedSumOfCosts() <= boundedCost)
                         interimCurrentStates.add(wm);
-                }*/
+                }
 
                 //currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
 
@@ -352,57 +352,60 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    protected List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
+    public List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
         List<State> warmStartStates = new ArrayList<>();
         List<String> suffix = state.getTracePostfix();
         suffix.addAll(event);
         TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
         suffix.remove(0);
-        for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
-            int completenessCost = entry.getKey();
-            TrieNode warmStartNode = entry.getValue();
 
-            // we only consider warm-start moves that are within the bounded cost
-            if (completenessCost <= boundedCost) {
-                Alignment a = new Alignment();
-                a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
+        if (warmStartNodes != null) {
+            for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
+                int completenessCost = entry.getKey();
+                TrieNode warmStartNode = entry.getValue();
 
-                // we attempt to make synchronous moves on the suffix of the warm-start trace
-                TrieNode fromNode = warmStartNode;
-                Alignment syncAlign = new Alignment(a);
-                for (String activity : suffix) {
-                    TrieNode toNode = fromNode.getChild(activity);
-                    Move m;
-                    if (toNode != null) {
-                        m = new Move(toNode.getContent(), toNode.getContent(), 0);
-                        syncAlign.appendMove(m);
-                        fromNode = toNode;
-                        continue;
+                // we only consider warm-start moves that are within the bounded cost
+                if (completenessCost <= boundedCost) {
+                    Alignment a = new Alignment();
+                    a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
+
+                    // we attempt to make synchronous moves on the suffix of the warm-start trace
+                    TrieNode fromNode = warmStartNode;
+                    Alignment syncAlign = new Alignment(a);
+                    for (String activity : suffix) {
+                        TrieNode toNode = fromNode.getChild(activity);
+                        Move m;
+                        if (toNode != null) {
+                            m = new Move(toNode.getContent(), toNode.getContent(), 0);
+                            syncAlign.appendMove(m);
+                            fromNode = toNode;
+                            continue;
+                        }
+                        break;
                     }
-                    break;
-                }
 
-                // test if we have made a full match on suffix
-                if (syncAlign.getMoves().size() - 1 == suffix.size()) {
-                    State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(),
-                            MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
-                    warmStartStates.add(syncState);
-                    break;
-                }
+                    // test if we have made a full match on suffix
+                    if (syncAlign.getMoves().size() - 1 == suffix.size()) {
+                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(),
+                                MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
+                        warmStartStates.add(syncState);
+                        break;
+                    }
 
-                // again, we check if the maximum cost will be exceeded by computing warm-start log or model prefix-alignments
-                State s = new State(a, suffix, warmStartNode,
-                        updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
+                    // again, we check if the maximum cost will be exceeded by computing warm-start log or model prefix-alignments
+                    State s = new State(a, suffix, warmStartNode,
+                            updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
 
-                // compute log move state from warm-start node
-                if(completenessCost + suffix.size() <= boundedCost) {
+                    // compute log move state from warm-start node
+                    //if (completenessCost + suffix.size() <= boundedCost) {
                     State logMove = handleLogMove(new ArrayList<>(), s, "");
                     warmStartStates.add(logMove);
-                }
+                    //}
 
-                // compute model move state from warm-start node
-                if(completenessCost + 1 <= boundedCost) {
+                    // compute model move state from warm-start node
+                    //if (completenessCost + 1 <= boundedCost) {
                     warmStartStates.addAll(handleModelMoves(suffix, s, null));
+                    //}
                 }
             }
         }
@@ -721,17 +724,6 @@ public class TripleCOCC extends ConformanceChecker {
         for (State st : states) {
             if (st.getWeightedSumOfCosts() >= maxCost)
                 maxCost = st.getWeightedSumOfCosts();
-        }
-        return maxCost;
-    }
-
-    protected int getMaxSuffixSize(HashMap<String, State> s) {
-        int maxCost = Integer.MIN_VALUE;
-        Collection<State> states = s.values();
-        for (State st : states) {
-            int suffixLength = st.getTracePostfix().size();
-            if (suffixLength >= maxCost)
-                maxCost = suffixLength;
         }
         return maxCost;
     }

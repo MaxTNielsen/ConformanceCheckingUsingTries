@@ -11,8 +11,6 @@ import java.util.*;
 
 public class RandomConformanceChecker extends ConformanceChecker{
 
-
-
     protected int exploitVersusExploreFrequency = 100;
     protected int numEpochs;
     protected boolean onMatchFollowPrefixOnly = false;
