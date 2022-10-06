@@ -647,9 +647,9 @@ public class Runner {
                 for (int i = 0; i < tracesToSort.size(); i++) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
                         totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
-                    } /*else {
+                    } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
-                    }*/
+                    }
                 }
             }
 
@@ -672,9 +672,6 @@ public class Runner {
         State state;
         List<String> trace = new ArrayList<String>();
 
-        //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
-        //TripleCOCC checker = (TripleCOCC) checkerC;
-
         int pos = tracesToSort.get(i).indexOf((char) 63);
 
         String actualTrace = tracesToSort.get(i).substring(pos + 1);
@@ -692,15 +689,18 @@ public class Runner {
             params = new Object[]{tempList, Integer.toString(i)};
             types = new Class[]{List.class, String.class};
             javaClassLoader.invokeCheck(params, types);
-            //checker.check(tempList, Integer.toString(i));
         }
 
         params = new Object[]{Integer.toString(i), false};
         types = new Class[]{String.class, boolean.class};
 
-        //state = checker.getCurrentOptimalState(Integer.toString(i), false);
         state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
-        alg = state.getAlignment();
+        alg = null;
+        try{
+            alg = state.getAlignment();
+        } catch (NullPointerException e) {
+            System.out.println("Optimal alignment state was null");
+        }
 
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;

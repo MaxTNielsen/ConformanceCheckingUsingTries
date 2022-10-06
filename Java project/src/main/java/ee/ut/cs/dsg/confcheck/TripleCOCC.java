@@ -14,7 +14,7 @@ public class TripleCOCC extends ConformanceChecker {
 
     protected boolean verbose = false;
     protected final CostFunction costFunction;
-    final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
+    //final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
 
     // Streaming variables
     protected boolean replayWithLogMoves = true;
@@ -22,7 +22,6 @@ public class TripleCOCC extends ConformanceChecker {
     protected float decayTimeMultiplier = 0.3F;
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
     protected int averageTrieLength = 0;
-
     protected boolean isStandardAlign;
 
 
@@ -136,8 +135,6 @@ public class TripleCOCC extends ConformanceChecker {
             List<String> traceEvent = new ArrayList<>();
             traceEvent.add(event);
 
-            double currentMinCost = boundedCost;
-
             for (Map.Entry<String, State> entry : statesToIterate.entrySet()) {
                 previousState = entry.getValue();
                 traceSuffix = previousState.getTracePostfix();
@@ -149,40 +146,24 @@ public class TripleCOCC extends ConformanceChecker {
 
                 traceSuffix.addAll(traceEvent);
 
-                if (previousState.getWeightedSumOfCosts() + 1 <= boundedCost) {
-                    List<State> modelMoveStates = handleModelMoves(traceSuffix, previousState, null);
-                    for (State mm : modelMoveStates) {
-                        if (mm.getWeightedSumOfCosts() <= boundedCost)
-                            interimCurrentStates.add(mm);
-                    }
+                List<State> modelMoveStates = handleModelMoves(traceSuffix, previousState, null);
+                for (State mm : modelMoveStates) {
+                    if (mm.getWeightedSumOfCosts() <= boundedCost)
+                        interimCurrentStates.add(mm);
                 }
 
-                // add log move
-                /*if (logMoveState.getWeightedSumOfCosts() < currentMinCost) {
-                    interimCurrentStates.clear();
-                    interimCurrentStates.add(logMoveState);
-                    currentMinCost = logMoveState.getWeightedSumOfCosts();
-                } else if (logMoveState.getWeightedSumOfCosts() == currentMinCost) {
-                    interimCurrentStates.add(logMoveState);
-                }*/
-
-                // add model moves
-                //currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
-
-                //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
-
-                List<State> warmStartMoves = new ArrayList<>();
+                /*List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, boundedCost);
-                }
+                }*/
 
-                for (State wm : warmStartMoves) {
+                //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, boundedCost);
+
+                /*for (State wm : warmStartMoves) {
                     if (wm.getWeightedSumOfCosts() <= boundedCost)
                         interimCurrentStates.add(wm);
-                }
-
-                //currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
+                }*/
 
                 int previousStateDecayTime = previousState.getDecayTime();
                 if (previousStateDecayTime < 2) {
@@ -194,9 +175,6 @@ public class TripleCOCC extends ConformanceChecker {
 
             // add new states with the lowest cost
             for (State s : interimCurrentStates) {
-                /*if (s.getWeightedSumOfCosts() == currentMinCost) {
-                    currentStates.put(s.getAlignment().toString(), s);
-                }*/
                 currentStates.put(s.getAlignment().toString(), s);
             }
         }
@@ -352,7 +330,7 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    public List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
+    /*public List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
         List<State> warmStartStates = new ArrayList<>();
         List<String> suffix = state.getTracePostfix();
         suffix.addAll(event);
@@ -410,7 +388,7 @@ public class TripleCOCC extends ConformanceChecker {
             }
         }
         return warmStartStates;
-    }
+    }*/
 
     public State getCurrentOptimalState(String caseId, boolean finalState) { //
         StatesBuffer caseStatesInBuffer;
@@ -689,20 +667,6 @@ public class TripleCOCC extends ConformanceChecker {
         HashMap<TrieNode, Alignment> result = new HashMap<>();
         result.put(optimalNode, alg);
         return result;
-    }
-
-    private double getCurrentMinCost(List<State> interimCurrentStates, double currentMinCost, List<State> states) {
-        for (State s : states) {
-            if (s.getWeightedSumOfCosts() < currentMinCost) {
-                interimCurrentStates.clear();
-                interimCurrentStates.add(s);
-                currentMinCost = s.getWeightedSumOfCosts();
-            } else if (s.getWeightedSumOfCosts() == currentMinCost) {
-                interimCurrentStates.add(s);
-            }
-        }
-
-        return currentMinCost;
     }
 
     protected double updateCost(double currCost, MoveType mv, TrieNode prevEta, TrieNode eta) {
