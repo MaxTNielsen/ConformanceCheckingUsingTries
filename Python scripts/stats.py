@@ -53,7 +53,7 @@ for file_name in warm_start_runs_old:
         csvFile = csv.reader(file)
         l = list()
         for lines in csvFile:
-            l.append(lines[dim_type]) # 1 = cost, 2 = execution time
+            l.append(lines[dim_type])
         l = [float(i) for i in l[1:-1]]
         print("Avg {} {} for {} ".format(dim[dim_type],round(mean(l), 2), file_name))
 
@@ -73,13 +73,13 @@ for file_name in warm_start_runs_new:
         csvFile = csv.reader(file)
         l = list()
         for lines in csvFile:
-            l.append(lines[dim_type]) # 4 = cost, 5 = execution time
+            l.append(lines[dim_type])
         l = [float(i) for i in l[1:-1]]
         print("Avg {} {} for {} ".format(dim[dim_type],round(mean(l), 2), file_name))
 
 
 """
-COST:
+WITHOUT WARM-START:
 
 Old OCC
 Avg cost 5.29 for M1_simulated_M1.xes_14_.csv 
@@ -91,8 +91,6 @@ Avg cost 5.29 for M1_simulated_M1.xes_25_.csv
 Avg cost 6.75 for M1_simulated_M1_warm_2.xes_25_.csv
 Avg cost 7.03 for M1_simulated_M1_warm_5.xes_25_.csv
 
-TIME:
-
 Old OCC
 Avg time 0.83 for M1_simulated_M1.xes_14_.csv 
 Avg time 0.32 for M1_simulated_M1_warm_2.xes_14_.csv
@@ -102,5 +100,30 @@ New OCC
 Avg time 1.1 for M1_simulated_M1.xes_25_.csv
 Avg time 0.95 for M1_simulated_M1_warm_2.xes_25_.csv
 Avg time 0.31 for M1_simulated_M1_warm_5.xes_25_.csv
+
+---------------------------------------------------------------
+
+Time no warm-start without bounded cost:
+Time taken for trie-based conformance checking 141 milliseconds
+Time taken for trie-based conformance checking 79 milliseconds
+Time taken for trie-based conformance checking 45 milliseconds
+
+
+Time no warm-start with bounded cost:
+Time taken for trie-based conformance checking 128 milliseconds
+Time taken for trie-based conformance checking 67 milliseconds
+Time taken for trie-based conformance checking 31 milliseconds
+
+---------------------------------------------------------------
+
+WARM-START:
+
+Avg cost 5.29 for M1_simulated_M1.xes_14_.csv 
+Avg cost 6.75 for M1_simulated_M1_warm_2.xes_14_.csv
+Avg cost 7.03 for M1_simulated_M1_warm_5.xes_14_.csv
+
+Avg cost 5.12 for M1_simulated_M1.xes_25_.csv
+Avg cost 6.26 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg cost 5.77 for M1_simulated_M1_warm_5.xes_25_.csv
 
 """

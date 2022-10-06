@@ -11,7 +11,7 @@ TraceId, total cost, ExecutionTime_TRIE_STREAMING
 9,8,0
 10,10,0
 11,8,0
-12,9,0
+12,9,4
 13,2,0
 14,12,0
 15,14,0
@@ -33,7 +33,7 @@ TraceId, total cost, ExecutionTime_TRIE_STREAMING
 31,3,0
 32,3,0
 33,7,0
-34,16,15
+34,16,0
 35,8,0
 36,4,0
 37,5,0
@@ -75,7 +75,7 @@ TraceId, total cost, ExecutionTime_TRIE_STREAMING
 73,6,0
 74,10,0
 75,4,0
-76,18,0
+76,18,15
 77,3,0
 78,3,0
 79,3,0
@@ -93,7 +93,7 @@ TraceId, total cost, ExecutionTime_TRIE_STREAMING
 91,8,0
 92,10,0
 93,3,0
-94,16,16
+94,16,0
 95,11,0
 96,3,0
 97,4,0
