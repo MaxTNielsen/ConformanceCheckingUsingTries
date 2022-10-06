@@ -563,13 +563,17 @@ public class Runner {
 
 
             if (confCheckerType == TRIE_STREAMING) {
+                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials
                 //checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
+
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class};
                 params = new Object[]{t, 1, 1, 100000, 100000};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign
                 //checker = new TripleCOCC(t, 1, 1, 100000, 100000, true);
+
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
                 params = new Object[]{t, 1, 1, 100000, 100000, true};
                 javaClassLoader.invokeClass(className, type, params);
@@ -699,7 +703,14 @@ public class Runner {
 
         //state = checker.getCurrentOptimalState(Integer.toString(i), false);
         state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
-        alg = state.getAlignment();
+
+        alg = null;
+
+        try{
+            alg = state.getAlignment();
+        } catch (NullPointerException e) {
+            System.out.println("Optimal alignment state was not found");
+        }
 
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;
