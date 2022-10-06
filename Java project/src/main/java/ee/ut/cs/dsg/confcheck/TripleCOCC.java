@@ -14,7 +14,7 @@ public class TripleCOCC extends ConformanceChecker {
 
     protected boolean verbose = false;
     protected final CostFunction costFunction;
-    final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
+    //final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
 
     // Streaming variables
     protected boolean replayWithLogMoves = true;
@@ -78,11 +78,11 @@ public class TripleCOCC extends ConformanceChecker {
             // case exists, fetch last state
             caseStatesInBuffer = statesInBuffer.get(caseId);
             currentStates = caseStatesInBuffer.getCurrentStates();
-            boundedCost = Math.max(getMaxCostOfStates(currentStates) + 1, minCost);
+            //boundedCost = Math.max(getMaxCostOfStates(currentStates) + 1, minCost);
 
         } else {
             // if sync move(s) --> add sync move(s) to currentStates. If one of the moves will not be sync move, then start checking from that move.
-            boundedCost = minCost;
+            //boundedCost = minCost;
             currentStates.put(new Alignment().toString(), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
         }
 
@@ -171,18 +171,18 @@ public class TripleCOCC extends ConformanceChecker {
 
                 //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
-                List<State> warmStartMoves = new ArrayList<>();
+                /*List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
-                }
+                }*/
 
                 /*for (State wm : warmStartMoves) {
                     if (wm.getWeightedSumOfCosts() <= boundedCost)
                         interimCurrentStates.add(wm);
                 }*/
 
-                currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
+                //currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
 
                 int previousStateDecayTime = previousState.getDecayTime();
                 if (previousStateDecayTime < 2) {
@@ -352,7 +352,7 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    public List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
+    /*public List<State> handleWarmStartMove(List<String> event, State state, double boundedCost) {
         List<State> warmStartStates = new ArrayList<>();
         List<String> suffix = state.getTracePostfix();
         int prefixLength = suffix.size();
@@ -411,7 +411,7 @@ public class TripleCOCC extends ConformanceChecker {
             }
         }
         return warmStartStates;
-    }
+    }*/
 
     public State getCurrentOptimalState(String caseId, boolean finalState) { //
         StatesBuffer caseStatesInBuffer;
