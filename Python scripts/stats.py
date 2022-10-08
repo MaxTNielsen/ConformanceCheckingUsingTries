@@ -52,7 +52,7 @@ warm_start_runs_old = [
 ]
 
 dim = {1:"cost", 2:"time"}
-dim_type = 1
+dim_type = 2
 
 for file_name in warm_start_runs_old:
     with open("conf, compl, confi/"+file_name, mode='r') as file:
@@ -72,7 +72,7 @@ warm_start_runs_new = [
 ]
 
 dim = {4:"cost", 5:"time"}
-dim_type = 4
+dim_type = 5
 
 for file_name in warm_start_runs_new:
     with open("conf, compl, confi/"+file_name, mode='r') as file:
@@ -140,9 +140,21 @@ Avg cost 6.39 for M1_simulated_M1_warm_2.xes_25_.csv
 Avg cost 4.47 for M1_simulated_M1_warm_5.xes_25_.csv
 
 Cost warm-start with bounded cost:
-Time taken for trie-based conformance checking 128 milliseconds
-Time taken for trie-based conformance checking 67 milliseconds
-Time taken for trie-based conformance checking 31 milliseconds
+Avg cost 5.12 for M1_simulated_M1.xes_25_.csv
+Avg cost 6.26 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg cost 5.77 for M1_simulated_M1_warm_5.xes_25_.csv
+
+---------------------------------------------------------------
+
+Time warm-start without bounded cost:
+Avg time 1.36 for M1_simulated_M1.xes_25_.csv
+Avg time 0.6 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg time 0.2 for M1_simulated_M1_warm_5.xes_25_.csv
+
+Time warm-start with bounded cost:
+Avg time 1.62 for M1_simulated_M1.xes_25_.csv
+Avg time 0.75 for M1_simulated_M1_warm_2.xes_25_.csv
+Avg time 0.52 for M1_simulated_M1_warm_5.xes_25_.csv
 
 ---------------------------------------------------------------
 
