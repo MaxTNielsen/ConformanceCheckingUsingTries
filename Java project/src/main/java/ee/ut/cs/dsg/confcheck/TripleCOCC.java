@@ -179,7 +179,6 @@ public class TripleCOCC extends ConformanceChecker {
                 if (s.getWeightedSumOfCosts() == currentMinCost) {
                     currentStates.put(s.getAlignment().toString(), s);
                 }
-                //currentStates.put(s.getAlignment().toString(), s);
             }
         }
 
