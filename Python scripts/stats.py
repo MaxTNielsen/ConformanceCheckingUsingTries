@@ -3,16 +3,22 @@ from statistics import mean
 
 # csv_files = ["old_OCC_false.csv"]
 
+# dim = {1:"cost", 2:"time"}
+# dim_type = 1
+
 # for file_name in csv_files:
 #     with open("conf, compl, confi/"+file_name, mode='r') as file:
 #         csvFile = csv.reader(file)
 #         l = list()
 #         for lines in csvFile:
-#             l.append(lines[1])
+#             l.append(lines[dim_type])
 #         l = [int(i) for i in l[1:-1]]
 #         print("Avg {} for {} ".format(round(mean(l),2), file_name))
 
-#print("")
+# print("")
+
+# dim = {4:"cost", 5:"time"}
+# dim_type = 4
 
 # new_csv_files = ["old_OCC_warm-start_no_align_false.csv",
 # "old_OCC_warm-start_all_states.csv",
@@ -33,11 +39,11 @@ from statistics import mean
 #         csvFile = csv.reader(file)
 #         l = list()
 #         for lines in csvFile:
-#             l.append(lines[5])
+#             l.append(lines[dim_type])
 #         l = [float(i) for i in l[1:-1]]
 #         print("Avg {} for {} ".format(round(mean(l),2), file_name))
 
-#print("")
+# print("")
 
 warm_start_runs_old = [
     "M1_simulated_M1.xes_14_.csv",
@@ -46,7 +52,7 @@ warm_start_runs_old = [
 ]
 
 dim = {1:"cost", 2:"time"}
-dim_type = 1
+dim_type = 2
 
 for file_name in warm_start_runs_old:
     with open("conf, compl, confi/"+file_name, mode='r') as file:
@@ -66,7 +72,7 @@ warm_start_runs_new = [
 ]
 
 dim = {4:"cost", 5:"time"}
-dim_type = 4
+dim_type = 5
 
 for file_name in warm_start_runs_new:
     with open("conf, compl, confi/"+file_name, mode='r') as file:

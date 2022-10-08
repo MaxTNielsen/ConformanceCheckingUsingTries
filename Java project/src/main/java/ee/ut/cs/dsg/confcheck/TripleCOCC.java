@@ -334,7 +334,7 @@ public class TripleCOCC extends ConformanceChecker {
         List<State> warmStartStates = new ArrayList<>();
         List<String> suffix = state.getTracePostfix();
 
-        if(!(suffix.size() == 1)) // suffix of root node state already contains 1.st event in the stream
+        if (!(suffix.size() == 1)) // suffix of root node state already contains 1.st event in the stream
             suffix.addAll(event);
 
         TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
@@ -347,6 +347,7 @@ public class TripleCOCC extends ConformanceChecker {
 
                 // we only consider warm-start moves that are within the bounded cost
                 if (completenessCost <= boundedCost) {
+
                     Alignment a = new Alignment();
                     a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
 
@@ -378,15 +379,11 @@ public class TripleCOCC extends ConformanceChecker {
                             updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
 
                     // compute log move state from warm-start node
-                    //if (completenessCost + suffix.size() <= boundedCost) {
                     State logMove = handleLogMove(new ArrayList<>(), s, "");
                     warmStartStates.add(logMove);
-                    //}
 
                     // compute model move state from warm-start node
-                    //if (completenessCost + 1 <= boundedCost) {
                     warmStartStates.addAll(handleModelMoves(suffix, s, null));
-                    //}
                 }
             }
         }
