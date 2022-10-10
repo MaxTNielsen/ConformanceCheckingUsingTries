@@ -1,5 +1,6 @@
 import csv
 from statistics import mean
+from sys import prefix
 
 def summarize_results(prefix_path, dim, dim_type, *files):
     for file_name in files:
@@ -11,6 +12,21 @@ def summarize_results(prefix_path, dim, dim_type, *files):
             l = [float(i) for i in l[1:-1]]
             print("Avg {} {} for {} ".format(dim[dim_type],round(mean(l), 2), file_name))
     print("")
+
+
+def compare_to_confidence(prefix_paths, files):
+    results = []
+
+    for i,file_name in enumerate(files):
+        with open(prefix_paths[i]+file_name, mode='r') as file:
+            csvFile = csv.reader(file)
+            l = list()
+            for lines in csvFile:
+                l.append(lines[4])
+            l = [float(i) for i in l[1:-1]]
+            results.append(mean(l))
+
+    return results
 
 ################################################# without confidence #################################################
 
@@ -60,7 +76,10 @@ PREFIX_PATH_NO_CONF = "conf, compl/"
 
 # print("")
 
-warm_start_runs_old = [
+warm_start_runs_old_no_conf = [
+    "M1_simulated_M1.xes_14_.csv",
+    "M1_simulated_M1_warm_2.xes_14_.csv",
+    "M1_simulated_M1_warm_5.xes_14_.csv",
     "M1_simulated_M1_sim_long.xes_14_.csv",
     "M1_simulated_M1_sim_short.xes_14_.csv"
 ]
@@ -68,9 +87,12 @@ warm_start_runs_old = [
 dim = {1:"cost", 2:"time"}
 dim_type = 1
 
-summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type, *warm_start_runs_old)
+summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type, *warm_start_runs_old_no_conf)
 
-warm_start_runs_new = [
+warm_start_runs_new_no_conf = [
+    "M1_simulated_M1.xes_25_.csv",
+    "M1_simulated_M1_warm_2.xes_25_.csv",
+    "M1_simulated_M1_warm_5.xes_25_.csv",
     "M1_simulated_M1_sim_long.xes_25_.csv",
     "M1_simulated_M1_sim_short.xes_25_.csv"
 ]
@@ -78,7 +100,7 @@ warm_start_runs_new = [
 dim = {4:"cost", 5:"time"}
 dim_type = 4
 
-summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type, *warm_start_runs_new)
+summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type, *warm_start_runs_new_no_conf)
 
 """
 WITHOUT WARM-START:
@@ -160,7 +182,7 @@ Avg time 0.52 for M1_simulated_M1_warm_5.xes_25_.csv
 
 PREFIX_PATH_CONF = "conf, compl, confi/"
 
-warm_start_runs_old = [
+warm_start_runs_old_conf = [
     "M1_simulated_M1.xes_14_.csv",
     "M1_simulated_M1_warm_2.xes_14_.csv",
     "M1_simulated_M1_warm_5.xes_14_.csv",
@@ -171,9 +193,9 @@ warm_start_runs_old = [
 dim = {1:"cost", 2:"time"}
 dim_type = 1
 
-summarize_results(PREFIX_PATH_CONF, dim, dim_type, *warm_start_runs_old)
+summarize_results(PREFIX_PATH_CONF, dim, dim_type, *warm_start_runs_old_conf)
 
-warm_start_runs_new = [
+warm_start_runs_new_conf = [
     "M1_simulated_M1.xes_25_.csv",
     "M1_simulated_M1_warm_2.xes_25_.csv",
     "M1_simulated_M1_warm_5.xes_25_.csv",
@@ -184,4 +206,14 @@ warm_start_runs_new = [
 dim = {4:"cost", 5:"time"}
 dim_type = 4
 
-summarize_results(PREFIX_PATH_CONF, dim, dim_type, *warm_start_runs_new)
+summarize_results(PREFIX_PATH_CONF, dim, dim_type, *warm_start_runs_new_conf)
+
+################################################# compare to confidence #################################################
+
+prefix_paths = [PREFIX_PATH_CONF, PREFIX_PATH_NO_CONF]
+
+results = compare_to_confidence(prefix_paths,[warm_start_runs_new_conf[3],warm_start_runs_new_no_conf[3]])
+print("increase by a factor of {} for {} ".format(round(results[0]/results[1],2), "long trace log"))
+
+results = compare_to_confidence(prefix_paths,[warm_start_runs_new_conf[4],warm_start_runs_new_no_conf[4]])
+print("increase by {} for {} ".format(round(results[0]/results[1],2), "short trace log"))
