@@ -1,6 +1,21 @@
 import csv
 from statistics import mean
 
+def summarize_results(prefix_path, dim, dim_type, *files):
+    for file_name in files:
+        with open(prefix_path+file_name, mode='r') as file:
+            csvFile = csv.reader(file)
+            l = list()
+            for lines in csvFile:
+                l.append(lines[dim_type])
+            l = [float(i) for i in l[1:-1]]
+            print("Avg {} {} for {} ".format(dim[dim_type],round(mean(l), 2), file_name))
+    print("")
+
+################################################# without confidence #################################################
+
+PREFIX_PATH_NO_CONF = "conf, compl/"
+
 # csv_files = ["old_OCC_false.csv"]
 
 # dim = {1:"cost", 2:"time"}
@@ -46,43 +61,24 @@ from statistics import mean
 # print("")
 
 warm_start_runs_old = [
-    "M1_simulated_M1.xes_14_.csv",
-    "M1_simulated_M1_warm_2.xes_14_.csv",
-    "M1_simulated_M1_warm_5.xes_14_.csv"
+    "M1_simulated_M1_sim_long.xes_14_.csv",
+    "M1_simulated_M1_sim_short.xes_14_.csv"
 ]
 
 dim = {1:"cost", 2:"time"}
-dim_type = 2
+dim_type = 1
 
-for file_name in warm_start_runs_old:
-    with open("conf, compl, confi/"+file_name, mode='r') as file:
-        csvFile = csv.reader(file)
-        l = list()
-        for lines in csvFile:
-            l.append(lines[dim_type])
-        l = [float(i) for i in l[1:-1]]
-        print("Avg {} {} for {} ".format(dim[dim_type],round(mean(l), 2), file_name))
-
-print("")
+summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type, *warm_start_runs_old)
 
 warm_start_runs_new = [
-    "M1_simulated_M1.xes_25_.csv",
-    "M1_simulated_M1_warm_2.xes_25_.csv",
-    "M1_simulated_M1_warm_5.xes_25_.csv"
+    "M1_simulated_M1_sim_long.xes_25_.csv",
+    "M1_simulated_M1_sim_short.xes_25_.csv"
 ]
 
 dim = {4:"cost", 5:"time"}
-dim_type = 5
+dim_type = 4
 
-for file_name in warm_start_runs_new:
-    with open("conf, compl, confi/"+file_name, mode='r') as file:
-        csvFile = csv.reader(file)
-        l = list()
-        for lines in csvFile:
-            l.append(lines[dim_type])
-        l = [float(i) for i in l[1:-1]]
-        print("Avg {} {} for {} ".format(dim[dim_type],round(mean(l), 2), file_name))
-
+summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type, *warm_start_runs_new)
 
 """
 WITHOUT WARM-START:
@@ -159,3 +155,33 @@ Avg time 0.52 for M1_simulated_M1_warm_5.xes_25_.csv
 ---------------------------------------------------------------
 
 """
+
+################################################# with confidence #################################################
+
+PREFIX_PATH_CONF = "conf, compl, confi/"
+
+warm_start_runs_old = [
+    "M1_simulated_M1.xes_14_.csv",
+    "M1_simulated_M1_warm_2.xes_14_.csv",
+    "M1_simulated_M1_warm_5.xes_14_.csv",
+    "M1_simulated_M1_sim_long.xes_14_.csv",
+    "M1_simulated_M1_sim_short.xes_14_.csv"
+]
+
+dim = {1:"cost", 2:"time"}
+dim_type = 1
+
+summarize_results(PREFIX_PATH_CONF, dim, dim_type, *warm_start_runs_old)
+
+warm_start_runs_new = [
+    "M1_simulated_M1.xes_25_.csv",
+    "M1_simulated_M1_warm_2.xes_25_.csv",
+    "M1_simulated_M1_warm_5.xes_25_.csv",
+    "M1_simulated_M1_sim_long.xes_25_.csv",
+    "M1_simulated_M1_sim_short.xes_25_.csv"
+]
+
+dim = {4:"cost", 5:"time"}
+dim_type = 4
+
+summarize_results(PREFIX_PATH_CONF, dim, dim_type, *warm_start_runs_new)

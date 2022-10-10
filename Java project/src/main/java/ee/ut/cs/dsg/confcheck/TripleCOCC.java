@@ -12,7 +12,6 @@ import java.util.*;
 
 public class TripleCOCC extends ConformanceChecker {
 
-    protected boolean verbose = false;
     protected final CostFunction costFunction;
     final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
 

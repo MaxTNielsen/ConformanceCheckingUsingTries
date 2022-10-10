@@ -122,6 +122,8 @@ public class Runner {
             subLog.put("simulated", "input/M-models/M1_sim.xes");
             subLog.put("warm_2", "input/M-models/M1_warm_2.xes");
             subLog.put("warm_5", "input/M-models/M1_warm_5.xes");
+            subLog.put("sim_short", "input/M-models/M1_sim_short.xes");
+            subLog.put("sim_long", "input/M-models/M1_sim_long.xes");
             logs.put("M1", new HashMap<>(subLog));
             subLog.clear();
 
@@ -234,16 +236,25 @@ public class Runner {
 
                 }
             } else if (runType == "warm-start") {
-                // run for specific log
+                // run for warm-start log
                 String sLog = "M1";
                 String sLogType = "simulated";
                 String sLogPath_complete = logs.get(sLog).get("log");
                 String sLogPathWarm2 = logs.get(sLog).get("warm_2");
                 String sLogPathWarm5 = logs.get(sLog).get("warm_5");
-                String[] logPaths = new String[3];
+                String sLogPathSimShort = logs.get(sLog).get("sim_short");
+                String sLogPathSimLong = logs.get(sLog).get("sim_long");
+                String[] logPaths = new String[5];
                 logPaths[0] = sLogPath_complete;
                 logPaths[1] = sLogPathWarm2;
                 logPaths[2] = sLogPathWarm5;
+                logPaths[3] = sLogPathSimShort;
+                logPaths[4] = sLogPathSimLong;
+                /*String sLogPathSimShort = logs.get(sLog).get("sim_short");
+                String sLogPathSimLong = logs.get(sLog).get("sim_long");
+                String[] logPaths = new String[2]
+                logPaths[0] = sLogPathSimShort;
+                logPaths[1] = sLogPathSimLong;*/
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 ConformanceCheckerType checkerType1 = checkerType == TRIE_STREAMING_TRIPLECOCC ? TRIE_STREAMING : TRIE_STREAMING_TRIPLECOCC;
                 ConformanceCheckerType[] checkers = new ConformanceCheckerType[2];
@@ -445,7 +456,7 @@ public class Runner {
                 System.out.println(String.format("Events observed: %d", eventsReceived));
                 System.out.println(String.format("Cases observed: %d", cases.size()));
                 // get prefix alignments
-                /*System.out.println("Prefix alignments:");
+                System.out.println("Prefix alignments:");
                 long algStart = System.currentTimeMillis();
                 for(String c:cases){
                     alg = cnfChecker.getCurrentOptimalState(c, false).getAlignment();
@@ -463,7 +474,6 @@ public class Runner {
                 }
                 algEnd = System.currentTimeMillis();
                 System.out.println(String.format("Time taken complete-alignments: %d", algEnd-algStart));
-*/
             } catch (IOException e) {
                 System.out.println("Network error");
             }
@@ -537,11 +547,6 @@ public class Runner {
         ArrayList<String> result = new ArrayList<>();
 
         //Configuration variables
-
-        boolean sortTraces = true;
-
-//      t.printTraces();
-//        System.out.println(t);
         XLog inputSamplelog;
         XEventClass dummyEvClass = new XEventClass("DUMMY", 99999);
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
@@ -551,7 +556,7 @@ public class Runner {
             InputStream is = new FileInputStream(inputSampleLogFile);
             inputSamplelog = parser.parse(is).get(0);
 
-            List<String> templist = new ArrayList<>();
+            List<String> templist;
             List<String> tracesToSort = new ArrayList<>();
             // AlphabetService service = new AlphabetService();
 
@@ -564,7 +569,7 @@ public class Runner {
 
             if (confCheckerType == TRIE_STREAMING) {
                 // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials
-                //checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
+                // checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class};
                 params = new Object[]{t, 1, 1, 100000, 100000};
@@ -572,7 +577,7 @@ public class Runner {
 
             } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
                 // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign
-                //checker = new TripleCOCC(t, 1, 1, 100000, 100000, true);
+                // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false);
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
                 params = new Object[]{t, 1, 1, 100000, 100000, true};
@@ -597,8 +602,8 @@ public class Runner {
             long start;
             long totalTime = 0;
             int skipTo = 0;
-            int current = -1;
-            int takeTo = 100;
+            int current = 0; // -1;
+            int takeTo = Integer.MAX_VALUE; // 100;
             DeviationChecker devChecker = new DeviationChecker(service);
             int cnt = 0;
             for (XTrace trace : inputSamplelog) {
@@ -613,7 +618,6 @@ public class Runner {
                     String label = e.getAttributes().get(inputSamplelog.getClassifiers().get(0).getDefiningAttributeKeys()[0]).toString();
                     templist.add(Character.toString(service.alphabetize(label)));
                 }
-//                System.out.println(templist.toString());
 
                 StringBuilder sb = new StringBuilder(templist.size());
                 sb.append(cnt).append((char) 63); // we prefix the trace with its ID
