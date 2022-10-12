@@ -5,15 +5,17 @@ use_cuda = t.cuda.is_available()
 
 print("Running GPU.") if use_cuda else print("No GPU available.")
 
+
 def get_variable(x):
     """ Converts tensors to cuda, if available. """
     if use_cuda:
         return x.cuda()
     return x
 
+
 def get_numpy(x):
     if use_cuda:
-       x = x.cpu()
+        x = x.cpu()
     return x.data.numpy()
 
 class LSTM(nn.Module):
@@ -34,8 +36,10 @@ class LSTM(nn.Module):
         self.fc1 = nn.Linear(hidden_size*num_layers, hidden_size*num_layers)
 
         self.fc2 = nn.Linear(hidden_size*num_layers, num_classes)
-
+        
         self.relu = nn.ReLU()
+
+        self.softmax = nn.LogSoftmax(dim=1)
 
     def forward(self, x):
         out = {}
@@ -50,13 +54,15 @@ class LSTM(nn.Module):
 
         x = self.fc1(h_out)
 
-        #x = self.batchnorm(x)
+        # x = self.batchnorm(x)
 
         # self.dropout(x)
 
         x = self.relu(x)
 
         x = self.fc2(x)
+        
+        x = self.softmax(x)
 
         out['out'] = x
 
