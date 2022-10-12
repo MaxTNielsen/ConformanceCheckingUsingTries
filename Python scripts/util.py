@@ -1,3 +1,5 @@
+from pyexpat import model
+import string
 import torch as t
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
@@ -5,6 +7,9 @@ from torch.nn.utils.rnn import pad_sequence
 
 import time
 import math
+
+
+label_to_idx_: dict
 
 
 class Dataset(t.utils.data.Dataset):
@@ -50,9 +55,12 @@ def load_data(size, test_split, batch_size, inputs, targets):
     return train_dataloader, eval_dataloader, test_dataloader
 
 
-def create_dataset(traces_dict, labels_to_idx):
+def create_dataset(traces_dict, label_to_idx_):
+    global label_to_idx
+    label_to_idx = label_to_idx_
+
     data_set = []
-    l = list(labels_to_idx.values())
+    l = list(label_to_idx.values())
     n_activities = len(l)
 
     data_set = []
@@ -60,9 +68,9 @@ def create_dataset(traces_dict, labels_to_idx):
     for trace in traces_dict.values():
         tensor = t.zeros(len(trace), n_activities)
         for li, activity in enumerate(trace):
-            tensor[li][labels_to_idx[activity]] = 1
+            tensor[li][label_to_idx[activity]] = 1
         data_set.append(tensor)
-        targets.append(t.tensor(labels_to_idx[trace[-1]]))
+        targets.append(t.tensor(label_to_idx[trace[-1]]))
 
     inputs = []
     for trace in data_set:
@@ -74,6 +82,19 @@ def create_dataset(traces_dict, labels_to_idx):
     inputs = pad_sequence(inputs, True)
 
     return inputs, targets
+
+
+def preprocess_input(trace:list) -> float:
+    global label_to_idx
+    l = list(label_to_idx.values())
+    n_activities = len(l)
+    tensor = t.zeros(len(trace), n_activities)
+    for li, activity in enumerate(trace):
+        tensor[li][label_to_idx[activity]] = 1
+    
+    tensor = tensor.reshape(1, tensor.shape[0], tensor.shape[1])
+
+    return tensor
 
 
 def timeSince(since):

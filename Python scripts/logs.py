@@ -53,13 +53,3 @@ if __name__ == "__main__":
 
     make_log(int(trace_id_min[9:]), FILE_NAME, 'M1_simulated_short.xes')
     make_log(int(trace_id_max[9:]), FILE_NAME, 'M1_simulated_long.xes')
-
-    # tree = ET.parse("logs/M1_sim_long.xes")
-    # root = tree.getroot()
-    # len_traces_long = len(get_traces())
-    # print(len_traces_long)
-
-    # tree = ET.parse("logs/M1_sim_short.xes")
-    # root = tree.getroot()
-    # len_traces_short = len(get_traces())
-    # print(len_traces_short)

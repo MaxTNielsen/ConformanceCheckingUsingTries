@@ -55,10 +55,6 @@ class LSTM(nn.Module):
 
         x = self.fc1(h_out)
 
-        # x = self.batchnorm(x)
-
-        # self.dropout(x)
-
         x = self.relu(x)
 
         x = self.fc2(x)
