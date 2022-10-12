@@ -122,8 +122,8 @@ public class Runner {
             subLog.put("simulated", "input/M-models/M1_sim.xes");
             subLog.put("warm_2", "input/M-models/M1_warm_2.xes");
             subLog.put("warm_5", "input/M-models/M1_warm_5.xes");
-            subLog.put("sim_short", "input/M-models/M1_sim_short.xes");
-            subLog.put("sim_long", "input/M-models/M1_sim_long.xes");
+            subLog.put("sim_short", "input/M-models/M1_simulated_short.xes");
+            subLog.put("sim_long", "input/M-models/M1_simulated_long.xes");
             logs.put("M1", new HashMap<>(subLog));
             subLog.clear();
 
@@ -580,7 +580,7 @@ public class Runner {
                 // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false);
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, true};
+                params = new Object[]{t, 1, 1, 100000, 100000, false};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else {

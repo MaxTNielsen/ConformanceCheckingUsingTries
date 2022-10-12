@@ -50,13 +50,16 @@ PREFIX_PATH_NO_CONF = "conf, compl/"
 # "bounded_cost_warm-start_all_states_if_in_ws_standard_false.csv",
 # "bounded_cost_warm-start_all_states_standard_false.csv",
 # "test.csv"]
+print("")
+print("#"*30+" without confidence "+"#"*30)
+print("")
 
 warm_start_runs_old_no_conf = [
     "M1_simulated_M1.xes_14_.csv",
     "M1_simulated_M1_warm_2.xes_14_.csv",
     "M1_simulated_M1_warm_5.xes_14_.csv",
-    "M1_simulated_M1_sim_long.xes_14_.csv",
-    "M1_simulated_M1_sim_short.xes_14_.csv"
+    "M1_simulated_M1_simulated_long.xes_14_.csv",
+    "M1_simulated_M1_simulated_short.xes_14_.csv"
 ]
 
 dim = {1: "cost", 2: "time"}
@@ -69,8 +72,8 @@ warm_start_runs_new_no_conf = [
     "M1_simulated_M1.xes_25_.csv",
     "M1_simulated_M1_warm_2.xes_25_.csv",
     "M1_simulated_M1_warm_5.xes_25_.csv",
-    "M1_simulated_M1_sim_long.xes_25_.csv",
-    "M1_simulated_M1_sim_short.xes_25_.csv"
+    "M1_simulated_M1_simulated_long.xes_25_.csv",
+    "M1_simulated_M1_simulated_short.xes_25_.csv"
 ]
 
 dim = {4: "cost", 5: "time"}
@@ -81,14 +84,17 @@ summarize_results(PREFIX_PATH_NO_CONF, dim, dim_type,
 
 ################################################# with confidence #################################################
 
+print("#"*30+" with confidence "+"#"*30)
+print("")
+
 PREFIX_PATH_CONF = "conf, compl, confi/"
 
 warm_start_runs_old_conf = [
     "M1_simulated_M1.xes_14_.csv",
     "M1_simulated_M1_warm_2.xes_14_.csv",
     "M1_simulated_M1_warm_5.xes_14_.csv",
-    "M1_simulated_M1_sim_long.xes_14_.csv",
-    "M1_simulated_M1_sim_short.xes_14_.csv"
+    "M1_simulated_M1_simulated_long.xes_14_.csv",
+    "M1_simulated_M1_simulated_short.xes_14_.csv"
 ]
 
 dim = {1: "cost", 2: "time"}
@@ -100,8 +106,8 @@ warm_start_runs_new_conf = [
     "M1_simulated_M1.xes_25_.csv",
     "M1_simulated_M1_warm_2.xes_25_.csv",
     "M1_simulated_M1_warm_5.xes_25_.csv",
-    "M1_simulated_M1_sim_long.xes_25_.csv",
-    "M1_simulated_M1_sim_short.xes_25_.csv"
+    "M1_simulated_M1_simulated_long.xes_25_.csv",
+    "M1_simulated_M1_simulated_short.xes_25_.csv"
 ]
 
 dim = {4: "cost", 5: "time"}
