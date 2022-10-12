@@ -46,20 +46,13 @@ def make_log(trace_id, file_name, file_name_title):
 
     tree.write('logs/'+file_name_title, encoding="UTF-8")
 
-trace_id_min = 'instance_291'
-trace_id_max = 'instance_383'
-
-make_log(int(trace_id_min[9:]),FILE_NAME,
-             'M1_simulated_short.xes')
-make_log(int(trace_id_max[9:]), FILE_NAME, 'M1_simulated_long.xes')
 
 if __name__ == 'main':
     trace_id_min = 'instance_291'
     trace_id_max = 'instance_383'
 
-    make_log(int(trace_id_min[9:]),
-             'M1_simulated_short.xes', "short trace log")
-    make_log(int(trace_id_max[9:]), 'M1_simulated_long.xes', "long trace log")
+    make_log(int(trace_id_min[9:]), FILE_NAME, 'M1_simulated_short.xes')
+    make_log(int(trace_id_max[9:]), FILE_NAME, 'M1_simulated_long.xes')
 
     # tree = ET.parse("logs/M1_sim_long.xes")
     # root = tree.getroot()

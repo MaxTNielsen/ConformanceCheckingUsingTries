@@ -82,3 +82,7 @@ def timeSince(since):
     m = math.floor(s / 60)
     s -= m * 60
     return '%dm %ds' % (m, s)
+
+
+if __name__ == "main":
+    pass

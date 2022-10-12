@@ -18,6 +18,7 @@ def get_numpy(x):
         x = x.cpu()
     return x.data.numpy()
 
+
 class LSTM(nn.Module):
 
     def __init__(self, num_classes, input_size, hidden_size, num_layers):
@@ -36,7 +37,7 @@ class LSTM(nn.Module):
         self.fc1 = nn.Linear(hidden_size*num_layers, hidden_size*num_layers)
 
         self.fc2 = nn.Linear(hidden_size*num_layers, num_classes)
-        
+
         self.relu = nn.ReLU()
 
         self.softmax = nn.LogSoftmax(dim=1)
@@ -61,9 +62,13 @@ class LSTM(nn.Module):
         x = self.relu(x)
 
         x = self.fc2(x)
-        
+
         x = self.softmax(x)
 
         out['out'] = x
 
         return out
+
+
+if __name__ == "main":
+    pass

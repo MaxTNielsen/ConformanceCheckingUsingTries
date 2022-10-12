@@ -1,6 +1,5 @@
 import csv
 from statistics import mean
-from sys import prefix
 
 
 def summarize_results(prefix_path, dim, dim_type, *files):
