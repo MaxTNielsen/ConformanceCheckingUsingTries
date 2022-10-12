@@ -70,5 +70,5 @@ class LSTM(nn.Module):
         return out
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     pass

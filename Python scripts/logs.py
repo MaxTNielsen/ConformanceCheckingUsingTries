@@ -47,7 +47,7 @@ def make_log(trace_id, file_name, file_name_title):
     tree.write('logs/'+file_name_title, encoding="UTF-8")
 
 
-if __name__ == 'main':
+if __name__ == "__main__":
     trace_id_min = 'instance_291'
     trace_id_max = 'instance_383'
 

@@ -26,7 +26,8 @@ def compare_to_confidence(prefix_paths, files):
                 l.append(lines[4])
             l = [float(i) for i in l[1:-1]]
             results.append(mean(l))
-
+            
+        file.close()    
     return results
 
 ################################################# without confidence #################################################
