@@ -267,9 +267,9 @@ public class Runner {
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE);
                             if(c == TRIE_STREAMING_TRIPLECOCC)
-                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
+                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
                             else
-                                res.add(0, String.format("TraceId, total cost, ExecutionTime_%1$s", c));
+                                res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
 
                             FileWriter wr = new FileWriter(pathName);
                             for (String s : res) {
@@ -719,9 +719,9 @@ public class Runner {
         totalTime += executionTime;
         if (alg != null) {
             if(checkerType == TRIE_STREAMING_TRIPLECOCC)
-                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + alg + "," + state.getWeightedSumOfCosts() + "," + executionTime);
             else
-                result.add(i + "," + alg.getTotalCost() + "," + executionTime);
+                result.add(i + "," + alg.getTotalCost() + "," + alg + "," + executionTime);
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
             result.add(Integer.toString(i) + ",9999999," + executionTime);
