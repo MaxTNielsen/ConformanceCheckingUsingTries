@@ -1,5 +1,3 @@
-from pyexpat import model
-import string
 import torch as t
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
@@ -9,7 +7,7 @@ import time
 import math
 
 
-label_to_idx_: dict
+label_to_idx: dict
 
 
 class Dataset(t.utils.data.Dataset):

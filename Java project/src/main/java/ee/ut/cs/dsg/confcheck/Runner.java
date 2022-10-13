@@ -140,7 +140,6 @@ public class Runner {
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
                 try {
-
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE);
                     res.add(0, String.format("TraceId, total cost, ExecutionTime_%1$s", checkerType));
                     FileWriter wr = new FileWriter(pathName);
@@ -580,7 +579,7 @@ public class Runner {
                 // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false);
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, false};
+                params = new Object[]{t, 1, 1, 100000, 100000, true};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else {

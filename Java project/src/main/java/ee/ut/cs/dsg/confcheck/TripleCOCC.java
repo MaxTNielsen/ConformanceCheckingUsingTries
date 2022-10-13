@@ -155,13 +155,13 @@ public class TripleCOCC extends ConformanceChecker {
                 // add model moves
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
-                //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
+                List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
-                List<State> warmStartMoves = new ArrayList<>();
+                /*List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
-                }
+                }*/
 
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
 
