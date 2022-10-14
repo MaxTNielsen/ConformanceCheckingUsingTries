@@ -132,13 +132,13 @@ public class TripleCOCC extends ConformanceChecker {
 
             double currentMinCost = 99999;
 
-            for (Map.Entry<String, State> entry : statesToIterate.entrySet()) {
+            for (Iterator<Map.Entry<String, State>> states = statesToIterate.entrySet().iterator(); states.hasNext(); ) {
+                Map.Entry<String, State> entry = states.next();
                 previousState = entry.getValue();
-                traceSuffix = previousState.getTracePostfix();
 
                 State logMoveState = handleLogMove(traceEvent, previousState, "");
-                interimCurrentStates.add(logMoveState);
 
+                traceSuffix = previousState.getTracePostfix();
                 traceSuffix.addAll(traceEvent);
 
                 List<State> modelMoveStates = handleModelMoves(traceSuffix, previousState, null);
@@ -155,13 +155,13 @@ public class TripleCOCC extends ConformanceChecker {
                 // add model moves
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
-                List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
+                //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
-                /*List<State> warmStartMoves = new ArrayList<>();
+                List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
-                }*/
+                }
 
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
 
@@ -334,9 +334,10 @@ public class TripleCOCC extends ConformanceChecker {
 
     public List<State> handleWarmStartMove(List<String> event, State state, double currMinCost) {
         List<State> warmStartStates = new ArrayList<>();
-        List<String> suffix = state.getTracePostfix();
+        List<String> suffix = new ArrayList<>(state.getTracePostfix());
+        int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
 
-        if(!(suffix.size() == 1))
+        if(!(suffix.size() == 1)) // First event is already contained in the suffix of the root state
             suffix.addAll(event);
 
         TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
@@ -369,7 +370,7 @@ public class TripleCOCC extends ConformanceChecker {
 
                     // test if we have made a full match on suffix
                     if (syncAlign.getMoves().size() - 1 == suffix.size()) {
-                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(),
+                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost() + postFixCost,
                                 MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
                         warmStartStates.add(syncState);
                         break;
@@ -377,7 +378,7 @@ public class TripleCOCC extends ConformanceChecker {
 
                     // again, we check if the maximum cost will be exceeded by computing warm-start log or model prefix-alignments
                     State s = new State(a, suffix, warmStartNode,
-                            updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
+                            updateCost(completenessCost + warmStartNode.getScaledConfCost() + postFixCost, MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
 
                     // compute log move state from warm-start node
                     State logMove = handleLogMove(new ArrayList<>(), s, "");

@@ -43,7 +43,8 @@ public class Alignment {
         StringBuilder result = new StringBuilder();
         StringBuilder logTrace = new StringBuilder();
         StringBuilder modelTrace = new StringBuilder();
-        result.append(String.format("Total cost:%d\n", totalCost));
+        StringBuilder trace = new StringBuilder();
+        result.append(String.format("\nTotal cost:%d\n", totalCost));
         for (Move m: moves)
         {
             result.append(m.toString()+"\n");
@@ -51,9 +52,17 @@ public class Alignment {
                 logTrace.append(m.getLogMove());
             if(!m.getModelMove().equals(">>"))
                 modelTrace.append(m.getModelMove());
+
+            if (!m.getLogMove().equals(">>")) {
+                trace.append(m.getLogMove());
+            }
+            else if(!m.getModelMove().equals(">>")) {
+                trace.append(m.getModelMove());
+            }
         }
+        result.append(("Trace: "+trace.toString()+"\n"));
         result.append("Log: "+logTrace.toString()+"\n");
-        result.append("Mod: "+modelTrace.toString());
+        result.append("Mod: "+modelTrace.toString()+"\n");
         return result.toString();
 
     }

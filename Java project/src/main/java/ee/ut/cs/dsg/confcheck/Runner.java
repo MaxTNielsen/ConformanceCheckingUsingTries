@@ -73,7 +73,7 @@ public class Runner {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
             String formattedDate = dateFormat.format(date);
 
-            String pathPrefix = "output/disc3/";
+            String pathPrefix = "output/TripleCOCC_runs/";
             String fileType = ".csv";
 
             HashMap<String, HashMap<String, String>> logs = new HashMap<>();
@@ -249,11 +249,11 @@ public class Runner {
                 logPaths[2] = sLogPathWarm5;
                 logPaths[3] = sLogPathSimShort;
                 logPaths[4] = sLogPathSimLong;
-                /*String sLogPathSimShort = logs.get(sLog).get("sim_short");
-                String sLogPathSimLong = logs.get(sLog).get("sim_long");
-                String[] logPaths = new String[2]
-                logPaths[0] = sLogPathSimShort;
-                logPaths[1] = sLogPathSimLong;*/
+
+                /*String sLogPathWarm5 = logs.get(sLog).get("warm_5");
+                String[] logPaths = new String[1];
+                logPaths[0] = sLogPathWarm5;*/
+
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 ConformanceCheckerType checkerType1 = checkerType == TRIE_STREAMING_TRIPLECOCC ? TRIE_STREAMING : TRIE_STREAMING_TRIPLECOCC;
                 ConformanceCheckerType[] checkers = new ConformanceCheckerType[2];
@@ -267,9 +267,12 @@ public class Runner {
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE);
                             if(c == TRIE_STREAMING_TRIPLECOCC)
-                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
+                                //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
+                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
+
                             else
-                                res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
+                                //res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
+                                res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", c));
 
                             FileWriter wr = new FileWriter(pathName);
                             for (String s : res) {
@@ -579,7 +582,7 @@ public class Runner {
                 // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false);
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, true};
+                params = new Object[]{t, 1, 1, 100000, 100000, false};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else {
@@ -642,7 +645,7 @@ public class Runner {
             if (sortType == LogSortType.LEXICOGRAPHIC_DESC || sortType == LogSortType.TRACE_LENGTH_DESC) {
                 for (int i = tracesToSort.size() - 1; i >= 0; i--) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
-                        totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
+                        totalTime = computeAlignment2(tracesToSort, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     }
@@ -652,7 +655,7 @@ public class Runner {
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
-                        totalTime = computeAlignment2(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
+                        totalTime = computeAlignment2(tracesToSort, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType);
                     } /*else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     }*/
@@ -671,15 +674,12 @@ public class Runner {
         return result;
     }
 
-    private static long computeAlignment2(List<String> tracesToSort, ConformanceChecker checkerC, HashMap<String, Integer> sampleTracesMap, long totalTime, DeviationChecker devChecker, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType) {
+    private static long computeAlignment2(List<String> tracesToSort, HashMap<String, Integer> sampleTracesMap, long totalTime, DeviationChecker devChecker, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType) {
         long start;
         long executionTime;
         Alignment alg;
         State state;
         List<String> trace = new ArrayList<String>();
-
-        //StreamingConformanceChecker checker = (StreamingConformanceChecker) checkerC;
-        //TripleCOCC checker = (TripleCOCC) checkerC;
 
         int pos = tracesToSort.get(i).indexOf((char) 63);
 
@@ -698,13 +698,11 @@ public class Runner {
             params = new Object[]{tempList, Integer.toString(i)};
             types = new Class[]{List.class, String.class};
             javaClassLoader.invokeCheck(params, types);
-            //checker.check(tempList, Integer.toString(i));
         }
 
         params = new Object[]{Integer.toString(i), false};
         types = new Class[]{String.class, boolean.class};
 
-        //state = checker.getCurrentOptimalState(Integer.toString(i), false);
         state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
 
         alg = null;
@@ -719,9 +717,11 @@ public class Runner {
         totalTime += executionTime;
         if (alg != null) {
             if(checkerType == TRIE_STREAMING_TRIPLECOCC)
-                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + alg + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg);
+                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
             else
-                result.add(i + "," + alg.getTotalCost() + "," + alg + "," + executionTime);
+                //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg);
+                result.add(i + "," + alg.getTotalCost() + "," + executionTime);
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
             result.add(Integer.toString(i) + ",9999999," + executionTime);

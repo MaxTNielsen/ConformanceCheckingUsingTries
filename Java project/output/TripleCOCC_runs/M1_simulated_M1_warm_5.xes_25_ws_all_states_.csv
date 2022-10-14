@@ -1,0 +1,4819 @@
+TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_TRIE_STREAMING_TRIPLECOCC
+0,3,0,0.0,3.0,6,
+Total cost:3
+[logMove:B, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: 
+
+1,3,1,0.0,4.0,2,
+Total cost:3
+[logMove:B, modelMove:B, cost:0]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BaNO
+Log: BaNO
+Mod: B
+
+2,0,6,0.0,6.0,6,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+3,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+4,5,0,0.0,5.0,4,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:K, modelMove:K, cost:0]
+[logMove:E, modelMove:E, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:>>, modelMove:D, cost:1]
+[logMove:H, modelMove:H, cost:0]
+[logMove:>>, modelMove:M, cost:1]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABCKELGFIJDHMNO
+Log: KELGFIJHNO
+Mod: ABCKELGFIJDHMNO
+
+5,2,4,0.0,6.0,11,
+Total cost:2
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: FJN
+Log: FJN
+Mod: F
+
+6,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:f, modelMove:>>, cost:1]
+[logMove:f, modelMove:>>, cost:1]
+Trace: Aff
+Log: Aff
+Mod: A
+
+7,1,4,0.0,5.0,2,
+Total cost:1
+[logMove:V, modelMove:V, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+Trace: VN
+Log: VN
+Mod: V
+
+8,7,0,0.0,7.0,3,
+Total cost:7
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+Trace: ZABPTWVNOXQ
+Log: ZTWVNOXQ
+Mod: ABPTWVQ
+
+9,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+10,0,0,0.0,0.0,3,
+Total cost:0
+[logMove:A, modelMove:A, cost:0]
+Trace: A
+Log: A
+Mod: A
+
+11,1,3,0.0,4.0,1,
+Total cost:1
+[logMove:T, modelMove:T, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TO
+Log: TO
+Mod: T
+
+12,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:G, modelMove:G, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: GIFJMO
+Log: GIFJMO
+Mod: GIFJ
+
+13,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:[, modelMove:>>, cost:1]
+Trace: AN[
+Log: AN[
+Mod: A
+
+14,0,5,0.0,5.0,1,
+Total cost:0
+[logMove:a, modelMove:a, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: aNO
+Log: aNO
+Mod: aNO
+
+15,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:T, modelMove:T, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TOO
+Log: TOO
+Mod: T
+
+16,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: dONa
+Log: dONa
+Mod: 
+
+17,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+18,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:A, modelMove:A, cost:0]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:V, modelMove:V, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:>>, modelMove:R, cost:1]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABPTVWUXQRYZNO
+Log: AVWUXZNO
+Mod: ABPTVWUXQRYZNO
+
+19,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:W, modelMove:W, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: WUVNO
+Log: WUVNO
+Mod: WUV
+
+20,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: ^aN
+Log: ^aN
+Mod: 
+
+21,0,1,0.0,1.0,0,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+Trace: B
+Log: B
+Mod: B
+
+22,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^aO
+Log: ^aO
+Mod: 
+
+23,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+24,1,6,0.0,7.0,1,
+Total cost:1
+[logMove:N, modelMove:N, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: NMO
+Log: NMO
+Mod: NO
+
+25,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+26,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+27,2,2,0.0,4.0,1,
+Total cost:2
+[logMove:[, modelMove:[, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: [NO
+Log: [NO
+Mod: [
+
+28,1,1,0.0,2.0,1,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BO
+Log: BO
+Mod: B
+
+29,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gaNO
+Log: gaNO
+Mod: 
+
+30,1,4,0.0,5.0,1,
+Total cost:1
+[logMove:L, modelMove:L, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: LO
+Log: LO
+Mod: L
+
+31,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:f, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: afO
+Log: afO
+Mod: 
+
+32,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: aON
+Log: aON
+Mod: 
+
+33,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+34,1,4,0.0,5.0,1,
+Total cost:1
+[logMove:W, modelMove:W, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: WO
+Log: WO
+Mod: W
+
+35,3,1,0.0,4.0,1,
+Total cost:3
+[logMove:B, modelMove:B, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BZNO
+Log: BZNO
+Mod: B
+
+36,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+37,5,0,0.0,5.0,1,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:K, modelMove:K, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:D, modelMove:D, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:>>, modelMove:H, cost:1]
+[logMove:M, modelMove:M, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABCEKGLFIDJHMNO
+Log: KGLFIDJMNO
+Mod: ABCEKGLFIDJHMNO
+
+38,0,2,0.0,2.0,1,
+Total cost:0
+[logMove:C, modelMove:C, cost:0]
+Trace: C
+Log: C
+Mod: C
+
+39,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+40,6,0,0.0,6.0,2,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:>>, modelMove:V, cost:1]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:X, modelMove:X, cost:0]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABPTQWURVYXZNO
+Log: QWURXZNO
+Mod: ABPTQWURVYXZNO
+
+41,5,0,0.0,5.0,1,
+Total cost:5
+[logMove:A, modelMove:A, cost:0]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPQRZNO
+Log: AQRZNO
+Mod: ABPQR
+
+42,1,0,0.0,1.0,1,
+Total cost:1
+[logMove:A, modelMove:A, cost:0]
+[logMove:E, modelMove:>>, cost:1]
+Trace: AE
+Log: AE
+Mod: A
+
+43,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+44,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+45,0,4,0.0,4.0,1,
+Total cost:0
+[logMove:I, modelMove:I, cost:0]
+Trace: I
+Log: I
+Mod: I
+
+46,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:a, modelMove:>>, cost:1]
+[logMove:_, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: a_^^NO
+Log: a_^^NO
+Mod: 
+
+47,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:[, modelMove:[, cost:0]
+[logMove:e, modelMove:e, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AB[eO
+Log: [eO
+Mod: AB[e
+
+48,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:], modelMove:], cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ]OO
+Log: ]OO
+Mod: ]
+
+49,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+50,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: faN
+Log: faN
+Mod: 
+
+51,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+52,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: fNO
+Log: fNO
+Mod: 
+
+53,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+54,0,5,0.0,5.0,1,
+Total cost:0
+[logMove:S, modelMove:S, cost:0]
+Trace: S
+Log: S
+Mod: S
+
+55,3,2,0.0,5.0,1,
+Total cost:3
+[logMove:P, modelMove:P, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PZNO
+Log: PZNO
+Mod: P
+
+56,1,4,0.0,5.0,1,
+Total cost:1
+[logMove:H, modelMove:H, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HO
+Log: HO
+Mod: H
+
+57,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:[, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: [NO
+Log: [NO
+Mod: 
+
+58,1,4,0.0,5.0,1,
+Total cost:1
+[logMove:H, modelMove:H, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HO
+Log: HO
+Mod: H
+
+59,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+Trace: N]^
+Log: N]^
+Mod: 
+
+60,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:O, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: OdNa
+Log: OdNa
+Mod: 
+
+61,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+62,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:_, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: _]^aNO
+Log: _]^aNO
+Mod: 
+
+63,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:K, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BKO
+Log: BKO
+Mod: B
+
+64,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BaO
+Log: BaO
+Mod: B
+
+65,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+66,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gdaO
+Log: gdaO
+Mod: 
+
+67,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:S, modelMove:S, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRZSO
+Log: QRZSO
+Mod: QRS
+
+68,3,4,0.0,7.0,1,
+Total cost:3
+[logMove:G, modelMove:G, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:I, modelMove:I, cost:0]
+Trace: GNFJMI
+Log: GNFJMI
+Mod: GFI
+
+69,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+70,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+71,3,2,0.0,5.0,0,
+Total cost:3
+[logMove:P, modelMove:P, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PZNO
+Log: PZNO
+Mod: P
+
+72,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+Trace: ^a]
+Log: ^a]
+Mod: 
+
+73,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:>>, modelMove:V, cost:1]
+[logMove:X, modelMove:X, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABPQTWRUVXYZNO
+Log: TWRUXZNO
+Mod: ABPQTWRUVXYZNO
+
+74,1,5,0.0,6.0,1,
+Total cost:1
+[logMove:S, modelMove:S, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: SO
+Log: SO
+Mod: S
+
+75,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+76,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+77,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:e, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: eaN
+Log: eaN
+Mod: 
+
+78,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+79,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: N^O
+Log: N^O
+Mod: 
+
+80,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:T, modelMove:T, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TOO
+Log: TOO
+Mod: T
+
+81,1,0,0.0,1.0,0,
+Total cost:1
+[logMove:A, modelMove:A, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+Trace: AR
+Log: AR
+Mod: A
+
+82,3,4,0.0,7.0,0,
+Total cost:3
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: RZZO
+Log: RZZO
+Mod: R
+
+83,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+84,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:>>, modelMove:U, cost:1]
+[logMove:S, modelMove:S, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPTQVWRUSXQRNO
+Log: TQVWRSXQRNO
+Mod: ABPTQVWRUSXQR
+
+85,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: faN
+Log: faN
+Mod: 
+
+86,4,1,0.0,5.0,0,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BOJMN
+Log: BOJMN
+Mod: B
+
+87,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:_, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: _^]aNO
+Log: _^]aNO
+Mod: 
+
+88,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:>>, modelMove:U, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABPTUQWVRXYZNO
+Log: QWVRXZNO
+Mod: ABPTUQWVRXYZNO
+
+89,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+90,5,0,0.0,5.0,1,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:K, modelMove:K, cost:0]
+[logMove:E, modelMove:E, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:>>, modelMove:D, cost:1]
+[logMove:H, modelMove:H, cost:0]
+[logMove:>>, modelMove:F, cost:1]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:M, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABCKEIGLDHFJMNO
+Log: KEIGLHJMNO
+Mod: ABCKEIGLDHFJMNO
+
+91,4,2,0.0,6.0,1,
+Total cost:4
+[logMove:P, modelMove:P, cost:0]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:U, modelMove:U, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PTUQXNO
+Log: PUQXNO
+Mod: PTUQ
+
+92,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+93,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: faN
+Log: faN
+Mod: 
+
+94,4,1,0.0,5.0,2,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:R, modelMove:R, cost:0]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BXPQRSQRN
+Log: BXRSQRN
+Mod: BPQRSQR
+
+95,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: QZN
+Log: QZN
+Mod: Q
+
+96,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+97,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+98,4,2,0.0,6.0,1,
+Total cost:4
+[logMove:C, modelMove:C, cost:0]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:I, modelMove:I, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: CEIGFMNO
+Log: CIGFMNO
+Mod: CEIGF
+
+99,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+100,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+101,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+102,0,5,0.0,5.0,0,
+Total cost:0
+[logMove:a, modelMove:a, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: aNO
+Log: aNO
+Mod: aNO
+
+103,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:S, modelMove:S, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: RZSO
+Log: RZSO
+Mod: RS
+
+104,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AOO
+Log: AOO
+Mod: A
+
+105,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+106,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: B
+
+107,1,6,0.0,7.0,1,
+Total cost:1
+[logMove:N, modelMove:N, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+Trace: NJ
+Log: NJ
+Mod: N
+
+108,0,4,0.0,4.0,1,
+Total cost:0
+[logMove:I, modelMove:I, cost:0]
+Trace: I
+Log: I
+Mod: I
+
+109,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+110,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: faN
+Log: faN
+Mod: 
+
+111,3,4,0.0,7.0,1,
+Total cost:3
+[logMove:I, modelMove:I, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:>>, modelMove:G, cost:1]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: IFGJMO
+Log: IFJMO
+Mod: IFGJ
+
+112,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:b, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: baNO
+Log: baNO
+Mod: 
+
+113,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRNO
+Log: QRNO
+Mod: QR
+
+114,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+115,6,0,0.0,6.0,0,
+Total cost:6
+[logMove:], modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ]a^]NO
+Log: ]a^]NO
+Mod: 
+
+116,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:K, modelMove:K, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:>>, modelMove:D, cost:1]
+[logMove:I, modelMove:I, cost:0]
+[logMove:H, modelMove:H, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:M, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:N, cost:0]
+Trace: ABCEKLFGDIHJMON
+Log: KLFGIHJMON
+Mod: ABCEKLFGDIHJMN
+
+117,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRZNO
+Log: QRZNO
+Mod: QR
+
+118,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:], modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ]NO
+Log: ]NO
+Mod: 
+
+119,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+120,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: daON
+Log: daON
+Mod: 
+
+121,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+122,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+123,5,1,0.0,6.0,1,
+Total cost:5
+[logMove:B, modelMove:B, cost:0]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BPQRRZNO
+Log: BQRRZNO
+Mod: BPQR
+
+124,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:g, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: dOga
+Log: dOga
+Mod: 
+
+125,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+126,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:I, modelMove:I, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: INO
+Log: INO
+Mod: I
+
+127,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:>>, modelMove:R, cost:1]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRSQRNO
+Log: QSQRNO
+Mod: QRSQR
+
+128,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: faO
+Log: faO
+Mod: 
+
+129,2,2,0.0,4.0,1,
+Total cost:2
+[logMove:P, modelMove:P, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PZQO
+Log: PZQO
+Mod: PQ
+
+130,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+131,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+132,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gaNO
+Log: gaNO
+Mod: 
+
+133,1,0,0.0,1.0,1,
+Total cost:1
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AO
+Log: AO
+Mod: A
+
+134,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+135,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:[, cost:1]
+[logMove:e, modelMove:e, cost:0]
+[logMove:f, modelMove:f, cost:0]
+[logMove:a, modelMove:a, cost:0]
+Trace: AB[efa
+Log: efa
+Mod: AB[efa
+
+136,1,4,0.0,5.0,1,
+Total cost:1
+[logMove:G, modelMove:G, cost:0]
+[logMove:K, modelMove:K, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+Trace: GKFM
+Log: GKFM
+Mod: GKF
+
+137,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:[, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: a[O
+Log: a[O
+Mod: 
+
+138,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+139,3,4,0.0,7.0,3,
+Total cost:3
+[logMove:H, modelMove:H, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+Trace: HJOM
+Log: HJOM
+Mod: H
+
+140,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:H, modelMove:H, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: HMN
+Log: HMN
+Mod: H
+
+141,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+142,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+143,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:U, modelMove:U, cost:0]
+Trace: U
+Log: U
+Mod: U
+
+144,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: faN
+Log: faN
+Mod: 
+
+145,4,1,0.0,5.0,1,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:H, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BHMON
+Log: BHMON
+Mod: B
+
+146,0,5,0.0,5.0,1,
+Total cost:0
+[logMove:S, modelMove:S, cost:0]
+Trace: S
+Log: S
+Mod: S
+
+147,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: aON
+Log: aON
+Mod: 
+
+148,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:T, modelMove:T, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TNO
+Log: TNO
+Mod: T
+
+149,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+150,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+151,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+152,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:>>, modelMove:R, cost:1]
+[logMove:W, modelMove:W, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:R, modelMove:R, cost:0]
+Trace: ABPTUVQRWXSQZNR
+Log: TUVQWXSQZNR
+Mod: ABPTUVQRWXSQR
+
+153,4,1,0.0,5.0,0,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:I, modelMove:>>, cost:1]
+[logMove:H, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BIHMN
+Log: BIHMN
+Mod: B
+
+154,0,2,0.0,2.0,1,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+155,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+156,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:A, modelMove:A, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AJMNO
+Log: AJMNO
+Mod: A
+
+157,2,1,0.0,3.0,1,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BMO
+Log: BMO
+Mod: B
+
+158,0,5,0.0,5.0,0,
+Total cost:0
+[logMove:a, modelMove:a, cost:0]
+[logMove:N, modelMove:N, cost:0]
+Trace: aN
+Log: aN
+Mod: aN
+
+159,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+160,0,5,0.0,5.0,0,
+Total cost:0
+[logMove:a, modelMove:a, cost:0]
+Trace: a
+Log: a
+Mod: a
+
+161,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: fNO
+Log: fNO
+Mod: 
+
+162,0,6,0.0,6.0,3,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+163,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+164,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gdaO
+Log: gdaO
+Mod: 
+
+165,4,0,0.0,4.0,1,
+Total cost:4
+[logMove:O, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: OdaN
+Log: OdaN
+Mod: 
+
+166,3,3,0.0,6.0,2,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:S, modelMove:S, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: QRSRZN
+Log: QRSRZN
+Mod: QRS
+
+167,0,6,0.0,6.0,4,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+168,4,0,0.0,4.0,1,
+Total cost:4
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:E, modelMove:E, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:D, modelMove:D, cost:0]
+[logMove:>>, modelMove:K, cost:1]
+[logMove:L, modelMove:L, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:H, modelMove:H, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:M, cost:0]
+[logMove:N, modelMove:N, cost:0]
+Trace: ABCEFDKLGHIJMN
+Log: EFDLGHIJMN
+Mod: ABCEFDKLGHIJMN
+
+169,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AOO
+Log: AOO
+Mod: A
+
+170,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:S, modelMove:>>, cost:1]
+Trace: QSS
+Log: QSS
+Mod: Q
+
+171,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+172,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: aON
+Log: aON
+Mod: 
+
+173,4,0,0.0,4.0,1,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: daON
+Log: daON
+Mod: 
+
+174,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: aON
+Log: aON
+Mod: 
+
+175,0,4,0.0,4.0,1,
+Total cost:0
+[logMove:V, modelMove:V, cost:0]
+Trace: V
+Log: V
+Mod: V
+
+176,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+177,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+178,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AXOO
+Log: AXOO
+Mod: A
+
+179,5,1,0.0,6.0,1,
+Total cost:5
+[logMove:B, modelMove:B, cost:0]
+[logMove:U, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BUXZNO
+Log: BUXZNO
+Mod: B
+
+180,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+181,2,2,0.0,4.0,1,
+Total cost:2
+[logMove:C, modelMove:C, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: CNO
+Log: CNO
+Mod: C
+
+182,1,3,0.0,4.0,1,
+Total cost:1
+[logMove:T, modelMove:T, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TO
+Log: TO
+Mod: T
+
+183,0,0,0.0,0.0,2,
+Total cost:0
+[logMove:A, modelMove:A, cost:0]
+Trace: A
+Log: A
+Mod: A
+
+184,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:U, modelMove:U, cost:0]
+Trace: U
+Log: U
+Mod: U
+
+185,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+186,2,0,0.0,2.0,1,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AOO
+Log: AOO
+Mod: A
+
+187,4,1,0.0,5.0,1,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+Trace: BONZX
+Log: BONZX
+Mod: B
+
+188,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:E, modelMove:E, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: EJNO
+Log: EJNO
+Mod: E
+
+189,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:c, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: caNO
+Log: caNO
+Mod: 
+
+190,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: B
+
+191,0,1,0.0,1.0,0,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+Trace: B
+Log: B
+Mod: B
+
+192,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: B
+
+193,6,0,0.0,6.0,2,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:R, modelMove:R, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPTUWVQRXNO
+Log: TUWVRXNO
+Mod: ABPTUWVQRX
+
+194,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:T, modelMove:T, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TNO
+Log: TNO
+Mod: T
+
+195,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: NaO
+Log: NaO
+Mod: 
+
+196,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+197,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+198,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:g, modelMove:g, cost:0]
+Trace: g
+Log: g
+Mod: g
+
+199,0,4,0.0,4.0,1,
+Total cost:0
+[logMove:I, modelMove:I, cost:0]
+Trace: I
+Log: I
+Mod: I
+
+200,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: fNO
+Log: fNO
+Mod: 
+
+201,3,4,0.0,7.0,1,
+Total cost:3
+[logMove:F, modelMove:F, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: FIJMO
+Log: FIJMO
+Mod: FI
+
+202,0,0,0.0,0.0,1,
+Total cost:0
+[logMove:A, modelMove:A, cost:0]
+Trace: A
+Log: A
+Mod: A
+
+203,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:B, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BAO
+Log: BAO
+Mod: A
+
+204,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+205,1,0,0.0,1.0,1,
+Total cost:1
+[logMove:A, modelMove:A, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+Trace: AR
+Log: AR
+Mod: A
+
+206,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+207,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: ONa
+Log: ONa
+Mod: 
+
+208,1,3,0.0,4.0,0,
+Total cost:1
+[logMove:T, modelMove:T, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TQRO
+Log: TQRO
+Mod: TQR
+
+209,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+210,2,1,0.0,3.0,1,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:Q, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BQO
+Log: BQO
+Mod: B
+
+211,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPTQWVURXZO
+Log: QWVURXZO
+Mod: ABPTQWVURX
+
+212,1,6,0.0,7.0,2,
+Total cost:1
+[logMove:N, modelMove:N, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+Trace: NZ
+Log: NZ
+Mod: N
+
+213,0,4,0.0,4.0,2,
+Total cost:0
+[logMove:W, modelMove:W, cost:0]
+Trace: W
+Log: W
+Mod: W
+
+214,1,3,0.0,4.0,1,
+Total cost:1
+[logMove:D, modelMove:D, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+Trace: DN
+Log: DN
+Mod: D
+
+215,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+Trace: gdaA
+Log: gdaA
+Mod: A
+
+216,1,6,0.0,7.0,2,
+Total cost:1
+[logMove:N, modelMove:N, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: NMO
+Log: NMO
+Mod: NO
+
+217,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+218,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:c, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: caNO
+Log: caNO
+Mod: 
+
+219,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QSO
+Log: QSO
+Mod: Q
+
+220,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+221,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:B, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: 
+
+222,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+223,1,2,0.0,3.0,0,
+Total cost:1
+[logMove:[, modelMove:[, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: [O
+Log: [O
+Mod: [
+
+224,1,3,0.0,4.0,1,
+Total cost:1
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QO
+Log: QO
+Mod: Q
+
+225,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AOO
+Log: AOO
+Mod: A
+
+226,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: NaO
+Log: NaO
+Mod: 
+
+227,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+228,5,0,0.0,5.0,0,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:K, modelMove:K, cost:0]
+[logMove:E, modelMove:E, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:>>, modelMove:D, cost:1]
+[logMove:>>, modelMove:H, cost:1]
+[logMove:M, modelMove:M, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABCKELGFIJDHMNO
+Log: KELGFIJMNO
+Mod: ABCKELGFIJDHMNO
+
+229,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+230,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRSQRNO
+Log: QRSQRNO
+Mod: QRSQR
+
+231,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:Q, modelMove:>>, cost:1]
+Trace: AZXQ
+Log: AZXQ
+Mod: A
+
+232,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:K, modelMove:K, cost:0]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:D, modelMove:D, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+Trace: KEDILGFJN
+Log: KDILGFJN
+Mod: KEDILGFJ
+
+233,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+234,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:H, modelMove:H, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HNO
+Log: HNO
+Mod: H
+
+235,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+236,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+Trace: aNA
+Log: aNA
+Mod: A
+
+237,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+238,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+239,0,0,0.0,0.0,1,
+Total cost:0
+[logMove:A, modelMove:A, cost:0]
+Trace: A
+Log: A
+Mod: A
+
+240,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+241,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:U, modelMove:>>, cost:1]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:T, modelMove:T, cost:0]
+Trace: QRSQURZNT
+Log: QRSQURZNT
+Mod: QRSQRT
+
+242,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+243,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:H, modelMove:H, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HMO
+Log: HMO
+Mod: H
+
+244,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:T, modelMove:T, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: TZON
+Log: TZON
+Mod: T
+
+245,5,1,0.0,6.0,0,
+Total cost:5
+[logMove:B, modelMove:B, cost:0]
+[logMove:>>, modelMove:C, cost:1]
+[logMove:>>, modelMove:K, cost:1]
+[logMove:E, modelMove:E, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:L, modelMove:L, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BCKEILFJMN
+Log: BEILFJMN
+Mod: BCKEILF
+
+246,6,0,0.0,6.0,2,
+Total cost:6
+[logMove:A, modelMove:A, cost:0]
+[logMove:H, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AHJJMNO
+Log: AHJJMNO
+Mod: A
+
+247,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:D, modelMove:D, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: DJO
+Log: DJO
+Mod: D
+
+248,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gdaO
+Log: gdaO
+Mod: 
+
+249,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+250,1,1,0.0,2.0,0,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BO
+Log: BO
+Mod: B
+
+251,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRZNO
+Log: QRZNO
+Mod: QR
+
+252,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:I, modelMove:I, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: IGFJMN
+Log: IGFJMN
+Mod: IGFJ
+
+253,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+254,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QZZO
+Log: QZZO
+Mod: Q
+
+255,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: dNaO
+Log: dNaO
+Mod: 
+
+256,5,0,0.0,5.0,0,
+Total cost:5
+[logMove:A, modelMove:A, cost:0]
+[logMove:U, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AUXXNO
+Log: AUXXNO
+Mod: A
+
+257,0,1,0.0,1.0,1,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+Trace: B
+Log: B
+Mod: B
+
+258,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+259,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:G, modelMove:G, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: GOO
+Log: GOO
+Mod: G
+
+260,0,6,0.0,6.0,2,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+261,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+262,7,0,0.0,7.0,2,
+Total cost:7
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:U, modelMove:U, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPQTRWVXUZO
+Log: TRWVXUZO
+Mod: ABPQTRWVU
+
+263,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+264,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:A, modelMove:A, cost:0]
+[logMove:Q, modelMove:>>, cost:1]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AQRRZNO
+Log: AQRRZNO
+Mod: A
+
+265,0,1,0.0,1.0,0,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+Trace: B
+Log: B
+Mod: B
+
+266,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+267,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^NO
+Log: ^NO
+Mod: 
+
+268,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:e, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: NeO
+Log: NeO
+Mod: 
+
+269,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+270,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+271,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:e, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aeO
+Log: aeO
+Mod: 
+
+272,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+273,5,0,0.0,5.0,0,
+Total cost:5
+[logMove:], modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:_, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+Trace: ]^_]aA
+Log: ]^_]aA
+Mod: A
+
+274,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:T, modelMove:T, cost:0]
+Trace: QRZNT
+Log: QRZNT
+Mod: QRT
+
+275,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+276,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:U, modelMove:U, cost:0]
+[logMove:V, modelMove:V, cost:0]
+Trace: UV
+Log: UV
+Mod: UV
+
+277,2,0,0.0,2.0,1,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:[, modelMove:[, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AB[O
+Log: A[O
+Mod: AB[
+
+278,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+279,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:b, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: dabO
+Log: dabO
+Mod: 
+
+280,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: aON
+Log: aON
+Mod: 
+
+281,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:B, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BaN
+Log: BaN
+Mod: 
+
+282,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: QRZN
+Log: QRZN
+Mod: QR
+
+283,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+284,5,0,0.0,5.0,1,
+Total cost:5
+[logMove:A, modelMove:A, cost:0]
+[logMove:F, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:B, modelMove:B, cost:0]
+Trace: AFJMMNB
+Log: AFJMMNB
+Mod: AB
+
+285,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: fNO
+Log: fNO
+Mod: 
+
+286,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+287,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANNO
+Log: ANNO
+Mod: A
+
+288,1,1,0.0,2.0,0,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BO
+Log: BO
+Mod: B
+
+289,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:R, modelMove:R, cost:0]
+Trace: QSZZR
+Log: QSZZR
+Mod: QR
+
+290,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+Trace: aOA
+Log: aOA
+Mod: A
+
+291,3,0,0.0,3.0,5,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:F, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AFMO
+Log: AFMO
+Mod: A
+
+292,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+293,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:T, modelMove:T, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TOO
+Log: TOO
+Mod: T
+
+294,1,5,0.0,6.0,0,
+Total cost:1
+[logMove:^, modelMove:^, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^O
+Log: ^O
+Mod: ^
+
+295,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:e, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: feN
+Log: feN
+Mod: 
+
+296,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+297,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:W, modelMove:W, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:>>, modelMove:V, cost:1]
+[logMove:X, modelMove:X, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: WQUVXRYZNO
+Log: WQUXRZNO
+Mod: WQUVXRYZNO
+
+298,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+299,4,4,0.0,8.0,1,
+Total cost:4
+[logMove:I, modelMove:I, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: INMJO
+Log: INMJO
+Mod: I
+
+300,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+301,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: a]O
+Log: a]O
+Mod: 
+
+302,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+303,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+304,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+305,0,3,0.0,3.0,0,
+Total cost:0
+[logMove:E, modelMove:E, cost:0]
+Trace: E
+Log: E
+Mod: E
+
+306,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+307,2,2,0.0,4.0,0,
+Total cost:2
+[logMove:P, modelMove:P, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PZO
+Log: PZO
+Mod: P
+
+308,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+Trace: ON]
+Log: ON]
+Mod: 
+
+309,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:D, modelMove:D, cost:0]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:I, modelMove:I, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:H, modelMove:H, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+Trace: DEIGHOFJN
+Log: DIGHOFJN
+Mod: DEIGHFJ
+
+310,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+311,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:T, modelMove:T, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: TSQRNO
+Log: TSQRNO
+Mod: TQR
+
+312,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+313,1,4,0.0,5.0,1,
+Total cost:1
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+Trace: WVN
+Log: WVN
+Mod: WV
+
+314,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:[, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: a[O
+Log: a[O
+Mod: 
+
+315,1,4,0.0,5.0,0,
+Total cost:1
+[logMove:R, modelMove:R, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: RO
+Log: RO
+Mod: R
+
+316,3,1,0.0,4.0,1,
+Total cost:3
+[logMove:B, modelMove:B, cost:0]
+[logMove:I, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BIJO
+Log: BIJO
+Mod: B
+
+317,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AaO
+Log: AaO
+Mod: A
+
+318,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+319,4,2,0.0,6.0,0,
+Total cost:4
+[logMove:P, modelMove:P, cost:0]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:W, modelMove:W, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:U, modelMove:U, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PTWXUNO
+Log: PWXUNO
+Mod: PTWU
+
+320,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:C, modelMove:C, cost:0]
+Trace: C
+Log: C
+Mod: C
+
+321,4,0,0.0,4.0,1,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+322,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANNO
+Log: ANNO
+Mod: A
+
+323,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+324,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:E, modelMove:E, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: EIFJNO
+Log: EIFJNO
+Mod: EIF
+
+325,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: aON
+Log: aON
+Mod: 
+
+326,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+327,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:e, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aeO
+Log: aeO
+Mod: 
+
+328,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QNO
+Log: QNO
+Mod: Q
+
+329,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+330,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QZZO
+Log: QZZO
+Mod: Q
+
+331,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:O, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: OdaN
+Log: OdaN
+Mod: 
+
+332,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: RNO
+Log: RNO
+Mod: R
+
+333,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+334,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:c, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: cdNa
+Log: cdNa
+Mod: 
+
+335,1,1,0.0,2.0,0,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BO
+Log: BO
+Mod: B
+
+336,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+337,0,4,0.0,4.0,1,
+Total cost:0
+[logMove:L, modelMove:L, cost:0]
+Trace: L
+Log: L
+Mod: L
+
+338,3,4,0.0,7.0,0,
+Total cost:3
+[logMove:I, modelMove:I, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: IGNFJMO
+Log: IGNFJMO
+Mod: IGFJ
+
+339,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: faN
+Log: faN
+Mod: 
+
+340,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:D, modelMove:D, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: DOO
+Log: DOO
+Mod: D
+
+341,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:E, modelMove:E, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: EIFGJMO
+Log: EIFGJMO
+Mod: EIFGJ
+
+342,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+343,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:A, modelMove:A, cost:0]
+[logMove:U, modelMove:>>, cost:1]
+[logMove:U, modelMove:>>, cost:1]
+[logMove:W, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AUUWXZO
+Log: AUUWXZO
+Mod: A
+
+344,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:E, modelMove:E, cost:0]
+[logMove:>>, modelMove:D, cost:1]
+[logMove:I, modelMove:I, cost:0]
+[logMove:H, modelMove:H, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: EDIHGFJNO
+Log: EIHGFJNO
+Mod: EDIHGFJ
+
+345,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:a, modelMove:>>, cost:1]
+[logMove:b, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:g, modelMove:>>, cost:1]
+Trace: abNg
+Log: abNg
+Mod: 
+
+346,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: faO
+Log: faO
+Mod: 
+
+347,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:A, modelMove:A, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:W, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AXXWO
+Log: AXXWO
+Mod: A
+
+348,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+349,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:b, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gdbO
+Log: gdbO
+Mod: 
+
+350,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+351,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:D, modelMove:D, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: DNOO
+Log: DNOO
+Mod: D
+
+352,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+Trace: aN^
+Log: aN^
+Mod: 
+
+353,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:B, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: 
+
+354,0,3,0.0,3.0,0,
+Total cost:0
+[logMove:e, modelMove:e, cost:0]
+Trace: e
+Log: e
+Mod: e
+
+355,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:E, modelMove:E, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ENO
+Log: ENO
+Mod: E
+
+356,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:f, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: afO
+Log: afO
+Mod: 
+
+357,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:H, modelMove:H, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HNO
+Log: HNO
+Mod: H
+
+358,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+359,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+Trace: ONA
+Log: ONA
+Mod: A
+
+360,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: NaO
+Log: NaO
+Mod: 
+
+361,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRZO
+Log: QRZO
+Mod: QR
+
+362,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:b, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: baNO
+Log: baNO
+Mod: 
+
+363,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:A, modelMove:A, cost:0]
+[logMove:I, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:G, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: AIJGN
+Log: AIJGN
+Mod: A
+
+364,0,2,0.0,2.0,1,
+Total cost:0
+[logMove:P, modelMove:P, cost:0]
+Trace: P
+Log: P
+Mod: P
+
+365,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^NO
+Log: ^NO
+Mod: 
+
+366,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+367,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QZNO
+Log: QZNO
+Mod: Q
+
+368,0,5,0.0,5.0,0,
+Total cost:0
+[logMove:^, modelMove:^, cost:0]
+Trace: ^
+Log: ^
+Mod: ^
+
+369,4,0,0.0,4.0,1,
+Total cost:4
+[logMove:A, modelMove:A, cost:0]
+[logMove:H, modelMove:>>, cost:1]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AHJNO
+Log: AHJNO
+Mod: A
+
+370,0,0,0.0,0.0,0,
+Total cost:0
+[logMove:A, modelMove:A, cost:0]
+Trace: A
+Log: A
+Mod: A
+
+371,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gdaO
+Log: gdaO
+Mod: 
+
+372,0,5,0.0,5.0,0,
+Total cost:0
+[logMove:^, modelMove:^, cost:0]
+Trace: ^
+Log: ^
+Mod: ^
+
+373,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+374,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+375,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:f, modelMove:>>, cost:1]
+Trace: Naf
+Log: Naf
+Mod: 
+
+376,7,0,0.0,7.0,0,
+Total cost:7
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:T, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:>>, modelMove:W, cost:1]
+[logMove:X, modelMove:X, cost:0]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:N, cost:0]
+Trace: ABPTQUVRYWXZON
+Log: QUVRXZON
+Mod: ABPTQUVRYWXZN
+
+377,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+378,0,0,0.0,0.0,0,
+Total cost:0
+[logMove:A, modelMove:A, cost:0]
+Trace: A
+Log: A
+Mod: A
+
+379,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+380,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AOO
+Log: AOO
+Mod: A
+
+381,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+382,1,4,0.0,5.0,0,
+Total cost:1
+[logMove:L, modelMove:L, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: LO
+Log: LO
+Mod: L
+
+383,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:B, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: B]N
+Log: B]N
+Mod: 
+
+384,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:O, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+Trace: OaNd
+Log: OaNd
+Mod: 
+
+385,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+386,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:>>, modelMove:I, cost:1]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+Trace: GFIJM
+Log: GFJM
+Mod: GFIJ
+
+387,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: gdaN
+Log: gdaN
+Mod: 
+
+388,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QNNO
+Log: QNNO
+Mod: Q
+
+389,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:T, modelMove:T, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: QTWUZN
+Log: QTWUZN
+Mod: QTWU
+
+390,1,4,0.0,5.0,0,
+Total cost:1
+[logMove:H, modelMove:H, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HO
+Log: HO
+Mod: H
+
+391,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:_, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: _]^aNO
+Log: _]^aNO
+Mod: 
+
+392,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: a^O
+Log: a^O
+Mod: 
+
+393,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:I, modelMove:I, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: IOO
+Log: IOO
+Mod: I
+
+394,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:H, modelMove:H, cost:0]
+[logMove:K, modelMove:K, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: HKNO
+Log: HKNO
+Mod: HK
+
+395,3,1,0.0,4.0,0,
+Total cost:3
+[logMove:B, modelMove:B, cost:0]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BPQRNO
+Log: BQRNO
+Mod: BPQR
+
+396,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^aO
+Log: ^aO
+Mod: 
+
+397,2,3,0.0,5.0,0,
+Total cost:2
+[logMove:D, modelMove:D, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: DOO
+Log: DOO
+Mod: D
+
+398,0,4,0.0,4.0,1,
+Total cost:0
+[logMove:W, modelMove:W, cost:0]
+Trace: W
+Log: W
+Mod: W
+
+399,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:G, modelMove:G, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: GOO
+Log: GOO
+Mod: G
+
+400,0,5,0.0,5.0,0,
+Total cost:0
+[logMove:a, modelMove:a, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: aNO
+Log: aNO
+Mod: aNO
+
+401,0,3,0.0,3.0,0,
+Total cost:0
+[logMove:b, modelMove:b, cost:0]
+Trace: b
+Log: b
+Mod: b
+
+402,5,0,0.0,5.0,0,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:X, modelMove:X, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPTUWVXQNO
+Log: TUWVXQNO
+Mod: ABPTUWVXQ
+
+403,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+404,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: RZO
+Log: RZO
+Mod: R
+
+405,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+406,4,1,0.0,5.0,0,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BRZNO
+Log: BRZNO
+Mod: B
+
+407,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+408,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+409,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:], modelMove:], cost:0]
+Trace: ]
+Log: ]
+Mod: ]
+
+410,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: RNN
+Log: RNN
+Mod: R
+
+411,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:B, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: BaON
+Log: BaON
+Mod: 
+
+412,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:S, modelMove:>>, cost:1]
+Trace: ARZS
+Log: ARZS
+Mod: A
+
+413,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^NO
+Log: ^NO
+Mod: 
+
+414,0,1,0.0,1.0,0,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+Trace: B
+Log: B
+Mod: B
+
+415,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+416,5,0,0.0,5.0,0,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:V, modelMove:V, cost:0]
+[logMove:U, modelMove:U, cost:0]
+[logMove:W, modelMove:W, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:X, modelMove:X, cost:0]
+[logMove:Z, modelMove:Z, cost:0]
+[logMove:N, modelMove:N, cost:0]
+Trace: ABPQTVUWRYXZN
+Log: TVUWRXZN
+Mod: ABPQTVUWRYXZN
+
+417,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: NadO
+Log: NadO
+Mod: 
+
+418,0,3,0.0,3.0,1,
+Total cost:0
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+Trace: QR
+Log: QR
+Mod: QR
+
+419,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: faO
+Log: faO
+Mod: 
+
+420,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AOO
+Log: AOO
+Mod: A
+
+421,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:g, modelMove:>>, cost:1]
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: gANO
+Log: gANO
+Mod: A
+
+422,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:O, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:g, modelMove:>>, cost:1]
+Trace: OaNg
+Log: OaNg
+Mod: 
+
+423,1,3,0.0,4.0,0,
+Total cost:1
+[logMove:E, modelMove:E, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: EO
+Log: EO
+Mod: E
+
+424,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:U, modelMove:U, cost:0]
+Trace: U
+Log: U
+Mod: U
+
+425,5,2,0.0,7.0,1,
+Total cost:5
+[logMove:C, modelMove:C, cost:0]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+Trace: CEFJONM
+Log: CFJONM
+Mod: CEF
+
+426,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^aO
+Log: ^aO
+Mod: 
+
+427,0,3,0.0,3.0,0,
+Total cost:0
+[logMove:Q, modelMove:Q, cost:0]
+Trace: Q
+Log: Q
+Mod: Q
+
+428,0,1,0.0,1.0,0,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+[logMove:C, modelMove:C, cost:0]
+[logMove:D, modelMove:D, cost:0]
+Trace: BCD
+Log: BCD
+Mod: BCD
+
+429,4,1,0.0,5.0,1,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BXZNO
+Log: BXZNO
+Mod: B
+
+430,2,2,0.0,4.0,0,
+Total cost:2
+[logMove:C, modelMove:C, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: CMO
+Log: CMO
+Mod: C
+
+431,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QRNO
+Log: QRNO
+Mod: QR
+
+432,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+433,1,6,0.0,7.0,0,
+Total cost:1
+[logMove:N, modelMove:N, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+Trace: NZ
+Log: NZ
+Mod: N
+
+434,5,1,0.0,6.0,1,
+Total cost:5
+[logMove:B, modelMove:B, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BSPQRZNO
+Log: BSQRZNO
+Mod: BPQR
+
+435,3,4,0.0,7.0,1,
+Total cost:3
+[logMove:U, modelMove:U, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: UZXO
+Log: UZXO
+Mod: U
+
+436,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+437,0,1,0.0,1.0,0,
+Total cost:0
+[logMove:B, modelMove:B, cost:0]
+Trace: B
+Log: B
+Mod: B
+
+438,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AXZO
+Log: AXZO
+Mod: A
+
+439,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:I, modelMove:I, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: IMN
+Log: IMN
+Mod: I
+
+440,1,1,0.0,2.0,0,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:X, modelMove:>>, cost:1]
+Trace: BX
+Log: BX
+Mod: B
+
+441,0,3,0.0,3.0,0,
+Total cost:0
+[logMove:e, modelMove:e, cost:0]
+Trace: e
+Log: e
+Mod: e
+
+442,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+443,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:G, modelMove:G, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: GOO
+Log: GOO
+Mod: G
+
+444,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+445,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:G, modelMove:G, cost:0]
+[logMove:F, modelMove:F, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: GFIJMO
+Log: GFIJMO
+Mod: GFIJ
+
+446,2,2,0.0,4.0,0,
+Total cost:2
+[logMove:C, modelMove:C, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:E, modelMove:E, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: CMEO
+Log: CMEO
+Mod: CE
+
+447,1,1,0.0,2.0,0,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BO
+Log: BO
+Mod: B
+
+448,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+449,6,0,0.0,6.0,1,
+Total cost:6
+[logMove:_, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: _]^aNO
+Log: _]^aNO
+Mod: 
+
+450,0,2,0.0,2.0,0,
+Total cost:0
+[logMove:[, modelMove:[, cost:0]
+Trace: [
+Log: [
+Mod: [
+
+451,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+452,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:D, modelMove:D, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: DMNO
+Log: DMNO
+Mod: D
+
+453,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+454,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: fNO
+Log: fNO
+Mod: 
+
+455,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+456,5,0,0.0,5.0,1,
+Total cost:5
+[logMove:>>, modelMove:A, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:C, modelMove:C, cost:0]
+[logMove:D, modelMove:D, cost:0]
+[logMove:>>, modelMove:K, cost:1]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:L, modelMove:L, cost:0]
+[logMove:G, modelMove:G, cost:0]
+[logMove:I, modelMove:I, cost:0]
+[logMove:H, modelMove:H, cost:0]
+[logMove:>>, modelMove:F, cost:1]
+[logMove:J, modelMove:J, cost:0]
+[logMove:M, modelMove:M, cost:0]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABCDKELGIHFJMNO
+Log: CDLGIHJMNO
+Mod: ABCDKELGIHFJMNO
+
+457,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+458,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^NO
+Log: ^NO
+Mod: 
+
+459,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:f, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: faO
+Log: faO
+Mod: 
+
+460,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+Trace: N
+Log: N
+Mod: N
+
+461,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+462,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+463,1,3,0.0,4.0,0,
+Total cost:1
+[logMove:b, modelMove:b, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: bO
+Log: bO
+Mod: b
+
+464,2,2,0.0,4.0,0,
+Total cost:2
+[logMove:P, modelMove:P, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PNO
+Log: PNO
+Mod: P
+
+465,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: ^aN
+Log: ^aN
+Mod: 
+
+466,2,3,0.0,5.0,1,
+Total cost:2
+[logMove:K, modelMove:K, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: KOO
+Log: KOO
+Mod: K
+
+467,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:[, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: a[O
+Log: a[O
+Mod: 
+
+468,1,3,0.0,4.0,0,
+Total cost:1
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+Trace: QRZ
+Log: QRZ
+Mod: QR
+
+469,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:I, modelMove:I, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: IJO
+Log: IJO
+Mod: I
+
+470,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:g, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: dgNO
+Log: dgNO
+Mod: 
+
+471,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AaO
+Log: AaO
+Mod: A
+
+472,0,6,0.0,6.0,1,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+473,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: B
+
+474,4,2,0.0,6.0,1,
+Total cost:4
+[logMove:C, modelMove:C, cost:0]
+[logMove:E, modelMove:E, cost:0]
+[logMove:>>, modelMove:D, cost:1]
+[logMove:F, modelMove:F, cost:0]
+[logMove:K, modelMove:K, cost:0]
+[logMove:H, modelMove:H, cost:0]
+[logMove:>>, modelMove:I, cost:1]
+[logMove:G, modelMove:G, cost:0]
+[logMove:J, modelMove:J, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: CEDFKHIGJNO
+Log: CEFKHGJNO
+Mod: CEDFKHIGJ
+
+475,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+476,6,0,0.0,6.0,0,
+Total cost:6
+[logMove:], modelMove:>>, cost:1]
+[logMove:_, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ]_a^NO
+Log: ]_a^NO
+Mod: 
+
+477,3,3,0.0,6.0,0,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:>>, modelMove:R, cost:1]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: QRSQRZN
+Log: QSQRZN
+Mod: QRSQR
+
+478,4,3,0.0,7.0,1,
+Total cost:4
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:R, modelMove:R, cost:0]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:>>, modelMove:R, cost:1]
+[logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:Z, modelMove:>>, cost:1]
+Trace: QRSQRSQSNZ
+Log: QRSQSQSNZ
+Mod: QRSQRSQ
+
+479,2,4,0.0,6.0,0,
+Total cost:2
+[logMove:F, modelMove:F, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:K, modelMove:K, cost:0]
+Trace: FJNK
+Log: FJNK
+Mod: FK
+
+480,1,2,0.0,3.0,0,
+Total cost:1
+[logMove:[, modelMove:[, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: [O
+Log: [O
+Mod: [
+
+481,2,4,0.0,6.0,1,
+Total cost:2
+[logMove:I, modelMove:I, cost:0]
+[logMove:K, modelMove:K, cost:0]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: IKMN
+Log: IKMN
+Mod: IK
+
+482,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ^NO
+Log: ^NO
+Mod: 
+
+483,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+484,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+485,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: dONa
+Log: dONa
+Mod: 
+
+486,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aNO
+Log: aNO
+Mod: 
+
+487,3,0,0.0,3.0,1,
+Total cost:3
+[logMove:A, modelMove:A, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: AZNO
+Log: AZNO
+Mod: A
+
+488,3,0,0.0,3.0,0,
+Total cost:3
+[logMove:^, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: ^aN
+Log: ^aN
+Mod: 
+
+489,2,0,0.0,2.0,0,
+Total cost:2
+[logMove:A, modelMove:A, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ANO
+Log: ANO
+Mod: A
+
+490,1,1,0.0,2.0,0,
+Total cost:1
+[logMove:B, modelMove:B, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BO
+Log: BO
+Mod: B
+
+491,4,1,0.0,5.0,1,
+Total cost:4
+[logMove:B, modelMove:B, cost:0]
+[logMove:>>, modelMove:P, cost:1]
+[logMove:T, modelMove:T, cost:0]
+[logMove:R, modelMove:>>, cost:1]
+[logMove:W, modelMove:W, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:U, modelMove:U, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+Trace: BPTRWOUZ
+Log: BTRWOUZ
+Mod: BPTWU
+
+492,0,4,0.0,4.0,0,
+Total cost:0
+[logMove:L, modelMove:L, cost:0]
+Trace: L
+Log: L
+Mod: L
+
+493,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: daNO
+Log: daNO
+Mod: 
+
+494,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: B
+
+495,3,3,0.0,6.0,1,
+Total cost:3
+[logMove:Q, modelMove:Q, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: QZNO
+Log: QZNO
+Mod: Q
+
+496,0,6,0.0,6.0,0,
+Total cost:0
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: NO
+Log: NO
+Mod: NO
+
+497,1,2,0.0,3.0,1,
+Total cost:1
+[logMove:P, modelMove:P, cost:0]
+[logMove:O, modelMove:>>, cost:1]
+Trace: PO
+Log: PO
+Mod: P
+
+498,2,1,0.0,3.0,0,
+Total cost:2
+[logMove:B, modelMove:B, cost:0]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: BNO
+Log: BNO
+Mod: B
+
+499,4,0,0.0,4.0,0,
+Total cost:4
+[logMove:b, modelMove:>>, cost:1]
+[logMove:g, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
+Trace: bgOa
+Log: bgOa
+Mod: 
+

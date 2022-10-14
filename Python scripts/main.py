@@ -233,10 +233,11 @@ def make_prediction(input: dict) -> float:
     output = store['model'](tensor)
     output = t.exp(output['out'][0])
     output = output.detach().numpy()
-    # max_output_idx = np.argmax(output)
-    # max_output = output[max_output_idx]
-    # s = store['idx_to_labels'][max_output_idx]
-    # k = s
+    max_output_idx = np.argmax(output)
+    max_output = output[max_output_idx]
+    p = max_output
+    s = store['idx_to_labels'][max_output_idx]
+    k = s
     output_idx = store['labels_to_idx'][input["target"]]
     output_ = output[output_idx].item()
     # return [output_, max_output]
