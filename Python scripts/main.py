@@ -60,7 +60,7 @@ def get_model_param(filename) -> int:
 
     # Setting hyper parameters for the model:
     INPUT_SIZE = 36
-    HIDDEN_SIZE = 254
+    HIDDEN_SIZE = 128
     NUM_LAYERS = 1
     NUM_CLASSES = len(store['labels'])
     LEARNING_RATE = 0.0001
@@ -79,8 +79,8 @@ def get_model_param(filename) -> int:
     t.nn.init.xavier_uniform_(lstm.fc2.weight)
 
     # Setup settings for training
-    NUM_EPOCHS = 300
-    EVAL_EVERY = 10
+    NUM_EPOCHS = 10000
+    EVAL_EVERY = 50
 
     train_iter = []
     train_loss = []
@@ -137,13 +137,13 @@ def get_model_param(filename) -> int:
     eval_x = list(eval_loss.keys())
     eval_y = list(map(lambda x: mean(x), list(eval_loss.values())))
 
-    # fig = plt.figure(figsize=(10, 5))
-    # plt.plot(train_loss, label="Train loss in each epoch")
-    # plt.plot(eval_x, eval_y, label="Eval loss in each epoch")
-    # plt.ylabel("NLLLoss")
-    # fig.tight_layout()
-    # plt.legend(loc='upper right')
-    # plt.show()
+    fig = plt.figure(figsize=(10, 5))
+    plt.plot(train_loss, label="Train loss in each epoch")
+    plt.plot(eval_x, eval_y, label="Eval loss in each epoch")
+    plt.ylabel("NLLLoss")
+    fig.tight_layout()
+    plt.legend(loc='upper right')
+    plt.show()
 
     eval_best_idx = np.argmin(np.array(eval_y))
     eval_best = eval_y[eval_best_idx]
@@ -151,6 +151,8 @@ def get_model_param(filename) -> int:
 
     print("Min eval loss {} at epoch {}".format(
         round(eval_best, 5), eval_best_epoch))
+
+    store['model'] = lstm
 
     return eval_best_epoch
 
@@ -170,20 +172,20 @@ def run_test() -> LSTM_model.LSTM:
         test_iter.append(batch_test_index)
         test_loss.append(LSTM_model.get_numpy(loss).item())
 
-    # fig = plt.figure(figsize=(10, 5))
-    # plt.plot(test_loss, label="Test loss in each epoch")
-    # plt.ylabel("NLLLoss")
-    # fig.tight_layout()
-    # plt.legend(loc='upper right')
-    # plt.show()
+    fig = plt.figure(figsize=(10, 5))
+    plt.plot(test_loss, label="Test loss in each epoch")
+    plt.ylabel("NLLLoss")
+    fig.tight_layout()
+    plt.legend(loc='upper right')
+    plt.show()
 
 
 def get_model(epochs):
     global store
     # Setting hyper parameters for the model:
     INPUT_SIZE = 36
-    HIDDEN_SIZE = 254
-    NUM_LAYERS = 1
+    HIDDEN_SIZE = 128
+    NUM_LAYERS = 2
     NUM_CLASSES = len(store['labels'])
     LEARNING_RATE = 0.0001
     WEIGHT_DECAY = 0.033
@@ -233,11 +235,11 @@ def make_prediction(input: dict) -> float:
     output = store['model'](tensor)
     output = t.exp(output['out'][0])
     output = output.detach().numpy()
-    max_output_idx = np.argmax(output)
-    max_output = output[max_output_idx]
-    p = max_output
-    s = store['idx_to_labels'][max_output_idx]
-    k = s
+    # max_output_idx = np.argmax(output)
+    # max_output = output[max_output_idx]
+    # p = max_output
+    # s = store['idx_to_labels'][max_output_idx]
+    # k = s
     output_idx = store['labels_to_idx'][input["target"]]
     output_ = output[output_idx].item()
     # return [output_, max_output]
@@ -247,28 +249,27 @@ def make_prediction(input: dict) -> float:
 if __name__ == "__main__":
     FILE_NAME = "logs/M1.xes"
     epochs = get_model_param(FILE_NAME)
-    get_model(epochs)
+    #get_model(epochs)
     run_test()
 # %%
 
-
 # out
-# tensor([[-3.3229, -4.0123, -4.1178, -3.5945, -4.0334, -3.9988, -4.0593, -4.1274,
-#          -3.9292, -1.2458, -4.0401, -3.9725, -4.0404, -3.9891, -3.8863, -3.9007,
-#          -4.1528, -3.8372, -4.2687, -3.8359, -4.0050, -4.3265, -3.9911, -3.9496,
-#          -4.2549, -3.2833, -3.0695, -3.3123, -3.9639, -4.0928, -4.2169, -4.1232,
-#          -4.0305, -3.9399, -4.3716, -3.9660]])
+# tensor([[-3.7180, -3.9482, -3.9199, -3.8766, -3.6933, -2.7918, -3.7715, -3.9515,
+#          -3.8268, -3.8325, -3.9177, -3.9920, -3.6475, -3.9693, -3.8594, -3.9929,
+#          -3.8086, -3.8516, -3.6172, -4.0001, -3.1120, -3.8540, -3.8572, -3.8582,
+#          -3.7546, -3.8987, -2.0661, -3.2422, -3.7446, -3.8792, -3.7933, -4.0914,
+#          -3.9499, -3.9910, -2.6115, -3.8883]])
 
 # exp(out)
-# tensor([0.0360, 0.0181, 0.0163, 0.0275, 0.0177, 0.0183, 0.0173, 0.0161, 0.0197,
-#         0.2877, 0.0176, 0.0188, 0.0176, 0.0185, 0.0205, 0.0202, 0.0157, 0.0216,
-#         0.0140, 0.0216, 0.0182, 0.0132, 0.0185, 0.0193, 0.0142, 0.0375, 0.0464,
-#         0.0364, 0.0190, 0.0167, 0.0147, 0.0162, 0.0178, 0.0194, 0.0126, 0.0189])
+# tensor([0.0243, 0.0193, 0.0198, 0.0207, 0.0249, 0.0613, 0.0230, 0.0192, 0.0218,
+#         0.0217, 0.0199, 0.0185, 0.0261, 0.0189, 0.0211, 0.0184, 0.0222, 0.0212,
+#         0.0269, 0.0183, 0.0445, 0.0212, 0.0211, 0.0211, 0.0234, 0.0203, 0.1267,
+#         0.0391, 0.0236, 0.0207, 0.0225, 0.0167, 0.0193, 0.0185, 0.0734, 0.0205])
 
-# max_output_idx = 9
+# max_output_idx = 26
 # max_output_label = 'B'
-# max_output_exp = 0.28769872
+# max_output_exp = 0.12668033
 
-# output_idx = 19
-# label = 'A'
-# output_ = 0.0215808916836977
+# output_idx = 23
+# label = 'J'
+# output_ = 0.02110593020915985

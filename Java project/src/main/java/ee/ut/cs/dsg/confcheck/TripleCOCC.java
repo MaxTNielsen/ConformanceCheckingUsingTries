@@ -25,7 +25,7 @@ public class TripleCOCC extends ConformanceChecker {
     protected boolean isStandardAlign;
 
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign) {
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType) {
         super(trie, logCost, modelCost, maxStatesInQueue);
         rnd = new Random(19);
         this.maxTrials = maxTrials;
@@ -38,17 +38,18 @@ public class TripleCOCC extends ConformanceChecker {
         }
 
         if (!this.isStandardAlign) {
-            modelTrie.computeConfidenceCostForAllNodes("avg");
+            modelTrie.computeConfidenceCostForAllNodes(costType);
             modelTrie.computeScaledConfidenceCost(modelTrie.getRoot());
+
         }
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign) {
-        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign);
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType) {
+        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType);
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign) {
-        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign);
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType) {
+        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType);
     }
 
     public Alignment check(List<String> trace) {

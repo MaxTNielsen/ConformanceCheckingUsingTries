@@ -33,7 +33,7 @@ def load_data(size, test_split, batch_size, inputs, targets):
     dataset = Dataset(inputs, targets)
 
     train_dataset, test_dataset = random_split(
-        dataset, [train_size, test_size])
+        dataset, [train_size, test_size], generator=t.Generator().manual_seed(42))
 
     test_dataloader = DataLoader(
         test_dataset, batch_size=batch_size, shuffle=False)
@@ -42,7 +42,7 @@ def load_data(size, test_split, batch_size, inputs, targets):
     eval_size = len(train_dataset) - train_size
 
     train_dataset, eval_dataset = random_split(
-        train_dataset, [train_size, eval_size])
+        train_dataset, [train_size, eval_size], generator=t.Generator().manual_seed(42))
 
     train_dataloader = DataLoader(
         train_dataset, batch_size=batch_size, shuffle=False)
@@ -57,7 +57,6 @@ def create_dataset(traces_dict, label_to_idx_):
     global label_to_idx
     label_to_idx = label_to_idx_
 
-    data_set = []
     l = list(label_to_idx.values())
     n_activities = len(l)
 
@@ -67,17 +66,18 @@ def create_dataset(traces_dict, label_to_idx_):
         tensor = t.zeros(len(trace), n_activities)
         for li, activity in enumerate(trace):
             tensor[li][label_to_idx[activity]] = 1
-        data_set.append(tensor)
-        targets.append(t.tensor(label_to_idx[trace[-1]]))
+        for i in range(1,len(trace)):
+            data_set.append(tensor[0:i, :])
+            targets.append(t.tensor(label_to_idx[trace[i]]))
 
-    inputs = []
-    for trace in data_set:
-        tensor = t.zeros(1, n_activities)
-        temp = trace[0:trace.shape[1]-1, :]
-        input = t.cat((tensor, temp))
-        inputs.append(input)
+    # inputs = []
+    # for trace in data_set:
+    #     tensor = t.zeros(1, n_activities)
+    #     temp = trace[0:trace.shape[1]-1, :]
+    #     input = t.cat((tensor, temp))
+    #     inputs.append(input)
 
-    inputs = pad_sequence(inputs, True)
+    inputs = pad_sequence(data_set, True)
 
     return inputs, targets
 

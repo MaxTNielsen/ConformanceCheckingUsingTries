@@ -53,8 +53,7 @@ import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.LogSortType;
-
-import static sun.misc.Version.print;
+//import static sun.misc.Version.print;
 
 
 public class Runner {
@@ -578,11 +577,11 @@ public class Runner {
                 javaClassLoader.invokeClass(className, type, params);
 
             } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
-                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign
-                // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false);
+                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType
+                // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false, "avg");
 
-                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, false};
+                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class};
+                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg"};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else {
