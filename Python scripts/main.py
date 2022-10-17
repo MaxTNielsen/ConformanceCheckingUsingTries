@@ -1,6 +1,6 @@
 # %%
-from logs import get_traces
-import LSTM_model
+from log_parser import get_traces
+import model
 import util
 
 import time
@@ -22,7 +22,7 @@ store = {
     'train_dataloader': t.utils.data.dataloader.DataLoader,
     'eval_dataloader': t.utils.data.dataloader.DataLoader,
     'test_dataloader': t.utils.data.dataloader.DataLoader,
-    'model': LSTM_model.LSTM.__class__
+    'model': model.LSTM.__class__
 }
 
 
@@ -66,9 +66,9 @@ def get_model_param(filename) -> int:
     LEARNING_RATE = 0.0001
     WEIGHT_DECAY = 0.033
 
-    lstm = LSTM_model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
+    lstm = model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
 
-    if LSTM_model.use_cuda:
+    if model.use_cuda:
         lstm.cuda()
 
     criterion = nn.NLLLoss()
@@ -79,8 +79,8 @@ def get_model_param(filename) -> int:
     t.nn.init.xavier_uniform_(lstm.fc2.weight)
 
     # Setup settings for training
-    NUM_EPOCHS = 500
-    EVAL_EVERY = 50
+    NUM_EPOCHS = 300
+    EVAL_EVERY = 10
 
     train_iter = []
     train_loss = []
@@ -97,12 +97,12 @@ def get_model_param(filename) -> int:
             lstm.eval()
             for eval_batch_index, (eval_batch, eval_target) in enumerate(store['eval_dataloader']):
 
-                eval_outputs = lstm(LSTM_model.get_variable(eval_batch))
+                eval_outputs = lstm(model.get_variable(eval_batch))
 
                 loss = t.sqrt(
-                    criterion(eval_outputs['out'], LSTM_model.get_variable(eval_target)))
+                    criterion(eval_outputs['out'], model.get_variable(eval_target)))
 
-                eval_loss[epoch].append(LSTM_model.get_numpy(loss).item())
+                eval_loss[epoch].append(model.get_numpy(loss).item())
 
         train_loss_epoch = []
 
@@ -110,16 +110,16 @@ def get_model_param(filename) -> int:
         lstm.train()
         for batch_train_index, (train_batch, train_target) in enumerate(store['train_dataloader']):
 
-            train_outputs = lstm(LSTM_model.get_variable(train_batch))
+            train_outputs = lstm(model.get_variable(train_batch))
 
             optimizer.zero_grad()
 
             loss = t.sqrt(
-                criterion(train_outputs['out'], LSTM_model.get_variable(train_target)))
+                criterion(train_outputs['out'], model.get_variable(train_target)))
 
             train_iter.append(batch_train_index)
-            train_loss_epoch.append(LSTM_model.get_numpy(loss).item())
-            train_loss.append(LSTM_model.get_numpy(loss).item())
+            train_loss_epoch.append(model.get_numpy(loss).item())
+            train_loss.append(model.get_numpy(loss).item())
 
             loss.backward()
             optimizer.step()
@@ -135,15 +135,16 @@ def get_model_param(filename) -> int:
             print("\n")
 
     eval_x = list(eval_loss.keys())
+    eval_idx = [i*int(len(train_loss)/len(eval_x)) for i in range(len(eval_x))]
     eval_y = list(map(lambda x: mean(x), list(eval_loss.values())))
 
-    fig = plt.figure(figsize=(10, 5))
-    plt.plot(train_loss, label="Train loss in each epoch")
-    plt.plot(eval_x, eval_y, label="Eval loss in each epoch")
-    plt.ylabel("NLLLoss")
-    fig.tight_layout()
-    plt.legend(loc='upper right')
-    plt.show()
+    # fig = plt.figure(figsize=(10, 5))
+    # plt.plot(train_loss, label="Train loss in each epoch")
+    # plt.plot(eval_idx, eval_y, label="Eval loss in each epoch")
+    # plt.ylabel("NLLLoss")
+    # fig.tight_layout()
+    # plt.legend(loc='upper right')
+    # plt.show()
 
     eval_best_idx = np.argmin(np.array(eval_y))
     eval_best = eval_y[eval_best_idx]
@@ -152,32 +153,32 @@ def get_model_param(filename) -> int:
     print("Min eval loss {} at epoch {}".format(
         round(eval_best, 5), eval_best_epoch))
 
-    store['model'] = lstm
+    store['model'] = lstm # remove
 
     return eval_best_epoch
 
 
-def run_test() -> LSTM_model.LSTM:
+def run_test() -> model.LSTM:
     global store
     criterion = nn.NLLLoss()
     test_iter = []
     test_loss = []
     for batch_test_index, (test_batch, test_target) in enumerate(store['test_dataloader']):
         
-        test_outputs = store['model'](LSTM_model.get_variable(test_batch))
+        test_outputs = store['model'](model.get_variable(test_batch))
 
         loss = t.sqrt(
-            criterion(test_outputs['out'], LSTM_model.get_variable(test_target)))
+            criterion(test_outputs['out'], model.get_variable(test_target)))
 
         test_iter.append(batch_test_index)
-        test_loss.append(LSTM_model.get_numpy(loss).item())
+        test_loss.append(model.get_numpy(loss).item())
 
-    fig = plt.figure(figsize=(10, 5))
-    plt.plot(test_loss, label="Test loss in each epoch")
-    plt.ylabel("NLLLoss")
-    fig.tight_layout()
-    plt.legend(loc='upper right')
-    plt.show()
+    # fig = plt.figure(figsize=(10, 5))
+    # plt.plot(test_loss, label="Test loss in each epoch")
+    # plt.ylabel("NLLLoss")
+    # fig.tight_layout()
+    # plt.legend(loc='upper right')
+    # plt.show()
 
 
 def get_model(epochs):
@@ -185,14 +186,14 @@ def get_model(epochs):
     # Setting hyper parameters for the model:
     INPUT_SIZE = 36
     HIDDEN_SIZE = 128
-    NUM_LAYERS = 2
+    NUM_LAYERS = 1
     NUM_CLASSES = len(store['labels'])
     LEARNING_RATE = 0.0001
     WEIGHT_DECAY = 0.033
 
-    lstm = LSTM_model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
+    lstm = model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
 
-    if LSTM_model.use_cuda:
+    if model.use_cuda:
         lstm.cuda()
 
     criterion = nn.NLLLoss()
@@ -211,12 +212,12 @@ def get_model(epochs):
         lstm.train()
         for batch_train_index, (train_batch, train_target) in enumerate(store['train_dataloader']):
 
-            train_outputs = lstm(LSTM_model.get_variable(train_batch))
+            train_outputs = lstm(model.get_variable(train_batch))
 
             optimizer.zero_grad()
 
             loss = t.sqrt(
-                criterion(train_outputs['out'], LSTM_model.get_variable(train_target)))
+                criterion(train_outputs['out'], model.get_variable(train_target)))
 
             loss.backward()
             optimizer.step()

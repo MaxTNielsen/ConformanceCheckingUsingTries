@@ -870,7 +870,7 @@ public class Runner {
 
     private static void validateTrieEnrichmentLogic(Trie t) {
         HashMap<String, String> urls = new HashMap<>();
-        urls.put("init", "http://127.0.0.1:5000/init?filename=logs/M1.xes");
+        urls.put("init", "http://127.0.0.1:5000/init");
         urls.put("pred", "http://127.0.0.1:5000/predictions");
         t.computeConfidenceCostForAllNodes("avg", urls);
         t.computeScaledConfidenceCost(t.getRoot());

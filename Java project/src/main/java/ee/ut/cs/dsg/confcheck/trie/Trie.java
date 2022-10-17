@@ -245,12 +245,17 @@ public class Trie {
     }
 
     public void computeConfidenceCostForAllNodes(String costType, HashMap<String, String> urls) {
+        isWeighted = urls.size() > 0;
 
-        if (urls.size() > 0) {
-            isWeighted = true;
+        if (isWeighted) {
             this.p = new PredictionsClient(urls);
-            p.initModel("init");
+            Map <String, String> params = new HashMap<>();
+            params.put("filename","logs/M1.xes");
+            if (p.initModel("init", params) != 200){
+                costType = "";
+            }
         }
+
         switch (costType) {
             case "standard":
                 computeConfidenceCostStandard(this.root);
@@ -260,6 +265,10 @@ public class Trie {
                 break;
             default:
                 break;
+        }
+
+        if (isWeighted) {
+            p.closeConnection();
         }
     }
 
@@ -296,11 +305,19 @@ public class Trie {
                     } else {
                         StringBuilder jsonString = new StringBuilder();
                         jsonString.append("{\"trace\":[");
-                        for (int i = 0; i < prefixNodes.length - 1; i++) {
-                            jsonString.append("\"").append(prefixNodes[i]).append("\"");
+                        if(prefixNodes.length > 1) {
+                            int i = 0;
+                            for (; i < prefixNodes.length - 2; i++) {
+                                jsonString.append("\"").append(prefixNodes[i]).append("\",");
+                            }
+                            jsonString.append("\"").append(prefixNodes[prefixNodes.length - 2]).append("\"");
+                        }
+                        else{
+                            jsonString.append("\"").append(n.getContent()).append("\"");
                         }
                         jsonString.append("], \"target\":\"").append(n.getContent()).append("\"}");
-                        float weightedConfCost = (float) confCost * (1 - p.getPrefixProb("pred", jsonString.toString()));
+                        float prefProb = (1 - p.getPrefixProb("pred", jsonString.toString()));
+                        float weightedConfCost = (float) confCost * prefProb;
                         prefixProbCache.put(prefKey, weightedConfCost);
 
                         n.setConfidenceCost(weightedConfCost);

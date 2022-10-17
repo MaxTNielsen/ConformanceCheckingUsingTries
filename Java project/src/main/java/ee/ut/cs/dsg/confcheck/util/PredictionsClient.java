@@ -1,13 +1,12 @@
 package ee.ut.cs.dsg.confcheck.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Map;
 
 public class PredictionsClient {
 
@@ -18,14 +17,38 @@ public class PredictionsClient {
         this.urls = urls;
     }
 
-    public int initModel(String urlKey) {
+    public int initModel(String urlKey, Map<String, String> params) {
+        String enc_params;
         try {
-            con = createConnection(urlKey);
-            con.setRequestMethod("GET");
+            enc_params = getParamsString(params);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            con = createConnection(urls.get(urlKey) + enc_params);
             return con.getResponseCode();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String getParamsString(Map<String, String> params)
+            throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+        result.append("?");
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            result.append(entry.getKey());
+            result.append("=");
+            result.append(entry.getValue());
+            result.append("&");
+        }
+
+        String resultString = result.toString();
+        return resultString.length() > 0
+                ? resultString.substring(0, resultString.length() - 1)
+                : resultString;
     }
 
     public float getPrefixProb(String urlKey, String jsonInputString) {
@@ -34,10 +57,9 @@ public class PredictionsClient {
         float retVal = 0;
 
         try {
-            con = createConnection(urlKey);
+            con = createConnection(urls.get(urlKey));
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-Type", "application/json");
-            //con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
 
             try (OutputStream os = con.getOutputStream()) {
@@ -67,12 +89,11 @@ public class PredictionsClient {
         return retVal;
     }
 
-    private HttpURLConnection createConnection(String urlKey) {
+    private HttpURLConnection createConnection(String endpoint) {
         if (con != null)
             con.disconnect();
-
         try {
-            URL url = new URL(urls.get(urlKey));
+            URL url = new URL(endpoint);
             con = (HttpURLConnection) url.openConnection();
         } catch (java.net.MalformedURLException e) {
             System.out.println(e);
