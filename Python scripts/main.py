@@ -79,7 +79,7 @@ def get_model_param(filename) -> int:
     t.nn.init.xavier_uniform_(lstm.fc2.weight)
 
     # Setup settings for training
-    NUM_EPOCHS = 10000
+    NUM_EPOCHS = 500
     EVAL_EVERY = 50
 
     train_iter = []

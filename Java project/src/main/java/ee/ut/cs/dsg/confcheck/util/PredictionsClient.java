@@ -9,16 +9,16 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-public class PredictionClient {
+public class PredictionsClient {
 
     private final HashMap<String, String> urls;
     private HttpURLConnection con = null;
 
-    public PredictionClient(HashMap<String, String> urls) {
+    public PredictionsClient(HashMap<String, String> urls) {
         this.urls = urls;
     }
 
-    public int buildModel(String urlKey) {
+    public int initModel(String urlKey) {
         try {
             con = createConnection(urlKey);
             con.setRequestMethod("GET");
@@ -28,10 +28,10 @@ public class PredictionClient {
         }
     }
 
-    public double getPrefixProbability(String urlKey, String jsonInputString) {
+    public float getPrefixProb(String urlKey, String jsonInputString) {
         // String jsonInputString = "{"name": "Upendra", "job": "Programmer"}";
         int status;
-        double retVal = 0;
+        float retVal = 0;
 
         try {
             con = createConnection(urlKey);
@@ -54,7 +54,7 @@ public class PredictionClient {
                     while ((responseLine = br.readLine()) != null) {
                         response.append(responseLine.trim());
                     }
-                    retVal = Double.parseDouble(response.toString());
+                    retVal = Float.parseFloat(response.toString());
                 }
                 return retVal;
             }

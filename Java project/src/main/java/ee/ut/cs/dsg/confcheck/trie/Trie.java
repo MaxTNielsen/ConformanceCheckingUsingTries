@@ -1,12 +1,10 @@
 package ee.ut.cs.dsg.confcheck.trie;
 
 
+import ee.ut.cs.dsg.confcheck.util.PredictionsClient;
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Trie {
 
@@ -17,10 +15,15 @@ public class Trie {
     private int internalTraceIndex = 0;
     private int size = 0;
     private int numberOfEvents = 0;
+    private boolean isWeighted;
     public int minConf = 0;
     public int maxConf = Integer.MIN_VALUE;
 
+    Map<String, Float> prefixProbCache = new HashMap<String, Float>();
+
     protected HashMap<Integer, String> traceIndexer;
+
+    private PredictionsClient p;
 
     public Trie(int maxChildren) {
         this.maxChildren = Utils.nextPrime(maxChildren);
@@ -241,7 +244,13 @@ public class Trie {
         return result;
     }
 
-    public void computeConfidenceCostForAllNodes(String costType) {
+    public void computeConfidenceCostForAllNodes(String costType, HashMap<String, String> urls) {
+
+        if (urls.size() > 0) {
+            isWeighted = true;
+            this.p = new PredictionsClient(urls);
+            p.initModel("init");
+        }
         switch (costType) {
             case "standard":
                 computeConfidenceCostStandard(this.root);
@@ -278,8 +287,30 @@ public class Trie {
                 if (confCost > maxConf) {
                     maxConf = confCost;
                 }
-                n.setConfidenceCost(confCost);
-                computeConfidenceCostAVG(n);
+                if (isWeighted) {
+                    String[] prefixNodes = n.getPrefix().split("->");
+                    String prefKey = Arrays.toString(prefixNodes);
+                    if (prefixProbCache.containsKey(prefKey)) {
+                        n.setConfidenceCost(prefixProbCache.get(prefKey));
+                        computeConfidenceCostAVG(n);
+                    } else {
+                        StringBuilder jsonString = new StringBuilder();
+                        jsonString.append("{\"trace\":[");
+                        for (int i = 0; i < prefixNodes.length - 1; i++) {
+                            jsonString.append("\"").append(prefixNodes[i]).append("\"");
+                        }
+                        jsonString.append("], \"target\":\"").append(n.getContent()).append("\"}");
+                        float weightedConfCost = (float) confCost * (1 - p.getPrefixProb("pred", jsonString.toString()));
+                        prefixProbCache.put(prefKey, weightedConfCost);
+
+                        n.setConfidenceCost(weightedConfCost);
+                        computeConfidenceCostAVG(n);
+                    }
+                    //{"trace":["F","E","A","I"],"target":"J"}
+                } else {
+                    n.setConfidenceCost(confCost);
+                    computeConfidenceCostAVG(n);
+                }
             }
         }
     }

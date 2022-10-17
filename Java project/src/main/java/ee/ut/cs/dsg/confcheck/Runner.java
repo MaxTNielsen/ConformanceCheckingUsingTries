@@ -869,7 +869,10 @@ public class Runner {
     }
 
     private static void validateTrieEnrichmentLogic(Trie t) {
-        t.computeConfidenceCostForAllNodes("avg");
+        HashMap<String, String> urls = new HashMap<>();
+        urls.put("init", "http://127.0.0.1:5000/init?filename=logs/M1.xes");
+        urls.put("pred", "http://127.0.0.1:5000/predictions");
+        t.computeConfidenceCostForAllNodes("avg", urls);
         t.computeScaledConfidenceCost(t.getRoot());
         System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf, t.minConf);
         System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());

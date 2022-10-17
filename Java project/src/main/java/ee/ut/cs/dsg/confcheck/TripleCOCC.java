@@ -38,9 +38,11 @@ public class TripleCOCC extends ConformanceChecker {
         }
 
         if (!this.isStandardAlign) {
-            modelTrie.computeConfidenceCostForAllNodes(costType);
+            HashMap<String, String> urls = new HashMap<>();
+            urls.put("init", "http://127.0.0.1:5000/init?filename=logs/M1.xes");
+            urls.put("pred", "http://127.0.0.1:5000/predictions");
+            modelTrie.computeConfidenceCostForAllNodes(costType, urls);
             modelTrie.computeScaledConfidenceCost(modelTrie.getRoot());
-
         }
     }
 
