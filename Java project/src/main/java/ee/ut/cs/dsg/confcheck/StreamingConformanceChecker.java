@@ -6,6 +6,7 @@ import ee.ut.cs.dsg.confcheck.cost.CostFunction;
 import ee.ut.cs.dsg.confcheck.cost.DualProgressiveCostFunction;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
+import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Configuration;
 import org.cpntools.accesscpn.model.graphics.Align;
 import org.processmining.logfiltering.algorithms.ProtoTypeSelectionAlgo;
@@ -33,7 +34,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
         super(trie, logCost, modelCost, maxStatesInQueue);
         rnd = new Random(19);
         this.maxTrials = maxTrials;
-        inspectedLogTraces = new Trie(trie.getMaxChildren());
+        //inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
         this.costFunction = costFunction;
         if (discountedDecayTime) {
             this.averageTrieLength = trie.getAvgTraceLength();

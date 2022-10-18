@@ -2,9 +2,11 @@ package ee.ut.cs.dsg.confcheck.trie;
 
 
 import ee.ut.cs.dsg.confcheck.util.PredictionsClient;
+import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Trie {
 
@@ -25,8 +27,11 @@ public class Trie {
 
     private PredictionsClient p;
 
-    public Trie(int maxChildren) {
+    private AlphabetService service;
+
+    public Trie(int maxChildren, AlphabetService service) {
         this.maxChildren = Utils.nextPrime(maxChildren);
+        this.service = service;
         root = new TrieNode("dummy", maxChildren, Integer.MAX_VALUE, Integer.MIN_VALUE, false, null);
         traceIndexer = new HashMap<>();
         leaves = new ArrayList<>();
@@ -244,15 +249,16 @@ public class Trie {
         return result;
     }
 
-    public void computeConfidenceCostForAllNodes(String costType, HashMap<String, String> urls) {
+    public void computeConfidenceCostForAllNodes(String costType, HashMap<String, String> urls, String logName) {
         isWeighted = urls.size() > 0;
 
         if (isWeighted) {
             this.p = new PredictionsClient(urls);
             Map <String, String> params = new HashMap<>();
-            params.put("filename","logs/M1.xes");
+            params.put("filename",logName);
             if (p.initModel("init", params) != 200){
                 costType = "";
+                System.out.println("Model not initialized and confidence cost skipped all together");
             }
         }
 
@@ -262,6 +268,10 @@ public class Trie {
                 break;
             case "avg":
                 computeConfidenceCostAVG(this.root);
+                if(isWeighted) {
+                    prefixProbCache = null;
+                    System.gc();
+                }
                 break;
             default:
                 break;
@@ -308,14 +318,14 @@ public class Trie {
                         if(prefixNodes.length > 1) {
                             int i = 0;
                             for (; i < prefixNodes.length - 2; i++) {
-                                jsonString.append("\"").append(prefixNodes[i]).append("\",");
+                                jsonString.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\",");
                             }
-                            jsonString.append("\"").append(prefixNodes[prefixNodes.length - 2]).append("\"");
+                            jsonString.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\"");
                         }
                         else{
-                            jsonString.append("\"").append(n.getContent()).append("\"");
+                            jsonString.append("\"").append(service.deAlphabetize(n.getContent().toCharArray()[0])).append("\"");
                         }
-                        jsonString.append("], \"target\":\"").append(n.getContent()).append("\"}");
+                        jsonString.append("], \"target\":\"").append(service.deAlphabetize(n.getContent().toCharArray()[0])).append("\"}");
                         float prefProb = (1 - p.getPrefixProb("pred", jsonString.toString()));
                         float weightedConfCost = (float) confCost * prefProb;
                         prefixProbCache.put(prefKey, weightedConfCost);
@@ -323,7 +333,6 @@ public class Trie {
                         n.setConfidenceCost(weightedConfCost);
                         computeConfidenceCostAVG(n);
                     }
-                    //{"trace":["F","E","A","I"],"target":"J"}
                 } else {
                     n.setConfidenceCost(confCost);
                     computeConfidenceCostAVG(n);
@@ -340,9 +349,5 @@ public class Trie {
                 computeScaledConfidenceCost(n);
             }
         }
-    }
-
-    public List<TrieNode> getLeaves() {
-        return leaves;
     }
 }

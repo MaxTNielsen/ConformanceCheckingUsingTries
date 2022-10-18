@@ -127,6 +127,35 @@ warm_start_runs_new_conf = [
 summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
                   *warm_start_runs_new_no_conf)
 
+################################################# with weighted confidence #################################################
+
+print("#"*30+" with weighted confidence "+"#"*30)
+print("")
+
+PREFIX_PATH_WEIGHTED_CONF = "output files/conf, compl, weighted confi/"
+
+warm_start_runs_old_conf = [
+    "M1_simulated_M1.xes_14_.csv",
+    "M1_simulated_M1_warm_2.xes_14_.csv",
+    "M1_simulated_M1_warm_5.xes_14_.csv",
+    "M1_simulated_M1_simulated_long.xes_14_.csv",
+    "M1_simulated_M1_simulated_short.xes_14_.csv"
+]
+
+summarize_results(PREFIX_PATH_NO_CONF, dims_14, avg_costs_14,
+                  *warm_start_runs_old_no_conf)
+
+warm_start_runs_new_conf = [
+    "M1_simulated_M1.xes_25_.csv",
+    "M1_simulated_M1_warm_2.xes_25_.csv",
+    "M1_simulated_M1_warm_5.xes_25_.csv",
+    "M1_simulated_M1_simulated_long.xes_25_.csv",
+    "M1_simulated_M1_simulated_short.xes_25_.csv"
+]
+
+summarize_results(PREFIX_PATH_WEIGHTED_CONF, dims_25, avg_costs_25,
+                  *warm_start_runs_new_no_conf)
+
 # ################################################# compare to confidence #################################################
 
 print("#"*30+" comparison confidence "+"#"*30)

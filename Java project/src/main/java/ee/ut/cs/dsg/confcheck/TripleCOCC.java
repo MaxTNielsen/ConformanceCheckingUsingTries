@@ -6,6 +6,7 @@ import ee.ut.cs.dsg.confcheck.cost.CostFunction;
 import ee.ut.cs.dsg.confcheck.cost.DualProgressiveCostFunction;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
+import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
 import java.util.*;
@@ -13,23 +14,21 @@ import java.util.*;
 public class TripleCOCC extends ConformanceChecker {
 
     protected final CostFunction costFunction;
-    final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
 
     // Streaming variables
+    final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
     protected boolean replayWithLogMoves = true;
     protected int minDecayTime = 3;
     protected float decayTimeMultiplier = 0.3F;
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
     protected int averageTrieLength = 0;
-
     protected boolean isStandardAlign;
 
-
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType) {
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
         super(trie, logCost, modelCost, maxStatesInQueue);
-        rnd = new Random(19);
+        this.rnd = new Random(19);
         this.maxTrials = maxTrials;
-        inspectedLogTraces = new Trie(trie.getMaxChildren());
+        inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
         this.costFunction = costFunction;
         this.isStandardAlign = isStandardAlign;
 
@@ -38,20 +37,17 @@ public class TripleCOCC extends ConformanceChecker {
         }
 
         if (!this.isStandardAlign) {
-            HashMap<String, String> urls = new HashMap<>();
-            urls.put("init", "http://127.0.0.1:5000/init");
-            urls.put("pred", "http://127.0.0.1:5000/predictions");
-            modelTrie.computeConfidenceCostForAllNodes(costType, urls);
+            modelTrie.computeConfidenceCostForAllNodes(costType, urls, log);
             modelTrie.computeScaledConfidenceCost(modelTrie.getRoot());
         }
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType) {
-        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType);
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
+        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType, urls, log);
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType) {
-        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType);
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
+        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType, urls, log);
     }
 
     public Alignment check(List<String> trace) {
@@ -160,6 +156,7 @@ public class TripleCOCC extends ConformanceChecker {
 
                 //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
+                // add warmStartMoves
                 List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
@@ -340,7 +337,7 @@ public class TripleCOCC extends ConformanceChecker {
         List<String> suffix = new ArrayList<>(state.getTracePostfix());
         int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
 
-        if(!(suffix.size() == 1)) // First event is already contained in the suffix of the root state
+        if (!(suffix.size() == 1)) // First event is already contained in the suffix of the root state
             suffix.addAll(event);
 
         TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
@@ -451,14 +448,14 @@ public class TripleCOCC extends ConformanceChecker {
                     // just want to return the latest / current state. This state is prefix-alignment type, not full alignment
                     decayTime = computeDecayTime(s.getAlignment());
                     if (s.getDecayTime() == decayTime & s.getTracePostfix().size() == 0) {
-                        //statesToReturn.add(s);
-                        return s;
+                        statesToReturn.add(s);
+                        //return s;
                     }
                 }
             }
 
             // use when confidence is meaningful
-            /*if (!finalState) {
+            if (!finalState) {
                 double minCost = Double.MAX_VALUE;
                 State bestState = null;
                 for (State st : statesToReturn) {
@@ -468,7 +465,7 @@ public class TripleCOCC extends ConformanceChecker {
                     }
                 }
                 return bestState;
-            }*/
+            }
 
             // calculate cost from newestState
             double optimalCost = 9999999;
@@ -699,15 +696,5 @@ public class TripleCOCC extends ConformanceChecker {
         if (discountedDecayTime)
             return Math.max(Math.round((averageTrieLength - alg.getTraceSize()) * decayTimeMultiplier), minDecayTime);
         return minDecayTime;
-    }
-
-    protected double getMaxCostOfStates(HashMap<String, State> s) {
-        double maxCost = Double.MIN_VALUE;
-        Collection<State> states = s.values();
-        for (State st : states) {
-            if (st.getWeightedSumOfCosts() >= maxCost)
-                maxCost = st.getWeightedSumOfCosts();
-        }
-        return maxCost;
     }
 }

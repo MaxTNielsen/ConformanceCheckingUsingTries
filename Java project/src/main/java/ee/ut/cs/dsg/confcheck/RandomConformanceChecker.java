@@ -5,6 +5,7 @@ import ee.ut.cs.dsg.confcheck.alignment.Move;
 import ee.ut.cs.dsg.confcheck.cost.*;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
+import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Configuration;
 
 import java.util.*;
@@ -33,7 +34,7 @@ public class RandomConformanceChecker extends ConformanceChecker{
         rnd = new Random(19);
         numEpochs = maxTrials/10000;
         this.maxTrials = maxTrials;
-        inspectedLogTraces = new Trie(trie.getMaxChildren());
+        inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
         this.costFunction = costFunction;
     }
     public RandomConformanceChecker(Trie trie, int logCost, int modelCost, int maxStatesInQueue) {

@@ -16,8 +16,8 @@ public class TrieNode {
     private TrieNode[] children;
     private boolean isEndOfTrace;
     private List<Integer> linkedTraces;
-    private int level=0;
-    private int numChildren=0;
+    private int level = 0;
+    private int numChildren = 0;
     private float confidenceCost;
 
     private double scaledConfCost;
@@ -31,11 +31,12 @@ public class TrieNode {
     }
 
     private State alignmentState;
-    private void setEndOfTrace(boolean isEndOfTrace)
-    {
+
+    private void setEndOfTrace(boolean isEndOfTrace) {
         this.isEndOfTrace = isEndOfTrace;
     }
-//    public TrieNode(String content, int maxChildren, int minPathLengthToEnd, boolean isEndOfTrace, TrieNode parent)
+
+    //    public TrieNode(String content, int maxChildren, int minPathLengthToEnd, boolean isEndOfTrace, TrieNode parent)
 //    {
 //        this.content = content;
 //        this.maxChildren = Utils.isPrime(maxChildren)? maxChildren:  Utils.nextPrime(maxChildren);
@@ -47,17 +48,16 @@ public class TrieNode {
 //        this.isEndOfTrace = isEndOfTrace;
 //        this.linkedTraces = new ArrayList<>();
 //    }
-    public TrieNode(String content, int maxChildren, int minPathLengthToEnd, int maxPathLengthToEnd, boolean isEndOfTrace, TrieNode parent)
-    {
+    public TrieNode(String content, int maxChildren, int minPathLengthToEnd, int maxPathLengthToEnd, boolean isEndOfTrace, TrieNode parent) {
         this.content = content;
-        this.maxChildren = Utils.isPrime(maxChildren)? maxChildren:  Utils.nextPrime(maxChildren);
+        this.maxChildren = Utils.isPrime(maxChildren) ? maxChildren : Utils.nextPrime(maxChildren);
         //TODO: Change children type to HashMap?
         this.children = new TrieNode[this.maxChildren];
         this.minPathLengthToEnd = minPathLengthToEnd;
         this.maxPathLengthToEnd = maxPathLengthToEnd;
         this.parent = parent;
-        if(parent != null)
-            this.level = parent.getLevel()+1;
+        if (parent != null)
+            this.level = parent.getLevel() + 1;
 
         this.isEndOfTrace = isEndOfTrace;
         this.linkedTraces = new ArrayList<>();
@@ -69,60 +69,53 @@ public class TrieNode {
         return level;
     }
 
-    public void addLinkedTraceIndex(int i )
-    {
+    public void addLinkedTraceIndex(int i) {
         this.linkedTraces.add(i);
     }
-    public List<Integer> getLinkedTraces()
-    {
+
+    public List<Integer> getLinkedTraces() {
         return linkedTraces;
     }
-    public String getContent()
-    {
-        return  content;
+
+    public String getContent() {
+        return content;
     }
 
     public int getMinPathLengthToEnd() {
         return minPathLengthToEnd;
     }
 
-    public int getMaxPathLengthToEnd()
-    {
+    public int getMaxPathLengthToEnd() {
         return maxPathLengthToEnd;
     }
 
-    public TrieNode getParent()
-    {
+    public TrieNode getParent() {
         return parent;
     }
-    public TrieNode getChild(String label)
-    {
-        TrieNode result =children[Math.abs(label.hashCode())%maxChildren];
-        if (result != null && !result.getContent().equals(label))
-        {
+
+    public TrieNode getChild(String label) {
+        TrieNode result = children[Math.abs(label.hashCode()) % maxChildren];
+        if (result != null && !result.getContent().equals(label)) {
             //System.err.println(String.format("Different labels with the same hash code %s and %s", result.getContent(), label));
             result = null;
         }
-        return result ;
+        return result;
     }
 
     public boolean isEndOfTrace() {
         return isEndOfTrace;
     }
 
-    public TrieNode getChildWithLeastPathLengthDifference( int pathLength)
-    {
+    public TrieNode getChildWithLeastPathLengthDifference(int pathLength) {
         int minPath = pathLength;
         TrieNode child = null;
         int minDiff = Integer.MAX_VALUE;
         for (TrieNode ch : children)
-            if(ch != null)
-            {
+            if (ch != null) {
 //                if (!ch.getContent().equals(label))
 //                    continue;
                 int diff = Math.abs(ch.getMinPathLengthToEnd() - minPath);
-                if ( diff < minDiff)
-                {
+                if (diff < minDiff) {
                     child = ch;
                     minDiff = diff;
                 }
@@ -130,49 +123,43 @@ public class TrieNode {
             }
         return child;
     }
-    public List<TrieNode> getAllChildren()
-    {
+
+    public List<TrieNode> getAllChildren() {
         List<TrieNode> result = new ArrayList<>();
         for (TrieNode nd : children)
-            if (nd !=null)
+            if (nd != null)
                 result.add(nd);
 
         return result;
     }
-    public boolean hasChildren()
-    {
+
+    public boolean hasChildren() {
         return numChildren != 0;
     }
 
 
-    public TrieNode addChild(TrieNode child)
-    {
+    public TrieNode addChild(TrieNode child) {
 //        System.out.println("Hash code "+child.getContent().hashCode());
-        if (children[Math.abs(child.getContent().hashCode())%maxChildren] == null) {
+        if (children[Math.abs(child.getContent().hashCode()) % maxChildren] == null) {
             children[Math.abs(child.getContent().hashCode()) % maxChildren] = child;
             child.parent = this;
             numChildren++;
-        }
-        else
-        {
-            if (!children[Math.abs(child.getContent().hashCode()) % maxChildren].getContent().equals(child.getContent()))
-            {
+        } else {
+            if (!children[Math.abs(child.getContent().hashCode()) % maxChildren].getContent().equals(child.getContent())) {
                 System.err.println("A collision occurred");
-            }
-            else // just double check the is end of trace
+            } else // just double check the is end of trace
             {
                 if (child.isEndOfTrace())
                     children[Math.abs(child.getContent().hashCode()) % maxChildren].setEndOfTrace(child.isEndOfTrace());
             }
         }
-        this.minPathLengthToEnd = Math.min(this.minPathLengthToEnd, child.getMinPathLengthToEnd()+1);
-        this.maxPathLengthToEnd = Math.max(this.maxPathLengthToEnd, child.getMaxPathLengthToEnd()+1);
-       // return children[child.getContent().hashCode() % maxChildren];
+        this.minPathLengthToEnd = Math.min(this.minPathLengthToEnd, child.getMinPathLengthToEnd() + 1);
+        this.maxPathLengthToEnd = Math.max(this.maxPathLengthToEnd, child.getMaxPathLengthToEnd() + 1);
+        // return children[child.getContent().hashCode() % maxChildren];
         return children[Math.abs(child.getContent().hashCode()) % maxChildren];
     }
 
-    public String toString()
-    {
+    public String toString() {
         /*StringBuilder result = new StringBuilder();
         result.append(" Node(content:"+this.content+", minPath:"+minPathLengthToEnd+", maxPath:"+maxPathLengthToEnd+", isEndOfATrace:"+isEndOfTrace+") Children(");
         for (TrieNode child : children)
@@ -183,14 +170,12 @@ public class TrieNode {
         return this.getPrefix();
     }
 
-    public boolean equals(Object other)
-    {
-        if (other instanceof  TrieNode)
-        {
+    public boolean equals(Object other) {
+        if (other instanceof TrieNode) {
             TrieNode otherNode = (TrieNode) other;
 
-            if(this.content.equals(otherNode.getContent()) && this.level==otherNode.getLevel()){
-                if(this.getPrefix().equals(otherNode.getPrefix())){
+            if (this.content.equals(otherNode.getContent()) && this.level == otherNode.getLevel()) {
+                if (this.getPrefix().equals(otherNode.getPrefix())) {
                     return true;
                 } else {
                     return false;
@@ -200,42 +185,38 @@ public class TrieNode {
         return false;
     }
 
-    public String getPrefix()
-    {
-        if(this.getLevel()==0)
+    public String getPrefix() {
+        if (this.getLevel() == 0)
             return "";
 
         StringBuilder result = new StringBuilder();
         List<String> prefix = new ArrayList<>();
         TrieNode currentNode = this.getParent();
 
-        while(currentNode.getLevel()>0){
-            prefix.add(0,currentNode.getContent());
+        while (currentNode.getLevel() > 0) {
+            prefix.add(0, currentNode.getContent());
             currentNode = currentNode.getParent();
         }
-        for(String p:prefix){
-            result.append(p+"->");
+        for (String p : prefix) {
+            result.append(p + "->");
         }
         result.append(this.getContent());
         return result.toString();
     }
 
-    public int hashCode()
-    {
+    public int hashCode() {
         // This is not unique - does not take into account the path the node is on
         // e.g. the "C" in ABC and XYC would return same value
         return this.getPrefix().hashCode();
     }
 
-    public TrieNode getChildOnShortestPathToTheEnd()
-    {
+    public TrieNode getChildOnShortestPathToTheEnd() {
         TrieNode child;
         child = this;
-        for (TrieNode ch: children)
-        {
-            if (ch==null)
+        for (TrieNode ch : children) {
+            if (ch == null)
                 continue;
-            if (ch.isEndOfTrace()){
+            if (ch.isEndOfTrace()) {
                 child = ch;
                 break;
             }
@@ -245,7 +226,7 @@ public class TrieNode {
         if (child == this)
             return null;
         else
-            return  child;
+            return child;
     }
 
     public float getConfidenceCost() {

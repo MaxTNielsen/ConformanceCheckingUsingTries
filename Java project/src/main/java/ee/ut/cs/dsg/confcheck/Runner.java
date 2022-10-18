@@ -139,7 +139,7 @@ public class Runner {
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
                 try {
-                    List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE);
+                    List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE, sLogPath);
                     res.add(0, String.format("TraceId, total cost, ExecutionTime_%1$s", checkerType));
                     FileWriter wr = new FileWriter(pathName);
                     for (String s : res) {
@@ -169,7 +169,7 @@ public class Runner {
 
                     try {
 
-                        List<String> res = testOnConformanceApproximationResults(proxyLogPath, sLogPath, checkerType, LogSortType.NONE);
+                        List<String> res = testOnConformanceApproximationResults(proxyLogPath, sLogPath, checkerType, LogSortType.NONE, sLogPath);
                         res.add(0, String.format("TraceId, Cost_%1$s, ExecutionTime_%1$s", checkerType));
 
                         FileWriter wr = new FileWriter(pathName);
@@ -214,7 +214,7 @@ public class Runner {
 
                         try {
 
-                            List<String> res = testOnConformanceApproximationResults(proxyLogPath, logPath, checkerType, LogSortType.NONE);
+                            List<String> res = testOnConformanceApproximationResults(proxyLogPath, logPath, checkerType, LogSortType.NONE, logPath);
                             res.add(0, String.format("TraceId, Cost_%1$s, ExecutionTime_%1$s", checkerType));
 
                             FileWriter wr = new FileWriter(pathName);
@@ -248,11 +248,6 @@ public class Runner {
                 logPaths[2] = sLogPathWarm5;
                 logPaths[3] = sLogPathSimShort;
                 logPaths[4] = sLogPathSimLong;
-
-                /*String sLogPathWarm5 = logs.get(sLog).get("warm_5");
-                String[] logPaths = new String[1];
-                logPaths[0] = sLogPathWarm5;*/
-
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 ConformanceCheckerType checkerType1 = checkerType == TRIE_STREAMING_TRIPLECOCC ? TRIE_STREAMING : TRIE_STREAMING_TRIPLECOCC;
                 ConformanceCheckerType[] checkers = new ConformanceCheckerType[2];
@@ -264,7 +259,7 @@ public class Runner {
                         int pos = logPath.lastIndexOf("/");
                         String pathName = pathPrefix + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + c.toString().length() + "_" + fileType;
                         try {
-                            List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE);
+                            List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE, sLogPath_complete);
                             if(c == TRIE_STREAMING_TRIPLECOCC)
                                 //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
                                 res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
@@ -541,7 +536,7 @@ public class Runner {
         System.out.println(String.format("Trie construction time %d ms", (endTs - startTs)));
     }
 
-    private static ArrayList<String> testOnConformanceApproximationResults(String inputProxyLogFile, String inputSampleLogFile, ConformanceCheckerType confCheckerType, LogSortType sortType) {
+    private static ArrayList<String> testOnConformanceApproximationResults(String inputProxyLogFile, String inputSampleLogFile, ConformanceCheckerType confCheckerType, LogSortType sortType, String logName) {
         init();
         Trie t = constructTrie(inputProxyLogFile);
 
@@ -577,11 +572,15 @@ public class Runner {
                 javaClassLoader.invokeClass(className, type, params);
 
             } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
-                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType
-                // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false, "avg");
+                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap urls
+                // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false, "avg", urls);
+                HashMap<String, String> urls = new HashMap<>();
+                urls.put("init", "http://127.0.0.1:5000/init");
+                urls.put("pred", "http://127.0.0.1:5000/predictions");
 
-                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg"};
+                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class};
+                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), logName};
+                //params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else {
@@ -828,7 +827,7 @@ public class Runner {
 //            System.out.println("Number of unique activities " + count);
 
             //Let's construct the trie from the proxy log
-            Trie t = new Trie(count);
+            Trie t = new Trie(count, service);
             List<String> templist;
 //            count=1;
             //count=0;
@@ -872,7 +871,8 @@ public class Runner {
         HashMap<String, String> urls = new HashMap<>();
         urls.put("init", "http://127.0.0.1:5000/init");
         urls.put("pred", "http://127.0.0.1:5000/predictions");
-        t.computeConfidenceCostForAllNodes("avg", urls);
+        String logName = "logs/M1.xes";
+        t.computeConfidenceCostForAllNodes("avg", urls, logName);
         t.computeScaledConfidenceCost(t.getRoot());
         System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf, t.minConf);
         System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());

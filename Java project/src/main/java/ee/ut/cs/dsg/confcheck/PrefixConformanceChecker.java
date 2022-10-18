@@ -4,6 +4,7 @@ import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.alignment.Move;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
+import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import org.processmining.logfiltering.algorithms.ProtoTypeSelectionAlgo;
 
 import java.util.*;
@@ -16,16 +17,16 @@ public class PrefixConformanceChecker  extends ConformanceChecker {
     protected Trie inverseTrie;
     public PrefixConformanceChecker(Trie trie, int logCost, int modelCost) {
         super(trie, logCost, modelCost);
-        inspectedLogTraces = new Trie(trie.getMaxChildren());
+        inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
         prevAlignments = new HashMap<>();
     }
 
     public PrefixConformanceChecker(Trie trie, int logCost, int modelCost, boolean lookForInfixMatches) {
         super(trie, logCost, modelCost);
-        inspectedLogTraces = new Trie(trie.getMaxChildren());
+        inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
         this.lookForInfixMatches = lookForInfixMatches;
         prevAlignments = new HashMap<>();
-        inverseTrie = new Trie(trie.getMaxChildren());
+        inverseTrie = new Trie(trie.getMaxChildren(), new AlphabetService());
         List<String> traceAsList ;
         for (int i : trie.getRoot().getLinkedTraces())
         {
