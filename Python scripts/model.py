@@ -28,15 +28,18 @@ class LSTM(nn.Module):
         self.num_layers = num_layers
         self.input_size = input_size
         self.hidden_size = hidden_size
+        self.isBi = False
+        self.biMultiplier = 2 if self.isBi else 1
         self.dropout = nn.Dropout(p=0.2)
-        self.batchnorm = nn.BatchNorm1d(hidden_size*num_layers)
+        self.batchnorm = nn.BatchNorm1d(hidden_size*num_layers*self.biMultiplier)
+
 
         self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size,
-                            num_layers=num_layers, batch_first=True)
+                            num_layers=num_layers, batch_first=True, bidirectional=self.isBi)
 
-        self.fc1 = nn.Linear(hidden_size*num_layers, hidden_size*num_layers)
+        self.fc1 = nn.Linear(hidden_size*num_layers*self.biMultiplier, hidden_size*num_layers*self.biMultiplier)
 
-        self.fc2 = nn.Linear(hidden_size*num_layers, num_classes)
+        self.fc2 = nn.Linear(hidden_size*num_layers*self.biMultiplier, num_classes)
 
         self.relu = nn.ReLU()
 
@@ -44,24 +47,35 @@ class LSTM(nn.Module):
 
     def forward(self, x):
         out = {}
-        h_0 = t.zeros(self.num_layers, x.size(0), self.hidden_size)
 
-        c_0 = t.zeros(self.num_layers, x.size(0), self.hidden_size)
+        outputs = []
 
-        # Propagate input through LSTM
-        ula, (h_out, _) = self.lstm(x, (get_variable(h_0), get_variable(c_0)))
+        for input in x:
 
-        h_out = h_out.view(-1, self.hidden_size*self.num_layers)
+            # h_0 = t.zeros(self.num_layers*self.biMultiplier, input.size(0), self.hidden_size)
 
-        x = self.fc1(h_out)
+            # c_0 = t.zeros(self.num_layers*self.biMultiplier, input.size(0), self.hidden_size)
 
-        x = self.relu(x)
+            h_0 = t.zeros(self.num_layers*self.biMultiplier, self.hidden_size)
 
-        x = self.fc2(x)
+            c_0 = t.zeros(self.num_layers*self.biMultiplier, self.hidden_size)
 
-        x = self.softmax(x)
+            # Propagate input through LSTM
+            ula, (h_out, _) = self.lstm(input, (get_variable(h_0), get_variable(c_0)))
 
-        out['out'] = x
+            #h_out = h_out.view(-1, self.hidden_size*self.num_layers*self.biMultiplier)
+
+            input = self.fc1(ula)
+
+            input = self.relu(input)
+
+            input = self.fc2(input)
+
+            input = self.softmax(input)
+
+            outputs.append(input)
+
+        out['out'] = outputs
 
         return out
 

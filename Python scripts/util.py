@@ -24,6 +24,10 @@ class Dataset(t.utils.data.Dataset):
         return X, y
 
 
+def collate_fn(batch):
+    return tuple(zip(*batch))
+
+
 def load_data(dataset_size, test_split, batch_size, inputs, targets):
 
     test_size = int(test_split * dataset_size)
@@ -40,7 +44,7 @@ def load_data(dataset_size, test_split, batch_size, inputs, targets):
     # test_dataset = Dataset(test_dataset[0], test_dataset[1])
 
     test_dataloader = DataLoader(
-        test_dataset, batch_size=batch_size, shuffle=False)
+        test_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
 
     eval_size = int(test_split * len(train_eval_dataset))
     train_size = len(train_eval_dataset) - eval_size
@@ -54,10 +58,10 @@ def load_data(dataset_size, test_split, batch_size, inputs, targets):
     # eval_dataset = Dataset(eval_dataset[0], eval_dataset[1])
 
     train_dataloader = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=False)
+        train_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
 
     eval_dataloader = DataLoader(
-        eval_dataset, batch_size=batch_size, shuffle=False)
+        eval_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
 
     return train_dataloader, eval_dataloader, test_dataloader
 
@@ -80,14 +84,27 @@ def create_dataset(traces_dict, label_to_idx_):
     #         inputs.append(one_hot_tensor[0:i, :])
     #         targets.append(t.tensor(label_to_idx[trace[i]]))
 
+    """many-to-many prediction task"""
     for trace in traces_dict.values():
         one_hot_tensor = t.zeros(len(trace), n_activities)
         for li, activity in enumerate(trace):
             one_hot_tensor[li][label_to_idx[activity]] = 1
-        inputs.append(one_hot_tensor[0:len(trace)-1, :])
-        targets.append(t.tensor(label_to_idx[trace[-1]]))
+        # for i in range(int(len(trace)/2),len(trace)):
+        input = one_hot_tensor[0:len(trace)-1, :]
+        input = t.cat((t.zeros(1, n_activities), input))
+        inputs.append(input)
+        targets.append(t.tensor([label_to_idx[trace[i]]
+                       for i in range(len(trace))]))
 
-    inputs = pad_sequence(inputs, True)
+    """many to one prediction task"""
+    # for trace in traces_dict.values():
+    #     one_hot_tensor = t.zeros(len(trace), n_activities)
+    #     for li, activity in enumerate(trace):
+    #         one_hot_tensor[li][label_to_idx[activity]] = 1
+    #     inputs.append(one_hot_tensor[0:len(trace)-1, :])
+    #     targets.append(t.tensor(label_to_idx[trace[-1]]))
+
+    #inputs = pad_sequence(inputs, True)
 
     return inputs, targets
 

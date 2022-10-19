@@ -125,6 +125,20 @@ summarize_results(PREFIX_PATH_WEIGHTED_CONF, dims_14, avg_costs_14,
 summarize_results(PREFIX_PATH_WEIGHTED_CONF, dims_25, avg_costs_25,
                   *warm_start_runs_new)
 
+################################################# with weighted scaled confidence #################################################
+
+PREFIX_PATH_WEIGHTED_SCALED_CONF = "output files/conf, compl, weighted scaled confi/"
+
+print("#"*30+" with weighted scaled confidence "+"#"*30)
+print("")
+
+summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_14, avg_costs_14,
+                  *warm_start_runs_old)
+
+
+summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_25, avg_costs_25,
+                  *warm_start_runs_new)
+
 # ################################################# compare to confidence #################################################
 
 prefix_paths = [PREFIX_PATH_CONF, PREFIX_PATH_NO_CONF]

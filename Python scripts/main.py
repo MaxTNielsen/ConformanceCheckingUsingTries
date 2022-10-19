@@ -1,4 +1,5 @@
 # %%
+from multiprocessing import reduction
 from log_parser import get_traces
 import model
 import util
@@ -22,7 +23,8 @@ store = {
     'train_dataloader': t.utils.data.dataloader.DataLoader,
     'eval_dataloader': t.utils.data.dataloader.DataLoader,
     'test_dataloader': t.utils.data.dataloader.DataLoader,
-    'model': model.LSTM.__class__
+    'model': model.LSTM.__class__,
+    'batchsize': str.__class__
 }
 
 
@@ -50,6 +52,7 @@ def get_model_param(filename) -> int:
     inputs, targets = util.create_dataset(traces_dict, labels_to_idx)
 
     BATCH_SIZE = 20
+    store['batchsize'] = BATCH_SIZE
 
     train, eval, test = util.load_data(
         len(targets), 0.2, BATCH_SIZE, inputs, targets)
@@ -63,7 +66,7 @@ def get_model_param(filename) -> int:
     HIDDEN_SIZE = 128
     NUM_LAYERS = 1
     NUM_CLASSES = len(store['labels'])
-    LEARNING_RATE = 0.0001
+    LEARNING_RATE = 0.001
     WEIGHT_DECAY = 0.033
 
     lstm = model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
@@ -99,8 +102,20 @@ def get_model_param(filename) -> int:
 
                 eval_outputs = lstm(model.get_variable(eval_batch))
 
-                loss = t.sqrt(
-                    criterion(eval_outputs['out'], model.get_variable(eval_target)))
+                ys = model.get_variable(eval_target)
+                y_hat = eval_outputs['out']
+
+                #loss = []
+                loss = 0
+                for i,y in enumerate(ys):
+                    loss += criterion(y_hat[i], y)
+                    #loss.append(criterion(y_hat[i], y))
+                
+               #loss = loss / BATCH_SIZE 
+               #loss = t.mean(t.tensor(loss, requires_grad=True))
+
+                """for many-to-one"""
+               #loss = criterion(train_outputs['out'], model.get_variable(train_target))
 
                 eval_loss[epoch].append(model.get_numpy(loss).item())
 
@@ -114,14 +129,27 @@ def get_model_param(filename) -> int:
 
             optimizer.zero_grad()
 
-            loss = t.sqrt(
-                criterion(train_outputs['out'], model.get_variable(train_target)))
+            ys = model.get_variable(train_target)
+            y_hat = train_outputs['out']
+
+            #loss = []
+            loss = 0
+            for i,y in enumerate(ys):
+                loss += criterion(y_hat[i], y)
+                #loss.append(criterion(y_hat[i], y))
+
+           #loss = loss / BATCH_SIZE
+           #loss = t.mean(t.tensor(loss, requires_grad=True))
+
+            """for many-to-one"""
+           #loss = criterion(train_outputs['out'], model.get_variable(train_target))
 
             train_iter.append(batch_train_index)
             train_loss_epoch.append(model.get_numpy(loss).item())
             train_loss.append(model.get_numpy(loss).item())
 
             loss.backward()
+            # t.nn.utils.clip_grad_norm_(lstm.parameters())
             optimizer.step()
 
         if epoch % EVAL_EVERY == 0:
@@ -153,7 +181,7 @@ def get_model_param(filename) -> int:
     print("Min eval loss {} at epoch {}".format(
         round(eval_best, 5), eval_best_epoch))
 
-    store['model'] = lstm # remove
+    # store['model'] = lstm
 
     return eval_best_epoch
 
@@ -167,8 +195,20 @@ def run_test() -> model.LSTM:
         
         test_outputs = store['model'](model.get_variable(test_batch))
 
-        loss = t.sqrt(
-            criterion(test_outputs['out'], model.get_variable(test_target)))
+        ys = model.get_variable(test_target)
+        y_hat = test_outputs['out']
+
+        #loss = []
+        loss = 0
+        for i,y in enumerate(ys):
+            loss += criterion(y_hat[i], y)
+            #loss.append(criterion(y_hat[i], y))
+
+        #loss = loss / store['batchsize']
+        #loss = t.mean(t.tensor(loss, requires_grad=True))
+
+        # for many-to-one
+        # loss = criterion(train_outputs['out'], model.get_variable(train_target))
 
         test_iter.append(batch_test_index)
         test_loss.append(model.get_numpy(loss).item())
@@ -188,7 +228,7 @@ def get_model(epochs):
     HIDDEN_SIZE = 128
     NUM_LAYERS = 1
     NUM_CLASSES = len(store['labels'])
-    LEARNING_RATE = 0.0001
+    LEARNING_RATE = 0.001
     WEIGHT_DECAY = 0.033
 
     lstm = model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
@@ -209,15 +249,22 @@ def get_model(epochs):
     for epoch in range(NUM_EPOCHS):
 
         # Train network
-        lstm.train()
+        # lstm.train()
         for batch_train_index, (train_batch, train_target) in enumerate(store['train_dataloader']):
-
-            train_outputs = lstm(model.get_variable(train_batch))
 
             optimizer.zero_grad()
 
-            loss = t.sqrt(
-                criterion(train_outputs['out'], model.get_variable(train_target)))
+            train_outputs = lstm(model.get_variable(train_batch))
+
+            ys = model.get_variable(train_target)
+            y_hat = train_outputs['out']
+
+            #loss = []
+            loss = 0
+            for i,y in enumerate(ys):
+                loss += criterion(y_hat[i], y)
+
+            # loss = criterion(train_outputs['out'], model.get_variable(train_target))
 
             loss.backward()
             optimizer.step()
@@ -242,24 +289,25 @@ def make_prediction(input: dict) -> float:
     # s = store['idx_to_labels'][max_output_idx]
     # k = s
     output_idx = store['labels_to_idx'][input["target"]]
-    output_ = output[output_idx].item()
+    output_ = output[-1][output_idx].item()
     # return [output_, max_output]
     return output_
 
 
 if __name__ == "__main__":
-    FILE_NAME = "logs/M1.xes"
+    FILE_NAME = "input/M-models/M1.xes"
     epochs = get_model_param(FILE_NAME)
-    #get_model(epochs)
+    get_model(epochs)
     run_test()
 # %%
 
 # out
-# tensor([[-3.7180, -3.9482, -3.9199, -3.8766, -3.6933, -2.7918, -3.7715, -3.9515,
-#          -3.8268, -3.8325, -3.9177, -3.9920, -3.6475, -3.9693, -3.8594, -3.9929,
-#          -3.8086, -3.8516, -3.6172, -4.0001, -3.1120, -3.8540, -3.8572, -3.8582,
-#          -3.7546, -3.8987, -2.0661, -3.2422, -3.7446, -3.8792, -3.7933, -4.0914,
-#          -3.9499, -3.9910, -2.6115, -3.8883]])
+# tensor([[5.2227e-02, 1.5767e-05, 3.8406e-05, 1.2556e-02, 7.3353e-01, 1.3051e-04,
+#          1.8213e-04, 2.1693e-05, 1.6332e-02, 7.1894e-05, 1.0421e-02, 1.4459e-05,
+#          7.6112e-02, 5.2439e-03, 3.1881e-05, 2.7352e-03, 5.5395e-03, 1.4748e-03,
+#          3.3418e-05, 1.0223e-02, 3.4732e-05, 5.5473e-03, 4.6181e-05, 1.5196e-03,
+#          1.9349e-04, 3.1653e-05, 6.2700e-02, 1.7104e-04, 8.2270e-04, 3.3331e-05,
+#          6.7925e-04, 1.0769e-03, 5.2478e-05, 6.2348e-06, 1.2742e-04, 2.5622e-05]])
 
 # exp(out)
 # tensor([0.0243, 0.0193, 0.0198, 0.0207, 0.0249, 0.0613, 0.0230, 0.0192, 0.0218,

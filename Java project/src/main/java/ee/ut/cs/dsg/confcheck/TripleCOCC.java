@@ -38,7 +38,7 @@ public class TripleCOCC extends ConformanceChecker {
 
         if (!this.isStandardAlign) {
             modelTrie.computeConfidenceCostForAllNodes(costType, urls, log);
-            modelTrie.computeScaledConfidenceCost(modelTrie.getRoot());
+            //modelTrie.computeScaledConfidenceCost(modelTrie.getRoot());
         }
     }
 
