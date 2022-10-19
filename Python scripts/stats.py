@@ -15,21 +15,21 @@ def summarize_results(prefix_path, dims, avg_costs, *files):
     for file_name in files:
         with open(prefix_path+file_name, mode='r') as file:
             csvFile = csv.reader(file)
-            avg_costs_ = copy.copy(avg_costs)
+            avg_costs_copy = copy.deepcopy(avg_costs)
             for i, lines in enumerate(csvFile):
                 if i == 0:
                     continue
                 for key, val in dims.items():
-                    avg_costs_[key].append(float(lines[val]))
+                    avg_costs_copy[key].append(float(lines[val]))
         file.close()
 
-        for key, val in avg_costs_.items():
-            avg_costs_[key] = round(mean(val), 2)
+        for key, val in avg_costs_copy.items():
+            avg_costs_copy[key] = round(mean(val), 2)
 
-        if (len(avg_costs) == 2):
-            print_results_14(avg_costs=avg_costs_, file_name=file_name)
+        if (len(avg_costs_copy) == 2):
+            print_results_14(avg_costs=avg_costs_copy, file_name=file_name)
         else:
-            print_results_25(avg_costs=avg_costs_, file_name=file_name)
+            print_results_25(avg_costs=avg_costs_copy, file_name=file_name)
 
     print("")
 
@@ -65,8 +65,24 @@ def compare_to_confidence(paths):
         file.close()
     return avg_costs
 
-################################################# without confidence #################################################
 
+warm_start_runs_old = [
+    "M1_simulated_M1.xes_14_.csv",
+    "M1_simulated_M1_warm_2.xes_14_.csv",
+    "M1_simulated_M1_warm_5.xes_14_.csv",
+    "M1_simulated_M1_simulated_long.xes_14_.csv",
+    "M1_simulated_M1_simulated_short.xes_14_.csv"
+]
+
+warm_start_runs_new = [
+    "M1_simulated_M1.xes_25_.csv",
+    "M1_simulated_M1_warm_2.xes_25_.csv",
+    "M1_simulated_M1_warm_5.xes_25_.csv",
+    "M1_simulated_M1_simulated_long.xes_25_.csv",
+    "M1_simulated_M1_simulated_short.xes_25_.csv"
+]
+
+################################################# without confidence #################################################
 
 PREFIX_PATH_NO_CONF = "output files/conf, compl/"
 
@@ -74,89 +90,44 @@ print("")
 print("#"*30+" without confidence "+"#"*30)
 print("")
 
-warm_start_runs_old_no_conf = [
-    "M1_simulated_M1.xes_14_.csv",
-    "M1_simulated_M1_warm_2.xes_14_.csv",
-    "M1_simulated_M1_warm_5.xes_14_.csv",
-    "M1_simulated_M1_simulated_long.xes_14_.csv",
-    "M1_simulated_M1_simulated_short.xes_14_.csv"
-]
-
-
 summarize_results(PREFIX_PATH_NO_CONF, dims_14, avg_costs_14,
-                  *warm_start_runs_old_no_conf)
+                  *warm_start_runs_old)
 
-
-warm_start_runs_new_no_conf = [
-    "M1_simulated_M1.xes_25_.csv",
-    "M1_simulated_M1_warm_2.xes_25_.csv",
-    "M1_simulated_M1_warm_5.xes_25_.csv",
-    "M1_simulated_M1_simulated_long.xes_25_.csv",
-    "M1_simulated_M1_simulated_short.xes_25_.csv"
-]
 
 summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
-                  *warm_start_runs_new_no_conf)
+                  *warm_start_runs_new)
 
 ################################################# with confidence #################################################
+
+PREFIX_PATH_CONF = "output files/conf, compl, confi/"
 
 print("#"*30+" with confidence "+"#"*30)
 print("")
 
-PREFIX_PATH_CONF = "output files/conf, compl, confi/"
+summarize_results(PREFIX_PATH_CONF, dims_14, avg_costs_14,
+                  *warm_start_runs_old)
 
-warm_start_runs_old_conf = [
-    "M1_simulated_M1.xes_14_.csv",
-    "M1_simulated_M1_warm_2.xes_14_.csv",
-    "M1_simulated_M1_warm_5.xes_14_.csv",
-    "M1_simulated_M1_simulated_long.xes_14_.csv",
-    "M1_simulated_M1_simulated_short.xes_14_.csv"
-]
 
-summarize_results(PREFIX_PATH_NO_CONF, dims_14, avg_costs_14,
-                  *warm_start_runs_old_no_conf)
-
-warm_start_runs_new_conf = [
-    "M1_simulated_M1.xes_25_.csv",
-    "M1_simulated_M1_warm_2.xes_25_.csv",
-    "M1_simulated_M1_warm_5.xes_25_.csv",
-    "M1_simulated_M1_simulated_long.xes_25_.csv",
-    "M1_simulated_M1_simulated_short.xes_25_.csv"
-]
-
-summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
-                  *warm_start_runs_new_no_conf)
+summarize_results(PREFIX_PATH_CONF, dims_25, avg_costs_25,
+                  *warm_start_runs_new)
 
 ################################################# with weighted confidence #################################################
+
+PREFIX_PATH_WEIGHTED_CONF = "output files/conf, compl, weighted confi/"
 
 print("#"*30+" with weighted confidence "+"#"*30)
 print("")
 
-PREFIX_PATH_WEIGHTED_CONF = "output files/conf, compl, weighted confi/"
+summarize_results(PREFIX_PATH_WEIGHTED_CONF, dims_14, avg_costs_14,
+                  *warm_start_runs_old)
 
-warm_start_runs_old_conf = [
-    "M1_simulated_M1.xes_14_.csv",
-    "M1_simulated_M1_warm_2.xes_14_.csv",
-    "M1_simulated_M1_warm_5.xes_14_.csv",
-    "M1_simulated_M1_simulated_long.xes_14_.csv",
-    "M1_simulated_M1_simulated_short.xes_14_.csv"
-]
-
-summarize_results(PREFIX_PATH_NO_CONF, dims_14, avg_costs_14,
-                  *warm_start_runs_old_no_conf)
-
-warm_start_runs_new_conf = [
-    "M1_simulated_M1.xes_25_.csv",
-    "M1_simulated_M1_warm_2.xes_25_.csv",
-    "M1_simulated_M1_warm_5.xes_25_.csv",
-    "M1_simulated_M1_simulated_long.xes_25_.csv",
-    "M1_simulated_M1_simulated_short.xes_25_.csv"
-]
 
 summarize_results(PREFIX_PATH_WEIGHTED_CONF, dims_25, avg_costs_25,
-                  *warm_start_runs_new_no_conf)
+                  *warm_start_runs_new)
 
 # ################################################# compare to confidence #################################################
+
+prefix_paths = [PREFIX_PATH_CONF, PREFIX_PATH_NO_CONF]
 
 print("#"*30+" comparison confidence "+"#"*30)
 print("")
@@ -165,9 +136,8 @@ print("")
 print("-"*30+" long "+"-"*30)
 print("")
 
-prefix_paths = [PREFIX_PATH_CONF, PREFIX_PATH_NO_CONF]
 paths = list(
-    zip(prefix_paths, [warm_start_runs_new_conf[3], warm_start_runs_new_no_conf[3]]))
+    zip(prefix_paths, [warm_start_runs_new[3], warm_start_runs_new[3]]))
 
 results = compare_to_confidence(paths)
 
@@ -183,7 +153,7 @@ print("")
 
 prefix_paths = [PREFIX_PATH_CONF, PREFIX_PATH_NO_CONF]
 paths = list(
-    zip(prefix_paths, [warm_start_runs_new_conf[4], warm_start_runs_new_no_conf[4]]))
+    zip(prefix_paths, [warm_start_runs_new[4], warm_start_runs_new[4]]))
 
 results = compare_to_confidence(paths)
 
@@ -192,5 +162,4 @@ if results[0] == 0 or results[1] == 0:
 else:
     print("increase in avg cost with {}% for {} ".format(
         round(((results[0]/results[1])-1)*100, 2), "short trace log"))
-
 print("")
