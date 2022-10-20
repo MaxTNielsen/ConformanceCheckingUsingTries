@@ -1,5 +1,4 @@
 # %%
-from multiprocessing import reduction
 from log_parser import get_traces
 import model
 import util
@@ -32,8 +31,10 @@ def get_model_param(filename) -> int:
     global store
     FILE_NAME = filename
 
-    traces_dict = {int(key[9:]): val for key,
-                   val in get_traces(filename=FILE_NAME).items()}
+    # traces_dict = {int(key[9:]): val for key,
+    #                val in get_traces(filename=FILE_NAME).items()}
+
+    traces_dict = get_traces(filename=FILE_NAME)
 
     # build maps to map from and to activity labels and unique ids
     store['labels'] = {val for values in traces_dict.values()
@@ -62,10 +63,10 @@ def get_model_param(filename) -> int:
     store['test_dataloader'] = test
 
     # Setting hyper parameters for the model:
-    INPUT_SIZE = 36
+    INPUT_SIZE = len(store['labels'])
     HIDDEN_SIZE = 128
     NUM_LAYERS = 1
-    NUM_CLASSES = len(store['labels'])
+    NUM_CLASSES = INPUT_SIZE
     LEARNING_RATE = 0.001
     WEIGHT_DECAY = 0.033
 
@@ -224,10 +225,10 @@ def run_test() -> model.LSTM:
 def get_model(epochs):
     global store
     # Setting hyper parameters for the model:
-    INPUT_SIZE = 36
+    INPUT_SIZE = len(store['labels'])
     HIDDEN_SIZE = 128
     NUM_LAYERS = 1
-    NUM_CLASSES = len(store['labels'])
+    NUM_CLASSES = INPUT_SIZE
     LEARNING_RATE = 0.001
     WEIGHT_DECAY = 0.033
 

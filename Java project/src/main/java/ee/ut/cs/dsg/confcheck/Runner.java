@@ -125,11 +125,15 @@ public class Runner {
             subLog.put("sim_long", "input/M-models/M1_simulated_long.xes");
             logs.put("M1", new HashMap<>(subLog));
             subLog.clear();
+            subLog.put("log", "input/M-models/M2.xes");
+            subLog.put("simulated", "input/M-models/M2_sim.xes");
+            logs.put("M2", new HashMap<>(subLog));
+            subLog.clear();
 
 
             ConformanceCheckerType checkerType = TRIE_STREAMING_TRIPLECOCC;
 
-            String runType = "warm-start"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
@@ -140,7 +144,14 @@ public class Runner {
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
                 try {
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE, sLogPath);
-                    res.add(0, String.format("TraceId, total cost, ExecutionTime_%1$s", checkerType));
+
+                    if(checkerType == TRIE_STREAMING_TRIPLECOCC)
+                        //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
+                        res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
+                    else
+                        //res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
+                        res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
+
                     FileWriter wr = new FileWriter(pathName);
                     for (String s : res) {
                         wr.write(s);
@@ -261,12 +272,12 @@ public class Runner {
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE, sLogPath_complete);
                             if(c == TRIE_STREAMING_TRIPLECOCC)
-                                //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
-                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
+                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
+                                //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
 
                             else
-                                //res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
-                                res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", c));
+                                res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
+                                //res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", c));
 
                             FileWriter wr = new FileWriter(pathName);
                             for (String s : res) {
@@ -579,7 +590,7 @@ public class Runner {
                 urls.put("pred", "http://127.0.0.1:5000/predictions");
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class};
-                //params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), logName};
+                //params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName};
                 params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName};
                 javaClassLoader.invokeClass(className, type, params);
 

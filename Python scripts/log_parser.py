@@ -11,7 +11,7 @@ def get_traces(filename=FILE_NAME):
     for trace in root.findall('trace'):
         trace_id = trace.find("string").attrib['value']
         traces_dict[trace_id] = []
-        for attribute in trace.findall(".//event/string[2]"):
+        for attribute in trace.findall(".//event/*[@key='concept:name']"):
             traces_dict[trace_id].append(attribute.attrib['value'])
     return traces_dict
 
