@@ -153,14 +153,14 @@ public class TripleCOCC extends ConformanceChecker {
                 // add model moves
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
-                //List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
+                List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
 
                 // add warmStartMoves
-                List<State> warmStartMoves = new ArrayList<>();
+                /*List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
                     warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
-                }
+                }*/
 
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
 
@@ -334,9 +334,10 @@ public class TripleCOCC extends ConformanceChecker {
     public List<State> handleWarmStartMove(List<String> event, State state, double currMinCost) {
         List<State> warmStartStates = new ArrayList<>();
         List<String> suffix = new ArrayList<>(state.getTracePostfix());
-        //int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
-        int postFixCost = state.getAlignment().getTotalCost(); // only for when warm-starting all states else irrelevant
-        
+        int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
+        //int postFixCost = state.getAlignment().getTotalCost(); // only for when warm-starting all states else irrelevant
+        List<String> prefixTrace = state.getAlignment().getPrefixTrace();
+
         if (!(suffix.size() == 1)) // First event is already contained in the suffix of the root state
             suffix.addAll(event);
 
