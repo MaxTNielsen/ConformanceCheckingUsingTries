@@ -884,7 +884,6 @@ public class Runner {
         urls.put("pred", "http://127.0.0.1:5000/predictions");
         String logName = "logs/M1.xes";
         t.computeConfidenceCostForAllNodes("avg", urls, logName);
-        t.computeScaledConfidenceCost(t.getRoot());
         System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf, t.minConf);
         System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
         for (TrieNode c : t.getRoot().getAllChildren()) {

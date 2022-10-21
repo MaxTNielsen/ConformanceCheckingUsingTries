@@ -133,11 +133,11 @@ print("#"*30+" with weighted scaled confidence "+"#"*30)
 print("")
 
 summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_14, avg_costs_14,
-                  *warm_start_runs_old+["20221020_120458_M2_simulated_14.csv"])
+                  *warm_start_runs_old+["20221020_120458_M2_simulated_14.csv","20221021_100906_BPI2015_frequency_14.csv"])
 
 
 summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_25, avg_costs_25,
-                  *warm_start_runs_new + ["20221020_115349_M2_simulated_25.csv"])
+                  *warm_start_runs_new + ["20221020_115349_M2_simulated_25.csv","BPI2015_frequency_scaled_weighted_conf_25.csv","BPI2015_prefix_conf_frequency.csv"])
 
 # ################################################# compare to confidence #################################################
 

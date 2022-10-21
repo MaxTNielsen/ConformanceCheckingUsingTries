@@ -76,14 +76,6 @@ def create_dataset(traces_dict, label_to_idx_):
     inputs = []
     targets = []
 
-    # for trace in traces_dict.values():
-    #     one_hot_tensor = t.zeros(len(trace), n_activities)
-    #     for li, activity in enumerate(trace):
-    #         one_hot_tensor[li][label_to_idx[activity]] = 1
-    #     for i in range(1,len(trace)):
-    #         inputs.append(one_hot_tensor[0:i, :])
-    #         targets.append(t.tensor(label_to_idx[trace[i]]))
-
     """many-to-many prediction task"""
     for trace in traces_dict.values():
         one_hot_tensor = t.zeros(len(trace), n_activities)

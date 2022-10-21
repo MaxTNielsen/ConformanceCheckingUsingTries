@@ -267,8 +267,9 @@ public class Trie {
                 computeConfidenceCostStandard(this.root);
                 break;
             case "avg":
-                computeConfidenceCostAVG(this.root);
-                computeScaledConfidenceCost(this.root);
+                //computeConfidenceCostAVG(this.root);
+                //computeScaledConfidenceCost(this.root);
+                computePrefProbConf(this.root);
                 if (isWeighted) {
                     prefixProbCache = null;
                     System.gc();
@@ -347,7 +348,8 @@ public class Trie {
         for (TrieNode n : root_.getAllChildren()) {
             if (!n.isEndOfTrace()) {
                 double x_std = Math.round((((double) n.getConfidenceCost() - minConf) / (maxConf - minConf)) * 100.0) / 100.0;
-                if (isWeighted) {
+                //String content = service.deAlphabetize(n.getContent().toCharArray()[0]);
+                /*if (isWeighted) {
                     String[] prefixNodes = n.getPrefix().split("->");
                     String prefKey = Arrays.toString(prefixNodes);
                     if (prefixProbCache.containsKey(prefKey)) {
@@ -369,16 +371,46 @@ public class Trie {
                         float prefProb = (1 - p.getPrefixProb("pred", jsonString.toString()));
                         float weightedConfCost = (float) x_std * prefProb;
                         prefixProbCache.put(prefKey, weightedConfCost);
-
                         n.setScaledConfCost(weightedConfCost);
                         computeScaledConfidenceCost(n);
                     }
                 } else {
                     n.setScaledConfCost(x_std);
                     computeScaledConfidenceCost(n);
+                }*/
+                n.setScaledConfCost(x_std);
+                computeScaledConfidenceCost(n);
+            }
+        }
+    }
+
+    public void computePrefProbConf(TrieNode root_) {
+        for (TrieNode n : root_.getAllChildren()) {
+            if (!n.isEndOfTrace()) {
+                //String content = service.deAlphabetize(n.getContent().toCharArray()[0]);
+                String[] prefixNodes = n.getPrefix().split("->");
+                String prefKey = Arrays.toString(prefixNodes);
+                if (prefixProbCache.containsKey(prefKey)) {
+                    n.setScaledConfCost(prefixProbCache.get(prefKey));
+                    computePrefProbConf(n);
+                } else {
+                    StringBuilder jsonString = new StringBuilder();
+                    jsonString.append("{\"trace\":[");
+                    if (prefixNodes.length > 1) {
+                        int i = 0;
+                        for (; i < prefixNodes.length - 2; i++) {
+                            jsonString.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\",");
+                        }
+                        jsonString.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\"");
+                    } else {
+                        jsonString.append("\"").append(service.deAlphabetize(n.getContent().toCharArray()[0])).append("\"");
+                    }
+                    jsonString.append("], \"target\":\"").append(service.deAlphabetize(n.getContent().toCharArray()[0])).append("\"}");
+                    float prefProb = (1 - p.getPrefixProb("pred", jsonString.toString()));
+                    prefixProbCache.put(prefKey, prefProb);
+                    n.setScaledConfCost(prefProb);
+                    computePrefProbConf(n);
                 }
-                /*n.setScaledConfCost(x_std);
-                computeScaledConfidenceCost(n);*/
             }
         }
     }
