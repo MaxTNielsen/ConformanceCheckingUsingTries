@@ -49,6 +49,20 @@ public class State implements Comparable<State>{
         this.decayTime = decayTime;
     }
 
+    // This new constructor was added to link back to previous states and track the cost of partial alignments
+    public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar, final State parentState, int decayTime)
+    {
+        this.alignment = alignment;
+        this.tracePostfix = new LinkedList<>();
+        this.tracePostfix.addAll(tracePostfix);
+        this.node = node;
+        this.costSoFar = costSoFar;
+        this.parentState = parentState;
+        this.decayTime = decayTime;
+    }
+
+    // Added for weighted cost and completeness
+
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, double weightedSumOfCosts, int decayTime)
     {
         this.alignment = alignment;
@@ -104,18 +118,6 @@ public class State implements Comparable<State>{
         this.weightedSumOfCosts = weightedSumOfCosts;
         this.parentState = null;
         this.decayTime = 999999;
-    }
-
-    // This new constructor was added to link back to previous states and track the cost of partial alignments
-    public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar, final State parentState, int decayTime)
-    {
-        this.alignment = alignment;
-        this.tracePostfix = new LinkedList<>();
-        this.tracePostfix.addAll(tracePostfix);
-        this.node = node;
-        this.costSoFar = costSoFar;
-        this.parentState = parentState;
-        this.decayTime = decayTime;
     }
 
     @Override

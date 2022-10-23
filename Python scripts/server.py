@@ -15,8 +15,6 @@ def init():
 def return_prediction():
     input_json = request.get_json(force=True)
     output = main.make_prediction(input=input_json)
-    # return [str(1-output[0]), str(1-output[1])]
-    # output = main.make_prediction(input=input_json)
     return str(output)
 
 

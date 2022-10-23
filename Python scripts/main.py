@@ -280,7 +280,7 @@ def init(file_name):
 
 def make_prediction(input: dict) -> float:
     global store
-    tensor = util.preprocess_input(trace=input["trace"])
+    tensor = util.preprocess_input(trace=input['trace'])
     output = store['model'](tensor)
     output = t.exp(output['out'][0])
     output = output.detach().numpy()
@@ -288,9 +288,11 @@ def make_prediction(input: dict) -> float:
     # max_output = output[max_output_idx]
     # p = max_output
     # s = store['idx_to_labels'][max_output_idx]
-    # k = s
-    output_idx = store['labels_to_idx'][input["target"]]
-    output_ = output[-1][output_idx].item()
+    if input['target'] in store['labels_to_idx']:
+        output_idx = store['labels_to_idx'][input['target']]
+        output_ = output[-1][output_idx].item()
+    else:
+        output_ = np.mean(output[-1])
     # return [output_, max_output]
     return output_
 

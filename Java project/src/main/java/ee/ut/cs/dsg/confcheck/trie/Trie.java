@@ -21,7 +21,7 @@ public class Trie {
     public int minConf = 0;
     public float maxConf = Integer.MIN_VALUE;
 
-    Map<String, Float> prefixProbCache = new HashMap<String, Float>();
+    Map<String, Float> prefixProbCache = new HashMap<>();
 
     protected HashMap<Integer, String> traceIndexer;
 
@@ -267,9 +267,9 @@ public class Trie {
                 computeConfidenceCostStandard(this.root);
                 break;
             case "avg":
-                computeConfidenceCostAVG(this.root, isWeighted);
-                //computeAndUsePrefProbOnly(this.root);
-                computeScaledConfidenceCost(this.root, false);
+                //computeConfidenceCostAVG(this.root, isWeighted);
+                computeAndUsePrefProbOnly(this.root);
+                //computeScaledConfidenceCost(this.root, false);
                 if (isWeighted) {
                     prefixProbCache = null;
                     System.gc();

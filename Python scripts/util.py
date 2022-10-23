@@ -107,8 +107,8 @@ def preprocess_input(trace: list) -> float:
     n_activities = len(l)
     tensor = t.zeros(len(trace), n_activities)
     for li, activity in enumerate(trace):
-        tensor[li][label_to_idx[activity]] = 1
-
+        if activity in label_to_idx:
+            tensor[li][label_to_idx[activity]] = 1
     tensor = tensor.reshape(1, tensor.shape[0], tensor.shape[1])
 
     return tensor
