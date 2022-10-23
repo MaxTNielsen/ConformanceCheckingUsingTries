@@ -593,6 +593,7 @@ public class Runner {
                 //params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName};
                 params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName};
                 javaClassLoader.invokeClass(className, type, params);
+                validateTrieEnrichmentLogic(t);
 
             } else {
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
@@ -735,7 +736,6 @@ public class Runner {
             System.out.println("Couldn't find an alignment under the given constraints");
             result.add(Integer.toString(i) + ",9999999," + executionTime);
         }
-
         return totalTime;
     }
 
@@ -879,20 +879,20 @@ public class Runner {
     }
 
     private static void validateTrieEnrichmentLogic(Trie t) {
-        HashMap<String, String> urls = new HashMap<>();
+        /*HashMap<String, String> urls = new HashMap<>();
         urls.put("init", "http://127.0.0.1:5000/init");
         urls.put("pred", "http://127.0.0.1:5000/predictions");
         String logName = "logs/M1.xes";
         t.computeConfidenceCostForAllNodes("avg", urls, logName);
         System.out.printf("Max conf cost: %s%nMin conf cost: %s%n", t.maxConf, t.minConf);
-        System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());
+        System.out.printf("Size of warmStart map: %s%n", t.getWarmStart().size());*/
         for (TrieNode c : t.getRoot().getAllChildren()) {
-            System.out.printf("Node: %s - confidence cost: %s%n", c.getContent(), c.getScaledConfCost());
+            System.out.printf("Node: %s - confidence cost: %s%n", service.deAlphabetize(c.getContent().toCharArray()[0]), c.getScaledConfCost());
             getConfidenceCost(c);
-            System.out.printf("WarmStart map: %s%n", c.getContent());
+            /*System.out.printf("WarmStart map: %s%n", c.getContent());
             for (Map.Entry<Integer, TrieNode> entry : t.getWarmStart().get(c.getContent()).entrySet())
                 System.out.println("Key = " + entry.getKey() +
-                        ", Value = " + entry.getValue());
+                        ", Value = " + entry.getValue());*/
             System.out.print("\n");
         }
     }
@@ -900,7 +900,7 @@ public class Runner {
     private static void getConfidenceCost(TrieNode node) {
         if (!node.isEndOfTrace()) {
             for (TrieNode c_ : node.getAllChildren()) {
-                System.out.printf("Node: %s - confidence cost: %s%n", c_.getContent(), c_.getScaledConfCost());
+                System.out.printf("Node: %s - confidence cost: %s%n", service.deAlphabetize(c_.getContent().toCharArray()[0]), c_.getScaledConfCost());
                 getConfidenceCost(c_);
             }
         }

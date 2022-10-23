@@ -334,9 +334,10 @@ public class TripleCOCC extends ConformanceChecker {
     public List<State> handleWarmStartMove(List<String> event, State state, double currMinCost) {
         List<State> warmStartStates = new ArrayList<>();
         List<String> suffix = new ArrayList<>(state.getTracePostfix());
-        int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
-        //int postFixCost = state.getAlignment().getTotalCost(); // only for when warm-starting all states else irrelevant
-        List<String> prefixTrace = state.getAlignment().getPrefixTrace();
+        // List<String> prefixTrace = state.getAlignment().getPrefixTrace();
+        // int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
+        int postFixCost = state.getAlignment().getTotalCost(); // only for when warm-starting all states else irrelevant
+        //double postFixCost = state.getWeightedSumOfCosts();
 
         if (!(suffix.size() == 1)) // First event is already contained in the suffix of the root state
             suffix.addAll(event);
@@ -353,6 +354,7 @@ public class TripleCOCC extends ConformanceChecker {
                 if (completenessCost <= currMinCost) {
                     Alignment a = new Alignment();
                     a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
+                    a.setTotalCost(postFixCost); //added for easier comparison of alignment cost
 
                     // we attempt to make synchronous moves on the suffix of the warm-start trace
                     TrieNode fromNode = warmStartNode;

@@ -60,12 +60,16 @@ class LSTM(nn.Module):
 
             c_0 = t.zeros(self.num_layers*self.biMultiplier, self.hidden_size)
 
+            self.dropout(input)
+
             # Propagate input through LSTM
             ula, (h_out, _) = self.lstm(input, (get_variable(h_0), get_variable(c_0)))
 
             #h_out = h_out.view(-1, self.hidden_size*self.num_layers*self.biMultiplier)
 
             input = self.fc1(ula)
+
+            self.dropout(input)
 
             input = self.relu(input)
 

@@ -220,6 +220,7 @@ def run_test() -> model.LSTM:
     # fig.tight_layout()
     # plt.legend(loc='upper right')
     # plt.show()
+    print("average test loss: {}".format(round(mean(test_loss),5)))
 
 
 def get_model(epochs):
@@ -237,7 +238,7 @@ def get_model(epochs):
     if model.use_cuda:
         lstm.cuda()
 
-    criterion = nn.NLLLoss()
+    criterion = nn.NLLLoss() 
     optimizer = t.optim.Adam(lstm.parameters(), lr=LEARNING_RATE,
                              weight_decay=WEIGHT_DECAY, amsgrad=True)
 

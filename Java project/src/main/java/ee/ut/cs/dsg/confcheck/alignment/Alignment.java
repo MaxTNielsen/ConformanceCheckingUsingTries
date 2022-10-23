@@ -7,6 +7,11 @@ import java.util.List;
 
 public class Alignment {
     private List<Move> moves;
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
     private int totalCost;
 
     public Alignment(Alignment other) {

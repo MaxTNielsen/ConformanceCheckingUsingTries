@@ -81,23 +81,23 @@ warm_start_runs_new = [
     "M1_simulated_M1_warm_5.xes_25_.csv",
     "M1_simulated_M1_simulated_long.xes_25_.csv",
     "M1_simulated_M1_simulated_short.xes_25_.csv",
-    "20221023_161115_BPI2015_frequency.csv"
+    "BPI2015_all_ws_prefix_cost_1_frequency.csv"
 ]
 
 ################################################# without confidence #################################################
 PREFIX_PATH_OLD_OCC = "output files/old_OCC_runs/"
-# PREFIX_PATH_NO_CONF = "output files/conf, compl/"
+PREFIX_PATH_NO_CONF = "output files/conf, compl/"
 
-# print("")
-# print("#"*30+" without confidence "+"#"*30)
-# print("")
+print("")
+print("#"*30+" without confidence "+"#"*30)
+print("")
 
-# summarize_results(PREFIX_PATH_NO_CONF, dims_14, avg_costs_14,
-#                   *warm_start_runs_old)
+summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
+                  *warm_start_runs_old)
 
 
-# summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
-#                   *warm_start_runs_new)
+summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
+                  *warm_start_runs_new)
 
 ################################################# with confidence #################################################
 
@@ -146,14 +146,16 @@ PREFIX_PATH_OLD_OCC = "output files/old_OCC_runs/"
 PREFIX_PATH_ONLY_PREF_PROB = "output files/conf, compl, only pref prob/"
 
 print("#"*30+" with weighted scaled confidence "+"#"*30)
-print("")
+print("") 
 
 summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
                   *warm_start_runs_old)
 
 
 summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
-                  *["20221023_162748_BPI2015_frequency.csv"])
+                  *["BPI2015_all_ws_prefix_cost_bi_1_frequency.csv",
+                  "BPI2015_all_ws_prefix_len_bi_frequency.csv",
+                  "BPI2015_all_ws_prefix_cost_uni_1_frequency.csv"])
 
 # ################################################# compare to confidence #################################################
 
