@@ -27,6 +27,7 @@ public class Trie {
 
     private PredictionsClient p;
 
+
     private AlphabetService service;
 
     public Trie(int maxChildren, AlphabetService service) {
@@ -47,6 +48,9 @@ public class Trie {
         ++internalTraceIndex;
         addTrace(trace, internalTraceIndex);
 
+    }
+    public AlphabetService getService() {
+        return service;
     }
 
     public void addTrace(List<String> trace, int traceIndex) {
@@ -95,10 +99,7 @@ public class Trie {
     }
 
     public String toString() {
-
         return root.toString();
-
-
     }
 
     public String getTrace(int index) {
@@ -158,8 +159,6 @@ public class Trie {
 //                }
 //                else
 //                    return current.getParent();
-
-
             }
         }
         return current;

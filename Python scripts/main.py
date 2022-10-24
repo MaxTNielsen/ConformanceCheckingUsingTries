@@ -5,6 +5,10 @@ import util
 
 import time
 
+from os.path import exists
+
+import copy
+
 import torch.nn as nn
 import torch as t
 
@@ -23,18 +27,25 @@ store = {
     'eval_dataloader': t.utils.data.dataloader.DataLoader,
     'test_dataloader': t.utils.data.dataloader.DataLoader,
     'model': model.LSTM.__class__,
-    'batchsize': str.__class__
+    'batchsize': str.__class__,
+    'filename': str.__class__,
+    'traces_dict': dict,
+    'model_params': dict
 }
 
 
-def get_model_param(filename) -> int:
+def get_test_dataloader():
+    """used for validating the model on the test data afer instatiating a model with loaded state"""
+
+    store['test_dataloader'] = t.load(
+        "saved_models/test_dataloaders/" + store['file_name'].split('/')[-1]+".test_samp.pt")
+
+
+def build_traces_dicts(filename:str.__class__):
     global store
-    FILE_NAME = filename
 
-    # traces_dict = {int(key[9:]): val for key,
-    #                val in get_traces(filename=FILE_NAME).items()}
-
-    traces_dict = get_traces(filename=FILE_NAME)
+    traces_dict = get_traces(filename=filename)
+    store['traces_dict'] = traces_dict
 
     # build maps to map from and to activity labels and unique ids
     store['labels'] = {val for values in traces_dict.values()
@@ -50,25 +61,54 @@ def get_model_param(filename) -> int:
     store['labels_to_idx'] = labels_to_idx
     store['idx_to_labels'] = idx_to_labels
 
-    inputs, targets = util.create_dataset(traces_dict, labels_to_idx)
 
-    BATCH_SIZE = 20
-    store['batchsize'] = BATCH_SIZE
+def set_params():
+    """params initialisation for model configuration"""
+
+    global store
+    store['model_params'] = {}
+    store['model_params']['input_size'] = len(store['labels'])
+    store['model_params']['hidden_size'] = 128
+    store['model_params']['num_layers'] = 2
+    store['model_params']['num_classes'] = store['model_params']['input_size']
+    store['model_params']['learning_rate'] = 0.001
+    store['model_params']['weight_decay'] = 0.033
+    store['batchsize'] = 20
+
+
+def build():
+    """build datasets, dataloaders for train, eval and test. Also stores some globals"""
+
+    global store
+    inputs, targets = util.create_dataset(
+        store['traces_dict'], store['labels_to_idx'])
 
     train, eval, test = util.load_data(
-        len(targets), 0.2, BATCH_SIZE, inputs, targets)
+        len(targets), 0.2, store['batchsize'], inputs, targets)
+
+    t.save(test, "saved_models/test_dataloaders/" +
+           store['file_name'].split('/')[-1]+".test_samp.pt")
 
     store['train_dataloader'] = train
     store['eval_dataloader'] = eval
     store['test_dataloader'] = test
 
+
+def get_model_param(filename:str.__class__):
+    """train and eval model and save model state (weights) for each epoch. Retrieve model state from best epoch and store model in global store"""
+
+    global store
+    build_traces_dicts(filename=filename)
+    set_params()
+    build()
+
     # Setting hyper parameters for the model:
-    INPUT_SIZE = len(store['labels'])
-    HIDDEN_SIZE = 128
-    NUM_LAYERS = 1
-    NUM_CLASSES = INPUT_SIZE
-    LEARNING_RATE = 0.001
-    WEIGHT_DECAY = 0.033
+    INPUT_SIZE = store['model_params']['input_size']
+    HIDDEN_SIZE = store['model_params']['hidden_size']
+    NUM_LAYERS = store['model_params']['num_layers']
+    NUM_CLASSES = store['model_params']['num_classes']
+    LEARNING_RATE = store['model_params']['learning_rate']
+    WEIGHT_DECAY = store['model_params']['weight_decay']
 
     lstm = model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
 
@@ -90,6 +130,7 @@ def get_model_param(filename) -> int:
     train_loss = []
 
     eval_loss = {}
+    best_model_state = {}
 
     start = time.time()
     for epoch in range(NUM_EPOCHS):
@@ -108,17 +149,18 @@ def get_model_param(filename) -> int:
 
                 #loss = []
                 loss = 0
-                for i,y in enumerate(ys):
+                for i, y in enumerate(ys):
                     loss += criterion(y_hat[i], y)
                     #loss.append(criterion(y_hat[i], y))
-                
-               #loss = loss / BATCH_SIZE 
+
+               #loss = loss / BATCH_SIZE
                #loss = t.mean(t.tensor(loss, requires_grad=True))
 
                 """for many-to-one"""
                #loss = criterion(train_outputs['out'], model.get_variable(train_target))
 
                 eval_loss[epoch].append(model.get_numpy(loss).item())
+                best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
 
         train_loss_epoch = []
 
@@ -135,7 +177,7 @@ def get_model_param(filename) -> int:
 
             #loss = []
             loss = 0
-            for i,y in enumerate(ys):
+            for i, y in enumerate(ys):
                 loss += criterion(y_hat[i], y)
                 #loss.append(criterion(y_hat[i], y))
 
@@ -182,9 +224,10 @@ def get_model_param(filename) -> int:
     print("Min eval loss {} at epoch {}".format(
         round(eval_best, 5), eval_best_epoch))
 
-    # store['model'] = lstm
-
-    return eval_best_epoch
+    lstm.load_state_dict(best_model_state[eval_best_epoch])
+    lstm.eval()
+    store['model'] = lstm
+    del best_model_state
 
 
 def run_test() -> model.LSTM:
@@ -192,8 +235,10 @@ def run_test() -> model.LSTM:
     criterion = nn.NLLLoss()
     test_iter = []
     test_loss = []
+
+    store['model'].eval()
     for batch_test_index, (test_batch, test_target) in enumerate(store['test_dataloader']):
-        
+
         test_outputs = store['model'](model.get_variable(test_batch))
 
         ys = model.get_variable(test_target)
@@ -201,7 +246,7 @@ def run_test() -> model.LSTM:
 
         #loss = []
         loss = 0
-        for i,y in enumerate(ys):
+        for i, y in enumerate(ys):
             loss += criterion(y_hat[i], y)
             #loss.append(criterion(y_hat[i], y))
 
@@ -220,88 +265,54 @@ def run_test() -> model.LSTM:
     # fig.tight_layout()
     # plt.legend(loc='upper right')
     # plt.show()
-    print("average test loss: {}".format(round(mean(test_loss),5)))
 
-
-def get_model(epochs):
-    global store
-    # Setting hyper parameters for the model:
-    INPUT_SIZE = len(store['labels'])
-    HIDDEN_SIZE = 128
-    NUM_LAYERS = 1
-    NUM_CLASSES = INPUT_SIZE
-    LEARNING_RATE = 0.001
-    WEIGHT_DECAY = 0.033
-
-    lstm = model.LSTM(NUM_CLASSES, INPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS)
-
-    if model.use_cuda:
-        lstm.cuda()
-
-    criterion = nn.NLLLoss() 
-    optimizer = t.optim.Adam(lstm.parameters(), lr=LEARNING_RATE,
-                             weight_decay=WEIGHT_DECAY, amsgrad=True)
-
-    t.nn.init.xavier_uniform_(lstm.fc1.weight)
-    t.nn.init.xavier_uniform_(lstm.fc2.weight)
-
-    # Setup settings for training
-    NUM_EPOCHS = epochs
-
-    for epoch in range(NUM_EPOCHS):
-
-        # Train network
-        # lstm.train()
-        for batch_train_index, (train_batch, train_target) in enumerate(store['train_dataloader']):
-
-            optimizer.zero_grad()
-
-            train_outputs = lstm(model.get_variable(train_batch))
-
-            ys = model.get_variable(train_target)
-            y_hat = train_outputs['out']
-
-            #loss = []
-            loss = 0
-            for i,y in enumerate(ys):
-                loss += criterion(y_hat[i], y)
-
-            # loss = criterion(train_outputs['out'], model.get_variable(train_target))
-
-            loss.backward()
-            optimizer.step()
-
-    store['model'] = lstm
+    print("average test loss: {}".format(round(mean(test_loss), 5)))
 
 
 def init(file_name):
-    epochs = get_model_param(file_name)
-    get_model(epochs)
+    """builds new model if model state '"filename".model.pt' does not exist. Else load stored model state from memory"""
+
+    global store
+    store['file_name'] = file_name
+    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
+        get_model_param(file_name)
+        save_model()
+    else:
+        build_traces_dicts(store['file_name'])
+        set_params()
+        get_test_dataloader()
+
+        lstm = model.LSTM(store['model_params']['num_classes'], store['model_params']['input_size'],
+                          store['model_params']['hidden_size'], store['model_params']['num_layers'])
+        lstm.load_state_dict(
+            t.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
+        store['model'] = lstm
 
 
 def make_prediction(input: dict) -> float:
     global store
-    tensor = util.preprocess_input(trace=input['trace'])
+    tensor = util.preprocess_input(
+        trace=input['trace'], label_to_idx=store['labels_to_idx'])
+    store['model'].eval()
     output = store['model'](tensor)
     output = t.exp(output['out'][0])
     output = output.detach().numpy()
-    # max_output_idx = np.argmax(output)
-    # max_output = output[max_output_idx]
-    # p = max_output
-    # s = store['idx_to_labels'][max_output_idx]
     if input['target'] in store['labels_to_idx']:
         output_idx = store['labels_to_idx'][input['target']]
         output_ = output[-1][output_idx].item()
     else:
         output_ = np.mean(output[-1])
-    # return [output_, max_output]
     return output_
 
 
+def save_model():
+    t.save(store['model'].state_dict(),
+           'saved_models/'+store['file_name'].split('/')[-1]+'.model.pt')
+
+
 if __name__ == "__main__":
-    FILE_NAME = "input/M-models/M1.xes"
-    epochs = get_model_param(FILE_NAME)
-    get_model(epochs)
+    FILE_NAME = "input/M-models/M2.xes"
+    init(file_name=FILE_NAME)
     run_test()
 # %%
 
@@ -326,3 +337,9 @@ if __name__ == "__main__":
 # output_idx = 23
 # label = 'J'
 # output_ = 0.02110593020915985
+
+
+# max_output_idx = np.argmax(output)
+    # max_output = output[max_output_idx]
+    # p = max_output
+    # s = store['idx_to_labels'][max_output_idx]

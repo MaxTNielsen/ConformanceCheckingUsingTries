@@ -10,6 +10,8 @@ import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.lang.Math;
 
 public class TripleCOCC extends ConformanceChecker {
 
@@ -55,7 +57,6 @@ public class TripleCOCC extends ConformanceChecker {
     }
 
     public HashMap<String, State> check(List<String> trace, String caseId) {
-
         traceSize = trace.size();
         State state;
         State previousState;
@@ -153,13 +154,13 @@ public class TripleCOCC extends ConformanceChecker {
                 // add model moves
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
-                List<State> warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
+                List<State> warmStartMoves = handleWarmStartMoves(traceSuffix, previousState, currentMinCost);
 
                 // add warmStartMoves
                 /*List<State> warmStartMoves = new ArrayList<>();
 
                 if (previousState.getAlignment().getTraceSize() == 0) {
-                    warmStartMoves = handleWarmStartMove(traceEvent, previousState, currentMinCost);
+                    warmStartMoves = handleWarmStartMoves(traceEvent, previousState, currentMinCost);
                 }*/
 
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
@@ -331,19 +332,27 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    public List<State> handleWarmStartMove(List<String> event, State state, double currMinCost) {
+    private List<State> handleWarmStartMoves(List<String> suffix, State state, double currMinCost) {
+        //int postFixCost = state.getAlignment().getTotalCost(); // only for when warm-starting all states else irrelevant
+        int postFixCost = state.getAlignment().getPrefixTrace().size();
+        List<String> suffixToCheck = new ArrayList<>(suffix);
+        List<String> fullTrace = state.getAlignment().getPrefixTrace();
+
+        fullTrace.addAll(suffixToCheck);
+
+        List<String> nodeLabels = fullTrace.stream().map(x -> modelTrie.getService().deAlphabetize(x.toCharArray()[0])).collect(Collectors.toList());
+
+        List<State> warmStartStates = new ArrayList<>(makeWarmStartMoves(suffixToCheck, postFixCost, currMinCost));
+        warmStartStates.addAll(makeWarmStartMoves(fullTrace, 0, currMinCost));
+
+        return warmStartStates;
+    }
+
+    private List<State> makeWarmStartMoves(List<String> trace, int postFixCost, double currMinCost) {
         List<State> warmStartStates = new ArrayList<>();
-        List<String> suffix = new ArrayList<>(state.getTracePostfix());
-        // List<String> prefixTrace = state.getAlignment().getPrefixTrace();
-        // int postFixCost = state.getAlignment().getMoves().size(); // only for when warm-starting all states else irrelevant
-        int postFixCost = state.getAlignment().getTotalCost(); // only for when warm-starting all states else irrelevant
-        //double postFixCost = state.getWeightedSumOfCosts();
-
-        if (!(suffix.size() == 1)) // First event is already contained in the suffix of the root state
-            suffix.addAll(event);
-
-        TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(suffix.get(0));
-        suffix.remove(0);
+        List<String> traceToCheck = new ArrayList<>(trace);
+        TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(traceToCheck.get(0));
+        traceToCheck.remove(0);
 
         if (warmStartNodes != null) {
             for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
@@ -359,7 +368,7 @@ public class TripleCOCC extends ConformanceChecker {
                     // we attempt to make synchronous moves on the suffix of the warm-start trace
                     TrieNode fromNode = warmStartNode;
                     Alignment syncAlign = new Alignment(a);
-                    for (String activity : suffix) {
+                    for (String activity : traceToCheck) {
                         TrieNode toNode = fromNode.getChild(activity);
                         Move m;
                         if (toNode != null) {
@@ -371,24 +380,25 @@ public class TripleCOCC extends ConformanceChecker {
                         break;
                     }
 
+                    int cost = Math.max(completenessCost, postFixCost);
+
                     // test if we have made a full match on suffix
-                    if (syncAlign.getMoves().size() - 1 == suffix.size()) {
-                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost() + postFixCost,
-                                MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
+                    if (syncAlign.getMoves().size() == traceToCheck.size() + 1) {
+                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(cost + fromNode.getScaledConfCost(),
+                                MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), cost);
                         warmStartStates.add(syncState);
                         break;
                     }
 
-                    // again, we check if the maximum cost will be exceeded by computing warm-start log or model prefix-alignments
-                    State s = new State(a, suffix, warmStartNode,
-                            updateCost(completenessCost + warmStartNode.getScaledConfCost() + postFixCost, MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
+                    State s = new State(a, traceToCheck, warmStartNode,
+                            updateCost(cost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), cost);
 
                     // compute log move state from warm-start node
                     State logMove = handleLogMove(new ArrayList<>(), s, "");
                     warmStartStates.add(logMove);
 
-                    // compute model move state from warm-start node
-                    warmStartStates.addAll(handleModelMoves(suffix, s, null));
+                    //compute model move state from warm-start node
+                    warmStartStates.addAll(handleModelMoves(traceToCheck, s, null));
                 }
             }
         }
@@ -684,7 +694,6 @@ public class TripleCOCC extends ConformanceChecker {
                 interimCurrentStates.add(s);
             }
         }
-
         return currentMinCost;
     }
 

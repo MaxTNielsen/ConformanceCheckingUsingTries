@@ -1,13 +1,9 @@
 import torch as t
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
-from torch.nn.utils.rnn import pad_sequence
 
 import time
 import math
-
-
-label_to_idx: dict
 
 
 class Dataset(t.utils.data.Dataset):
@@ -28,6 +24,10 @@ def collate_fn(batch):
     return tuple(zip(*batch))
 
 
+def get_test_dataloader(batch_size, inputs, targets):
+    return Dataset(inputs, targets)
+
+
 def load_data(dataset_size, test_split, batch_size, inputs, targets):
 
     test_size = int(test_split * dataset_size)
@@ -38,11 +38,6 @@ def load_data(dataset_size, test_split, batch_size, inputs, targets):
     train_eval_dataset, test_dataset = random_split(
         dataset, [train_size, test_size], generator=t.Generator().manual_seed(42))
 
-    # train_eval_dataset = dataset[:train_size]
-    # test_dataset = dataset[train_size:]
-    # train_eval_dataset = Dataset(train_eval_dataset[0], train_eval_dataset[1])
-    # test_dataset = Dataset(test_dataset[0], test_dataset[1])
-
     test_dataloader = DataLoader(
         test_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
 
@@ -51,11 +46,6 @@ def load_data(dataset_size, test_split, batch_size, inputs, targets):
 
     train_dataset, eval_dataset = random_split(
         train_eval_dataset, [train_size, eval_size], generator=t.Generator().manual_seed(42))
-
-    # train_dataset = train_eval_dataset[:train_size]
-    # eval_dataset = train_eval_dataset[train_size:]
-    # train_dataset = Dataset(train_dataset[0], train_dataset[1])
-    # eval_dataset = Dataset(eval_dataset[0], eval_dataset[1])
 
     train_dataloader = DataLoader(
         train_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
@@ -66,10 +56,7 @@ def load_data(dataset_size, test_split, batch_size, inputs, targets):
     return train_dataloader, eval_dataloader, test_dataloader
 
 
-def create_dataset(traces_dict, label_to_idx_):
-    global label_to_idx
-    label_to_idx = label_to_idx_
-
+def create_dataset(traces_dict, label_to_idx):
     l = list(label_to_idx.values())
     n_activities = len(l)
 
@@ -101,8 +88,7 @@ def create_dataset(traces_dict, label_to_idx_):
     return inputs, targets
 
 
-def preprocess_input(trace: list) -> float:
-    global label_to_idx
+def preprocess_input(trace: list, label_to_idx: dict) -> float:
     l = list(label_to_idx.values())
     n_activities = len(l)
     tensor = t.zeros(len(trace), n_activities)

@@ -137,8 +137,8 @@ public class Runner {
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "BPI2015";
-                String sLogType = "frequency";
+                String sLog = "M1";
+                String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
@@ -146,11 +146,11 @@ public class Runner {
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE, sLogPath);
 
                     if(checkerType == TRIE_STREAMING_TRIPLECOCC)
-                        //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", checkerType));
-                        res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
+                        res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", checkerType));
+                        //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
                     else
-                        //res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", checkerType));
-                        res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
+                        res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", checkerType));
+                        //res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
 
                     FileWriter wr = new FileWriter(pathName);
                     for (String s : res) {
@@ -590,10 +590,10 @@ public class Runner {
                 urls.put("pred", "http://127.0.0.1:5000/predictions");
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class};
-                //params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName};
-                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName};
+                params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName};
+                //params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName};
                 javaClassLoader.invokeClass(className, type, params);
-                validateTrieEnrichmentLogic(t);
+                //validateTrieEnrichmentLogic(t);
 
             } else {
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
@@ -727,11 +727,11 @@ public class Runner {
         totalTime += executionTime;
         if (alg != null) {
             if(checkerType == TRIE_STREAMING_TRIPLECOCC)
-                //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg);
-                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg);
+                //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
             else
-                //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg);
-                result.add(i + "," + alg.getTotalCost() + "," + executionTime);
+                result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg);
+                //result.add(i + "," + alg.getTotalCost() + "," + executionTime);
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
             result.add(Integer.toString(i) + ",9999999," + executionTime);
