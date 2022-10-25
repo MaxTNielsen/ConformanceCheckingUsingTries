@@ -8,15 +8,14 @@ import java.util.List;
 public class Alignment {
     private List<Move> moves;
 
-    public void setTotalCost(int totalCost) {
-        this.totalCost = totalCost;
-    }
+    private List<String> fullTrace;
 
     private int totalCost;
 
     public Alignment(Alignment other) {
         this.moves = other.getMoves();
         this.totalCost = other.getTotalCost();
+        this.fullTrace = other.getFullTrace();
     }
 
     public Alignment() {
@@ -48,23 +47,24 @@ public class Alignment {
         StringBuilder trace = new StringBuilder();
         result.append(String.format("\nTotal cost:%d\n", totalCost));
         for (Move m : moves) {
-            result.append(m.toString() + "\n");
-            if (!m.getLogMove().equals(">>"))
-                logTrace.append(m.getLogMove());
-            if (!m.getModelMove().equals(">>"))
-                modelTrace.append(m.getModelMove());
+            result.append(m.toString()).append("\n");
+            if (!m.getLogMove().equals(">>")) logTrace.append(m.getLogMove());
 
-            if (!m.getLogMove().equals(">>")) {
-                trace.append(m.getLogMove());
-            } else if (!m.getModelMove().equals(">>")) {
-                trace.append(m.getModelMove());
+            if (!m.getModelMove().equals(">>")) modelTrace.append(m.getModelMove());
+        }
+
+        if(fullTrace != null) {
+            for (String s: fullTrace) {
+                trace.append(s);
             }
         }
-        result.append(("Trace: " + trace.toString() + "\n"));
-        result.append("Log: " + logTrace.toString() + "\n");
-        result.append("Mod: " + modelTrace.toString() + "\n");
+        else{
+            trace = logTrace;
+        }
+        result.append("Trace: ").append(trace).append("\n");
+        result.append("Log: ").append(logTrace).append("\n");
+        result.append("Mod: ").append(modelTrace).append("\n");
         return result.toString();
-
     }
 
     public String toString(AlphabetService service) {
@@ -74,10 +74,8 @@ public class Alignment {
         result.append(String.format("Total cost:%d\n", totalCost));
         for (Move m : moves) {
             result.append(m.toString(service) + "\n");
-            if (!m.getLogMove().equals(">>"))
-                logTrace.append(service.deAlphabetize(m.getLogMove().charAt(0)));
-            if (!m.getModelMove().equals(">>"))
-                modelTrace.append(service.deAlphabetize(m.getModelMove().charAt(0)));
+            if (!m.getLogMove().equals(">>")) logTrace.append(service.deAlphabetize(m.getLogMove().charAt(0)));
+            if (!m.getModelMove().equals(">>")) modelTrace.append(service.deAlphabetize(m.getModelMove().charAt(0)));
         }
         result.append("Log: " + logTrace.toString() + "\n");
         result.append("Mod: " + modelTrace.toString());
@@ -96,8 +94,6 @@ public class Alignment {
         for (Move m : moves) {
             if (!m.getLogMove().equals(">>")) {
                 result.add(m.getLogMove());
-            } else if (!m.getModelMove().equals(">>")) {
-                result.add(m.getModelMove());
             }
         }
         return result;
@@ -142,5 +138,17 @@ public class Alignment {
         StringBuilder sb = new StringBuilder();
         this.getMoves().stream().filter(x -> !x.getModelMove().equals(">>")).forEach(e -> sb.append(e));
         return sb.toString();
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public List<String> getFullTrace() {
+        return fullTrace;
+    }
+
+    public void setFullTrace(List<String> trace) {
+        fullTrace = new ArrayList<>(trace);
     }
 }

@@ -149,8 +149,7 @@ public class State implements Comparable<State>{
     }
 
     public Alignment getAlignment() {
-        Alignment copy = new Alignment(alignment);
-        return copy;
+        return new Alignment(alignment);
     }
 
     public List<String> getTracePostfix() {
@@ -187,5 +186,9 @@ public class State implements Comparable<State>{
 
     public int getCompletenessCost() {
         return completenessCost;
+    }
+
+    public void setAlignment(Alignment a){
+        this.alignment = a;
     }
 }

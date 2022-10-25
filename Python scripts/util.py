@@ -24,10 +24,6 @@ def collate_fn(batch):
     return tuple(zip(*batch))
 
 
-def get_test_dataloader(batch_size, inputs, targets):
-    return Dataset(inputs, targets)
-
-
 def load_data(dataset_size, test_split, batch_size, inputs, targets):
 
     test_size = int(test_split * dataset_size)

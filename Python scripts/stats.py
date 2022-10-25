@@ -76,15 +76,8 @@ warm_start_runs_old = [
 ]
 
 warm_start_runs_new = [
-    "M1_simulated_M1.xes_25_.csv",
-    # "M1_simulated_M1_warm_2.xes_25_.csv",
-    # "M1_simulated_M1_warm_5.xes_25_.csv",
-    # "M1_simulated_M1_simulated_long.xes_25_.csv",
-    # "M1_simulated_M1_simulated_short.xes_25_.csv",
-    "BPI2015_all_ws_prefix_cost_1_frequency.csv",
-    "BPI2015_new_ws_full_trace_frequency.csv",
-    "M1_new_ws_full_trace_simulated.csv",
-    "M1_new_ws_full_trace_suffix_simulated.csv"
+    "M1_new_ws_full_trace_suffix_simulated.csv",
+    "BPI2015_new_ws_full_trace_suffix_frequency.csv"
 ]
 
 ################################################# without confidence #################################################

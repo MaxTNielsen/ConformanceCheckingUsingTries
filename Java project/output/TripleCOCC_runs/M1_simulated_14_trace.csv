@@ -1,5 +1,5 @@
 TraceId, total cost, alignment,ExecutionTime_TRIE_STREAMING
-0,6,8,
+0,6,7,
 Total cost:6
 [logMove:a, modelMove:>>, cost:1]
 [logMove:[, modelMove:>>, cost:1]
@@ -29,7 +29,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^_]^B`aNO
+Trace: A[]^_]^BaNO
 Log: A[]^_]^BaNO
 Mod: AB[\]^_]^`aNO
 
@@ -52,7 +52,7 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: BAHBCEKDHGLFIJMNO
+Trace: BAHCEKDGLFIJMNO
 Log: BAHCEKDGLFIJMNO
 Mod: ABCEKDHGLFIJMNO
 
@@ -67,11 +67,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: A[B[efaNO
+Trace: A[BefaNO
 Log: A[BefaNO
 Mod: AB[efaNO
 
-4,4,5,
+4,4,4,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -80,8 +80,8 @@ Total cost:4
 [logMove:M, modelMove:>>, cost:1]
 [logMove:K, modelMove:K, cost:0]
 [logMove:E, modelMove:E, cost:0]
-[logMove:L, modelMove:L, cost:0]
 [logMove:>>, modelMove:H, cost:1]
+[logMove:L, modelMove:L, cost:0]
 [logMove:G, modelMove:G, cost:0]
 [logMove:F, modelMove:F, cost:0]
 [logMove:I, modelMove:I, cost:0]
@@ -90,9 +90,9 @@ Total cost:4
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCDMKELHGFIJHMNO
+Trace: ABCDMKELGFIJHNO
 Log: ABCDMKELGFIJHNO
-Mod: ABCDKELHGFIJMNO
+Mod: ABCDKEHLGFIJMNO
 
 5,3,1,
 Total cost:3
@@ -110,12 +110,13 @@ Total cost:3
 [logMove:H, modelMove:H, cost:0]
 [logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
-[logMove:N, modelMove:>>, cost:1]
+[logMove:>>, modelMove:M, cost:1]
+[logMove:N, modelMove:N, cost:0]
 Trace: AOBCKLEGMDIHFJN
 Log: AOBCKLEGMDIHFJN
-Mod: ABCKLEGDIHFJ
+Mod: ABCKLEGDIHFJMN
 
-6,5,2,
+6,5,1,
 Total cost:5
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
@@ -126,11 +127,11 @@ Total cost:5
 [logMove:a, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:f, modelMove:f, cost:0]
-Trace: AB[eNOaAf
+Trace: B[eNOaAf
 Log: B[eNOaAf
 Mod: AB[ef
 
-7,8,3,
+7,8,5,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -155,7 +156,7 @@ Trace: ABPTQWRZSUOXQRSQRVN
 Log: ABPTQWRZSUOXQRSQRVN
 Mod: ABPTQWRSUQV
 
-8,6,5,
+8,6,4,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -171,7 +172,7 @@ Total cost:6
 [logMove:>>, modelMove:U, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
-Trace: ABPURZTWVNOUXQ
+Trace: ABPURZTWVNOXQ
 Log: ABPURZTWVNOXQ
 Mod: ABPTWVUXQ
 
@@ -194,11 +195,11 @@ Total cost:5
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPTQRWVSUSXQRZNO
+Trace: ABPTQRWVSUXQRZNO
 Log: ABPTQRWVSUXQRZNO
 Mod: ABPTQRWVUSXQR
 
-10,15,2,
+10,15,4,
 Total cost:15
 [logMove:O, modelMove:>>, cost:1]
 [logMove:P, modelMove:>>, cost:1]
@@ -226,12 +227,11 @@ Total cost:15
 [logMove:S, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Q, modelMove:>>, cost:1]
-[logMove:>>, modelMove:Y, cost:1]
-[logMove:Z, modelMove:Z, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OPRRTQSABPTUWVXQRSQRSQRSNQYZA
+Trace: OPRRTQSBUWVXQRSQRSQRSNQZA
 Log: OPRRTQSBUWVXQRSQRSQRSNQZA
-Mod: ABPTUWVXQRSQRSQRYZ
+Mod: ABPTUWVXQRSQRSQR
 
 11,5,1,
 Total cost:5
@@ -252,7 +252,7 @@ Total cost:5
 [logMove:R, modelMove:R, cost:0]
 [logMove:T, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPNQTWVRSUZXQRTO
+Trace: ABPNQWVRSUZXQRTO
 Log: ABPNQWVRSUZXQRTO
 Mod: ABPQTWVRSUXQR
 
@@ -273,13 +273,12 @@ Total cost:4
 [logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: ABCKNEDILHGIFJMNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABCKNEDLHGIFJMO
 Log: ABCKNEDLHGIFJMO
-Mod: ABCKEDILHGFJMNO
+Mod: ABCKEDILHGFJM
 
-13,7,0,
+13,7,1,
 Total cost:7
 [logMove:a, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -292,11 +291,11 @@ Total cost:7
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-Trace: aABO[efAaN[
+Trace: aBOefAN[
 Log: aBOefAN[
 Mod: AB[efaN
 
-14,8,1,
+14,8,2,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -306,9 +305,9 @@ Total cost:8
 [logMove:_, modelMove:>>, cost:1]
 [logMove:[, modelMove:[, cost:0]
 [logMove:^, modelMove:>>, cost:1]
+[logMove:], modelMove:>>, cost:1]
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
-[logMove:], modelMove:>>, cost:1]
 [logMove:^, modelMove:^, cost:0]
 [logMove:_, modelMove:_, cost:0]
 [logMove:], modelMove:], cost:0]
@@ -317,11 +316,11 @@ Total cost:8
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB]_^_[^\]]^_]^`aNO
+Trace: AB]_^_[^]]^_]^aNO
 Log: AB]_^_[^]]^_]^aNO
 Mod: AB[\]^_]^`aNO
 
-15,12,7,
+15,12,8,
 Total cost:12
 [logMove:A, modelMove:A, cost:0]
 [logMove:P, modelMove:>>, cost:1]
@@ -331,8 +330,8 @@ Total cost:12
 [logMove:N, modelMove:>>, cost:1]
 [logMove:R, modelMove:R, cost:0]
 [logMove:R, modelMove:>>, cost:1]
-[logMove:S, modelMove:S, cost:0]
 [logMove:>>, modelMove:T, cost:1]
+[logMove:S, modelMove:S, cost:0]
 [logMove:V, modelMove:V, cost:0]
 [logMove:U, modelMove:U, cost:0]
 [logMove:S, modelMove:>>, cost:1]
@@ -346,11 +345,11 @@ Total cost:12
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:T, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: APBPQNRRSTVUSWXQRWSQZTO
+Trace: APBQNRRSVUSXQRWQZTO
 Log: APBQNRRSVUSXQRWQZTO
-Mod: ABPQRSTVUWXQRSQ
+Mod: ABPQRTSVUWXQRSQ
 
-16,2,1,
+16,2,0,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -399,7 +398,7 @@ Total cost:7
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: TRABPQATVWURYXZNO
+Trace: TRBPQAVWUXZNO
 Log: TRBPQAVWUXZNO
 Mod: ABPQTVWURYXZNO
 
@@ -422,7 +421,7 @@ Trace: ABZPTXQRWUVNO
 Log: ABZPTXQRWUVNO
 Mod: ABPTQRWV
 
-20,3,0,
+20,3,1,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -434,7 +433,7 @@ Total cost:3
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AB[O\]^`aN
+Trace: AB[O]^aN
 Log: AB[O]^aN
 Mod: AB[\]^`aN
 
@@ -451,7 +450,7 @@ Total cost:5
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:B, modelMove:>>, cost:1]
-Trace: AObB[bgdaNB
+Trace: AOb[gdaNB
 Log: AOb[gdaNB
 Mod: AB[bgdaN
 
@@ -466,11 +465,10 @@ Total cost:4
 [logMove:^, modelMove:^, cost:0]
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: NAB[\]^`aNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: NAB[]^aO
 Log: NAB[]^aO
-Mod: AB[\]^`aNO
+Mod: AB[\]^`a
 
 23,6,2,
 Total cost:6
@@ -481,22 +479,22 @@ Total cost:6
 [logMove:K, modelMove:K, cost:0]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:D, modelMove:D, cost:0]
-[logMove:>>, modelMove:E, cost:1]
 [logMove:L, modelMove:L, cost:0]
-[logMove:F, modelMove:F, cost:0]
-[logMove:G, modelMove:>>, cost:1]
+[logMove:F, modelMove:>>, cost:1]
+[logMove:>>, modelMove:E, cost:1]
+[logMove:G, modelMove:G, cost:0]
 [logMove:I, modelMove:I, cost:0]
 [logMove:H, modelMove:H, cost:0]
-[logMove:>>, modelMove:G, cost:1]
+[logMove:>>, modelMove:F, cost:1]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AEBCKBDELFGIHGJMNO
+Trace: AECKBDLFGIHJMNO
 Log: AECKBDLFGIHJMNO
-Mod: ABCKDELFIHGJMNO
+Mod: ABCKDLEGIHFJMNO
 
-24,7,2,
+24,7,0,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -517,7 +515,7 @@ Trace: ABLCDKEHIJFGNMO
 Log: ABLCDKEHIJFGNMO
 Mod: ABCDKEHF
 
-25,0,0,
+25,0,1,
 Total cost:0
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -531,7 +529,7 @@ Trace: AB[efaNO
 Log: AB[efaNO
 Mod: AB[efaNO
 
-26,6,1,
+26,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:G, modelMove:>>, cost:1]
@@ -552,7 +550,7 @@ Trace: AGBCJDKELFIHMON
 Log: AGBCJDKELFIHMON
 Mod: ABCDKELFH
 
-27,7,2,
+27,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -570,7 +568,7 @@ Total cost:7
 [logMove:[, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB^[\]^_]^_a][NO
+Trace: AB^]^_]^_a][NO
 Log: AB^]^_]^_a][NO
 Mod: AB[\]^_]^_]
 
@@ -587,11 +585,11 @@ Total cost:6
 [logMove:a, modelMove:a, cost:0]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: [ANB[bcdaBO
+Trace: [ANbcdaBO
 Log: [ANbcdaBO
 Mod: AB[bcda
 
-29,4,1,
+29,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -604,7 +602,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABbd[bgdaNO
+Trace: ABbd[gaNO
 Log: ABbd[gaNO
 Mod: AB[bgdaNO
 
@@ -643,7 +641,7 @@ Trace: AB[eNafO
 Log: AB[eNafO
 Mod: AB[ef
 
-32,1,1,
+32,1,0,
 Total cost:1
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -657,7 +655,7 @@ Trace: AB[efaON
 Log: AB[efaON
 Mod: AB[efaN
 
-33,2,0,
+33,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -675,11 +673,11 @@ Total cost:2
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCDKELHFGMIJMNO
+Trace: ABCDKELHFGMIJNO
 Log: ABCDKELHFGMIJNO
 Mod: ABCDKELHFGIJMNO
 
-34,15,5,
+34,15,2,
 Total cost:15
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -709,7 +707,7 @@ Total cost:15
 [logMove:R, modelMove:>>, cost:1]
 [logMove:W, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPXZTQVNRQRQSURSWQSRXSQRRWO
+Trace: ABPXZTQVNRQRQSURSQSSQRRWO
 Log: ABPXZTQVNRQRQSURSQSSQRRWO
 Mod: ABPTQVRUSWQRXSQR
 
@@ -731,7 +729,7 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AXBPTQWUVRBYXZNO
+Trace: AXPTQWUVRBZNO
 Log: AXPTQWUVRBZNO
 Mod: ABPTQWUVRYXZNO
 
@@ -750,7 +748,7 @@ Trace: AB[bcdaNO
 Log: AB[bcdaNO
 Mod: AB[bcdaNO
 
-37,4,1,
+37,4,0,
 Total cost:4
 [logMove:B, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -769,11 +767,11 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: BABCHEKGLFIDJHMNO
+Trace: BACHEKGLFIDJMNO
 Log: BACHEKGLFIDJMNO
 Mod: ABCEKGLFIDJHMNO
 
-38,7,0,
+38,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -793,7 +791,7 @@ Total cost:7
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:C, modelMove:>>, cost:1]
-Trace: ABGCEKLFOHIGJDHMNC
+Trace: ABGEKLFOHIJDMNC
 Log: ABGEKLFOHIJDMNC
 Mod: ABCEKLFIGJDHMN
 
@@ -808,11 +806,11 @@ Total cost:3
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-Trace: ABO[efaN[
+Trace: ABOefaN[
 Log: ABOefaN[
 Mod: AB[efaN
 
-40,3,1,
+40,3,0,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -821,17 +819,17 @@ Total cost:3
 [logMove:T, modelMove:T, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:W, modelMove:W, cost:0]
-[logMove:>>, modelMove:V, cost:1]
 [logMove:U, modelMove:U, cost:0]
 [logMove:R, modelMove:R, cost:0]
+[logMove:>>, modelMove:V, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:>>, modelMove:Y, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPVTQWVURXYZNO
+Trace: ABPVTQWURXZNO
 Log: ABPVTQWURXZNO
-Mod: ABPTQWVURXYZNO
+Mod: ABPTQWURVXYZNO
 
 41,10,1,
 Total cost:10
@@ -853,11 +851,11 @@ Total cost:10
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: VABPUTWRXQRSAQRZNO
+Trace: VBPUTWRXQSAQRZNO
 Log: VBPUTWRXQSAQRZNO
 Mod: ABPTWQRSQR
 
-42,5,0,
+42,5,1,
 Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -876,11 +874,11 @@ Total cost:5
 [logMove:N, modelMove:N, cost:0]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:E, modelMove:>>, cost:1]
-Trace: OABCKDLEHGIFJMNAE
+Trace: OBCKDLHGIFJMNAE
 Log: OBCKDLHGIFJMNAE
 Mod: ABCKDLEHGIFJMN
 
-43,2,1,
+43,2,0,
 Total cost:2
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
@@ -898,7 +896,7 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCADKLEHFGIJMNO
+Trace: BCADKLEHFGIJMNO
 Log: BCADKLEHFGIJMNO
 Mod: ABCDKLEHFGIJMNO
 
@@ -918,7 +916,7 @@ Total cost:6
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPQTWZVRXUANO
+Trace: BPQTWZVRXUANO
 Log: BPQTWZVRXUANO
 Mod: ABPQTWVRU
 
@@ -940,7 +938,7 @@ Total cost:7
 [logMove:M, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-Trace: ABJHCKELDGNFCMOI
+Trace: ABJHKELDGNFCMOI
 Log: ABJHKELDGNFCMOI
 Mod: ABCKELDGFI
 
@@ -958,11 +956,11 @@ Total cost:7
 [logMove:^, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB[]\]a_^^NO
+Trace: AB[]]a_^^NO
 Log: AB[]]a_^^NO
 Mod: AB[\]^
 
-47,4,1,
+47,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -976,7 +974,7 @@ Trace: ABNaf[eO
 Log: ABNaf[eO
 Mod: AB[e
 
-48,7,0,
+48,7,1,
 Total cost:7
 [logMove:B, modelMove:>>, cost:1]
 [logMove:^, modelMove:>>, cost:1]
@@ -994,11 +992,11 @@ Total cost:7
 [logMove:_, modelMove:_, cost:0]
 [logMove:], modelMove:], cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: B^AB[a\]^_]N^_]O
+Trace: B^A[a]^_]N^_]O
 Log: B^A[a]^_]N^_]O
 Mod: AB[\]^_]^_]
 
-49,4,1,
+49,4,0,
 Total cost:4
 [logMove:G, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -1017,7 +1015,7 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: GABCDKHEALFGIJMNO
+Trace: GBCDKHEALFIJMNO
 Log: GBCDKHEALFIJMNO
 Mod: ABCDKHELFGIJMNO
 
@@ -1052,7 +1050,7 @@ Total cost:8
 [logMove:X, modelMove:X, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AWBPTRBZVUWQXNO
+Trace: AWPTRBZVUQXNO
 Log: AWPTRBZVUQXNO
 Mod: ABPTVUWQX
 
@@ -1067,7 +1065,7 @@ Total cost:2
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABa[efaNO
+Trace: ABa[efNO
 Log: ABa[efNO
 Mod: AB[efaNO
 
@@ -1108,11 +1106,11 @@ Total cost:8
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:S, modelMove:>>, cost:1]
-Trace: ABPQRTVOWQYUXRSQRZNS
+Trace: ABPQRTVOWQUXRSQRZNS
 Log: ABPQRTVOWQUXRSQRZNS
 Mod: ABPQRTVWYUXZN
 
-55,6,0,
+55,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1132,7 +1130,7 @@ Total cost:6
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABRPTWQSUVRXQPYZNO
+Trace: ABRTWQSUVRXQPZNO
 Log: ABRTWQSUVRXQPZNO
 Mod: ABPTWQUVRXYZNO
 
@@ -1179,8 +1177,7 @@ Total cost:9
 [logMove:B, modelMove:B, cost:0]
 [logMove:D, modelMove:>>, cost:1]
 [logMove:C, modelMove:C, cost:0]
-[logMove:>>, modelMove:K, cost:1]
-[logMove:L, modelMove:L, cost:0]
+[logMove:L, modelMove:>>, cost:1]
 [logMove:>>, modelMove:E, cost:1]
 [logMove:G, modelMove:G, cost:0]
 [logMove:N, modelMove:>>, cost:1]
@@ -1190,9 +1187,9 @@ Total cost:9
 [logMove:M, modelMove:>>, cost:1]
 [logMove:H, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: EAKBDCKLEGNIFJMHO
+Trace: EAKBDCLGNIFJMHO
 Log: EAKBDCLGNIFJMHO
-Mod: ABCKLEGIFJ
+Mod: ABCEGIFJ
 
 59,4,0,
 Total cost:4
@@ -1205,7 +1202,7 @@ Total cost:4
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
-Trace: OABa[N\]^
+Trace: OABa[N]^
 Log: OABa[N]^
 Mod: AB[\]^
 
@@ -1244,7 +1241,7 @@ Total cost:9
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: TABPZQTVUWRXSRQANO
+Trace: TBPZQVUWRXSRQANO
 Log: TBPZQVUWRXSRQANO
 Mod: ABPQTVUWRSQ
 
@@ -1263,11 +1260,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^_]^`aNO
+Trace: AB[]^_]^aNO
 Log: AB[]^_]^aNO
 Mod: AB[\]^_]^`aNO
 
-63,8,1,
+63,8,0,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:>>, modelMove:B, cost:1]
@@ -1286,11 +1283,11 @@ Total cost:8
 [logMove:B, modelMove:>>, cost:1]
 [logMove:K, modelMove:K, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCNDIELGFHIJMBKO
+Trace: ACNDIELGFHJMBKO
 Log: ACNDIELGFHJMBKO
 Mod: ABCDEGFHIJK
 
-64,7,0,
+64,7,1,
 Total cost:7
 [logMove:[, modelMove:>>, cost:1]
 [logMove:b, modelMove:>>, cost:1]
@@ -1326,7 +1323,7 @@ Total cost:8
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: IABKCDKLEAGHFMIJMNO
+Trace: IBKCDLEAGHFMJNO
 Log: IBKCDLEAGHFMJNO
 Mod: ABCDKLEGHFIJMNO
 
@@ -1342,11 +1339,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[NbgdaNO
+Trace: AB[NbgdaO
 Log: AB[NbgdaO
 Mod: AB[bgdaNO
 
-67,11,3,
+67,11,4,
 Total cost:11
 [logMove:S, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -1361,10 +1358,10 @@ Total cost:11
 [logMove:U, modelMove:U, cost:0]
 [logMove:X, modelMove:>>, cost:1]
 [logMove:V, modelMove:V, cost:0]
-[logMove:Q, modelMove:>>, cost:1]
-[logMove:Q, modelMove:>>, cost:1]
 [logMove:>>, modelMove:X, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
+[logMove:Q, modelMove:>>, cost:1]
+[logMove:Q, modelMove:>>, cost:1]
 [logMove:R, modelMove:R, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:S, cost:1]
@@ -1373,11 +1370,11 @@ Total cost:11
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:S, modelMove:S, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: SABPQTRRWSUXVQQXQRNSQRZSO
+Trace: SABPTRRWSUXVQQQRNQRZSO
 Log: SABPTRRWSUXVQQQRNQRZSO
 Mod: ABPQTRWSUVXQRSQRS
 
-68,8,0,
+68,8,1,
 Total cost:8
 [logMove:E, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -1388,8 +1385,8 @@ Total cost:8
 [logMove:O, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:L, modelMove:L, cost:0]
-[logMove:>>, modelMove:E, cost:1]
 [logMove:H, modelMove:H, cost:0]
+[logMove:>>, modelMove:E, cost:1]
 [logMove:G, modelMove:G, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:I, cost:1]
@@ -1397,11 +1394,11 @@ Total cost:8
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:I, modelMove:>>, cost:1]
-Trace: EABCKDOALEHGNIFJMI
+Trace: EBCKDOALHGNFJMI
 Log: EBCKDOALHGNFJMI
-Mod: ABCKDLEHGIFJM
+Mod: ABCKDLHEGIFJM
 
-69,4,4,
+69,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1413,16 +1410,16 @@ Total cost:4
 [logMove:L, modelMove:L, cost:0]
 [logMove:H, modelMove:H, cost:0]
 [logMove:J, modelMove:>>, cost:1]
-[logMove:>>, modelMove:G, cost:1]
 [logMove:F, modelMove:F, cost:0]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:I, modelMove:I, cost:0]
 [logMove:>>, modelMove:J, cost:1]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCDKGELHJGFIJMNO
+Trace: ABCDKGELHJFIMNO
 Log: ABCDKGELHJFIMNO
-Mod: ABCDKELHGFIJMNO
+Mod: ABCDKELHFGIJMNO
 
 70,3,1,
 Total cost:3
@@ -1444,11 +1441,11 @@ Total cost:3
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPTQUWVRSVXQRYZNO
+Trace: ABPTQUWRSVXQRZNO
 Log: ABPTQUWRSVXQRZNO
 Mod: ABPTQUWVRSXQRYZNO
 
-71,5,1,
+71,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1466,7 +1463,7 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABXPQTRWVUPXYZNO
+Trace: ABXQTRWVUPZNO
 Log: ABXQTRWVUPZNO
 Mod: ABPQTRWVUXYZNO
 
@@ -1479,10 +1476,11 @@ Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:^, modelMove:>>, cost:1]
 [logMove:a, modelMove:>>, cost:1]
-[logMove:], modelMove:>>, cost:1]
+[logMove:>>, modelMove:\, cost:1]
+[logMove:], modelMove:], cost:0]
 Trace: NAB[O^a]
 Log: NAB[O^a]
-Mod: AB[
+Mod: AB[\]
 
 73,3,1,
 Total cost:3
@@ -1494,18 +1492,18 @@ Total cost:3
 [logMove:T, modelMove:T, cost:0]
 [logMove:W, modelMove:W, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:>>, modelMove:Y, cost:1]
-[logMove:>>, modelMove:V, cost:1]
 [logMove:U, modelMove:U, cost:0]
+[logMove:>>, modelMove:V, cost:1]
 [logMove:X, modelMove:X, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AVBPQTWRYVUXZNO
+Trace: AVBPQTWRUXZNO
 Log: AVBPQTWRUXZNO
-Mod: ABPQTWRYVUXZNO
+Mod: ABPQTWRUVXYZNO
 
-74,9,1,
+74,9,0,
 Total cost:9
 [logMove:N, modelMove:>>, cost:1]
 [logMove:U, modelMove:>>, cost:1]
@@ -1524,11 +1522,11 @@ Total cost:9
 [logMove:W, modelMove:W, cost:0]
 [logMove:S, modelMove:S, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: NUABPRTQARZQXVWSO
+Trace: NUBPRTQARZQXVWSO
 Log: NUBPRTQARZQXVWSO
 Mod: ABPTQRVWS
 
-75,0,0,
+75,0,1,
 Total cost:0
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1543,7 +1541,7 @@ Trace: AB[bgdaNO
 Log: AB[bgdaNO
 Mod: AB[bgdaNO
 
-76,20,13,
+76,20,11,
 Total cost:20
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1574,7 +1572,7 @@ Total cost:20
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPSQTVQRSURXRQTQRSQSQRSWRZNO
+Trace: ABPSQVQRSURXRQTQRSQSQRSWRZNO
 Log: ABPSQVQRSURXRQTQRSQSQRSWRZNO
 Mod: ABPQTVRSUW
 
@@ -1589,7 +1587,7 @@ Total cost:3
 [logMove:>>, modelMove:f, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AOBf[efaN
+Trace: AOBf[eaN
 Log: AOBf[eaN
 Mod: AB[efaN
 
@@ -1605,7 +1603,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: eAB[AefaNO
+Trace: eB[AfaNO
 Log: eB[AfaNO
 Mod: AB[efaNO
 
@@ -1620,11 +1618,11 @@ Total cost:4
 [logMove:N, modelMove:>>, cost:1]
 [logMove:^, modelMove:^, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB[\]aN^O
+Trace: AB[]aN^O
 Log: AB[]aN^O
 Mod: AB[\]^
 
-80,13,1,
+80,13,2,
 Total cost:13
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1649,11 +1647,11 @@ Total cost:13
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:T, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPNQTVWRRSUQXSQRSQRZTO
+Trace: ABPNQVWRRSUQXSQRSQRZTO
 Log: ABPNQVWRRSUQXSQRSQRZTO
 Mod: ABPQTVWRSQR
 
-81,5,1,
+81,5,0,
 Total cost:5
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -1669,7 +1667,7 @@ Total cost:5
 [logMove:X, modelMove:X, cost:0]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:R, modelMove:R, cost:0]
-Trace: ZABPTQVNWOUXAR
+Trace: ZBPTQVNWOUXAR
 Log: ZBPTQVNWOUXAR
 Mod: ABPTQVWUXR
 
@@ -1695,7 +1693,7 @@ Total cost:5
 [logMove:R, modelMove:R, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPTQRWVSUSXNQRSQRZO
+Trace: ABPTQRWVSUXNQRSQRZO
 Log: ABPTQRWVSUXNQRSQRZO
 Mod: ABPTQRWVUSXQRSQR
 
@@ -1718,7 +1716,7 @@ Total cost:4
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCGKLDEHMGFIJMNO
+Trace: ABCGKLDEHMFIJNO
 Log: ABCGKLDEHMFIJNO
 Mod: ABCKLDEHGFIJMNO
 
@@ -1741,7 +1739,7 @@ Total cost:5
 [logMove:R, modelMove:R, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AZUBPTQVWRUSXQRNO
+Trace: AZUBPTQVWRSXQRNO
 Log: AZUBPTQVWRSXQRNO
 Mod: ABPTQVWRUSXQR
 
@@ -1778,7 +1776,7 @@ Total cost:5
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AFBCEKLDHFIGBOJMN
+Trace: AFCEKLDHIGBOJMN
 Log: AFCEKLDHIGBOJMN
 Mod: ABCEKLDHFIGJMN
 
@@ -1791,14 +1789,14 @@ Total cost:4
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
 [logMove:_, modelMove:_, cost:0]
-[logMove:>>, modelMove:], cost:1]
-[logMove:^, modelMove:^, cost:0]
-[logMove:], modelMove:>>, cost:1]
+[logMove:^, modelMove:>>, cost:1]
+[logMove:], modelMove:], cost:0]
+[logMove:>>, modelMove:^, cost:1]
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^_]^]`aNO
+Trace: AB[]^_^]aNO
 Log: AB[]^_^]aNO
 Mod: AB[\]^_]^`aNO
 
@@ -1819,7 +1817,7 @@ Total cost:3
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: UABPTQWVURXYZNO
+Trace: UABPTQWVRXZNO
 Log: UABPTQWVRXZNO
 Mod: ABPTQWVURXYZNO
 
@@ -1835,7 +1833,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: A[B[bgdaNO
+Trace: A[BbgdaNO
 Log: A[BbgdaNO
 Mod: AB[bgdaNO
 
@@ -1858,7 +1856,7 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABFDCKEIGLDHFJMNO
+Trace: ABFDCKEIGLHJMNO
 Log: ABFDCKEIGLHJMNO
 Mod: ABCKEIGLDHFJMNO
 
@@ -1878,7 +1876,7 @@ Total cost:8
 [logMove:X, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABWPTVRZPUQXNO
+Trace: ABWTVRZPUQXNO
 Log: ABWTVRZPUQXNO
 Mod: ABPTVUQ
 
@@ -1900,7 +1898,7 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKDELFIHGIJMNO
+Trace: ABCKDELFHGIJMNO
 Log: ABCKDELFHGIJMNO
 Mod: ABCKDELFIHGJMNO
 
@@ -1944,11 +1942,11 @@ Total cost:13
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:R, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: AQBPTQVWRUSOZXQRSBXRSQRN
+Trace: AQPTQVWRUSOZQRSBXRSQRN
 Log: AQPTQVWRUSOZQRSBXRSQRN
 Mod: ABPTQVWRUSXQR
 
-95,7,0,
+95,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -1981,11 +1979,11 @@ Total cost:3
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-Trace: ABO[efaN[
+Trace: ABOefaN[
 Log: ABOefaN[
 Mod: AB[efaN
 
-97,0,1,
+97,0,0,
 Total cost:0
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2000,7 +1998,7 @@ Trace: AB[bgdaNO
 Log: AB[bgdaNO
 Mod: AB[bgdaNO
 
-98,9,0,
+98,9,1,
 Total cost:9
 [logMove:L, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -2018,7 +2016,7 @@ Total cost:9
 [logMove:M, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: LABCEHKDJCIGFMNO
+Trace: LABEHKDJCIGFMNO
 Log: LABEHKDJCIGFMNO
 Mod: ABCEKDIG
 
@@ -2042,7 +2040,7 @@ Total cost:7
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: CAKEBCDKLEIHGOFJMN
+Trace: CAKEBDLIHGOFJMN
 Log: CAKEBDLIHGOFJMN
 Mod: ABCDKLEIHGFJMN
 
@@ -2088,11 +2086,11 @@ Total cost:11
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPQTWRVUSXQQRSRSQRVXYZNO
+Trace: ABPQTWRVUSXQQRSRSQRZNO
 Log: ABPQTWRVUSXQQRSRSQRZNO
 Mod: ABPQTWRUSQRVXYZNO
 
-102,5,1,
+102,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:^, modelMove:>>, cost:1]
@@ -2110,7 +2108,7 @@ Total cost:5
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: A^B_[\]^_]^]`aNO
+Trace: A^B_[]^_]^]aNO
 Log: A^B_[]^_]^]aNO
 Mod: AB[\]^_]^`aNO
 
@@ -2151,12 +2149,13 @@ Total cost:26
 [logMove:R, modelMove:>>, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:S, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: QRABPQQTRVWSYUXQQQRSRSSARSQRSQRNRZSO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: QRBPQQTRVWSUXQQQRSRSSARSQRSQRNRZSO
 Log: QRBPQQTRVWSUXQQQRSRSSARSQRSQRNRZSO
-Mod: ABPQTRVWYUXZ
+Mod: ABPQTRVWYUXZNO
 
-104,7,1,
+104,7,0,
 Total cost:7
 [logMove:a, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -2165,13 +2164,12 @@ Total cost:7
 [logMove:N, modelMove:>>, cost:1]
 [logMove:g, modelMove:>>, cost:1]
 [logMove:b, modelMove:b, cost:0]
-[logMove:>>, modelMove:c, cost:1]
-[logMove:d, modelMove:d, cost:0]
+[logMove:d, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: aAB[NgbcdAO
+Trace: aB[NgbdAO
 Log: aB[NgbdAO
-Mod: AB[bcd
+Mod: AB[b
 
 105,10,1,
 Total cost:10
@@ -2204,7 +2202,7 @@ Total cost:10
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPQTUQWRVSXQRXSQRSQRSTQRYZNO
+Trace: ABPQUQWRVSXQRSRSQRSTQRZNO
 Log: ABPQUQWRVSXQRSRSQRSTQRZNO
 Mod: ABPQTUWRVSQRXSQRSQRYZNO
 
@@ -2224,7 +2222,7 @@ Total cost:6
 [logMove:B, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPRTQVUZWXBNO
+Trace: APRTQVUZWXBNO
 Log: APRTQVUZWXBNO
 Mod: ABPTQVUWX
 
@@ -2249,7 +2247,7 @@ Total cost:9
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:J, modelMove:>>, cost:1]
-Trace: DABLCKEAGIDFLHOJMNJ
+Trace: DBLCKEAGIFHOMNJ
 Log: DBLCKEAGIFHOMNJ
 Mod: ABCKEGIDFLHJMN
 
@@ -2274,7 +2272,7 @@ Total cost:9
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:I, modelMove:>>, cost:1]
-Trace: DABCEBADKHLGOIFJMNI
+Trace: DCEBAKHLGOFJMNI
 Log: DCEBAKHLGOFJMNI
 Mod: ABCEDKHLGIFJMN
 
@@ -2288,17 +2286,17 @@ Total cost:2
 [logMove:L, modelMove:L, cost:0]
 [logMove:E, modelMove:E, cost:0]
 [logMove:G, modelMove:G, cost:0]
-[logMove:>>, modelMove:I, cost:1]
-[logMove:H, modelMove:H, cost:0]
+[logMove:H, modelMove:>>, cost:1]
 [logMove:F, modelMove:F, cost:0]
-[logMove:I, modelMove:>>, cost:1]
+[logMove:>>, modelMove:H, cost:1]
+[logMove:I, modelMove:I, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKDLEGIHFIJMNO
+Trace: ABCKDLEGHFIJMNO
 Log: ABCKDLEGHFIJMNO
-Mod: ABCKDLEGIHFJMNO
+Mod: ABCKDLEGFHIJMNO
 
 110,1,0,
 Total cost:1
@@ -2314,7 +2312,7 @@ Trace: OAB[efaN
 Log: OAB[efaN
 Mod: AB[efaN
 
-111,6,0,
+111,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2334,7 +2332,7 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKEDLGNHFIFGJMNO
+Trace: ABCKEDLGNHIFJMO
 Log: ABCKEDLGNHIFJMO
 Mod: ABCKEDLHFIGJMNO
 
@@ -2390,7 +2388,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ]AB[^efaNO
+Trace: ]AB[^aNO
 Log: ]AB[^aNO
 Mod: AB[efaNO
 
@@ -2430,7 +2428,7 @@ Total cost:5
 [logMove:M, modelMove:M, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABCDEBKLFGIHIJMON
+Trace: ACDEBKLFGIHJMON
 Log: ACDEBKLFGIHJMON
 Mod: ABCDEKLFGHIJMN
 
@@ -2463,11 +2461,11 @@ Total cost:12
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: QABWPTQVRRSXSAUSWQRXSQRYZNO
+Trace: QBWPTQVRRSXSAUSQRQRZNO
 Log: QBWPTQVRRSXSAUSQRQRZNO
 Mod: ABPTQVRUSWQRXSQRYZNO
 
-118,5,1,
+118,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2478,11 +2476,11 @@ Total cost:5
 [logMove:], modelMove:], cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB^[a\]NO
+Trace: AB^[a]NO
 Log: AB^[a]NO
 Mod: AB[\]
 
-119,2,0,
+119,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2494,7 +2492,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -2532,7 +2530,7 @@ Trace: UOABPXTRVQWZN
 Log: UOABPXTRVQWZN
 Mod: ABPTVQW
 
-122,4,1,
+122,4,0,
 Total cost:4
 [logMove:H, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -2551,11 +2549,11 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: HABCKFELGDHFIJMNO
+Trace: HABCKFELGDIJMNO
 Log: HABCKFELGDIJMNO
 Mod: ABCKELGDHFIJMNO
 
-123,9,1,
+123,9,2,
 Total cost:9
 [logMove:A, modelMove:A, cost:0]
 [logMove:S, modelMove:>>, cost:1]
@@ -2578,7 +2576,7 @@ Total cost:9
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ASBPQTWRYVUXSQBQRRZNO
+Trace: ASPQTWRVUXSQBQRRZNO
 Log: ASPQTWRVUXSQBQRRZNO
 Mod: ABPQTWRYVUXZNO
 
@@ -2592,12 +2590,13 @@ Total cost:4
 [logMove:d, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:g, modelMove:g, cost:0]
-[logMove:a, modelMove:>>, cost:1]
+[logMove:>>, modelMove:d, cost:1]
+[logMove:a, modelMove:a, cost:0]
 Trace: AB[bNdOga
 Log: AB[bNdOga
-Mod: AB[bg
+Mod: AB[bgda
 
-125,7,1,
+125,7,0,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2614,11 +2613,11 @@ Total cost:7
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-Trace: AB[\]^_]^O]`aN[
+Trace: AB^_]^O]aN[
 Log: AB^_]^O]aN[
 Mod: AB[\]^_]^`aN
 
-126,7,4,
+126,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2678,7 +2677,7 @@ Trace: NAB[efaO
 Log: NAB[efaO
 Mod: AB[efa
 
-129,7,1,
+129,7,0,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2694,11 +2693,11 @@ Total cost:7
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABXPTNRUWVPZQO
+Trace: ABXTNRUWVPZQO
 Log: ABXTNRUWVPZQO
 Mod: ABPTUWVQ
 
-130,0,0,
+130,0,1,
 Total cost:0
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2747,11 +2746,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: dAB[bgdaNO
+Trace: dAB[bgaNO
 Log: dAB[bgaNO
 Mod: AB[bgdaNO
 
-133,6,1,
+133,6,0,
 Total cost:6
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -2767,11 +2766,11 @@ Total cost:6
 [logMove:X, modelMove:X, cost:0]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: NABPTQWZVRUXAO
+Trace: NBPTQWZVRUXAO
 Log: NBPTQWZVRUXAO
 Mod: ABPTQWVUX
 
-134,6,0,
+134,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:^, modelMove:>>, cost:1]
@@ -2830,11 +2829,10 @@ Total cost:4
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: NAB[efa[NO
+[logMove:O, modelMove:>>, cost:1]
+Trace: NABefa[O
 Log: NABefa[O
-Mod: AB[efaNO
+Mod: AB[efa
 
 138,4,0,
 Total cost:4
@@ -2847,11 +2845,11 @@ Total cost:4
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-Trace: ABON[efa[
+Trace: ABONefa[
 Log: ABONefa[
 Mod: AB[efa
 
-139,8,0,
+139,8,1,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:D, modelMove:>>, cost:1]
@@ -2871,11 +2869,11 @@ Total cost:8
 [logMove:O, modelMove:>>, cost:1]
 [logMove:>>, modelMove:H, cost:1]
 [logMove:M, modelMove:M, cost:0]
-Trace: ADBCNEBKGDLIFHJOHM
+Trace: ADCNEBKGLIFHJOM
 Log: ADCNEBKGLIFHJOM
 Mod: ABCEKGDLIFJHM
 
-140,10,1,
+140,10,0,
 Total cost:10
 [logMove:A, modelMove:A, cost:0]
 [logMove:L, modelMove:>>, cost:1]
@@ -2894,7 +2892,7 @@ Total cost:10
 [logMove:H, modelMove:H, cost:0]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: ALBCDKBEGIOFEJHMN
+Trace: ALCDKBGIOFEJHMN
 Log: ALCDKBGIOFEJHMN
 Mod: ABCDKEGIH
 
@@ -2934,7 +2932,7 @@ Trace: ABPTQRWSXVQUZRNO
 Log: ABPTQRWSXVQUZRNO
 Mod: ABPTQRWSQR
 
-143,7,2,
+143,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -2956,7 +2954,7 @@ Trace: ABPTRQOVWXSRQNZU
 Log: ABPTRQOVWXSRQNZU
 Mod: ABPTQVWRU
 
-144,1,0,
+144,1,1,
 Total cost:1
 [logMove:O, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -2988,7 +2986,7 @@ Total cost:7
 [logMove:M, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: ABCDJKELGFIBHMON
+Trace: ACDJKELGFIBHMON
 Log: ACDJKELGFIBHMON
 Mod: ABCDKELGIH
 
@@ -3017,11 +3015,11 @@ Total cost:11
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:S, modelMove:>>, cost:1]
-Trace: ABPTWOQVRUQNSXRQRSRSQZS
+Trace: ABPTWOQVRUQNXRQRSRSQZS
 Log: ABPTWOQVRUQNXRQRSRSQZS
 Mod: ABPTWQVRUSXQR
 
-147,6,1,
+147,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:f, modelMove:>>, cost:1]
@@ -3035,14 +3033,14 @@ Trace: Afe[BaON
 Log: Afe[BaON
 Mod: AB
 
-148,6,0,
+148,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
 [logMove:P, modelMove:P, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
-[logMove:Q, modelMove:Q, cost:0]
 [logMove:>>, modelMove:T, cost:1]
+[logMove:Q, modelMove:Q, cost:0]
 [logMove:V, modelMove:V, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:X, modelMove:>>, cost:1]
@@ -3051,11 +3049,11 @@ Total cost:6
 [logMove:T, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPZQTVRXWUTNO
+Trace: ABPZQVRXWUTNO
 Log: ABPZQVRXWUTNO
-Mod: ABPQTVRWU
+Mod: ABPTQVRWU
 
-149,6,1,
+149,6,4,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3075,7 +3073,7 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKHIDELCFIHGJMNO
+Trace: ABKHIDELCFGJMNO
 Log: ABKHIDELCFGJMNO
 Mod: ABCKDELFIHGJMNO
 
@@ -3098,7 +3096,7 @@ Total cost:5
 [logMove:M, modelMove:M, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABCLKDEALGIHFJMON
+Trace: BCLKDEAGIHFJMON
 Log: BCLKDEAGIHFJMON
 Mod: ABCKDELGIHFJMN
 
@@ -3113,7 +3111,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AfB[efaNO
+Trace: AfB[eaNO
 Log: AfB[eaNO
 Mod: AB[efaNO
 
@@ -3128,17 +3126,17 @@ Total cost:5
 [logMove:U, modelMove:U, cost:0]
 [logMove:V, modelMove:V, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
-[logMove:W, modelMove:W, cost:0]
 [logMove:>>, modelMove:R, cost:1]
+[logMove:W, modelMove:W, cost:0]
 [logMove:X, modelMove:X, cost:0]
 [logMove:S, modelMove:S, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:R, modelMove:R, cost:0]
-Trace: RABPOTUVQWRXSQZNR
+Trace: RABPOTUVQWXSQZNR
 Log: RABPOTUVQWXSQZNR
-Mod: ABPTUVQWRXSQR
+Mod: ABPTUVQRWXSQR
 
 153,9,0,
 Total cost:9
@@ -3155,17 +3153,14 @@ Total cost:9
 [logMove:G, modelMove:G, cost:0]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:>>, modelMove:L, cost:1]
-[logMove:>>, modelMove:F, cost:1]
-[logMove:>>, modelMove:J, cost:1]
-[logMove:H, modelMove:H, cost:0]
-[logMove:M, modelMove:M, cost:0]
-[logMove:N, modelMove:N, cost:0]
-Trace: ABCFLKODEJGBILFJHMN
+[logMove:H, modelMove:>>, cost:1]
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+Trace: ACFLKODEJGBIHMN
 Log: ACFLKODEJGBIHMN
-Mod: ABCKDEGILFJHMN
+Mod: ABCKDEGI
 
-154,5,0,
+154,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3179,7 +3174,7 @@ Trace: ABN]^aO[
 Log: ABN]^aO[
 Mod: AB[
 
-155,2,1,
+155,2,0,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3191,7 +3186,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -3217,7 +3212,7 @@ Total cost:10
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: FABHCDELCIGKAFLHJMNO
+Trace: FBHDELCIGKAJMNO
 Log: FBHDELCIGKAJMNO
 Mod: ABCDEIGKFLHJMNO
 
@@ -3239,7 +3234,7 @@ Total cost:7
 [logMove:B, modelMove:>>, cost:1]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AJBCDKEHLIGFNBMO
+Trace: AJCDKEHLIGFNBMO
 Log: AJCDKEHLIGFNBMO
 Mod: ABCDKEHLGF
 
@@ -3263,7 +3258,7 @@ Trace: ^^[]B_]A_]O^aN
 Log: ^^[]B_]A_]O^aN
 Mod: A
 
-159,4,1,
+159,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3288,7 +3283,7 @@ Total cost:4
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPQTWURVSXQRSQRSQRYZNO
+Trace: ABPQTWURVSXQRSQRSQRZNO
 Log: ABPQTWURVSXQRSQRSQRZNO
 Mod: ABPQTWURVSXQRSQRYZNO
 
@@ -3307,7 +3302,7 @@ Total cost:7
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:a, modelMove:>>, cost:1]
-Trace: [AB^[\]^_]ONa
+Trace: [AB^]^_]ONa
 Log: [AB^]^_]ONa
 Mod: AB[\]^_]
 
@@ -3322,11 +3317,11 @@ Total cost:2
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABa[efaNO
+Trace: ABa[efNO
 Log: ABa[efNO
 Mod: AB[efaNO
 
-162,20,4,
+162,20,3,
 Total cost:20
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3360,7 +3355,7 @@ Total cost:20
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABPTQSWVUSQXRRSRQRSQSQSQRRQRYZON
+Trace: ABPTQSWVUSQXRRSRQRSQSQSQRRQRZON
 Log: ABPTQSWVUSQXRRSRQRSQSQSQRRQRZON
 Mod: ABPTQWVUXRYZN
 
@@ -3376,7 +3371,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -3392,7 +3387,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[NbgdaNO
+Trace: AB[NbgdaO
 Log: AB[NbgdaO
 Mod: AB[bgdaNO
 
@@ -3411,7 +3406,7 @@ Trace: AB[bgOdaN
 Log: AB[bgOdaN
 Mod: AB[bgdaN
 
-166,20,9,
+166,20,5,
 Total cost:20
 [logMove:A, modelMove:A, cost:0]
 [logMove:Q, modelMove:>>, cost:1]
@@ -3429,10 +3424,10 @@ Total cost:20
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:S, modelMove:S, cost:0]
+[logMove:Q, modelMove:>>, cost:1]
+[logMove:T, modelMove:>>, cost:1]
 [logMove:>>, modelMove:X, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
-[logMove:T, modelMove:>>, cost:1]
-[logMove:Q, modelMove:>>, cost:1]
 [logMove:S, modelMove:>>, cost:1]
 [logMove:S, modelMove:>>, cost:1]
 [logMove:R, modelMove:R, cost:0]
@@ -3454,11 +3449,11 @@ Total cost:20
 [logMove:>>, modelMove:Y, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AQBXPQRTWOSUVQRSXQTQSSRRSQRSQRSVQRQRSRYZN
+Trace: AQBXPQRWOSUQRSQTQSSRRSQRSQRSVQRQRSRZN
 Log: AQBXPQRWOSUQRSQTQSSRRSQRSQRSVQRQRSRZN
 Mod: ABPQRTWSUVQRSXQRSQRSQRYZN
 
-167,10,2,
+167,10,3,
 Total cost:10
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3470,10 +3465,10 @@ Total cost:10
 [logMove:P, modelMove:>>, cost:1]
 [logMove:V, modelMove:V, cost:0]
 [logMove:W, modelMove:W, cost:0]
-[logMove:R, modelMove:R, cost:0]
+[logMove:R, modelMove:>>, cost:1]
 [logMove:>>, modelMove:U, cost:1]
 [logMove:X, modelMove:X, cost:0]
-[logMove:R, modelMove:>>, cost:1]
+[logMove:R, modelMove:R, cost:0]
 [logMove:S, modelMove:S, cost:0]
 [logMove:>>, modelMove:Q, cost:1]
 [logMove:R, modelMove:R, cost:0]
@@ -3486,11 +3481,11 @@ Total cost:10
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABUPQTQPVWRUXRSQRSQSQRYZNO
+Trace: ABUQTQPVWRXRSRSQSQRZNO
 Log: ABUQTQPVWRXRSRSQSQRZNO
-Mod: ABPQTVWRUXSQRSQRYZNO
+Mod: ABPQTVWUXRSQRSQRYZNO
 
-168,3,1,
+168,3,0,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3500,19 +3495,19 @@ Total cost:3
 [logMove:E, modelMove:E, cost:0]
 [logMove:F, modelMove:F, cost:0]
 [logMove:D, modelMove:D, cost:0]
-[logMove:>>, modelMove:H, cost:1]
-[logMove:L, modelMove:L, cost:0]
+[logMove:L, modelMove:>>, cost:1]
 [logMove:G, modelMove:G, cost:0]
-[logMove:H, modelMove:>>, cost:1]
+[logMove:>>, modelMove:L, cost:1]
+[logMove:H, modelMove:H, cost:0]
 [logMove:I, modelMove:I, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABCOKEFDHLGHIJMN
+Trace: ABCOKEFDLGHIJMN
 Log: ABCOKEFDLGHIJMN
-Mod: ABCKEFDHLGIJMN
+Mod: ABCKEFDGLHIJMN
 
-169,5,0,
+169,5,1,
 Total cost:5
 [logMove:a, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -3523,7 +3518,7 @@ Total cost:5
 [logMove:f, modelMove:f, cost:0]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: aAB[NefAO
+Trace: aB[NefAO
 Log: aB[NefAO
 Mod: AB[ef
 
@@ -3549,7 +3544,7 @@ Total cost:13
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:S, modelMove:>>, cost:1]
-Trace: ASBPUTVZRBXQROQRWNQS
+Trace: ASPUTVZRBXQROQRWNQS
 Log: ASPUTVZRBXQROQRWNQS
 Mod: ABPTVQRW
 
@@ -3568,7 +3563,7 @@ Trace: AB[bgdaNO
 Log: AB[bgdaNO
 Mod: AB[bgdaNO
 
-172,3,0,
+172,3,1,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3580,7 +3575,7 @@ Total cost:3
 [logMove:a, modelMove:a, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: AB[\]^`aON
+Trace: AB[]^aON
 Log: AB[]^aON
 Mod: AB[\]^`aN
 
@@ -3631,13 +3626,12 @@ Total cost:8
 [logMove:X, modelMove:>>, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:>>, modelMove:Y, cost:1]
-[logMove:V, modelMove:V, cost:0]
-Trace: NABPQTRWUZSAOXQRYV
+[logMove:V, modelMove:>>, cost:1]
+Trace: NBPQTRWUZSAOXQRV
 Log: NBPQTRWUZSAOXQRV
-Mod: ABPQTRWSQRYV
+Mod: ABPQTRWSQR
 
-176,5,0,
+176,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3656,7 +3650,7 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABPRTVWQSUXQRYZON
+Trace: ABPRTVWQSUXQRZON
 Log: ABPRTVWQSUXQRZON
 Mod: ABPTVWQUXRYZN
 
@@ -3672,11 +3666,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
-178,7,1,
+178,7,0,
 Total cost:7
 [logMove:W, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -3690,11 +3684,12 @@ Total cost:7
 [logMove:V, modelMove:V, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-[logMove:X, modelMove:>>, cost:1]
+[logMove:>>, modelMove:W, cost:1]
+[logMove:X, modelMove:X, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: WABPTQURZVNAXO
+Trace: WBPTQURZVNAXO
 Log: WBPTQURZVNAXO
-Mod: ABPTQURV
+Mod: ABPTQURVWX
 
 179,8,1,
 Total cost:8
@@ -3712,11 +3707,11 @@ Total cost:8
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPVTQRWBUXZNO
+Trace: APVTQRWBUXZNO
 Log: APVTQRWBUXZNO
 Mod: ABPTQRW
 
-180,6,0,
+180,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3730,15 +3725,17 @@ Total cost:6
 [logMove:G, modelMove:G, cost:0]
 [logMove:I, modelMove:>>, cost:1]
 [logMove:F, modelMove:F, cost:0]
-[logMove:H, modelMove:>>, cost:1]
-[logMove:J, modelMove:J, cost:0]
-[logMove:N, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: ABCKEMDILGIFHJNO
+[logMove:>>, modelMove:J, cost:1]
+[logMove:H, modelMove:H, cost:0]
+[logMove:J, modelMove:>>, cost:1]
+[logMove:>>, modelMove:M, cost:1]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABCKEMDLGIFHJNO
 Log: ABCKEMDLGIFHJNO
-Mod: ABCKEDILGFJ
+Mod: ABCKEDILGFJHMNO
 
-181,6,1,
+181,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -3758,7 +3755,7 @@ Total cost:6
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABMCDKEGHLIFHJCMNO
+Trace: ABMDKEGLIFHJCNO
 Log: ABMDKEGLIFHJCNO
 Mod: ABCDKEGHLIFJMNO
 
@@ -3773,16 +3770,14 @@ Total cost:5
 [logMove:U, modelMove:U, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:W, modelMove:W, cost:0]
-[logMove:>>, modelMove:Y, cost:1]
 [logMove:V, modelMove:V, cost:0]
 [logMove:X, modelMove:X, cost:0]
-[logMove:Z, modelMove:Z, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
 [logMove:T, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: ABPNQTURWYVXZTNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABPNQURWVXZTO
 Log: ABPNQURWVXZTO
-Mod: ABPQTURWYVXZNO
+Mod: ABPQTURWVX
 
 183,8,0,
 Total cost:8
@@ -3803,18 +3798,18 @@ Total cost:8
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OABPVQTRWUXSQRZNA
+Trace: OBPVQTRWUXSQRZNA
 Log: OBPVQTRWUXSQRZNA
 Mod: ABPQTRWSQR
 
-184,11,3,
+184,11,2,
 Total cost:11
 [logMove:A, modelMove:A, cost:0]
 [logMove:>>, modelMove:B, cost:1]
 [logMove:P, modelMove:P, cost:0]
 [logMove:S, modelMove:>>, cost:1]
-[logMove:>>, modelMove:T, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
+[logMove:>>, modelMove:T, cost:1]
 [logMove:R, modelMove:R, cost:0]
 [logMove:W, modelMove:W, cost:0]
 [logMove:V, modelMove:V, cost:0]
@@ -3822,16 +3817,16 @@ Total cost:11
 [logMove:T, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-[logMove:>>, modelMove:U, cost:1]
 [logMove:>>, modelMove:S, cost:1]
+[logMove:>>, modelMove:U, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:U, modelMove:>>, cost:1]
-Trace: ABPSTQRWVOTBNUSXQRZU
+Trace: APSQRWVOTBNXQRZU
 Log: APSQRWVOTBNXQRZU
-Mod: ABPTQRWVUSXQR
+Mod: ABPQTRWVSUXQR
 
 185,7,0,
 Total cost:7
@@ -3847,7 +3842,7 @@ Trace: [B^A]aNO
 Log: [B^A]aNO
 Mod: A
 
-186,6,1,
+186,6,0,
 Total cost:6
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -3864,11 +3859,11 @@ Total cost:6
 [logMove:A, modelMove:>>, cost:1]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: NAB[\]^_]^`aANO
+Trace: NB[]^_]^aAO
 Log: NB[]^_]^aAO
 Mod: AB[\]^_]^`aNO
 
-187,7,0,
+187,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:W, modelMove:>>, cost:1]
@@ -3884,7 +3879,7 @@ Total cost:7
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:X, modelMove:>>, cost:1]
-Trace: AWBPQTRVUBONZX
+Trace: AWPQTRVUBONZX
 Log: AWPQTRVUBONZX
 Mod: ABPQTRVU
 
@@ -3907,7 +3902,7 @@ Total cost:4
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKMEGLDHFIEJMNO
+Trace: ABCKMGLDHFIEJNO
 Log: ABCKMGLDHFIEJNO
 Mod: ABCKEGLDHFIJMNO
 
@@ -3923,7 +3918,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AdB[bcdaNO
+Trace: AdB[bcaNO
 Log: AdB[bcaNO
 Mod: AB[bcdaNO
 
@@ -3955,7 +3950,7 @@ Total cost:10
 [logMove:>>, modelMove:Z, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AZBPTQVUWXRSXQRQSQRSRBYZNO
+Trace: AZPTQVUWRSXQRQSQRSRBNO
 Log: AZPTQVUWRSXQRQSQRSRBNO
 Mod: ABPTQVUWXRSQRSQRYZNO
 
@@ -3970,7 +3965,7 @@ Total cost:3
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:B, modelMove:>>, cost:1]
-Trace: AOB[efaNB
+Trace: AO[efaNB
 Log: AO[efaNB
 Mod: AB[efaN
 
@@ -3984,17 +3979,17 @@ Total cost:7
 [logMove:M, modelMove:>>, cost:1]
 [logMove:E, modelMove:E, cost:0]
 [logMove:L, modelMove:L, cost:0]
-[logMove:G, modelMove:G, cost:0]
+[logMove:G, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:F, modelMove:>>, cost:1]
+[logMove:F, modelMove:F, cost:0]
 [logMove:D, modelMove:D, cost:0]
 [logMove:H, modelMove:H, cost:0]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AJBCKMELGIFDHBNO
+Trace: AJCKMELGIFDHBNO
 Log: AJCKMELGIFDHBNO
-Mod: ABCKELGIDH
+Mod: ABCKELIFDH
 
 193,3,0,
 Total cost:3
@@ -4013,11 +4008,11 @@ Total cost:3
 [logMove:>>, modelMove:Z, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AZBPQTUWVRYXZNO
+Trace: AZBPQTUWVRXNO
 Log: AZBPQTUWVRXNO
 Mod: ABPQTUWVRYXZNO
 
-194,6,1,
+194,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4033,11 +4028,11 @@ Total cost:6
 [logMove:T, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABZPXQTVWRUTNO
+Trace: ABZPXQVWRUTNO
 Log: ABZPXQVWRUTNO
 Mod: ABPQTVWRU
 
-195,4,0,
+195,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4048,11 +4043,10 @@ Total cost:4
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^N`aNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: AB[]^NaO
 Log: AB[]^NaO
-Mod: AB[\]^`aNO
+Mod: AB[\]^`a
 
 196,4,0,
 Total cost:4
@@ -4073,11 +4067,11 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: FABCKLEDAIGHFJMNO
+Trace: FBCKLEDAIGHJMNO
 Log: FBCKLEDAIGHJMNO
 Mod: ABCKLEDIGHFJMNO
 
-197,5,1,
+197,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4096,7 +4090,7 @@ Total cost:5
 [logMove:>>, modelMove:J, cost:1]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABJCEOGKDLGHFIJMN
+Trace: ABJCEOKDLGHFIMN
 Log: ABJCEOKDLGHFIMN
 Mod: ABCEGKDLHFIJMN
 
@@ -4115,7 +4109,7 @@ Trace: AB[aOdbNg
 Log: AB[aOdbNg
 Mod: AB[bg
 
-199,6,1,
+199,6,2,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4147,7 +4141,7 @@ Total cost:2
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[eafaNO
+Trace: AB[eafNO
 Log: AB[eafNO
 Mod: AB[efaNO
 
@@ -4169,7 +4163,7 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCEKDHGLNFIJMNO
+Trace: ABCEKDHGLNFIJMO
 Log: ABCEKDHGLNFIJMO
 Mod: ABCEKDHGLFIJMNO
 
@@ -4192,7 +4186,7 @@ Total cost:7
 [logMove:J, modelMove:J, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OABMCKDCLEHFIGJNA
+Trace: OBMKDCLEHFIGJNA
 Log: OBMKDCLEHFIGJNA
 Mod: ABCKDLEHFIGJ
 
@@ -4230,11 +4224,11 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: GABCEKDLHAIGLFJMNO
+Trace: GBCEKDLHAIFJMNO
 Log: GBCEKDLHAIFJMNO
 Mod: ABCEKDHIGLFJMNO
 
-205,7,1,
+205,7,0,
 Total cost:7
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -4249,11 +4243,10 @@ Total cost:7
 [logMove:X, modelMove:>>, cost:1]
 [logMove:W, modelMove:W, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-[logMove:>>, modelMove:X, cost:1]
-[logMove:R, modelMove:R, cost:0]
-Trace: NABPTOQVZUXWAXR
+[logMove:R, modelMove:>>, cost:1]
+Trace: NBPTOQVZUXWAR
 Log: NBPTOQVZUXWAR
-Mod: ABPTQVUWXR
+Mod: ABPTQVUW
 
 206,0,0,
 Total cost:0
@@ -4304,7 +4297,7 @@ Total cost:9
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ARBPZNQBTVUWRSXTQRO
+Trace: ARPZNQBVUWSXTQRO
 Log: ARPZNQBVUWSXTQRO
 Mod: ABPQTVUWRSXQR
 
@@ -4320,7 +4313,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -4358,13 +4351,14 @@ Total cost:3
 [logMove:V, modelMove:V, cost:0]
 [logMove:U, modelMove:U, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:>>, modelMove:Y, cost:1]
 [logMove:X, modelMove:X, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
-[logMove:O, modelMove:>>, cost:1]
-Trace: ABNPTQWVURYXZO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABNPTQWVURXZO
 Log: ABNPTQWVURXZO
-Mod: ABPTQWVURYXZ
+Mod: ABPTQWVURXYZNO
 
 212,5,1,
 Total cost:5
@@ -4382,11 +4376,11 @@ Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
-Trace: ABUPTQWVURXONZ
+Trace: ABUPTQWVRXONZ
 Log: ABUPTQWVRXONZ
 Mod: ABPTQWVURX
 
-213,11,1,
+213,11,0,
 Total cost:11
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
@@ -4403,11 +4397,11 @@ Total cost:11
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:W, modelMove:W, cost:0]
-Trace: QBRVATBPOTUXZNW
+Trace: QBRVATPOUXZNW
 Log: QBRVATPOUXZNW
 Mod: ABPTUW
 
-214,7,0,
+214,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:J, modelMove:>>, cost:1]
@@ -4425,7 +4419,7 @@ Total cost:7
 [logMove:O, modelMove:>>, cost:1]
 [logMove:D, modelMove:D, cost:0]
 [logMove:N, modelMove:>>, cost:1]
-Trace: AJBCKEIMGLHFBODN
+Trace: AJCKEIMGLHFBODN
 Log: AJCKEIMGLHFBODN
 Mod: ABCKEIGLFD
 
@@ -4441,11 +4435,11 @@ Total cost:4
 [logMove:d, modelMove:d, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-Trace: NAB[ObgdaA
+Trace: NB[ObgdaA
 Log: NB[ObgdaA
 Mod: AB[bgda
 
-216,5,1,
+216,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4477,11 +4471,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABe[efaNO
+Trace: ABe[faNO
 Log: ABe[faNO
 Mod: AB[efaNO
 
-218,2,0,
+218,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4493,11 +4487,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[bdcdaNO
+Trace: AB[bdcaNO
 Log: AB[bdcaNO
 Mod: AB[bcdaNO
 
-219,8,1,
+219,8,0,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
@@ -4516,11 +4510,11 @@ Total cost:8
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:S, modelMove:S, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AZBPTRVNUXQRBWQSO
+Trace: AZPTRVNUXQRBWQSO
 Log: AZPTRVNUXQRBWQSO
 Mod: ABPTVUQRWS
 
-220,10,2,
+220,10,1,
 Total cost:10
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4545,7 +4539,7 @@ Total cost:10
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPQTWRUVSXQRSQRSQRYZNO
+Trace: ABPQTWRUVSXQRSQRSQRZNO
 Log: ABPQTWRUVSXQRSQRSQRZNO
 Mod: ABPQTWRUVXYZNO
 
@@ -4559,11 +4553,13 @@ Total cost:6
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
 [logMove:B, modelMove:>>, cost:1]
-[logMove:N, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: AaB[\]^BNO
+[logMove:>>, modelMove:`, cost:1]
+[logMove:>>, modelMove:a, cost:1]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: Aa[]^BNO
 Log: Aa[]^BNO
-Mod: AB[\]^
+Mod: AB[\]^`aNO
 
 222,2,0,
 Total cost:2
@@ -4577,11 +4573,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: BAB[bgdaNO
+Trace: BA[bgdaNO
 Log: BA[bgdaNO
 Mod: AB[bgdaNO
 
-223,6,0,
+223,6,1,
 Total cost:6
 [logMove:N, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -4589,15 +4585,15 @@ Total cost:6
 [logMove:g, modelMove:>>, cost:1]
 [logMove:>>, modelMove:[, cost:1]
 [logMove:b, modelMove:b, cost:0]
-[logMove:>>, modelMove:c, cost:1]
+[logMove:>>, modelMove:g, cost:1]
 [logMove:d, modelMove:d, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:[, modelMove:>>, cost:1]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: NABg[bcda[NO
+Trace: NABgbda[O
 Log: NABgbda[O
-Mod: AB[bcdaNO
+Mod: AB[bgdaNO
 
 224,13,3,
 Total cost:13
@@ -4624,7 +4620,7 @@ Total cost:13
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: UABPQTVRWASUXQRSNRYZQNO
+Trace: UBPQTVRWASXQRSNRZQO
 Log: UBPQTVRWASXQRSNRZQO
 Mod: ABPQTVRWUXYZNO
 
@@ -4639,7 +4635,7 @@ Total cost:7
 [logMove:a, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ^AB[]NaAO
+Trace: ^B[]NaAO
 Log: ^B[]NaAO
 Mod: AB[
 
@@ -4675,7 +4671,7 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCHKELDGHIFJMNO
+Trace: ABCHKELDGIFJMNO
 Log: ABCHKELDGIFJMNO
 Mod: ABCKELDGHIFJMNO
 
@@ -4688,8 +4684,8 @@ Total cost:2
 [logMove:D, modelMove:D, cost:0]
 [logMove:K, modelMove:K, cost:0]
 [logMove:E, modelMove:E, cost:0]
-[logMove:L, modelMove:L, cost:0]
 [logMove:>>, modelMove:H, cost:1]
+[logMove:L, modelMove:L, cost:0]
 [logMove:G, modelMove:G, cost:0]
 [logMove:F, modelMove:F, cost:0]
 [logMove:I, modelMove:I, cost:0]
@@ -4697,11 +4693,11 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCHDKELHGFIJMNO
+Trace: ABCHDKELGFIJMNO
 Log: ABCHDKELGFIJMNO
-Mod: ABCDKELHGFIJMNO
+Mod: ABCDKEHLGFIJMNO
 
-229,2,0,
+229,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4713,7 +4709,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -4738,13 +4734,15 @@ Total cost:7
 [logMove:S, modelMove:S, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:N, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: ABPTQVWUXRSAXZQRSQRNO
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:>>, modelMove:Z, cost:1]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: BPTQVWURSAXZQRSQRNO
 Log: BPTQVWURSAXZQRSQRNO
-Mod: ABPTQVWUXRSQRSQR
+Mod: ABPTQVWUXRSQRSQRYZNO
 
-231,13,4,
+231,13,2,
 Total cost:13
 [logMove:R, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -4771,7 +4769,7 @@ Total cost:13
 [logMove:>>, modelMove:V, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
-Trace: RABPTOQRWUNSVQSRRUSQAZVXQ
+Trace: RBPTOQRWUNSVQSRRSQAZXQ
 Log: RBPTOQRWUNSVQSRRSQAZXQ
 Mod: ABPTQRWSQRUSVXQ
 
@@ -4787,27 +4785,27 @@ Total cost:7
 [logMove:K, modelMove:K, cost:0]
 [logMove:D, modelMove:D, cost:0]
 [logMove:I, modelMove:I, cost:0]
-[logMove:>>, modelMove:G, cost:1]
-[logMove:L, modelMove:L, cost:0]
-[logMove:G, modelMove:>>, cost:1]
+[logMove:L, modelMove:>>, cost:1]
+[logMove:G, modelMove:G, cost:0]
+[logMove:>>, modelMove:L, cost:1]
 [logMove:>>, modelMove:H, cost:1]
 [logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: AHBOCMEKDIGLGHFJMN
+Trace: AHBOCMEKDILGFJN
 Log: AHBOCMEKDILGFJN
 Mod: ABCEKDIGLHFJMN
 
-233,5,1,
+233,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:T, modelMove:>>, cost:1]
 [logMove:P, modelMove:>>, cost:1]
 [logMove:B, modelMove:B, cost:0]
 [logMove:>>, modelMove:P, cost:1]
-[logMove:>>, modelMove:T, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
+[logMove:>>, modelMove:T, cost:1]
 [logMove:U, modelMove:U, cost:0]
 [logMove:V, modelMove:V, cost:0]
 [logMove:W, modelMove:W, cost:0]
@@ -4817,9 +4815,9 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ATPBPTQUVWXRYZNO
+Trace: ATPBQUVWXRZNO
 Log: ATPBQUVWXRZNO
-Mod: ABPTQUVWXRYZNO
+Mod: ABPQTUVWXRYZNO
 
 234,9,1,
 Total cost:9
@@ -4840,7 +4838,7 @@ Total cost:9
 [logMove:H, modelMove:H, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCEKCDLIGJFMLHNO
+Trace: ABEKCDLIGJFMHNO
 Log: ABEKCDLIGJFMHNO
 Mod: ABCEKDIGLH
 
@@ -4865,11 +4863,11 @@ Total cost:8
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: CBKABCKDLEJHGIFJMNO
+Trace: CBKADLEJHGIFMNO
 Log: CBKADLEJHGIFMNO
 Mod: ABCKDLEHGIFJMNO
 
-236,5,1,
+236,5,0,
 Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -4881,11 +4879,11 @@ Total cost:5
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OABe[efaNA
+Trace: OBe[faNA
 Log: OBe[faNA
 Mod: AB[efaN
 
-237,10,1,
+237,10,0,
 Total cost:10
 [logMove:A, modelMove:A, cost:0]
 [logMove:G, modelMove:>>, cost:1]
@@ -4903,11 +4901,11 @@ Total cost:10
 [logMove:I, modelMove:I, cost:0]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: AGKBELCHDJEFOIMN
+Trace: AGKBELCHDJFOIMN
 Log: AGKBELCHDJFOIMN
 Mod: ABCDEFI
 
-238,8,0,
+238,8,1,
 Total cost:8
 [logMove:M, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -4925,11 +4923,11 @@ Total cost:8
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: MABCEKFHLIGJDANO
+Trace: MBCEKFHLIGJDANO
 Log: MBCEKFHLIGJDANO
 Mod: ABCEKFLGD
 
-239,6,1,
+239,6,0,
 Total cost:6
 [logMove:O, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -4947,11 +4945,11 @@ Total cost:6
 [logMove:N, modelMove:>>, cost:1]
 [logMove:F, modelMove:F, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OABCDHKMEGIJLNFA
+Trace: OBCDHKMEGIJLNFA
 Log: OBCDHKMEGIJLNFA
 Mod: ABCDHKEGILF
 
-240,3,1,
+240,3,0,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -4969,7 +4967,7 @@ Total cost:3
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABCEGKDLHFGOIJMN
+Trace: ABCEKDLHFGOIJMN
 Log: ABCEKDLHFGOIJMN
 Mod: ABCEGKDLHFIJMN
 
@@ -4997,7 +4995,7 @@ Total cost:9
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:T, modelMove:>>, cost:1]
-Trace: ABPQXRTVWSOQRSQYURXZNT
+Trace: ABPQXRVWSOQRSQURZNT
 Log: ABPQXRVWSOQRSQURZNT
 Mod: ABPQRTVWSQRYUXZN
 
@@ -5012,19 +5010,19 @@ Total cost:5
 [logMove:D, modelMove:D, cost:0]
 [logMove:L, modelMove:L, cost:0]
 [logMove:E, modelMove:E, cost:0]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:H, modelMove:>>, cost:1]
+[logMove:H, modelMove:H, cost:0]
 [logMove:F, modelMove:F, cost:0]
-[logMove:>>, modelMove:H, cost:1]
-[logMove:G, modelMove:G, cost:0]
+[logMove:G, modelMove:>>, cost:1]
 [logMove:>>, modelMove:J, cost:1]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABOCKJDLEIHFHGJMN
+Trace: ABOCKJDLEIHFGMN
 Log: ABOCKJDLEIHFGMN
-Mod: ABCKDLEIFHGJMN
+Mod: ABCKDLEGIHFJMN
 
-243,5,1,
+243,5,0,
 Total cost:5
 [logMove:N, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -5045,7 +5043,7 @@ Trace: NABCDKELGJIFHMO
 Log: NABCDKELGJIFHMO
 Mod: ABCDKELGIH
 
-244,6,1,
+244,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -5061,11 +5059,11 @@ Total cost:6
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: ABPQXTVWRUTZON
+Trace: ABPQXVWRUTZON
 Log: ABPQXVWRUTZON
 Mod: ABPQTVWRU
 
-245,5,0,
+245,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:G, modelMove:>>, cost:1]
@@ -5084,11 +5082,11 @@ Total cost:5
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AGBCKODHBEIGLFJMN
+Trace: AGCKODHBEILFJMN
 Log: AGCKODHBEILFJMN
 Mod: ABCKDHEIGLFJMN
 
-246,6,2,
+246,6,0,
 Total cost:6
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
@@ -5108,11 +5106,11 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCEKGDLIFGAHJHMNO
+Trace: BCEKDLIFGAHJMNO
 Log: BCEKDLIFGAHJMNO
 Mod: ABCEKGDLIFJHMNO
 
-247,6,0,
+247,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -5130,7 +5128,7 @@ Total cost:6
 [logMove:D, modelMove:D, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCLEMKNGIFHLDJO
+Trace: ABCLEMKNGIFHDJO
 Log: ABCLEMKNGIFHDJO
 Mod: ABCEKGIFLDJ
 
@@ -5146,7 +5144,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[NbgdaNO
+Trace: AB[NbgdaO
 Log: AB[NbgdaO
 Mod: AB[bgdaNO
 
@@ -5178,7 +5176,7 @@ Total cost:6
 [logMove:B, modelMove:>>, cost:1]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ANB[\]^`aBNO
+Trace: AN[]^aBO
 Log: AN[]^aBO
 Mod: AB[\]^`aNO
 
@@ -5208,7 +5206,7 @@ Total cost:9
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: QABSPTQUWVRSXQRSSRQRYZNO
+Trace: QABSPTQUWVRXQRSSRQRZNO
 Log: QABSPTQUWVRXQRSSRQRZNO
 Mod: ABPTQUWVRSXQRYZNO
 
@@ -5230,11 +5228,11 @@ Total cost:3
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABCKLHEODIGHFJMN
+Trace: ABCKLHEODIGFJMN
 Log: ABCKLHEODIGFJMN
 Mod: ABCKLEDIGHFJMN
 
-253,11,4,
+253,11,3,
 Total cost:11
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -5264,11 +5262,11 @@ Total cost:11
 [logMove:R, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPTQVSWUXRSSXQRSQQRSRQYZRNO
+Trace: ABPTQVSWURSSXQRQQRSRQZRNO
 Log: ABPTQVSWURSSXQRQQRSRQZRNO
 Mod: ABPTQVWUXRSQRSQRYZNO
 
-254,17,3,
+254,17,2,
 Total cost:17
 [logMove:A, modelMove:A, cost:0]
 [logMove:R, modelMove:>>, cost:1]
@@ -5298,27 +5296,28 @@ Total cost:17
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ARQBPTQRUVWSSBRNSQQRYXRSQZNO
+Trace: ARQPTQRUVWSSBRNSQQRXRSQZO
 Log: ARQPTQRUVWSSBRNSQQRXRSQZO
 Mod: ABPTQRUVWYXZNO
 
-255,4,0,
+255,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
 [logMove:[, modelMove:[, cost:0]
 [logMove:c, modelMove:>>, cost:1]
 [logMove:b, modelMove:b, cost:0]
-[logMove:>>, modelMove:g, cost:1]
+[logMove:>>, modelMove:c, cost:1]
 [logMove:d, modelMove:d, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:a, modelMove:a, cost:0]
-[logMove:O, modelMove:>>, cost:1]
-Trace: AB[cbgdNaO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: AB[cbdNaO
 Log: AB[cbdNaO
-Mod: AB[bgda
+Mod: AB[bcdaNO
 
-256,11,7,
+256,11,2,
 Total cost:11
 [logMove:W, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
@@ -5327,19 +5326,18 @@ Total cost:11
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
 [logMove:P, modelMove:P, cost:0]
-[logMove:>>, modelMove:Q, cost:1]
 [logMove:>>, modelMove:T, cost:1]
+[logMove:>>, modelMove:Q, cost:1]
 [logMove:V, modelMove:V, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-[logMove:>>, modelMove:W, cost:1]
 [logMove:U, modelMove:U, cost:0]
-[logMove:X, modelMove:X, cost:0]
+[logMove:X, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: WZQTABPQTVRAWUXNO
+Trace: WZQTBPVRAUXNO
 Log: WZQTBPVRAUXNO
-Mod: ABPQTVRWUX
+Mod: ABPTQVRU
 
 257,10,1,
 Total cost:10
@@ -5360,7 +5358,7 @@ Total cost:10
 [logMove:M, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
-Trace: AGLBCDEKHIOCJFMNB
+Trace: AGLDEKHIOCJFMNB
 Log: AGLDEKHIOCJFMNB
 Mod: ABCDEKHIF
 
@@ -5378,11 +5376,11 @@ Total cost:6
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: b[BAB[bgdaNO
+Trace: b[BAgdaNO
 Log: b[BAgdaNO
 Mod: AB[bgdaNO
 
-259,8,1,
+259,8,2,
 Total cost:8
 [logMove:K, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -5396,15 +5394,16 @@ Total cost:8
 [logMove:E, modelMove:E, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:F, modelMove:F, cost:0]
 [logMove:>>, modelMove:G, cost:1]
+[logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:G, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: KABCDAHKLENIFGJMGO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: KBCDAHLENIFJMGO
 Log: KBCDAHLENIFJMGO
-Mod: ABCDHKLEIFGJM
+Mod: ABCDHKLEIGFJMNO
 
 260,8,0,
 Total cost:8
@@ -5442,11 +5441,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: BAB[efaNO
+Trace: BA[efaNO
 Log: BA[efaNO
 Mod: AB[efaNO
 
-262,4,0,
+262,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:N, modelMove:>>, cost:1]
@@ -5465,7 +5464,7 @@ Trace: ANBPQTRWVXUZO
 Log: ANBPQTRWVXUZO
 Mod: ABPQTRWVU
 
-263,6,1,
+263,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:>>, modelMove:B, cost:1]
@@ -5485,11 +5484,11 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCEBDHKLIGILFJMNO
+Trace: ACEBDHKLGIFJMNO
 Log: ACEBDHKLGIFJMNO
 Mod: ABCEDHKIGLFJMNO
 
-264,6,0,
+264,6,1,
 Total cost:6
 [logMove:S, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -5499,8 +5498,8 @@ Total cost:6
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:W, modelMove:W, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:U, modelMove:U, cost:0]
 [logMove:>>, modelMove:Y, cost:1]
+[logMove:U, modelMove:U, cost:0]
 [logMove:V, modelMove:V, cost:0]
 [logMove:X, modelMove:X, cost:0]
 [logMove:A, modelMove:>>, cost:1]
@@ -5509,9 +5508,9 @@ Total cost:6
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: SABPTQWRUYVXAQRZNO
+Trace: SBPTQWRUVXAQRZNO
 Log: SBPTQWRUVXAQRZNO
-Mod: ABPTQWRUYVXZNO
+Mod: ABPTQWRYUVXZNO
 
 265,7,1,
 Total cost:7
@@ -5533,7 +5532,7 @@ Total cost:7
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:B, modelMove:>>, cost:1]
-Trace: AOBPQTRNZSWVUVXQRB
+Trace: AOPQTRNZSWVUXQRB
 Log: AOPQTRNZSWVUXQRB
 Mod: ABPQTRSWUVXQR
 
@@ -5556,11 +5555,11 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: BAEBCKLEDFIGHJMNO
+Trace: BAECKLDFIGHJMNO
 Log: BAECKLDFIGHJMNO
 Mod: ABCKLEDFIGHJMNO
 
-267,4,0,
+267,4,1,
 Total cost:4
 [logMove:a, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -5569,13 +5568,11 @@ Total cost:4
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
-[logMove:>>, modelMove:`, cost:1]
-[logMove:>>, modelMove:a, cost:1]
-[logMove:N, modelMove:N, cost:0]
-[logMove:O, modelMove:O, cost:0]
-Trace: aAB[\]^`aNO
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: aAB[]^NO
 Log: aAB[]^NO
-Mod: AB[\]^`aNO
+Mod: AB[\]^
 
 268,4,0,
 Total cost:4
@@ -5591,7 +5588,7 @@ Trace: AB[afNeO
 Log: AB[afNeO
 Mod: AB[e
 
-269,0,1,
+269,0,0,
 Total cost:0
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -5629,13 +5626,12 @@ Total cost:4
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:e, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: AB[NefaeNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: AB[NfaeO
 Log: AB[NfaeO
-Mod: AB[efaNO
+Mod: AB[efa
 
-272,7,0,
+272,7,1,
 Total cost:7
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -5654,11 +5650,11 @@ Total cost:7
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: QABPQTRAXWVUXYZNO
+Trace: QBPTRAXWVUZNO
 Log: QBPTRAXWVUZNO
 Mod: ABPQTRWVUXYZNO
 
-273,7,0,
+273,7,1,
 Total cost:7
 [logMove:O, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -5673,11 +5669,11 @@ Total cost:7
 [logMove:], modelMove:], cost:0]
 [logMove:a, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OABN[^\]^_]aA
+Trace: OBN[^]^_]aA
 Log: OBN[^]^_]aA
 Mod: AB[\]^_]
 
-274,10,0,
+274,10,1,
 Total cost:10
 [logMove:X, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -5703,11 +5699,11 @@ Total cost:10
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:T, modelMove:>>, cost:1]
-Trace: XABRPOQTUVRWSAQXRSQRYZNT
+Trace: XBRPOQUVRWSAQSQRZNT
 Log: XBRPOQUVRWSAQSQRZNT
 Mod: ABPQTUVRWSQXRSQRYZN
 
-275,4,1,
+275,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -5726,11 +5722,11 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCLDKIEGFHLIJMNO
+Trace: ABCLDKIEGFHJMNO
 Log: ABCLDKIEGFHJMNO
 Mod: ABCDKEGFHLIJMNO
 
-276,11,0,
+276,11,1,
 Total cost:11
 [logMove:W, modelMove:>>, cost:1]
 [logMove:T, modelMove:>>, cost:1]
@@ -5747,7 +5743,7 @@ Total cost:11
 [logMove:>>, modelMove:T, cost:1]
 [logMove:U, modelMove:U, cost:0]
 [logMove:V, modelMove:V, cost:0]
-Trace: WTPQABROZXNPTUV
+Trace: WTPQABROZXNUV
 Log: WTPQABROZXNUV
 Mod: ABPTUV
 
@@ -5762,11 +5758,11 @@ Total cost:7
 [logMove:>>, modelMove:B, cost:1]
 [logMove:[, modelMove:[, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ^BaN]AB[O
+Trace: ^BaN]A[O
 Log: ^BaN]A[O
 Mod: AB[
 
-278,4,1,
+278,4,2,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -5774,20 +5770,20 @@ Total cost:4
 [logMove:K, modelMove:K, cost:0]
 [logMove:E, modelMove:E, cost:0]
 [logMove:D, modelMove:D, cost:0]
-[logMove:>>, modelMove:I, cost:1]
 [logMove:L, modelMove:L, cost:0]
-[logMove:G, modelMove:G, cost:0]
+[logMove:G, modelMove:>>, cost:1]
 [logMove:I, modelMove:>>, cost:1]
-[logMove:H, modelMove:>>, cost:1]
+[logMove:H, modelMove:H, cost:0]
 [logMove:F, modelMove:F, cost:0]
+[logMove:>>, modelMove:I, cost:1]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:J, modelMove:J, cost:0]
-[logMove:>>, modelMove:H, cost:1]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKEDILGIHFJHMNO
+Trace: ABCKEDLGIHFJMNO
 Log: ABCKEDLGIHFJMNO
-Mod: ABCKEDILGFJHMNO
+Mod: ABCKEDLHFIGJMNO
 
 279,4,0,
 Total cost:4
@@ -5800,10 +5796,11 @@ Total cost:4
 [logMove:d, modelMove:d, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:b, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: AB[NbgdabO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: AB[NgdabO
 Log: AB[NgdabO
-Mod: AB[bgda
+Mod: AB[bgdaNO
 
 280,1,0,
 Total cost:1
@@ -5819,7 +5816,7 @@ Trace: AB[efaON
 Log: AB[efaON
 Mod: AB[efaN
 
-281,5,0,
+281,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:O, modelMove:>>, cost:1]
@@ -5831,7 +5828,7 @@ Total cost:5
 [logMove:B, modelMove:>>, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AOB[ef[BaN
+Trace: AOef[BaN
 Log: AOef[BaN
 Mod: AB[efaN
 
@@ -5858,7 +5855,7 @@ Total cost:11
 [logMove:R, modelMove:R, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: OABXTPTUWRVQSARQSQRZN
+Trace: OBXTPUWRVQSARQSQRZN
 Log: OBXTPUWRVQSARQSQRZN
 Mod: ABPTUWVQRSQR
 
@@ -5882,11 +5879,11 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABICHDEGJKILFJHMNO
+Trace: ABICHDEGJKLFMNO
 Log: ABICHDEGJKLFMNO
 Mod: ABCDEGKILFJHMNO
 
-284,9,0,
+284,9,1,
 Total cost:9
 [logMove:H, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
@@ -5907,7 +5904,7 @@ Total cost:9
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:B, modelMove:>>, cost:1]
-Trace: HOABCEKDLIGALHFJMNB
+Trace: HOCEKDLIGAFJMNB
 Log: HOCEKDLIGAFJMNB
 Mod: ABCEKDIGLHFJMN
 
@@ -5923,7 +5920,7 @@ Total cost:4
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: aAB[AefaNO
+Trace: aB[AefNO
 Log: aB[AefNO
 Mod: AB[efaNO
 
@@ -5942,7 +5939,7 @@ Trace: AB[bgdaNO
 Log: AB[bgdaNO
 Mod: AB[bgdaNO
 
-287,7,1,
+287,7,0,
 Total cost:7
 [logMove:^, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -5957,11 +5954,11 @@ Total cost:7
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ^AB[\]^_]aANO
+Trace: ^B[]^_]aANO
 Log: ^B[]^_]aANO
 Mod: AB[\]^_]
 
-288,6,0,
+288,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:N, modelMove:>>, cost:1]
@@ -5969,12 +5966,13 @@ Total cost:6
 [logMove:[, modelMove:[, cost:0]
 [logMove:f, modelMove:>>, cost:1]
 [logMove:e, modelMove:e, cost:0]
-[logMove:a, modelMove:>>, cost:1]
+[logMove:>>, modelMove:f, cost:1]
+[logMove:a, modelMove:a, cost:0]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ANB[feaBO
+Trace: AN[feaBO
 Log: AN[feaBO
-Mod: AB[e
+Mod: AB[efa
 
 289,8,0,
 Total cost:8
@@ -5995,7 +5993,7 @@ Total cost:8
 [logMove:S, modelMove:S, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:R, modelMove:>>, cost:1]
-Trace: ANBPTVXQWOUTRQSZR
+Trace: ANBPVXQWOUTRQSZR
 Log: ANBPVXQWOUTRQSZR
 Mod: ABPTVQWURS
 
@@ -6010,7 +6008,7 @@ Total cost:7
 [logMove:a, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-Trace: N]AB[^aOA
+Trace: N]B[^aOA
 Log: N]B[^aOA
 Mod: AB[
 
@@ -6033,7 +6031,7 @@ Total cost:9
 [logMove:F, modelMove:>>, cost:1]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: JIABCKDNEGFHLAFMO
+Trace: JIBCKDNEGHLAFMO
 Log: JIBCKDNEGHLAFMO
 Mod: ABCKDEGFHL
 
@@ -6055,7 +6053,7 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCEDHGIKLFLJMNO
+Trace: ABCEDHGIKLFJMNO
 Log: ABCEDHGIKLFJMNO
 Mod: ABCEDHGIKFLJMNO
 
@@ -6078,7 +6076,7 @@ Total cost:6
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:T, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPNTUQWVRXSRQZTO
+Trace: ABPNUQWVRXSRQZTO
 Log: ABPNUQWVRXSRQZTO
 Mod: ABPTUQWVRXSQ
 
@@ -6106,7 +6104,7 @@ Total cost:12
 [logMove:^, modelMove:>>, cost:1]
 [logMove:^, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB[\]^_]^_N]a^_]_]^^^O
+Trace: AB[]^_]_N]a^_]_]^^^O
 Log: AB[]^_]_N]a^_]_]^^^O
 Mod: AB[\]^_]^_]^
 
@@ -6124,22 +6122,23 @@ Trace: OAB[afeN
 Log: OAB[afeN
 Mod: AB[e
 
-296,7,0,
+296,7,1,
 Total cost:7
 [logMove:^, modelMove:>>, cost:1]
 [logMove:a, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
 [logMove:[, modelMove:[, cost:0]
-[logMove:], modelMove:>>, cost:1]
+[logMove:>>, modelMove:\, cost:1]
+[logMove:], modelMove:], cost:0]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ^aAB[]ANO
+Trace: ^aB[]ANO
 Log: ^aB[]ANO
-Mod: AB[
+Mod: AB[\]
 
-297,3,1,
+297,3,0,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6159,7 +6158,7 @@ Total cost:3
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPQTRVSWQRYUXRZNO
+Trace: ABPQTRVSWQUXRZNO
 Log: ABPQTRVSWQUXRZNO
 Mod: ABPQTRVSWQRYUXZNO
 
@@ -6177,7 +6176,7 @@ Trace: AB[efaNO
 Log: AB[efaNO
 Mod: AB[efaNO
 
-299,5,0,
+299,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6195,7 +6194,7 @@ Total cost:5
 [logMove:M, modelMove:>>, cost:1]
 [logMove:J, modelMove:J, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCKELDKGFHINMJO
+Trace: ABCELDKGFHINMJO
 Log: ABCELDKGFHINMJO
 Mod: ABCKELDGFHIJ
 
@@ -6260,7 +6259,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -6275,7 +6274,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: A[B[efaNO
+Trace: A[BefaNO
 Log: A[BefaNO
 Mod: AB[efaNO
 
@@ -6291,19 +6290,19 @@ Total cost:7
 [logMove:L, modelMove:L, cost:0]
 [logMove:>>, modelMove:E, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:G, modelMove:>>, cost:1]
+[logMove:G, modelMove:G, cost:0]
 [logMove:F, modelMove:F, cost:0]
-[logMove:H, modelMove:H, cost:0]
-[logMove:>>, modelMove:G, cost:1]
+[logMove:H, modelMove:>>, cost:1]
 [logMove:J, modelMove:J, cost:0]
+[logMove:>>, modelMove:H, cost:1]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:E, modelMove:>>, cost:1]
-Trace: BABCOKDLEIGFHGJMNE
+Trace: BACOKDLIGFHJMNE
 Log: BACOKDLIGFHJMNE
-Mod: ABCKDLEIFHGJMN
+Mod: ABCKDLEIGFJHMN
 
-306,2,0,
+306,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6321,11 +6320,11 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKDLEGFIHIJMNO
+Trace: ABCKDLEGFIHJMNO
 Log: ABCKDLEGFIHJMNO
 Mod: ABCKDLEGFHIJMNO
 
-307,7,1,
+307,7,0,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6345,11 +6344,11 @@ Total cost:7
 [logMove:P, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABNWPQRTVSWUXQRPZO
+Trace: ABNWQRTVSUXQRPZO
 Log: ABNWQRTVSUXQRPZO
 Mod: ABPQRTVSWUXQR
 
-308,5,0,
+308,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6360,7 +6359,7 @@ Total cost:5
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
-Trace: AB[^aON\]
+Trace: AB[^aON]
 Log: AB[^aON]
 Mod: AB[\]
 
@@ -6381,11 +6380,10 @@ Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
-[logMove:>>, modelMove:M, cost:1]
-[logMove:N, modelMove:N, cost:0]
-Trace: EABCKMLEDIGHOFJMN
+[logMove:N, modelMove:>>, cost:1]
+Trace: EABCKMLDIGHOFJN
 Log: EABCKMLDIGHOFJN
-Mod: ABCKLEDIGHFJMN
+Mod: ABCKLEDIGHFJ
 
 310,3,0,
 Total cost:3
@@ -6399,11 +6397,11 @@ Total cost:3
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-Trace: AOB[bgdaN[
+Trace: AOBbgdaN[
 Log: AOBbgdaN[
 Mod: AB[bgdaN
 
-311,6,1,
+311,6,5,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6422,11 +6420,11 @@ Total cost:6
 [logMove:R, modelMove:R, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABXPZQTRUWVTSQRNO
+Trace: ABXPZQRUWVTSQRNO
 Log: ABXPZQRUWVTSQRNO
 Mod: ABPQTRUWVSQR
 
-312,6,0,
+312,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6446,11 +6444,11 @@ Total cost:6
 [logMove:>>, modelMove:Z, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABZPTQQURYWVRXSZNO
+Trace: ABZPTQQURWVRXSNO
 Log: ABZPTQQURWVRXSNO
 Mod: ABPTQURYWVXZNO
 
-313,5,1,
+313,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6462,13 +6460,12 @@ Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:R, modelMove:R, cost:0]
 [logMove:X, modelMove:>>, cost:1]
-[logMove:>>, modelMove:S, cost:1]
-[logMove:W, modelMove:W, cost:0]
+[logMove:W, modelMove:>>, cost:1]
 [logMove:V, modelMove:V, cost:0]
 [logMove:N, modelMove:>>, cost:1]
-Trace: ABPTZQUORXSWVN
+Trace: ABPTZQUORXWVN
 Log: ABPTZQUORXWVN
-Mod: ABPTQURSWV
+Mod: ABPTQURV
 
 314,4,0,
 Total cost:4
@@ -6480,11 +6477,10 @@ Total cost:4
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:[, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: ABN[efa[NO
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABNefa[O
 Log: ABNefa[O
-Mod: AB[efaNO
+Mod: AB[efa
 
 315,9,1,
 Total cost:9
@@ -6536,7 +6532,7 @@ Total cost:7
 [logMove:I, modelMove:I, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCNDKELMHGFHBIJO
+Trace: ACNDKELMGFHBIJO
 Log: ACNDKELMGFHBIJO
 Mod: ABCDKELHGFIJ
 
@@ -6550,11 +6546,13 @@ Total cost:6
 [logMove:N, modelMove:>>, cost:1]
 [logMove:^, modelMove:^, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-[logMove:a, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: AB[\]N^AaO
+[logMove:>>, modelMove:`, cost:1]
+[logMove:a, modelMove:a, cost:0]
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: B[]N^AaO
 Log: B[]N^AaO
-Mod: AB[\]^
+Mod: AB[\]^`aNO
 
 318,1,0,
 Total cost:1
@@ -6566,15 +6564,15 @@ Total cost:1
 [logMove:V, modelMove:V, cost:0]
 [logMove:W, modelMove:W, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:>>, modelMove:Y, cost:1]
 [logMove:U, modelMove:U, cost:0]
+[logMove:>>, modelMove:Y, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPQTVWRYUXZNO
+Trace: ABPQTVWRUXZNO
 Log: ABPQTVWRUXZNO
-Mod: ABPQTVWRYUXZNO
+Mod: ABPQTVWRUYXZNO
 
 319,6,0,
 Total cost:6
@@ -6592,7 +6590,7 @@ Total cost:6
 [logMove:U, modelMove:U, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABZPQTVRPWXUNO
+Trace: ABZQTVRPWXUNO
 Log: ABZQTVRPWXUNO
 Mod: ABPQTVRWU
 
@@ -6614,11 +6612,11 @@ Total cost:3
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:C, modelMove:>>, cost:1]
-Trace: ABCKDEIGFLHOJMNC
+Trace: ABKDEIGFLHOJMNC
 Log: ABKDEIGFLHOJMNC
 Mod: ABCKDEIGFLHJMN
 
-321,4,0,
+321,4,1,
 Total cost:4
 [logMove:b, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -6631,11 +6629,11 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: bAB[AbcdaNO
+Trace: bB[AcdaNO
 Log: bB[AcdaNO
 Mod: AB[bcdaNO
 
-322,8,1,
+322,8,0,
 Total cost:8
 [logMove:a, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -6647,7 +6645,7 @@ Total cost:8
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: aABdcb[ANO
+Trace: aBdcb[ANO
 Log: aBdcb[ANO
 Mod: AB[
 
@@ -6672,7 +6670,7 @@ Total cost:8
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ADCBCKELGIFMDHFJMNO
+Trace: ADCBKELGIFMHJNO
 Log: ADCBKELGIFMHJNO
 Mod: ABCKELGIDHFJMNO
 
@@ -6689,15 +6687,15 @@ Total cost:4
 [logMove:G, modelMove:>>, cost:1]
 [logMove:E, modelMove:E, cost:0]
 [logMove:I, modelMove:I, cost:0]
-[logMove:F, modelMove:F, cost:0]
 [logMove:>>, modelMove:G, cost:1]
+[logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKMLDHGEIFGJMNO
+Trace: ABCKMLDHGEIFJNO
 Log: ABCKMLDHGEIFJNO
-Mod: ABCKLDHEIFGJMNO
+Mod: ABCKLDHEIGFJMNO
 
 325,5,0,
 Total cost:5
@@ -6738,11 +6736,10 @@ Total cost:4
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:e, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: AB[NefaeNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: AB[NfaeO
 Log: AB[NfaeO
-Mod: AB[efaNO
+Mod: AB[efa
 
 328,19,1,
 Total cost:19
@@ -6774,7 +6771,7 @@ Total cost:19
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABRPQRTSQVUQVWPSXQRSZRSQRQNO
+Trace: ABRRTSQVUQWPSXQRSZRSQRQNO
 Log: ABRRTSQVUQWPSXQRSZRSQRQNO
 Mod: ABPQRTSQUVWR
 
@@ -6796,11 +6793,11 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKDHEGLIFHJMNO
+Trace: ABCKDEGLIFHJMNO
 Log: ABCKDEGLIFHJMNO
 Mod: ABCKDHEGLIFJMNO
 
-330,9,1,
+330,9,0,
 Total cost:9
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -6821,10 +6818,11 @@ Total cost:9
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
-[logMove:O, modelMove:>>, cost:1]
-Trace: ABPRTQVURYWXSQRSNQZO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: ABPRTQVURWXSQRSNQZO
 Log: ABPRTQVURWXSQRSNQZO
-Mod: ABPTQVURYWXZ
+Mod: ABPTQVURYWXZNO
 
 331,1,0,
 Total cost:1
@@ -6865,7 +6863,7 @@ Total cost:16
 [logMove:R, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: PBVRAQWSUBPTQXZRSQRRNO
+Trace: PBVRAQWSUTQXZSQRRNO
 Log: PBVRAQWSUTQXZSQRRNO
 Mod: ABPTQRSQR
 
@@ -6895,7 +6893,7 @@ Total cost:9
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPUQTVWRUSXQRSRQSQRYZNO
+Trace: ABPUQTVWRSXQRSRQSQRZNO
 Log: ABPUQTVWRSXQRSRQSQRZNO
 Mod: ABPQTVWRUSXQRYZNO
 
@@ -6981,7 +6979,7 @@ Total cost:4
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCEKLDHFIGNFJMO
+Trace: ABCEKLDHIGNFJMO
 Log: ABCEKLDHIGNFJMO
 Mod: ABCEKLDHFIGJM
 
@@ -7013,14 +7011,13 @@ Total cost:10
 [logMove:I, modelMove:I, cost:0]
 [logMove:J, modelMove:>>, cost:1]
 [logMove:G, modelMove:G, cost:0]
-[logMove:>>, modelMove:K, cost:1]
-[logMove:L, modelMove:L, cost:0]
+[logMove:L, modelMove:>>, cost:1]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:D, modelMove:D, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: KFABCNEHAIJGKLMDO
+Trace: KFBCNEHAIJGLMDO
 Log: KFBCNEHAIJGLMDO
-Mod: ABCEIGKLD
+Mod: ABCEIGD
 
 341,2,1,
 Total cost:2
@@ -7038,18 +7035,19 @@ Total cost:2
 [logMove:G, modelMove:G, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
-[logMove:O, modelMove:>>, cost:1]
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
 Trace: ABCNDKLHEIFGJMO
 Log: ABCNDKLHEIFGJMO
-Mod: ABCDKLHEIFGJM
+Mod: ABCDKLHEIFGJMNO
 
 342,9,1,
 Total cost:9
 [logMove:C, modelMove:>>, cost:1]
-[logMove:B, modelMove:>>, cost:1]
+[logMove:>>, modelMove:A, cost:1]
+[logMove:B, modelMove:B, cost:0]
 [logMove:E, modelMove:>>, cost:1]
-[logMove:A, modelMove:A, cost:0]
-[logMove:>>, modelMove:B, cost:1]
+[logMove:A, modelMove:>>, cost:1]
 [logMove:>>, modelMove:C, cost:1]
 [logMove:K, modelMove:K, cost:0]
 [logMove:D, modelMove:D, cost:0]
@@ -7058,15 +7056,15 @@ Total cost:9
 [logMove:H, modelMove:H, cost:0]
 [logMove:>>, modelMove:E, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:>>, modelMove:G, cost:1]
 [logMove:F, modelMove:F, cost:0]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: CBEABCKDLGHEIGFJMON
+Trace: CBEAKDLGHIFJMON
 Log: CBEAKDLGHIFJMON
-Mod: ABCKDLHEIGFJMN
+Mod: ABCKDLHEIFGJMN
 
 343,10,1,
 Total cost:10
@@ -7081,14 +7079,14 @@ Total cost:10
 [logMove:P, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:U, modelMove:U, cost:0]
-[logMove:W, modelMove:W, cost:0]
 [logMove:>>, modelMove:V, cost:1]
+[logMove:W, modelMove:W, cost:0]
 [logMove:X, modelMove:X, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: RABVPQTNPAUWVXZO
+Trace: RBVQTNPAUWXZO
 Log: RBVQTNPAUWXZO
-Mod: ABPQTUWVX
+Mod: ABPQTUVWX
 
 344,4,0,
 Total cost:4
@@ -7126,7 +7124,7 @@ Trace: AB[OdabNg
 Log: AB[OdabNg
 Mod: AB[bg
 
-346,4,1,
+346,4,0,
 Total cost:4
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
@@ -7138,7 +7136,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABN[AefaNO
+Trace: BN[AefaO
 Log: BN[AefaO
 Mod: AB[efaNO
 
@@ -7158,11 +7156,11 @@ Total cost:7
 [logMove:X, modelMove:>>, cost:1]
 [logMove:W, modelMove:W, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: UABPQTRNVZAXWO
+Trace: UBPQTRNVZAXWO
 Log: UBPQTRNVZAXWO
 Mod: ABPQTRVW
 
-348,2,0,
+348,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7174,7 +7172,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -7190,11 +7188,11 @@ Total cost:5
 [logMove:d, modelMove:d, cost:0]
 [logMove:b, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB[aNbgdbO
+Trace: AB[aNgdbO
 Log: AB[aNgdbO
 Mod: AB[bgd
 
-350,8,1,
+350,8,0,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7216,7 +7214,7 @@ Total cost:8
 [logMove:S, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPTQVWRUQZXRSXQRSNO
+Trace: ABPTQVWRUQZXRSQRSNO
 Log: ABPTQVWRUQZXRSQRSNO
 Mod: ABPTQVWRUSXQR
 
@@ -7225,24 +7223,24 @@ Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
 [logMove:C, modelMove:C, cost:0]
-[logMove:>>, modelMove:D, cost:1]
-[logMove:H, modelMove:H, cost:0]
+[logMove:H, modelMove:>>, cost:1]
 [logMove:E, modelMove:E, cost:0]
 [logMove:M, modelMove:>>, cost:1]
-[logMove:>>, modelMove:K, cost:1]
-[logMove:L, modelMove:L, cost:0]
+[logMove:L, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
 [logMove:G, modelMove:G, cost:0]
-[logMove:K, modelMove:>>, cost:1]
+[logMove:K, modelMove:K, cost:0]
 [logMove:F, modelMove:F, cost:0]
+[logMove:>>, modelMove:L, cost:1]
 [logMove:J, modelMove:J, cost:0]
-[logMove:D, modelMove:>>, cost:1]
+[logMove:D, modelMove:D, cost:0]
+[logMove:>>, modelMove:H, cost:1]
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCDHEMKLIGKFJDMNO
+Trace: ABCHEMLIGKFJDNO
 Log: ABCHEMLIGKFJDNO
-Mod: ABCDHEKLIGFJMNO
+Mod: ABCEIGKFLJDHMNO
 
 352,4,0,
 Total cost:4
@@ -7255,11 +7253,11 @@ Total cost:4
 [logMove:a, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:^, modelMove:^, cost:0]
-Trace: AB[\]OaN^
+Trace: AB[]OaN^
 Log: AB[]OaN^
 Mod: AB[\]^
 
-353,6,0,
+353,6,1,
 Total cost:6
 [logMove:a, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -7287,7 +7285,7 @@ Trace: ABfO[aNe
 Log: ABfO[aNe
 Mod: AB[e
 
-355,4,1,
+355,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7306,7 +7304,7 @@ Total cost:4
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKMDLHEIGFJEMNO
+Trace: ABCKMDLHIGFJENO
 Log: ABCKMDLHIGFJENO
 Mod: ABCKDLHEIGFJMNO
 
@@ -7344,7 +7342,7 @@ Total cost:10
 [logMove:H, modelMove:H, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AKCIBCEMLGIFJDKHNO
+Trace: AKCIBEMLGFJDHNO
 Log: AKCIBEMLGFJDHNO
 Mod: ABCEGIFJDKH
 
@@ -7359,7 +7357,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: A[B[efaNO
+Trace: A[BefaNO
 Log: A[BefaNO
 Mod: AB[efaNO
 
@@ -7376,7 +7374,7 @@ Total cost:5
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-Trace: AB[\]^`aONA
+Trace: B[]^aONA
 Log: B[]^aONA
 Mod: AB[\]^`aN
 
@@ -7391,13 +7389,12 @@ Total cost:4
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^N`aNO
+[logMove:O, modelMove:>>, cost:1]
+Trace: AB[]^NaO
 Log: AB[]^NaO
-Mod: AB[\]^`aNO
+Mod: AB[\]^`a
 
-361,11,1,
+361,11,2,
 Total cost:11
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7410,10 +7407,10 @@ Total cost:11
 [logMove:R, modelMove:R, cost:0]
 [logMove:W, modelMove:W, cost:0]
 [logMove:V, modelMove:V, cost:0]
+[logMove:S, modelMove:>>, cost:1]
+[logMove:P, modelMove:>>, cost:1]
 [logMove:>>, modelMove:U, cost:1]
 [logMove:S, modelMove:S, cost:0]
-[logMove:P, modelMove:>>, cost:1]
-[logMove:S, modelMove:>>, cost:1]
 [logMove:>>, modelMove:X, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
@@ -7422,7 +7419,7 @@ Total cost:11
 [logMove:R, modelMove:R, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABXUNPTQRWVUSPSXQRSQRZO
+Trace: ABXUNTQRWVSPSQRQRZO
 Log: ABXUNTQRWVSPSQRQRZO
 Mod: ABPTQRWVUSXQRSQR
 
@@ -7435,14 +7432,14 @@ Total cost:6
 [logMove:d, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:b, modelMove:b, cost:0]
-[logMove:>>, modelMove:g, cost:1]
+[logMove:>>, modelMove:c, cost:1]
 [logMove:>>, modelMove:d, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: gAB[dAbgdaNO
+Trace: gB[dAbaNO
 Log: gB[dAbaNO
-Mod: AB[bgdaNO
+Mod: AB[bcdaNO
 
 363,9,0,
 Total cost:9
@@ -7462,7 +7459,7 @@ Total cost:9
 [logMove:J, modelMove:>>, cost:1]
 [logMove:G, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: MABLCHEDKOFAIJGN
+Trace: MBLCHEDKOFAIJGN
 Log: MBLCHEDKOFAIJGN
 Mod: ABCEDKFI
 
@@ -7485,12 +7482,11 @@ Total cost:9
 [logMove:X, modelMove:X, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:R, modelMove:>>, cost:1]
-[logMove:>>, modelMove:Y, cost:1]
-[logMove:Z, modelMove:Z, cost:0]
+[logMove:Z, modelMove:>>, cost:1]
 [logMove:P, modelMove:>>, cost:1]
-Trace: ABOPQTWRUSQQRVXNRYZP
+Trace: ABOTWRUSQQVXNRZP
 Log: ABOTWRUSQQVXNRZP
-Mod: ABPQTWRUSQRVXYZ
+Mod: ABPQTWRUSQRVX
 
 365,6,0,
 Total cost:6
@@ -7502,11 +7498,13 @@ Total cost:6
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
-[logMove:N, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: BaAB[\]^NO
+[logMove:>>, modelMove:`, cost:1]
+[logMove:>>, modelMove:a, cost:1]
+[logMove:N, modelMove:N, cost:0]
+[logMove:O, modelMove:O, cost:0]
+Trace: BaA[]^NO
 Log: BaA[]^NO
-Mod: AB[\]^
+Mod: AB[\]^`aNO
 
 366,2,1,
 Total cost:2
@@ -7526,7 +7524,7 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKEIDHLFGDJMNO
+Trace: ABCKEIHLFGDJMNO
 Log: ABCKEIHLFGDJMNO
 Mod: ABCKEIDHLFGJMNO
 
@@ -7569,7 +7567,7 @@ Total cost:23
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: SABPTRQRWSUQVXQRARRSQRSQRSQRSQSQQYZNO
+Trace: SBPTRQRWSUVXQRARRSQRSQRSQRSQSQQZNO
 Log: SBPTRQRWSUVXQRARRSQRSQRSQRSQSQQZNO
 Mod: ABPTQRWSUQVXRYZNO
 
@@ -7594,7 +7592,7 @@ Total cost:6
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:^, modelMove:>>, cost:1]
-Trace: AB[\]^_]^_O]_]^`aN^
+Trace: AB[]^_]^_O]_]^aN^
 Log: AB[]^_]^_O]_]^aN^
 Mod: AB[\]^_]^_]^`aN
 
@@ -7616,11 +7614,11 @@ Total cost:8
 [logMove:J, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: GABCKMEDILFAHJNO
+Trace: GBCKMEDILFAHJNO
 Log: GBCKMEDILFAHJNO
 Mod: ABCKEDILH
 
-370,7,1,
+370,7,0,
 Total cost:7
 [logMove:O, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -7640,7 +7638,7 @@ Total cost:7
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-Trace: OABCEDILGFHKLFJMNA
+Trace: OBCEDILGFHKJMNA
 Log: OBCEDILGFHKJMNA
 Mod: ABCEDIGHKLFJMN
 
@@ -7674,7 +7672,7 @@ Total cost:6
 [logMove:O, modelMove:>>, cost:1]
 [logMove:^, modelMove:^, cost:0]
 [logMove:^, modelMove:>>, cost:1]
-Trace: AB[\]a^_]NO^^
+Trace: AB[]a_]NO^^
 Log: AB[]a_]NO^^
 Mod: AB[\]^_]^
 
@@ -7691,7 +7689,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ^AB[\]^`aNO
+Trace: ^AB[]aNO
 Log: ^AB[]aNO
 Mod: AB[\]^`aNO
 
@@ -7728,7 +7726,7 @@ Total cost:17
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABSPQTRWSQQXRSQRSQRSQRUYVRUXZNO
+Trace: ABSPQTRWSQQXRSQRSQRSQRUVRZNO
 Log: ABSPQTRWSQQXRSQRSQRSQRUVRZNO
 Mod: ABPQTRWSQRYVUXZNO
 
@@ -7746,7 +7744,7 @@ Trace: ABO[eNaf
 Log: ABO[eNaf
 Mod: AB[ef
 
-376,8,1,
+376,8,0,
 Total cost:8
 [logMove:T, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -7765,11 +7763,11 @@ Total cost:8
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: TABWPATQUVRYWXZON
+Trace: TBWPAQUVRXZON
 Log: TBWPAQUVRXZON
 Mod: ABPTQUVRYWXZN
 
-377,1,0,
+377,1,1,
 Total cost:1
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7780,16 +7778,16 @@ Total cost:1
 [logMove:U, modelMove:U, cost:0]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:X, modelMove:X, cost:0]
 [logMove:>>, modelMove:Y, cost:1]
+[logMove:X, modelMove:X, cost:0]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPTWVUQRXYZNO
+Trace: ABPTWVUQRXZNO
 Log: ABPTWVUQRXZNO
-Mod: ABPTWVUQRXYZNO
+Mod: ABPTWVUQRYXZNO
 
-378,9,1,
+378,9,0,
 Total cost:9
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -7809,7 +7807,7 @@ Total cost:9
 [logMove:J, modelMove:J, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-Trace: NABCEMKLGDIHFDHJOA
+Trace: NBCEMKLGIHFDJOA
 Log: NBCEMKLGIHFDJOA
 Mod: ABCEKLGDIFHJ
 
@@ -7827,7 +7825,7 @@ Trace: [aB]^ANO
 Log: [aB]^ANO
 Mod: A
 
-380,6,0,
+380,6,1,
 Total cost:6
 [logMove:N, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -7838,11 +7836,10 @@ Total cost:6
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
 [logMove:A, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: NABe[efaANO
+[logMove:O, modelMove:>>, cost:1]
+Trace: NBe[faAO
 Log: NBe[faAO
-Mod: AB[efaNO
+Mod: AB[efa
 
 381,2,0,
 Total cost:2
@@ -7855,11 +7852,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: [AB[efaNO
+Trace: [ABefaNO
 Log: [ABefaNO
 Mod: AB[efaNO
 
-382,5,1,
+382,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7877,7 +7874,7 @@ Total cost:5
 [logMove:M, modelMove:>>, cost:1]
 [logMove:L, modelMove:L, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCKEDNGIFHIJMLO
+Trace: ABCKEDNGIFHJMLO
 Log: ABCKEDNGIFHJMLO
 Mod: ABCKEDGFHIJL
 
@@ -7908,7 +7905,7 @@ Total cost:5
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:d, modelMove:>>, cost:1]
-Trace: [AB[bgOdaNd
+Trace: [ABbgOaNd
 Log: [ABbgOaNd
 Mod: AB[bgdaN
 
@@ -7924,7 +7921,7 @@ Total cost:4
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB][^efaNO
+Trace: AB][^aNO
 Log: AB][^aNO
 Mod: AB[efaNO
 
@@ -7946,11 +7943,11 @@ Total cost:4
 [logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
-Trace: ABCEOKNDHILGLFJM
+Trace: ABCEOKNDHILGFJM
 Log: ABCEOKNDHILGFJM
 Mod: ABCEKDHIGLFJM
 
-387,1,1,
+387,1,0,
 Total cost:1
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -7991,7 +7988,7 @@ Total cost:10
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: RABPTQRUWVSQZWXRSQRRSQNO
+Trace: RABPTQRUWVSQZXSQRRSQNO
 Log: RABPTQRUWVSQZXSQRRSQNO
 Mod: ABPTQRUVSQWXRSQR
 
@@ -8014,7 +8011,7 @@ Trace: ABRXPOVQTWUZN
 Log: ABRXPOVQTWUZN
 Mod: ABPQTWU
 
-390,7,1,
+390,7,0,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8026,15 +8023,15 @@ Total cost:7
 [logMove:L, modelMove:L, cost:0]
 [logMove:D, modelMove:D, cost:0]
 [logMove:M, modelMove:>>, cost:1]
-[logMove:>>, modelMove:H, cost:1]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:F, modelMove:F, cost:0]
 [logMove:J, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
 [logMove:H, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCNGKELDMHFJIHO
+Trace: ABCNGKELDMFJIHO
 Log: ABCNGKELDMFJIHO
-Mod: ABCKELDHFI
+Mod: ABCKELDGFI
 
 391,2,0,
 Total cost:2
@@ -8051,7 +8048,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^_]^`aNO
+Trace: AB[]^_]^aNO
 Log: AB[]^_]^aNO
 Mod: AB[\]^_]^`aNO
 
@@ -8066,11 +8063,11 @@ Total cost:4
 [logMove:a, modelMove:>>, cost:1]
 [logMove:^, modelMove:^, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB[\]Na^O
+Trace: AB[]Na^O
 Log: AB[]Na^O
 Mod: AB[\]^
 
-393,5,1,
+393,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8088,7 +8085,7 @@ Total cost:5
 [logMove:J, modelMove:J, cost:0]
 [logMove:I, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABMCKELIDFNGHJIO
+Trace: ABMCKELDFNGHJIO
 Log: ABMCKELDFNGHJIO
 Mod: ABCKELIDFGHJ
 
@@ -8110,11 +8107,11 @@ Total cost:9
 [logMove:K, modelMove:K, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ACBJFCELMIDGHKNO
+Trace: ACBJFELMIDGHKNO
 Log: ACBJFELMIDGHKNO
 Mod: ABCEIDGK
 
-395,5,1,
+395,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:>>, modelMove:B, cost:1]
@@ -8133,7 +8130,7 @@ Total cost:5
 [logMove:R, modelMove:R, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPQTZRWVSUXBQRNO
+Trace: APQTZRWVSUXBQRNO
 Log: APQTZRWVSUXBQRNO
 Mod: ABPQTRWVSUXQR
 
@@ -8148,10 +8145,11 @@ Total cost:4
 [logMove:^, modelMove:^, cost:0]
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
-[logMove:O, modelMove:>>, cost:1]
-Trace: AB[N\]^`aO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: AB[N]^aO
 Log: AB[N]^aO
-Mod: AB[\]^`a
+Mod: AB[\]^`aNO
 
 397,9,1,
 Total cost:9
@@ -8171,11 +8169,11 @@ Total cost:9
 [logMove:I, modelMove:I, cost:0]
 [logMove:D, modelMove:D, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: BAGBCKEMLJFNHIDO
+Trace: BAGCKEMLJFNHIDO
 Log: BAGCKEMLJFNHIDO
 Mod: ABCKELID
 
-398,6,1,
+398,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8191,7 +8189,7 @@ Total cost:6
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:W, modelMove:W, cost:0]
-Trace: ABXPQTPOVURZNW
+Trace: ABXQTPOVURZNW
 Log: ABXQTPOVURZNW
 Mod: ABPQTVURW
 
@@ -8213,7 +8211,7 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:G, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABCDKNELGIHFJMGO
+Trace: ABCDKNELIHFJMGO
 Log: ABCDKNELIHFJMGO
 Mod: ABCDKELGIHFJM
 
@@ -8237,7 +8235,7 @@ Total cost:6
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[^\]^_]^_]]^`aNO
+Trace: AB[^^_]^_]]aNO
 Log: AB[^^_]^_]]aNO
 Mod: AB[\]^_]^_]^`aNO
 
@@ -8253,11 +8251,11 @@ Total cost:5
 [logMove:d, modelMove:d, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:b, modelMove:>>, cost:1]
-Trace: OaAB[bcdNb
+Trace: OaAB[cdNb
 Log: OaAB[cdNb
 Mod: AB[bcd
 
-402,4,1,
+402,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8293,7 +8291,7 @@ Trace: ^a[]^_]BANO
 Log: ^a[]^_]BANO
 Mod: A
 
-404,9,2,
+404,9,1,
 Total cost:9
 [logMove:A, modelMove:A, cost:0]
 [logMove:P, modelMove:>>, cost:1]
@@ -8312,11 +8310,11 @@ Total cost:9
 [logMove:R, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: APBQPQTRUVWSXNRZO
+Trace: APBQQTRUVWSXNRZO
 Log: APBQQTRUVWSXNRZO
 Mod: ABPQTRUVS
 
-405,6,0,
+405,6,1,
 Total cost:6
 [logMove:^, modelMove:>>, cost:1]
 [logMove:[, modelMove:>>, cost:1]
@@ -8329,11 +8327,11 @@ Total cost:6
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ^[]AB[efaNO
+Trace: ^[]ABaNO
 Log: ^[]ABaNO
 Mod: AB[efaNO
 
-406,9,1,
+406,9,0,
 Total cost:9
 [logMove:A, modelMove:A, cost:0]
 [logMove:V, modelMove:>>, cost:1]
@@ -8355,7 +8353,7 @@ Total cost:9
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AVBPTQWQURSXQRSBRZNO
+Trace: AVPTQWQURSXQRSBRZNO
 Log: AVPTQWQURSXQRSBRZNO
 Mod: ABPTQWURSQRS
 
@@ -8410,11 +8408,11 @@ Total cost:5
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:], modelMove:>>, cost:1]
-Trace: AB[\]^_O]^`aN]
+Trace: AB[]^_O^aN]
 Log: AB[]^_O^aN]
 Mod: AB[\]^_]^`aN
 
-410,6,1,
+410,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8449,11 +8447,11 @@ Total cost:5
 [logMove:a, modelMove:a, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:N, cost:0]
-Trace: AdB[bcBdaON
+Trace: Ad[bcBaON
 Log: Ad[bcBaON
 Mod: AB[bcdaN
 
-412,9,5,
+412,9,1,
 Total cost:9
 [logMove:X, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -8472,11 +8470,12 @@ Total cost:9
 [logMove:A, modelMove:>>, cost:1]
 [logMove:>>, modelMove:X, cost:1]
 [logMove:R, modelMove:R, cost:0]
-[logMove:Z, modelMove:>>, cost:1]
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:Z, modelMove:Z, cost:0]
 [logMove:S, modelMove:>>, cost:1]
-Trace: XABOPTQWVRSUQNAXRZS
+Trace: XBOPTQWVRUQNARZS
 Log: XBOPTQWVRUQNARZS
-Mod: ABPTQWVRSUQXR
+Mod: ABPTQWVRSUQXRYZ
 
 413,4,0,
 Total cost:4
@@ -8491,7 +8490,7 @@ Total cost:4
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]a^`aNO
+Trace: AB[]a^NO
 Log: AB[]a^NO
 Mod: AB[\]^`aNO
 
@@ -8507,11 +8506,11 @@ Total cost:6
 [logMove:^, modelMove:^, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
-Trace: AOB[\]a^NB
+Trace: AO[]a^NB
 Log: AO[]a^NB
 Mod: AB[\]^
 
-415,2,0,
+415,2,1,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8523,7 +8522,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -8543,11 +8542,11 @@ Total cost:2
 [logMove:X, modelMove:X, cost:0]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABPOQTVUWRYXZN
+Trace: ABPOQTVUWRXZN
 Log: ABPOQTVUWRXZN
 Mod: ABPQTVUWRYXZN
 
-417,3,1,
+417,3,0,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8588,7 +8587,7 @@ Total cost:10
 [logMove:>>, modelMove:S, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
-Trace: XABPTQRWVUSAZXQRSOQRNSQR
+Trace: XBPTRWVUSAZQSOQRNQR
 Log: XBPTRWVUSAZQSOQRNQR
 Mod: ABPTQRWVUSXQRSQRSQR
 
@@ -8615,14 +8614,12 @@ Total cost:6
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
-[logMove:>>, modelMove:`, cost:1]
-[logMove:a, modelMove:a, cost:0]
+[logMove:a, modelMove:>>, cost:1]
 [logMove:A, modelMove:>>, cost:1]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: NAB[\]^`aANO
+[logMove:O, modelMove:>>, cost:1]
+Trace: NB[]^aAO
 Log: NB[]^aAO
-Mod: AB[\]^`aNO
+Mod: AB[\]^
 
 421,8,0,
 Total cost:8
@@ -8632,13 +8629,14 @@ Total cost:8
 [logMove:b, modelMove:>>, cost:1]
 [logMove:[, modelMove:[, cost:0]
 [logMove:a, modelMove:>>, cost:1]
-[logMove:g, modelMove:>>, cost:1]
+[logMove:>>, modelMove:b, cost:1]
+[logMove:g, modelMove:g, cost:0]
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABdb[agANO
+Trace: Bdb[agANO
 Log: Bdb[agANO
-Mod: AB[
+Mod: AB[bg
 
 422,3,1,
 Total cost:3
@@ -8652,7 +8650,7 @@ Total cost:3
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:g, modelMove:>>, cost:1]
-Trace: AB[bgdOaNg
+Trace: AB[bdOaNg
 Log: AB[bdOaNg
 Mod: AB[bgdaN
 
@@ -8675,7 +8673,7 @@ Total cost:4
 [logMove:E, modelMove:>>, cost:1]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCDKLNHEIGFJMENO
+Trace: ABCDKLNHIGFJMEO
 Log: ABCDKLNHIGFJMEO
 Mod: ABCDKLHEIGFJMNO
 
@@ -8695,7 +8693,7 @@ Total cost:6
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:U, modelMove:U, cost:0]
-Trace: PABPTQRWOVXZNU
+Trace: PABTQRWOVXZNU
 Log: PABTQRWOVXZNU
 Mod: ABPTQRWVU
 
@@ -8718,7 +8716,7 @@ Total cost:6
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:M, modelMove:M, cost:0]
-Trace: ABHCDKEGHLICFJONM
+Trace: ABHDKEGLICFJONM
 Log: ABHDKEGLICFJONM
 Mod: ABCDKEGHLIFJM
 
@@ -8731,13 +8729,11 @@ Total cost:4
 [logMove:>>, modelMove:\, cost:1]
 [logMove:], modelMove:], cost:0]
 [logMove:^, modelMove:^, cost:0]
-[logMove:>>, modelMove:`, cost:1]
-[logMove:a, modelMove:a, cost:0]
-[logMove:>>, modelMove:N, cost:1]
-[logMove:O, modelMove:O, cost:0]
-Trace: ABN[\]^`aNO
+[logMove:a, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABN[]^aO
 Log: ABN[]^aO
-Mod: AB[\]^`aNO
+Mod: AB[\]^
 
 427,8,0,
 Total cost:8
@@ -8770,21 +8766,21 @@ Total cost:9
 [logMove:K, modelMove:K, cost:0]
 [logMove:E, modelMove:E, cost:0]
 [logMove:L, modelMove:L, cost:0]
-[logMove:G, modelMove:G, cost:0]
+[logMove:G, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:F, modelMove:>>, cost:1]
+[logMove:F, modelMove:F, cost:0]
 [logMove:>>, modelMove:D, cost:1]
 [logMove:H, modelMove:H, cost:0]
-[logMove:>>, modelMove:F, cost:1]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:C, modelMove:>>, cost:1]
 [logMove:D, modelMove:>>, cost:1]
-Trace: AOBCKELGIFDHFJMNBCD
+Trace: AOKELGIFHJMNBCD
 Log: AOKELGIFHJMNBCD
-Mod: ABCKELGIDHFJMN
+Mod: ABCKELIFDHGJMN
 
 429,5,0,
 Total cost:5
@@ -8804,7 +8800,7 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AUBPQTWRVBYUXZNO
+Trace: AUPQTWRVBXZNO
 Log: AUPQTWRVBXZNO
 Mod: ABPQTWRVYUXZNO
 
@@ -8826,7 +8822,7 @@ Total cost:8
 [logMove:C, modelMove:>>, cost:1]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ANBFCDKHELJGICMO
+Trace: ANBFDKHELJGICMO
 Log: ANBFDKHELJGICMO
 Mod: ABCDKHELI
 
@@ -8875,7 +8871,7 @@ Total cost:23
 [logMove:>>, modelMove:Z, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AQBPQRSTWVQZURSQXRSQRSUQRSQRSSQRSQRRRQRYZNO
+Trace: AQBPQSTWVQZSQXRSRSUQRSQRSSQRSQRRRQRNO
 Log: AQBPQSTWVQZSQXRSRSUQRSQRSSQRSQRRRQRNO
 Mod: ABPQRSTWVQURSQXRSQRSQRYZNO
 
@@ -8891,17 +8887,17 @@ Total cost:5
 [logMove:V, modelMove:V, cost:0]
 [logMove:U, modelMove:U, cost:0]
 [logMove:T, modelMove:>>, cost:1]
+[logMove:X, modelMove:X, cost:0]
 [logMove:>>, modelMove:R, cost:1]
 [logMove:>>, modelMove:Y, cost:1]
-[logMove:X, modelMove:X, cost:0]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPRQTWVUTRYXZNO
+Trace: ABPRQWVUTXZNO
 Log: ABPRQWVUTXZNO
-Mod: ABPQTWVURYXZNO
+Mod: ABPQTWVUXRYZNO
 
-433,5,0,
+433,5,1,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8910,16 +8906,16 @@ Total cost:5
 [logMove:U, modelMove:>>, cost:1]
 [logMove:T, modelMove:T, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:>>, modelMove:U, cost:1]
 [logMove:W, modelMove:W, cost:0]
 [logMove:V, modelMove:V, cost:0]
+[logMove:>>, modelMove:U, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
-Trace: ABPQUTRUWVXONZ
+Trace: ABPQUTRWVXONZ
 Log: ABPQUTRWVXONZ
-Mod: ABPQTRUWVX
+Mod: ABPQTRWVUX
 
 434,5,0,
 Total cost:5
@@ -8942,11 +8938,11 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: XABPTQVWRUBSXQRYZNO
+Trace: XAPTQVWRUBSQRZNO
 Log: XAPTQVWRUBSQRZNO
 Mod: ABPTQVWRUSXQRYZNO
 
-435,6,1,
+435,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:P, modelMove:>>, cost:1]
@@ -8963,11 +8959,11 @@ Total cost:6
 [logMove:>>, modelMove:S, cost:1]
 [logMove:X, modelMove:X, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: APBPTQNVWRUZSXO
+Trace: APBTQNVWRUZXO
 Log: APBTQNVWRUZXO
 Mod: ABPTQVWRUSX
 
-436,6,0,
+436,6,1,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -8989,7 +8985,7 @@ Trace: ABPQXTQVUWRSRZNO
 Log: ABPQXTQVUWRSRZNO
 Mod: ABPQTVUWRS
 
-437,5,1,
+437,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:O, modelMove:>>, cost:1]
@@ -9008,7 +9004,7 @@ Total cost:5
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:B, modelMove:>>, cost:1]
-Trace: AOBCEKLDHFIGFJMNB
+Trace: AOCEKLDHIGFJMNB
 Log: AOCEKLDHIGFJMNB
 Mod: ABCEKLDHFIGJMN
 
@@ -9040,7 +9036,7 @@ Total cost:16
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: SABPQQTWVQSURPRNRSQRAYXZNO
+Trace: SBQQTWVQSURPRNRSQRAXZO
 Log: SBQQTWVQSURPRNRSQRAXZO
 Mod: ABPQTWVURYXZNO
 
@@ -9060,11 +9056,13 @@ Total cost:7
 [logMove:F, modelMove:F, cost:0]
 [logMove:H, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:M, modelMove:>>, cost:1]
-[logMove:N, modelMove:>>, cost:1]
-Trace: ABCELKJGDOLFHIMN
+[logMove:>>, modelMove:J, cost:1]
+[logMove:>>, modelMove:H, cost:1]
+[logMove:M, modelMove:M, cost:0]
+[logMove:N, modelMove:N, cost:0]
+Trace: ABCELKJGDOFHIMN
 Log: ABCELKJGDOFHIMN
-Mod: ABCEKGDLFI
+Mod: ABCEKGDLFIJHMN
 
 440,6,1,
 Total cost:6
@@ -9077,15 +9075,15 @@ Total cost:6
 [logMove:W, modelMove:W, cost:0]
 [logMove:R, modelMove:R, cost:0]
 [logMove:N, modelMove:>>, cost:1]
-[logMove:>>, modelMove:Y, cost:1]
+[logMove:>>, modelMove:S, cost:1]
 [logMove:V, modelMove:V, cost:0]
 [logMove:U, modelMove:U, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:X, modelMove:X, cost:0]
-Trace: AOBPTQWRNYVUZBX
+Trace: AOPTQWRNVUZBX
 Log: AOPTQWRNVUZBX
-Mod: ABPTQWRYVUX
+Mod: ABPTQWRSVUX
 
 441,4,0,
 Total cost:4
@@ -9122,11 +9120,11 @@ Total cost:5
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: WABPQTQVRSUWQXRYZNO
+Trace: WABPQTQVRSUXRZNO
 Log: WABPQTQVRSUXRZNO
 Mod: ABPQTVRSUWQXRYZNO
 
-443,5,1,
+443,5,0,
 Total cost:5
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9158,11 +9156,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: A[B[efaNO
+Trace: A[BefaNO
 Log: A[BefaNO
 Mod: AB[efaNO
 
-445,4,0,
+445,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9181,11 +9179,11 @@ Total cost:4
 [logMove:M, modelMove:M, cost:0]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABKCDNKELHGFIJMNO
+Trace: ABKCDNELHGFIJMO
 Log: ABKCDNELHGFIJMO
 Mod: ABCDKELHGFIJMNO
 
-446,12,3,
+446,12,2,
 Total cost:12
 [logMove:B, modelMove:>>, cost:1]
 [logMove:L, modelMove:>>, cost:1]
@@ -9204,7 +9202,7 @@ Total cost:12
 [logMove:M, modelMove:>>, cost:1]
 [logMove:E, modelMove:E, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-Trace: BLABCKDNJGHIFCMEO
+Trace: BLAKDNJGHIFCMEO
 Log: BLAKDNJGHIFCMEO
 Mod: ABCKDHE
 
@@ -9217,17 +9215,17 @@ Total cost:9
 [logMove:>>, modelMove:B, cost:1]
 [logMove:P, modelMove:P, cost:0]
 [logMove:T, modelMove:T, cost:0]
-[logMove:R, modelMove:>>, cost:1]
+[logMove:>>, modelMove:Q, cost:1]
+[logMove:R, modelMove:R, cost:0]
 [logMove:V, modelMove:V, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
-[logMove:>>, modelMove:U, cost:1]
 [logMove:W, modelMove:W, cost:0]
-[logMove:X, modelMove:X, cost:0]
+[logMove:X, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AUNQBPTRVZUWXBO
+Trace: AUNQPTRVZWXBO
 Log: AUNQPTRVZWXBO
-Mod: ABPTVUWX
+Mod: ABPTQRVW
 
 448,10,0,
 Total cost:10
@@ -9245,17 +9243,14 @@ Total cost:10
 [logMove:I, modelMove:I, cost:0]
 [logMove:G, modelMove:>>, cost:1]
 [logMove:H, modelMove:H, cost:0]
-[logMove:>>, modelMove:G, cost:1]
-[logMove:>>, modelMove:L, cost:1]
-[logMove:>>, modelMove:J, cost:1]
-[logMove:M, modelMove:M, cost:0]
-[logMove:N, modelMove:N, cost:0]
-[logMove:O, modelMove:O, cost:0]
-Trace: LCABCEKFJDBIGHGLJMNO
+[logMove:M, modelMove:>>, cost:1]
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: LCAEKFJDBIGHMNO
 Log: LCAEKFJDBIGHMNO
-Mod: ABCEKFDIHGLJMNO
+Mod: ABCEKFDIH
 
-449,2,1,
+449,2,0,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9270,27 +9265,25 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^_]^`aNO
+Trace: AB[]^_]^aNO
 Log: AB[]^_]^aNO
 Mod: AB[\]^_]^`aNO
 
-450,8,0,
+450,8,1,
 Total cost:8
 [logMove:O, modelMove:>>, cost:1]
 [logMove:b, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
+[logMove:g, modelMove:>>, cost:1]
+[logMove:d, modelMove:>>, cost:1]
+[logMove:a, modelMove:>>, cost:1]
 [logMove:>>, modelMove:B, cost:1]
-[logMove:>>, modelMove:[, cost:1]
-[logMove:>>, modelMove:b, cost:1]
-[logMove:g, modelMove:g, cost:0]
-[logMove:d, modelMove:d, cost:0]
-[logMove:a, modelMove:a, cost:0]
-[logMove:[, modelMove:>>, cost:1]
-Trace: ObBNAB[bgda[
+[logMove:[, modelMove:[, cost:0]
+Trace: ObBNAgda[
 Log: ObBNAgda[
-Mod: AB[bgda
+Mod: AB[
 
 451,7,0,
 Total cost:7
@@ -9312,11 +9305,11 @@ Total cost:7
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ASBPTQRWVXUSXQRZNO
+Trace: ASBPTQRWVXUQRZNO
 Log: ASBPTQRWVXUQRZNO
 Mod: ABPTQRWVUSXQR
 
-452,2,1,
+452,2,0,
 Total cost:2
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9334,11 +9327,11 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKLEGFIHJDHMNO
+Trace: ABCKLEGFIHJDMNO
 Log: ABCKLEGFIHJDMNO
 Mod: ABCKLEGFIJDHMNO
 
-453,3,0,
+453,3,1,
 Total cost:3
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9355,7 +9348,7 @@ Total cost:3
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPTVRUQWXRYZNO
+Trace: ABPTVRUQWXZNO
 Log: ABPTVRUQWXZNO
 Mod: ABPTVUQWXRYZNO
 
@@ -9370,7 +9363,7 @@ Total cost:2
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[eafaNO
+Trace: AB[eafNO
 Log: AB[eafNO
 Mod: AB[efaNO
 
@@ -9392,11 +9385,11 @@ Total cost:2
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKEDHLGFHIJMNO
+Trace: ABCKEDLGFHIJMNO
 Log: ABCKEDLGFHIJMNO
 Mod: ABCKEDHLGFIJMNO
 
-456,6,1,
+456,6,0,
 Total cost:6
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9416,7 +9409,7 @@ Total cost:6
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCKFECDHLGFIHJMNO
+Trace: ABKFECDLGIHJMNO
 Log: ABKFECDLGIHJMNO
 Mod: ABCKEDHLGFIJMNO
 
@@ -9433,11 +9426,11 @@ Total cost:6
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: a[AB[efAaNO
+Trace: a[BefANO
 Log: a[BefANO
 Mod: AB[efaNO
 
-458,4,0,
+458,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9450,7 +9443,7 @@ Total cost:4
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]a^`aNO
+Trace: AB[]a^NO
 Log: AB[]a^NO
 Mod: AB[\]^`aNO
 
@@ -9463,12 +9456,13 @@ Total cost:2
 [logMove:e, modelMove:e, cost:0]
 [logMove:f, modelMove:f, cost:0]
 [logMove:a, modelMove:a, cost:0]
-[logMove:O, modelMove:>>, cost:1]
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
 Trace: AB[NefaO
 Log: AB[NefaO
-Mod: AB[efa
+Mod: AB[efaNO
 
-460,4,1,
+460,4,0,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9502,7 +9496,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
@@ -9526,7 +9520,7 @@ Total cost:6
 [logMove:>>, modelMove:M, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AGBCDKELBGIHFMJMNO
+Trace: AGCDKELBIHFMJNO
 Log: AGCDKELBIHFMJNO
 Mod: ABCDKELGIHFJMNO
 
@@ -9542,7 +9536,7 @@ Total cost:5
 [logMove:d, modelMove:d, cost:0]
 [logMove:b, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ANB[bgadbO
+Trace: ANB[gadbO
 Log: ANB[gadbO
 Mod: AB[bgd
 
@@ -9566,7 +9560,7 @@ Total cost:8
 [logMove:P, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABZRPTQVRUWXSQWPNO
+Trace: ABZRTQVRUXSQWPNO
 Log: ABZRTQVRUXSQWPNO
 Mod: ABPTQVRUWXSQ
 
@@ -9582,7 +9576,7 @@ Total cost:3
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: AOB[\]^`aN
+Trace: AOB[]^aN
 Log: AOB[]^aN
 Mod: AB[\]^`aN
 
@@ -9604,10 +9598,11 @@ Total cost:6
 [logMove:J, modelMove:J, cost:0]
 [logMove:M, modelMove:M, cost:0]
 [logMove:K, modelMove:>>, cost:1]
-[logMove:O, modelMove:>>, cost:1]
-Trace: LABCENDGHFKLIJMKO
+[logMove:>>, modelMove:N, cost:1]
+[logMove:O, modelMove:O, cost:0]
+Trace: LABCENDGHFIJMKO
 Log: LABCENDGHFIJMKO
-Mod: ABCEDGHFKLIJM
+Mod: ABCEDGHFKLIJMNO
 
 467,5,0,
 Total cost:5
@@ -9623,7 +9618,7 @@ Trace: AB]^Na[O
 Log: AB]^Na[O
 Mod: AB[
 
-468,25,6,
+468,25,9,
 Total cost:25
 [logMove:>>, modelMove:A, cost:1]
 [logMove:B, modelMove:B, cost:0]
@@ -9660,10 +9655,11 @@ Total cost:25
 [logMove:R, modelMove:>>, cost:1]
 [logMove:Q, modelMove:>>, cost:1]
 [logMove:R, modelMove:>>, cost:1]
-[logMove:Z, modelMove:>>, cost:1]
-Trace: ABPVTSWRQVUXQRQSRSQNRASQSSQRORSQRQRZ
+[logMove:>>, modelMove:Y, cost:1]
+[logMove:Z, modelMove:Z, cost:0]
+Trace: BPVTSWRQUXQRQSRSQNRASQSSQRORSQRQRZ
 Log: BPVTSWRQUXQRQSRSQNRASQSSQRORSQRQRZ
-Mod: ABPTWQVUXRSQR
+Mod: ABPTWQVUXRSQRYZ
 
 469,3,0,
 Total cost:3
@@ -9686,20 +9682,21 @@ Trace: ABCKMNEGLDFHIJO
 Log: ABCKMNEGLDFHIJO
 Mod: ABCKEGLDFHIJ
 
-470,8,1,
+470,8,0,
 Total cost:8
 [logMove:b, modelMove:>>, cost:1]
 [logMove:B, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
 [logMove:a, modelMove:>>, cost:1]
-[logMove:[, modelMove:>>, cost:1]
+[logMove:>>, modelMove:B, cost:1]
+[logMove:[, modelMove:[, cost:0]
 [logMove:d, modelMove:>>, cost:1]
 [logMove:g, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
 Trace: bBAa[dgNO
 Log: bBAa[dgNO
-Mod: A
+Mod: AB[
 
 471,7,0,
 Total cost:7
@@ -9715,7 +9712,7 @@ Trace: N[feBAaO
 Log: N[feBAaO
 Mod: A
 
-472,8,1,
+472,8,0,
 Total cost:8
 [logMove:G, modelMove:>>, cost:1]
 [logMove:>>, modelMove:A, cost:1]
@@ -9736,11 +9733,11 @@ Total cost:8
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: GABFCEKIDALGHFJLMNO
+Trace: GBFCEKIDALHJMNO
 Log: GBFCEKIDALHJMNO
 Mod: ABCEKIDGHFJLMNO
 
-473,9,0,
+473,9,1,
 Total cost:9
 [logMove:A, modelMove:A, cost:0]
 [logMove:M, modelMove:>>, cost:1]
@@ -9759,11 +9756,11 @@ Total cost:9
 [logMove:B, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AMBCHDKEJFLIGLBNO
+Trace: AMCHDKEJFIGLBNO
 Log: AMCHDKEJFIGLBNO
 Mod: ABCDKEFLIG
 
-474,8,1,
+474,8,0,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9780,13 +9777,11 @@ Total cost:8
 [logMove:>>, modelMove:I, cost:1]
 [logMove:G, modelMove:G, cost:0]
 [logMove:J, modelMove:J, cost:0]
-[logMove:>>, modelMove:L, cost:1]
-[logMove:>>, modelMove:M, cost:1]
-[logMove:N, modelMove:N, cost:0]
-[logMove:O, modelMove:O, cost:0]
-Trace: ABILMDCEDFKHIGJLMNO
+[logMove:N, modelMove:>>, cost:1]
+[logMove:O, modelMove:>>, cost:1]
+Trace: ABILMDCEFKHGJNO
 Log: ABILMDCEFKHGJNO
-Mod: ABCEDFKHIGJLMNO
+Mod: ABCEDFKHIGJ
 
 475,2,0,
 Total cost:2
@@ -9800,11 +9795,11 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AB[\]^`aNO
+Trace: AB[]^aNO
 Log: AB[]^aNO
 Mod: AB[\]^`aNO
 
-476,7,0,
+476,7,1,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9818,11 +9813,11 @@ Total cost:7
 [logMove:^, modelMove:^, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB][^\]_a^NO
+Trace: AB][^]_a^NO
 Log: AB][^]_a^NO
 Mod: AB[\]^
 
-477,8,1,
+477,8,0,
 Total cost:8
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9847,7 +9842,7 @@ Total cost:8
 [logMove:>>, modelMove:Y, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABPTOWVRQSUXQRSRQSQRYZN
+Trace: ABPTOWVRQSUXQRSRQSQRZN
 Log: ABPTOWVRQSUXQRSRQSQRZN
 Mod: ABPTWVQUXRSQRYZN
 
@@ -9876,7 +9871,7 @@ Total cost:12
 [logMove:S, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:Z, modelMove:Z, cost:0]
-Trace: ABPQTVORURYWXRQRSQSQSNZ
+Trace: ABPQTVORURWXRQRSQSQSNZ
 Log: ABPQTVORURWXRQRSQSQSNZ
 Mod: ABPQTVRUYWXZ
 
@@ -9901,7 +9896,7 @@ Trace: ABCDEOGLMIHFJNK
 Log: ABCDEOGLMIHFJNK
 Mod: ABCDEGIHFJK
 
-480,6,0,
+480,6,1,
 Total cost:6
 [logMove:b, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -9916,7 +9911,7 @@ Trace: bABagdN[O
 Log: bABagdN[O
 Mod: AB[
 
-481,7,1,
+481,7,0,
 Total cost:7
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -9930,13 +9925,12 @@ Total cost:7
 [logMove:F, modelMove:>>, cost:1]
 [logMove:L, modelMove:>>, cost:1]
 [logMove:I, modelMove:I, cost:0]
-[logMove:>>, modelMove:F, cost:1]
-[logMove:K, modelMove:K, cost:0]
+[logMove:K, modelMove:>>, cost:1]
 [logMove:M, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
-Trace: ABCEOJGDHFLIFKMN
+Trace: ABCEOJGDHFLIKMN
 Log: ABCEOJGDHFLIKMN
-Mod: ABCEGDHIFK
+Mod: ABCEGDHI
 
 482,4,0,
 Total cost:4
@@ -9949,7 +9943,7 @@ Total cost:4
 [logMove:^, modelMove:^, cost:0]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AB[a\]^NO
+Trace: AB[a]^NO
 Log: AB[a]^NO
 Mod: AB[\]^
 
@@ -9964,7 +9958,7 @@ Total cost:2
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: BAB[efaNO
+Trace: BA[efaNO
 Log: BA[efaNO
 Mod: AB[efaNO
 
@@ -9985,15 +9979,14 @@ Total cost:10
 [logMove:U, modelMove:>>, cost:1]
 [logMove:Q, modelMove:Q, cost:0]
 [logMove:R, modelMove:R, cost:0]
-[logMove:>>, modelMove:U, cost:1]
-[logMove:S, modelMove:S, cost:0]
+[logMove:S, modelMove:>>, cost:1]
 [logMove:R, modelMove:>>, cost:1]
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: ABPTBQQRVXWSUQRUSRZNO
+Trace: APTBQQRVXWSUQRSRZNO
 Log: APTBQQRVXWSUQRSRZNO
-Mod: ABPTQRVWSQRUS
+Mod: ABPTQRVWSQR
 
 485,4,0,
 Total cost:4
@@ -10007,7 +10000,7 @@ Total cost:4
 [logMove:O, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:a, modelMove:a, cost:0]
-Trace: gAB[bgdONa
+Trace: gAB[bdONa
 Log: gAB[bdONa
 Mod: AB[bgda
 
@@ -10053,7 +10046,7 @@ Total cost:17
 [logMove:Z, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: RABPUQTQRVQSXQRSRWSRSQAZNO
+Trace: RBPUQTQRVQSXQRSRWSRSQAZNO
 Log: RBPUQTQRVQSXQRSRWSRSQAZNO
 Mod: ABPQTRVSQR
 
@@ -10069,7 +10062,7 @@ Total cost:3
 [logMove:>>, modelMove:`, cost:1]
 [logMove:a, modelMove:a, cost:0]
 [logMove:N, modelMove:N, cost:0]
-Trace: ABO[\]^`aN
+Trace: ABO[]^aN
 Log: ABO[]^aN
 Mod: AB[\]^`aN
 
@@ -10092,7 +10085,7 @@ Total cost:9
 [logMove:A, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: MABCIEGKDLGHJFANO
+Trace: MBCIEKDLGHJFANO
 Log: MBCIEKDLGHJFANO
 Mod: ABCEGKDLHF
 
@@ -10109,7 +10102,7 @@ Total cost:6
 [logMove:B, modelMove:>>, cost:1]
 [logMove:>>, modelMove:N, cost:1]
 [logMove:O, modelMove:O, cost:0]
-Trace: AeB[NefaBNO
+Trace: Ae[NfaBO
 Log: Ae[NfaBO
 Mod: AB[efaNO
 
@@ -10129,7 +10122,7 @@ Total cost:9
 [logMove:O, modelMove:>>, cost:1]
 [logMove:U, modelMove:U, cost:0]
 [logMove:Z, modelMove:>>, cost:1]
-Trace: ANXQPVBPTRWOUZ
+Trace: ANXQPVBTRWOUZ
 Log: ANXQPVBTRWOUZ
 Mod: ABPTWU
 
@@ -10154,7 +10147,7 @@ Trace: ABFCKDMOENGJHIL
 Log: ABFCKDMOENGJHIL
 Mod: ABCKDEGIL
 
-493,0,1,
+493,0,0,
 Total cost:0
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -10169,7 +10162,7 @@ Trace: AB[bgdaNO
 Log: AB[bgdaNO
 Mod: AB[bgdaNO
 
-494,4,0,
+494,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:a, modelMove:>>, cost:1]
@@ -10182,11 +10175,11 @@ Total cost:4
 [logMove:>>, modelMove:a, cost:1]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: AaB[bgdBaNO
+Trace: Aa[bgdBNO
 Log: Aa[bgdBNO
 Mod: AB[bgdaNO
 
-495,21,2,
+495,21,1,
 Total cost:21
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -10224,11 +10217,11 @@ Total cost:21
 [logMove:Z, modelMove:Z, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABPTQURVWXSQQXRRSQSQRSQRSRSRRSQQYZNO
+Trace: ABPTQURVWSQQXRRSQSQRSQRSRSRRSQQZNO
 Log: ABPTQURVWSQQXRRSQSQRSQRSRSRRSQQZNO
 Mod: ABPTQURVWXSQRYZNO
 
-496,4,0,
+496,4,1,
 Total cost:4
 [logMove:A, modelMove:A, cost:0]
 [logMove:B, modelMove:B, cost:0]
@@ -10238,20 +10231,20 @@ Total cost:4
 [logMove:L, modelMove:>>, cost:1]
 [logMove:F, modelMove:F, cost:0]
 [logMove:I, modelMove:I, cost:0]
-[logMove:>>, modelMove:H, cost:1]
-[logMove:G, modelMove:G, cost:0]
-[logMove:H, modelMove:>>, cost:1]
+[logMove:G, modelMove:>>, cost:1]
+[logMove:H, modelMove:H, cost:0]
+[logMove:>>, modelMove:G, cost:1]
 [logMove:K, modelMove:K, cost:0]
 [logMove:J, modelMove:J, cost:0]
 [logMove:>>, modelMove:L, cost:1]
 [logMove:M, modelMove:M, cost:0]
 [logMove:N, modelMove:N, cost:0]
 [logMove:O, modelMove:O, cost:0]
-Trace: ABCEDLFIHGHKJLMNO
+Trace: ABCEDLFIGHKJMNO
 Log: ABCEDLFIGHKJMNO
 Mod: ABCEDFIHGKJLMNO
 
-497,9,1,
+497,9,0,
 Total cost:9
 [logMove:X, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -10270,7 +10263,7 @@ Total cost:9
 [logMove:R, modelMove:>>, cost:1]
 [logMove:P, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: XABNPQTVWZSURQRPO
+Trace: XABNQTVWZSURQRPO
 Log: XABNQTVWZSURQRPO
 Mod: ABPQTVWUR
 
@@ -10290,11 +10283,11 @@ Total cost:7
 [logMove:B, modelMove:>>, cost:1]
 [logMove:N, modelMove:>>, cost:1]
 [logMove:O, modelMove:>>, cost:1]
-Trace: AZWBPTQRVUXBNO
+Trace: AZWPTQRVUXBNO
 Log: AZWPTQRVUXBNO
 Mod: ABPTQRVU
 
-499,6,0,
+499,6,1,
 Total cost:6
 [logMove:d, modelMove:>>, cost:1]
 [logMove:A, modelMove:A, cost:0]
@@ -10305,9 +10298,8 @@ Total cost:6
 [logMove:b, modelMove:b, cost:0]
 [logMove:g, modelMove:g, cost:0]
 [logMove:O, modelMove:>>, cost:1]
-[logMove:>>, modelMove:d, cost:1]
-[logMove:a, modelMove:a, cost:0]
-Trace: dA[BN[bgOda
+[logMove:a, modelMove:>>, cost:1]
+Trace: dA[BNbgOa
 Log: dA[BNbgOa
-Mod: AB[bgda
+Mod: AB[bg
 
