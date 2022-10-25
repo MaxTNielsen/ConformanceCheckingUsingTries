@@ -137,7 +137,7 @@ public class Runner {
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "M1";
+                String sLog = "M2";
                 String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
@@ -146,10 +146,8 @@ public class Runner {
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, LogSortType.NONE, sLogPath);
 
                     if(checkerType == TRIE_STREAMING_TRIPLECOCC)
-                        //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", checkerType));
                         res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
                     else
-                        //res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", checkerType));
                         res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
 
                     FileWriter wr = new FileWriter(pathName);
@@ -176,8 +174,6 @@ public class Runner {
                     }
                     String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + logTypesMap.getKey() + fileType;
                     String proxyLogPath = logTypesMap.getValue();
-
-
                     try {
 
                         List<String> res = testOnConformanceApproximationResults(proxyLogPath, sLogPath, checkerType, LogSortType.NONE, sLogPath);
@@ -272,11 +268,9 @@ public class Runner {
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, LogSortType.NONE, sLogPath_complete);
                             if(c == TRIE_STREAMING_TRIPLECOCC)
-                                //res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, alignment,ExecutionTime_%1$s", c));
                                 res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
 
                             else
-                                //res.add(0, String.format("TraceId, total cost, alignment,ExecutionTime_%1$s", c));
                                 res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", c));
 
                             FileWriter wr = new FileWriter(pathName);
@@ -576,24 +570,22 @@ public class Runner {
 
             if (confCheckerType == TRIE_STREAMING) {
                 // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials
-                // checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class};
                 params = new Object[]{t, 1, 1, 100000, 100000};
                 javaClassLoader.invokeClass(className, type, params);
 
             } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
-                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap urls
-                // checker = new TripleCOCC(t, 1, 1, 100000, 100000, false, "avg", urls);
+                // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap urls, String logName, boolean isWarmStartAllStates
                 HashMap<String, String> urls = new HashMap<>();
                 urls.put("init", "http://127.0.0.1:5000/init");
                 urls.put("pred", "http://127.0.0.1:5000/predictions");
 
-                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName};
-                //params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName};
+                type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class, boolean.class};
+                //params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName, true};
+                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", urls, logName, true};
                 javaClassLoader.invokeClass(className, type, params);
-                //validateTrieEnrichmentLogic(t);
+                validateTrieEnrichmentLogic(t);
 
             } else {
                 if (confCheckerType == ConformanceCheckerType.TRIE_PREFIX)
