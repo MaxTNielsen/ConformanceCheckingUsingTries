@@ -18,7 +18,7 @@ public class TrieNode {
     private List<Integer> linkedTraces;
     private int level = 0;
     private int numChildren = 0;
-    private float confidenceCost;
+    private double confidenceCost;
 
     private double scaledConfCost;
 
@@ -229,11 +229,11 @@ public class TrieNode {
             return child;
     }
 
-    public float getConfidenceCost() {
+    public double getConfidenceCost() {
         return confidenceCost;
     }
 
-    public void setConfidenceCost(float confidenceCost) {
+    public void setConfidenceCost(double confidenceCost) {
         this.confidenceCost = confidenceCost;
     }
 
