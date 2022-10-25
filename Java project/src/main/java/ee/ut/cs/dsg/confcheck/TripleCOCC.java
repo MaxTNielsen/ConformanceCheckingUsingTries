@@ -27,6 +27,7 @@ public class TripleCOCC extends ConformanceChecker {
     protected boolean isStandardAlign;
 
     private Hashtable<String, List<String>> tracesBuffer = new Hashtable<>();
+
     public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
         super(trie, logCost, modelCost, maxStatesInQueue);
         this.rnd = new Random(19);
@@ -70,7 +71,7 @@ public class TripleCOCC extends ConformanceChecker {
         // iterate over the trace - choose event by event
         // modify everything into accepting event instead of list of events
         int k = 0;
-        if(Objects.equals(caseId, "13")) {
+        if (Objects.equals(caseId, "13")) {
             k = Integer.parseInt(caseId);
         }
 
@@ -86,12 +87,13 @@ public class TripleCOCC extends ConformanceChecker {
         }
 
         for (String event : trace) {
-            if(tracesBuffer.containsKey(caseId)) {
+            if (tracesBuffer.containsKey(caseId)) {
                 tracesBuffer.get(caseId).add(event);
             } else {
                 tracesBuffer.put(caseId, new ArrayList<>());
                 tracesBuffer.get(caseId).add(event);
             }
+
             // sync moves
             // we iterate over all states
             for (Iterator<Map.Entry<String, State>> states = currentStates.entrySet().iterator(); states.hasNext(); ) {
@@ -166,7 +168,7 @@ public class TripleCOCC extends ConformanceChecker {
                 // add model moves
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
-                List<State> warmStartMoves = handleWarmStartMoves(traceSuffix, previousState, currentMinCost);
+                List<State> warmStartMoves = handleWarmStartMoves(traceSuffix, previousState, currentMinCost, caseId);
 
                 // add warmStartMoves
                 /*List<State> warmStartMoves = new ArrayList<>();
@@ -344,17 +346,16 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    private List<State> handleWarmStartMoves(List<String> suffix, State state, double currMinCost) {
+    private List<State> handleWarmStartMoves(List<String> suffix, State state, double currMinCost, String caseId) {
         List<String> suffixToCheck = new ArrayList<>(suffix);
         List<String> fullTrace = state.getAlignment().getPrefixTrace();
-        int preFixCost = fullTrace.size() + state.getCompletenessCost();
+        int preFixCost = Math.min(fullTrace.size() + state.getCompletenessCost(), tracesBuffer.get(caseId).size() - 1);
 
-        fullTrace.addAll(suffixToCheck);
-
-        List<String> nodeLabels = fullTrace.stream().map(x -> modelTrie.getService().deAlphabetize(x.toCharArray()[0])).collect(Collectors.toList());
+        fullTrace = tracesBuffer.get(caseId);
 
         List<State> warmStartStates = new ArrayList<>(makeWarmStartMoves(suffixToCheck, preFixCost, currMinCost));
-        warmStartStates.addAll(makeWarmStartMoves(fullTrace, state.getCompletenessCost(), currMinCost));
+        warmStartStates.addAll(makeWarmStartMoves(fullTrace, 0, currMinCost));
+        //List<State> warmStartStates = new ArrayList<>(makeWarmStartMoves(fullTrace, 0, currMinCost));
 
         return warmStartStates;
     }
@@ -392,14 +393,12 @@ public class TripleCOCC extends ConformanceChecker {
 
                     // test if we have made a full match on suffix
                     if (syncAlign.getMoves().size() == traceToCheck.size() + 1) {
-                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(),
-                                MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
+                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
                         warmStartStates.add(syncState);
                         break;
                     }
 
-                    State s = new State(a, traceToCheck, warmStartNode,
-                            updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
+                    State s = new State(a, traceToCheck, warmStartNode, updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
 
                     // compute log move state from warm-start node
                     State logMove = handleLogMove(new ArrayList<>(), s, "");
@@ -432,20 +431,12 @@ public class TripleCOCC extends ConformanceChecker {
                 if (finalState) {
 
                     // if it is end of trace and end of model, then return that state immediately
-                    if (
-                            ((s.getTracePostfix().size() + s.getNode().getMinPathLengthToEnd()) == 0 ||
-                                    (s.getTracePostfix().size() == 0 && s.getNode().isEndOfTrace()))
-                                    && s.getWeightedSumOfCosts() == 0
-                    ) {
+                    if (((s.getTracePostfix().size() + s.getNode().getMinPathLengthToEnd()) == 0 || (s.getTracePostfix().size() == 0 && s.getNode().isEndOfTrace())) && s.getWeightedSumOfCosts() == 0) {
                         return s;
                     }
 
                     // we are interested in the oldest and newest states
-                    if (newestState == null
-                            || (s.getDecayTime() > newestState.getDecayTime() & s.getTracePostfix().size() < newestState.getTracePostfix().size())
-                            || (s.getDecayTime() > newestState.getDecayTime() & s.getTracePostfix().size() == newestState.getTracePostfix().size())
-                            || (s.getDecayTime() == newestState.getDecayTime() & s.getTracePostfix().size() < newestState.getTracePostfix().size())
-                    ) {
+                    if (newestState == null || (s.getDecayTime() > newestState.getDecayTime() & s.getTracePostfix().size() < newestState.getTracePostfix().size()) || (s.getDecayTime() > newestState.getDecayTime() & s.getTracePostfix().size() == newestState.getTracePostfix().size()) || (s.getDecayTime() == newestState.getDecayTime() & s.getTracePostfix().size() < newestState.getTracePostfix().size())) {
                         newestState = s;
                         newestStates.clear();
                         newestStates.add(s);
@@ -453,11 +444,7 @@ public class TripleCOCC extends ConformanceChecker {
                         newestStates.add(s);
                     }
 
-                    if (oldestState == null
-                            || (s.getDecayTime() < oldestState.getDecayTime() & s.getTracePostfix().size() > oldestState.getTracePostfix().size())
-                            || (s.getDecayTime() < oldestState.getDecayTime() & s.getTracePostfix().size() == oldestState.getTracePostfix().size())
-                            || (s.getDecayTime() == oldestState.getDecayTime() & s.getTracePostfix().size() > oldestState.getTracePostfix().size())
-                    ) {
+                    if (oldestState == null || (s.getDecayTime() < oldestState.getDecayTime() & s.getTracePostfix().size() > oldestState.getTracePostfix().size()) || (s.getDecayTime() < oldestState.getDecayTime() & s.getTracePostfix().size() == oldestState.getTracePostfix().size()) || (s.getDecayTime() == oldestState.getDecayTime() & s.getTracePostfix().size() > oldestState.getTracePostfix().size())) {
                         oldestState = s;
                         oldestStates.clear();
                         oldestStates.add(s);
@@ -521,8 +508,7 @@ public class TripleCOCC extends ConformanceChecker {
                         Move m = new Move(">>", currentNode.getContent(), 1);
                         alg.appendMove(m, 1);
                         currentCost++;
-                        if (currentNode.isEndOfTrace())
-                            break;
+                        if (currentNode.isEndOfTrace()) break;
                     }
                 }
 

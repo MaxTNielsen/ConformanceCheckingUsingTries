@@ -76,8 +76,12 @@ warm_start_runs_old = [
 ]
 
 warm_start_runs_new = [
+    "BPI2015_new_ws_full_trace_suffix_frequency.csv",
+    "20221025_125900_BPI2015_frequency.csv",
     "M1_new_ws_full_trace_suffix_simulated.csv",
-    "BPI2015_new_ws_full_trace_suffix_frequency.csv"
+    "20221025_130011_M1_simulated.csv",
+    "20221025_131128_M1_simulated.csv",
+    "20221025_131307_M1_simulated.csv"
 ]
 
 ################################################# without confidence #################################################

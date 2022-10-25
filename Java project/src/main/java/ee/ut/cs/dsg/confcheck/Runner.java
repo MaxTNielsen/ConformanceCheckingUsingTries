@@ -137,8 +137,8 @@ public class Runner {
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "BPI2015";
-                String sLogType = "frequency";
+                String sLog = "M1";
+                String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
