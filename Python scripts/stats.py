@@ -67,21 +67,19 @@ def compare_to_confidence(paths):
 
 
 warm_start_runs_old = [
+    #"20221021_131107_BPI2015_frequency.csv",
     "M1_simulated_M1.xes_14_.csv",
     # "M1_simulated_M1_warm_2.xes_14_.csv",
     # "M1_simulated_M1_warm_5.xes_14_.csv",
     # "M1_simulated_M1_simulated_long.xes_14_.csv",
     # "M1_simulated_M1_simulated_short.xes_14_.csv",
-    "20221021_131107_BPI2015_frequency.csv"
+    "20221025_141038_M2_simulated.csv"
 ]
 
 warm_start_runs_new = [
-    "BPI2015_new_ws_full_trace_suffix_frequency.csv",
-    "20221025_125900_BPI2015_frequency.csv",
-    "M1_new_ws_full_trace_suffix_simulated.csv",
-    "20221025_130011_M1_simulated.csv",
-    "20221025_131128_M1_simulated.csv",
-    "20221025_131307_M1_simulated.csv"
+    "M1_ws_all_states_simulated.csv",
+    "M1_ws_no_prefix_simulated.csv",
+    "M2_ws_all_states_simulated.csv"
 ]
 
 ################################################# without confidence #################################################
@@ -153,8 +151,7 @@ summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
 
 
 summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
-                  *["BPI2015_all_ws_prefix_cost_bi_1_frequency.csv",
-                  "BPI2015_all_ws_prefix_len_bi_frequency.csv",
+                  *["20221025_135827_M1_simulated.csv",
                   "BPI2015_all_ws_prefix_cost_uni_1_frequency.csv"])
 
 # ################################################# compare to confidence #################################################
