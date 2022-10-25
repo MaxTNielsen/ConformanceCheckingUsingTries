@@ -25,16 +25,18 @@ public class TripleCOCC extends ConformanceChecker {
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
     protected int averageTrieLength = 0;
     protected boolean isStandardAlign;
+    private boolean isWarmStartAllStates;
 
     private Hashtable<String, List<String>> tracesBuffer = new Hashtable<>();
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
         super(trie, logCost, modelCost, maxStatesInQueue);
         this.rnd = new Random(19);
         this.maxTrials = maxTrials;
         inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
         this.costFunction = costFunction;
         this.isStandardAlign = isStandardAlign;
+        this.isWarmStartAllStates = isWarmStartAllStates;
 
         if (discountedDecayTime) {
             this.averageTrieLength = trie.getAvgTraceLength();
@@ -45,12 +47,12 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
-        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType, urls, log);
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
+        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType, urls, log, isWarmStartAllStates);
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log) {
-        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType, urls, log);
+    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
+        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType, urls, log, isWarmStartAllStates);
     }
 
     public Alignment check(List<String> trace) {
@@ -168,15 +170,16 @@ public class TripleCOCC extends ConformanceChecker {
                 // add model moves
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
-                List<State> warmStartMoves = handleWarmStartMoves(traceSuffix, previousState, currentMinCost, caseId);
+                List<State> warmStartMoves = new ArrayList<>();
 
                 // add warmStartMoves
-                /*List<State> warmStartMoves = new ArrayList<>();
-
-                if (previousState.getAlignment().getTraceSize() == 0) {
-                    warmStartMoves = handleWarmStartMoves(traceEvent, previousState, currentMinCost);
-                }*/
-
+                if (isWarmStartAllStates)
+                    warmStartMoves = handleWarmStartMoves(traceSuffix, previousState, currentMinCost, caseId);
+                else {
+                    if (previousState.getAlignment().getTraceSize() == 0) {
+                        warmStartMoves = handleWarmStartMoves(traceSuffix, previousState, currentMinCost, caseId);
+                    }
+                }
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, warmStartMoves);
 
                 int previousStateDecayTime = previousState.getDecayTime();
@@ -203,7 +206,6 @@ public class TripleCOCC extends ConformanceChecker {
 
         statesInBuffer.put(caseId, caseStatesInBuffer);
         return currentStates;
-
     }
 
     protected List<State> handleModelMoves(List<String> traceSuffix, State state, State dummyState) {
