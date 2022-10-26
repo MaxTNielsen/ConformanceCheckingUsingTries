@@ -73,13 +73,13 @@ warm_start_runs_old = [
     # "M1_simulated_M1_warm_5.xes_14_.csv",
     # "M1_simulated_M1_simulated_long.xes_14_.csv",
     # "M1_simulated_M1_simulated_short.xes_14_.csv",
-    "20221025_141038_M2_simulated.csv"
+    "M2_simulated_14.csv"
 ]
 
 warm_start_runs_new = [
     "M1_ws_all_states_simulated.csv",
     "M1_ws_no_prefix_simulated.csv",
-    "M2_ws_all_states_simulated.csv"
+    "M2_ws_all_states_simulated.csv",
 ]
 
 ################################################# without confidence #################################################
@@ -151,8 +151,14 @@ summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
 
 
 summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
-                  *["20221025_135827_M1_simulated.csv",
-                  "BPI2015_all_ws_prefix_cost_uni_1_frequency.csv"])
+                  *[
+                  "BPI2015_all_ws_prefix_cost_bi_1_frequency.csv",
+                  "M1_simulated_bi.csv",
+                  "M1_simulated_uni.csv",
+                  "M1_simulated_uni_64hd.csv",
+                  "20221026_235229_M1_simulated.csv",
+                  "20221027_012952_M1_simulated.csv"
+                  ])
 
 # ################################################# compare to confidence #################################################
 

@@ -16,7 +16,6 @@ public class JavaClassLoader extends ClassLoader {
             loadedMyClass = classLoader.loadClass(classBinName);
             Constructor<?> constructor = loadedMyClass.getDeclaredConstructor(type);
             myClassObject = constructor.newInstance(params);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

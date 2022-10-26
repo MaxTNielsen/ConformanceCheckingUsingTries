@@ -1,12 +1,11 @@
-import torch as t
-from torch.utils.data import DataLoader
+import torch as torch
 from torch.utils.data import random_split
 
 import time
 import math
 
 
-class Dataset(t.utils.data.Dataset):
+class Dataset(torch.utils.data.Dataset):
     def __init__(self, inputs, targets):
         self.inputs = inputs
         self.targets = targets
@@ -24,7 +23,9 @@ def collate_fn(batch):
     return tuple(zip(*batch))
 
 
-def load_data(dataset_size, test_split, batch_size, inputs, targets):
+def load_data(test_split, inputs, targets):
+
+    dataset_size = len(targets)
 
     test_size = int(test_split * dataset_size)
     train_size = dataset_size - test_size
@@ -32,24 +33,9 @@ def load_data(dataset_size, test_split, batch_size, inputs, targets):
     dataset = Dataset(inputs, targets)
 
     train_eval_dataset, test_dataset = random_split(
-        dataset, [train_size, test_size], generator=t.Generator().manual_seed(42))
+        dataset, [train_size, test_size], generator=torch.Generator().manual_seed(42))
 
-    test_dataloader = DataLoader(
-        test_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
-
-    eval_size = int(test_split * len(train_eval_dataset))
-    train_size = len(train_eval_dataset) - eval_size
-
-    train_dataset, eval_dataset = random_split(
-        train_eval_dataset, [train_size, eval_size], generator=t.Generator().manual_seed(42))
-
-    train_dataloader = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
-
-    eval_dataloader = DataLoader(
-        eval_dataset, batch_size=batch_size, shuffle=False, collate_fn=collate_fn)
-
-    return train_dataloader, eval_dataloader, test_dataloader
+    return train_eval_dataset, test_dataset
 
 
 def create_dataset(traces_dict, label_to_idx):
@@ -61,23 +47,23 @@ def create_dataset(traces_dict, label_to_idx):
 
     """many-to-many prediction task"""
     for trace in traces_dict.values():
-        one_hot_tensor = t.zeros(len(trace), n_activities)
+        one_hot_tensor = torch.zeros(len(trace), n_activities)
         for li, activity in enumerate(trace):
             one_hot_tensor[li][label_to_idx[activity]] = 1
         # for i in range(int(len(trace)/2),len(trace)):
         input = one_hot_tensor[0:len(trace)-1, :]
-        input = t.cat((t.zeros(1, n_activities), input))
+        input = torch.cat((torch.zeros(1, n_activities), input))
         inputs.append(input)
-        targets.append(t.tensor([label_to_idx[trace[i]]
+        targets.append(torch.tensor([label_to_idx[trace[i]]
                        for i in range(len(trace))]))
 
     """many to one prediction task"""
     # for trace in traces_dict.values():
-    #     one_hot_tensor = t.zeros(len(trace), n_activities)
+    #     one_hot_tensor = torch.zeros(len(trace), n_activities)
     #     for li, activity in enumerate(trace):
     #         one_hot_tensor[li][label_to_idx[activity]] = 1
     #     inputs.append(one_hot_tensor[0:len(trace)-1, :])
-    #     targets.append(t.tensor(label_to_idx[trace[-1]]))
+    #     targets.append(torch.tensor(label_to_idx[trace[-1]]))
 
     #inputs = pad_sequence(inputs, True)
 
@@ -87,7 +73,7 @@ def create_dataset(traces_dict, label_to_idx):
 def preprocess_input(trace: list, label_to_idx: dict) -> float:
     l = list(label_to_idx.values())
     n_activities = len(l)
-    tensor = t.zeros(len(trace), n_activities)
+    tensor = torch.zeros(len(trace), n_activities)
     for li, activity in enumerate(trace):
         if activity in label_to_idx:
             tensor[li][label_to_idx[activity]] = 1

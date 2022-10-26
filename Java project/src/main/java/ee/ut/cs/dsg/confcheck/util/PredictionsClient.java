@@ -32,8 +32,7 @@ public class PredictionsClient {
         }
     }
 
-    private String getParamsString(Map<String, String> params)
-            throws UnsupportedEncodingException {
+    private String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         result.append("?");
 
@@ -45,13 +44,10 @@ public class PredictionsClient {
         }
 
         String resultString = result.toString();
-        return resultString.length() > 0
-                ? resultString.substring(0, resultString.length() - 1)
-                : resultString;
+        return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1) : resultString;
     }
 
     public float getPrefixProb(String urlKey, String jsonInputString) {
-        // String jsonInputString = "{"name": "Upendra", "job": "Programmer"}";
         int status;
         float retVal = 0;
 
@@ -65,37 +61,43 @@ public class PredictionsClient {
                 byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             }
-
             status = con.getResponseCode();
             if (status == 200) {
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-                    StringBuilder response = new StringBuilder();
-                    String responseLine;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
+                Reader reader = null;
+                try {
+                    reader = new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8);
+                    try (BufferedReader br = new BufferedReader(reader)) {
+                        StringBuilder response = new StringBuilder();
+                        String responseLine;
+                        while ((responseLine = br.readLine()) != null) {
+                            response.append(responseLine.trim());
+                        }
+                        retVal = Float.parseFloat(response.toString());
                     }
-                    retVal = Float.parseFloat(response.toString());
+                } finally {
+                    if (reader != null) try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                return retVal;
+            } else {
+                System.out.printf("Status code: %s%n", status);
+                System.out.printf("Payload: %s", jsonInputString);
+                getPrefixProb(urlKey, jsonInputString);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NullPointerException e) {
-            System.out.println("connection is null");
+        } catch (NullPointerException | IOException e) {
+            e.printStackTrace();
         }
         return retVal;
     }
 
     private HttpURLConnection createConnection(String endpoint) {
-        if (con != null)
-            con.disconnect();
         try {
             URL url = new URL(endpoint);
             con = (HttpURLConnection) url.openConnection();
         } catch (java.net.MalformedURLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -103,8 +105,9 @@ public class PredictionsClient {
     }
 
     public void closeConnection() {
-        con.disconnect();
-        con = null;
+        if (con != null) {
+            con.disconnect();
+            con = null;
+        }
     }
-
 }

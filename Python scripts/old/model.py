@@ -21,16 +21,16 @@ def get_numpy(x):
 
 class LSTM(nn.Module):
 
-    def __init__(self, num_classes, input_size, params):
+    def __init__(self, num_classes, input_size, hidden_size, num_layers):
         super(LSTM, self).__init__()
 
         self.num_classes = num_classes
-        self.num_layers = params['num_layers']
+        self.num_layers = num_layers
         self.input_size = input_size
-        self.hidden_size = params['n_unit']
+        self.hidden_size = hidden_size
         self.isBi = False
         self.biMultiplier = 2 if self.isBi else 1
-        self.dropout = nn.Dropout(p=params['dropout_rate'])
+        self.dropout = nn.Dropout(p=0.40802631010146606)
         self.batchnorm = nn.BatchNorm1d(self.hidden_size*self.biMultiplier)
 
         self.lstm = nn.LSTM(input_size=self.input_size, hidden_size=self.hidden_size,

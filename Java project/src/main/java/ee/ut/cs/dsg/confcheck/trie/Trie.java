@@ -19,9 +19,9 @@ public class Trie {
     private int numberOfEvents = 0;
     private boolean isWeighted;
     public int minConf = 0;
-    public float maxConf = Integer.MIN_VALUE;
+    public double maxConf = Integer.MIN_VALUE;
 
-    Map<String, Float> prefixProbCache = new HashMap<>();
+    Map<String, Double> prefixProbCache = new HashMap<>();
 
     protected HashMap<Integer, String> traceIndexer;
 
@@ -49,6 +49,7 @@ public class Trie {
         addTrace(trace, internalTraceIndex);
 
     }
+
     public AlphabetService getService() {
         return service;
     }
@@ -143,10 +144,8 @@ public class Trie {
             result = current.getChild(trace.get(i));
             // result = current.getChildWithLeastPathLengthDifference(trace.get(i), size - i);
 
-            if (result == null && current == startFromThisNode)
-                return null;
-            else if (result == null)
-                return current;
+            if (result == null && current == startFromThisNode) return null;
+            else if (result == null) return current;
             else {
                 TrieNode result2 = result;
                 //result2 = result.getChildWithLeastPathLengthDifference(size-(i+1));
@@ -174,8 +173,7 @@ public class Trie {
         int size = trace.size();
         for (int i = 0; i < size; i++) {
             result = current.getChild(trace.get(i));
-            if (result == null)
-                return null;
+            if (result == null) return null;
             else {
                 TrieNode result2 = result;
                 current = result;
@@ -308,7 +306,7 @@ public class Trie {
                     maxConf = confCost;
                 }
                 if (isWeighted) {
-                    float weightedConfCost = (float) confCost * getPrefProb(n);
+                    double weightedConfCost = confCost * getPrefProb(n);
                     n.setConfidenceCost(weightedConfCost);
                     computeConfidenceCostAVG(n, true);
                 } else {
@@ -324,7 +322,7 @@ public class Trie {
             if (!n.isEndOfTrace()) {
                 double x_std = Math.round((((double) n.getConfidenceCost() - minConf) / (maxConf - minConf)) * 100.0) / 100.0;
                 if (isWeighted) {
-                    float weightedConfCost = (float) x_std * getPrefProb(n);
+                    double weightedConfCost = x_std * getPrefProb(n);
                     n.setScaledConfCost(weightedConfCost);
                     computeScaledConfidenceCost(n, true);
                 } else {
@@ -338,7 +336,7 @@ public class Trie {
     public void computeAndUsePrefProbOnly(TrieNode root_) {
         for (TrieNode n : root_.getAllChildren()) {
             if (!n.isEndOfTrace()) {
-                float prefProb = getPrefProb(n);
+                double prefProb = getPrefProb(n);
                 if (prefProb > maxConf) {
                     maxConf = prefProb;
                 }
@@ -348,7 +346,7 @@ public class Trie {
         }
     }
 
-    private float getPrefProb(TrieNode target) {
+    private double getPrefProb(TrieNode target) {
         String[] prefixNodes = target.getPrefix().split("->");
         String prefKey = Arrays.toString(prefixNodes);
         if (prefixProbCache.containsKey(prefKey)) {
@@ -366,7 +364,7 @@ public class Trie {
                 jsonString.append("\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"");
             }
             jsonString.append("], \"target\":\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"}");
-            float prefProb = (1 - p.getPrefixProb("pred", jsonString.toString()));
+            double prefProb = Math.round((1 - p.getPrefixProb("pred", jsonString.toString())) * 1000.0) / 1000.0;
             prefixProbCache.put(prefKey, prefProb);
             return prefProb;
         }
