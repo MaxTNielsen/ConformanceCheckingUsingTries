@@ -169,7 +169,7 @@ def get_model(filename: str.__class__):
                #loss = criterion(train_outputs['out'], model.get_variable(train_target))
 
                 eval_loss[epoch].append(model.get_numpy(loss).item())
-                best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
+            best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
 
         train_loss_epoch = []
 

@@ -69,18 +69,22 @@ def compare_to_confidence(paths):
 warm_start_runs_old = [
     "BPI2015_frequency.csv",
     "M1_simulated_M1.xes_14_.csv",
-    # "M1_simulated_M1_warm_2.xes_14_.csv",
-    # "M1_simulated_M1_warm_5.xes_14_.csv",
-    # "M1_simulated_M1_simulated_long.xes_14_.csv",
-    # "M1_simulated_M1_simulated_short.xes_14_.csv",
+    "M1_simulated_M1_warm_2.xes_14_.csv",
+    "M1_simulated_M1_warm_5.xes_14_.csv",
+    "M1_simulated_M1_simulated_long.xes_14_.csv",
+    "M1_simulated_M1_simulated_short.xes_14_.csv",
     "M2_simulated_14.csv"
 ]
 
 warm_start_runs_new = [
-    "M1_ws_all_states_simulated.csv",
-    "M1_ws_no_prefix_simulated.csv",
-    "M2_ws_all_states_simulated.csv",
     "BPI2015_ws_all_states_frequency.csv",
+    "M1_simulated_M1.xes_25_.csv",
+    #"M1_ws_no_prefix_simulated.csv",
+    "M1_simulated_M1_warm_2.xes_25_.csv",
+    "M1_simulated_M1_warm_5.xes_25_.csv",
+    "M1_simulated_M1_simulated_long.xes_25_.csv",
+    "M1_simulated_M1_simulated_short.xes_25_.csv",
+    "M2_ws_all_states_simulated.csv"
 ]
 
 ################################################# without confidence #################################################
@@ -110,7 +114,11 @@ summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
 
 
 # summarize_results(PREFIX_PATH_CONF, dims_25, avg_costs_25,
-#                   *warm_start_runs_new)
+#                   *["M1_simulated_M1.xes_25_.csv",
+#                     "M1_simulated_M1_warm_2.xes_25_.csv",
+#                     "M1_simulated_M1_warm_5.xes_25_.csv",
+#                     "M1_simulated_M1_simulated_long.xes_25_.csv",
+#                     "M1_simulated_M1_simulated_short.xes_25_.csv"])
 
 # ################################################# with weighted confidence #################################################
 
@@ -128,34 +136,38 @@ summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
 
 # ################################################# with weighted scaled confidence #################################################
 
-# PREFIX_PATH_WEIGHTED_SCALED_CONF = "output files/conf, compl, weighted scaled confi/"
+PREFIX_PATH_WEIGHTED_SCALED_CONF = "output files/conf, compl, weighted scaled confi/"
 
-# print("#"*30+" with weighted scaled confidence "+"#"*30)
-# print("")
+print("#"*30+" with weighted scaled confidence "+"#"*30)
+print("")
 
 # summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_14, avg_costs_14,
 #                   *warm_start_runs_old+["20221020_120458_M2_simulated_14.csv", "20221021_100906_BPI2015_frequency_14.csv"])
 
 
-# summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_25, avg_costs_25,
-#                   *warm_start_runs_new + ["20221020_115349_M2_simulated_25.csv", "BPI2015_frequency_scaled_weighted_conf_25.csv", "BPI2015_prefix_conf_frequency.csv", "BPI2015_scaled__prefxi_conf_frequency.csv","20221021_123436_BPI2015_frequency.csv"])
+summarize_results(PREFIX_PATH_WEIGHTED_SCALED_CONF, dims_25, avg_costs_25,
+                  *["M1_simulated_M1.xes_25_.csv",
+                    "M1_simulated_M1_warm_2.xes_25_.csv",
+                    "M1_simulated_M1_warm_5.xes_25_.csv",
+                    "M1_simulated_M1_simulated_long.xes_25_.csv",
+                    "M1_simulated_M1_simulated_short.xes_25_.csv"])
 
 # ################################################# only pref prob #################################################
 
 PREFIX_PATH_ONLY_PREF_PROB = "output files/conf, compl, only pref prob/"
 
-print("#"*30+" with weighted scaled confidence "+"#"*30)
+print("#"*30+" only pref prob confidence "+"#"*30)
 print("") 
 
-summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
-                  *warm_start_runs_old)
+# summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
+#                   *warm_start_runs_old)
 
 
 summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
                   *[
                   "BPI2015_all_ws_prefix_cost_bi_1_frequency.csv",
-                  "M1_simulated_bi.csv",
-                  "M1_simulated_uni.csv"
+                  "M1_simulated_uni.csv",
+                  "20221027_172341_M1_simulated.csv"
                   ])
 
 # ################################################# compare to confidence #################################################

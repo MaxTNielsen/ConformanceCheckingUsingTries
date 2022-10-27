@@ -28,8 +28,8 @@ class LSTM(nn.Module):
         self.num_layers = params['num_layers']
         self.input_size = input_size
         self.hidden_size = params['n_unit']
-        self.isBi = params['bi']
-        self.biMultiplier = 2 if bool(self.isBi) else 1
+        self.isBi =  bool(params['bi'])
+        self.biMultiplier = 2 if self.isBi else 1
         self.dropout = nn.Dropout(p=params['dropout_rate'])
         self.batchnorm = nn.BatchNorm1d(self.hidden_size*self.biMultiplier)
 

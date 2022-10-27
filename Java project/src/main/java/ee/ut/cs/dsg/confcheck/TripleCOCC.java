@@ -369,7 +369,7 @@ public class TripleCOCC extends ConformanceChecker {
                 if (completenessCost <= currMinCost) {
                     Alignment a = new Alignment();
                     a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
-                    a.setTotalCost(completenessCost);
+                    // a.setTotalCost(completenessCost);
                     // we attempt to make synchronous moves on the suffix of the warm-start trace
                     TrieNode fromNode = warmStartNode;
                     Alignment syncAlign = new Alignment(a);
