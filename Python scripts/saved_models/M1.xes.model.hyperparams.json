@@ -1,1 +1,0 @@
-{"optimizer": "SGD", "learning_rate": 0.0035884998139495694, "weight_decay": 0.00070978788184832, "dropout_rate": 0.7799805037080897, "n_unit": 160, "num_layers": 2, "bi": 1, "batch_size": 30}

@@ -13,6 +13,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data import random_split
 import torch.nn as nn
 import torch
+from torch import optim
 
 from os.path import exists
 
@@ -46,15 +47,12 @@ def load_model():
 
     lstm = build_model(params=params)
 
-    # lstm.load_state_dict(
-    #     torch.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
+    lstm.load_state_dict(
+        torch.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
 
-    #model_state = get_optimal_model(params)
-    _, epochs, _  = get_optimal_model(params)
-    store['model_params']['epochs'] = epochs
-    _, _, lstm = get_optimal_model(params)
-
-    #lstm.load_state_dict(model_state)
+    # _, epochs, _  = get_optimal_model(params)
+    # store['model_params']['epochs'] = epochs
+    # _, _, lstm = get_optimal_model(params)
 
     # store optimal model for prediction task
     store['model'] = lstm
@@ -132,8 +130,11 @@ def get_model(params, lstm):
         lstm.cuda()
 
     criterion = nn.NLLLoss()
-    optimizer = torch.optim.Adam(lstm.parameters(), lr=params['learning_rate'],
-                                 weight_decay=params['weight_decay'], amsgrad=True)
+    # optimizer = torch.optim.Adam(lstm.parameters(), lr=params['learning_rate'],
+    #                              weight_decay=params['weight_decay'], amsgrad=True)
+
+    optimizer = getattr(optim, params['optimizer'])(lstm.parameters(
+    ), lr=params['learning_rate'], weight_decay=params['weight_decay'])
 
     torch.nn.init.xavier_uniform_(lstm.fc1.weight)
     torch.nn.init.xavier_uniform_(lstm.fc2.weight)
@@ -158,6 +159,8 @@ def get_model(params, lstm):
             for i, y in enumerate(ys):
                 loss += criterion(y_hat[i], y)
 
+            loss = loss / len(train_target)
+
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -177,6 +180,8 @@ def get_model(params, lstm):
             for i, y in enumerate(ys):
                 loss += criterion(y_hat[i], y)
 
+            loss = loss / len(train_target)
+
             eval_loss[epoch].append(model.get_numpy(loss).item())
 
     return mean(list(eval_loss.values())[-1])
@@ -193,8 +198,11 @@ def get_optimal_model(params):
         lstm.cuda()
 
     criterion = nn.NLLLoss()
-    optimizer = torch.optim.Adam(lstm.parameters(), lr=params['learning_rate'],
-                                 weight_decay=params['weight_decay'], amsgrad=True)
+    # optimizer = torch.optim.Adam(lstm.parameters(), lr=params['learning_rate'],
+    #                              weight_decay=params['weight_decay'], amsgrad=True)
+
+    optimizer = getattr(optim, params['optimizer'])(lstm.parameters(
+    ), lr=params['learning_rate'], weight_decay=params['weight_decay'])
 
     torch.nn.init.xavier_uniform_(lstm.fc1.weight)
     torch.nn.init.xavier_uniform_(lstm.fc2.weight)
@@ -246,15 +254,16 @@ def get_optimal_model(params):
 
             ys = model.get_variable(eval_target)
             y_hat = eval_outputs['out']
-            
+
             loss = 0
             for i, y in enumerate(ys):
                 loss += criterion(y_hat[i], y)
 
-            # eval_loss[epoch].append(model.get_numpy(loss).item())
-            eval_loss[epoch].append(model.get_numpy(loss).item() / len(eval_target))
-        best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
+            loss = loss / len(train_target)
 
+            # eval_loss[epoch].append(model.get_numpy(loss).item())
+            eval_loss[epoch].append(model.get_numpy(loss).item())
+        best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
 
         if epoch % EVAL_EVERY == 0:
             pass
@@ -267,8 +276,7 @@ def get_optimal_model(params):
             print("\n")
 
     eval_x = list(eval_loss.keys())
-    #eval_y = list(map(lambda x: mean(x), list(eval_loss.values())))
-    eval_y = list(eval_loss.values())
+    eval_y = list(map(lambda x: mean(x), list(eval_loss.values())))
     eval_best_idx = np.argmin(np.array(eval_y))
     eval_best = eval_y[eval_best_idx]
     eval_best_epoch = eval_x[eval_best_idx]
@@ -340,11 +348,11 @@ def objective(trial):
     params = {
         'optimizer': trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"]),
         'learning_rate': trial.suggest_float("learning_rate", 1e-5, 1e-1),
-        'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-3),
+        'weight_decay': trial.suggest_float("weight_decay", 1e-5, 1),
         'dropout_rate': trial.suggest_float("dropout_rate", 0.0, 1.0),
         'n_unit': trial.suggest_int("n_unit", 80, 240, step=40),
         'num_layers': trial.suggest_int("num_layers", 1, 2),
-        'bi': trial.suggest_int("bi", 0, 0),
+        'bi': trial.suggest_int("bi", 0, 1),
         'batch_size': trial.suggest_int("batch_size", 10, 40, step=10)
     }
 
@@ -360,8 +368,8 @@ def init(file_name):
 
     global store
     store['file_name'] = file_name
-    # if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
-    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
+    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
+        # if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
 
         # begin hyperparameter tuning experiments
         study = optuna.create_study(
@@ -379,10 +387,10 @@ def init(file_name):
         store['test_dataloader'] = test_dataloader
 
         # save the dataloaders for consistency
-        torch.save(store['train_dataloader'] , "saved_models/dataloaders/" +
-               store['file_name'].split('/')[-1]+".train_samp.pt")
-        torch.save(store['eval_dataloader'] , "saved_models/dataloaders/" +
-               store['file_name'].split('/')[-1]+".eval_samp.pt")
+        torch.save(store['train_dataloader'], "saved_models/dataloaders/" +
+                   store['file_name'].split('/')[-1]+".train_samp.pt")
+        torch.save(store['eval_dataloader'], "saved_models/dataloaders/" +
+                   store['file_name'].split('/')[-1]+".eval_samp.pt")
         torch.save(test_dataloader, "saved_models/dataloaders/" +
                    store['file_name'].split('/')[-1]+".test_samp.pt")
 
@@ -391,17 +399,20 @@ def init(file_name):
             json.dump(best_trial.params, outfile)
 
         # refit a model configured with the optimal params and retrieve model state with lowest validation loss
-        # best_model = build_model(params=best_trial.params)
-        _, epochs, _  = get_optimal_model(best_trial.params, store['model_params']['epochs'])
-        store['model_params']['epochs'] = epochs
-        _, _, lstm = get_optimal_model(best_trial.params, store['model_params']['epochs'])
+        best_model = build_model(params=best_trial.params)
+        best_model_state, _, _ = get_optimal_model(
+            best_trial.params, store['model_params']['epochs'])
+        # _, epochs, _  = get_optimal_model(best_trial.params, store['model_params']['epochs'])
+        # store['model_params']['epochs'] = epochs
+        # _, _, lstm = get_optimal_model(best_trial.params, store['model_params']['epochs'])
 
         # save model state (weigths etc)
-        # torch.save(model_state,'saved_models/'+store['file_name'].split('/')[-1]+'.model.pt')
+        torch.save(best_model_state, 'saved_models/' +
+                   store['file_name'].split('/')[-1]+'.model.pt')
 
         # store optimal model for prediction task
-        # best_model.load_state_dict(model_state)
-        store['model'] = lstm
+        best_model.load_state_dict(best_model_state)
+        # store['model'] = lstm
 
     else:
         build_traces_dicts(store['file_name'])
