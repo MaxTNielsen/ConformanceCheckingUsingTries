@@ -1,1 +1,1 @@
-{"optimizer": "Adam", "learning_rate": 0.09649521228409057, "weight_decay": 0.0009190811150309003, "dropout_rate": 0.46793037652094216, "n_unit": 100, "num_layers": 1, "batch_size": 10}
+{"optimizer": "SGD", "learning_rate": 0.025764823508262178, "weight_decay": 0.0008135838688079084, "dropout_rate": 0.14088944445663099, "n_unit": 240, "num_layers": 2, "batch_size": 40}

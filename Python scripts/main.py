@@ -171,7 +171,7 @@ def get_model(params, lstm):
 
 
 def get_optimal_model(params):
-    """train and eval model and save model state (weights) for each epoch using optimal model from hyperparameter tuning experiment. Retrieve model state from best epoch."""
+    """train and eval model and save model state (weights) for each epoch using optimal model from hyperparameter tuning experiment. Retrieve model state from best epoch trial."""
 
     global store
 
@@ -190,8 +190,8 @@ def get_optimal_model(params):
     # Setup settings for training
     NUM_EPOCHS = 100
 
-    best_model_state = {}
-    eval_loss = {}
+    best_model_state = dict()
+    eval_loss = dict()
 
     for epoch in range(NUM_EPOCHS):
 
@@ -212,23 +212,23 @@ def get_optimal_model(params):
             loss.backward()
             optimizer.step()
 
-     # Eval network
-    eval_loss[epoch] = []
+        # Eval network
+        eval_loss[epoch] = []
 
-    lstm.eval()
-    for eval_batch_index, (eval_batch, eval_target) in enumerate(store['eval_dataloader']):
+        lstm.eval()
+        for eval_batch_index, (eval_batch, eval_target) in enumerate(store['eval_dataloader']):
 
-        eval_outputs = lstm(model.get_variable(eval_batch))
+            eval_outputs = lstm(model.get_variable(eval_batch))
 
-        ys = model.get_variable(eval_target)
-        y_hat = eval_outputs['out']
+            ys = model.get_variable(eval_target)
+            y_hat = eval_outputs['out']
 
-        loss = 0
-        for i, y in enumerate(ys):
-            loss += criterion(y_hat[i], y)
+            loss = 0
+            for i, y in enumerate(ys):
+                loss += criterion(y_hat[i], y)
 
-        eval_loss[epoch].append(model.get_numpy(loss).item())
-        best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
+            eval_loss[epoch].append(model.get_numpy(loss).item())
+            best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
 
     eval_x = list(eval_loss.keys())
     eval_y = list(map(lambda x: mean(x), list(eval_loss.values())))
@@ -302,8 +302,9 @@ def objective(trial):
         'learning_rate': trial.suggest_float("learning_rate", 1e-5, 1e-1),
         'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-3),
         'dropout_rate': trial.suggest_float("dropout_rate", 0.0, 1.0),
-        'n_unit': trial.suggest_int("n_unit", 80, 240, step=20),
+        'n_unit': trial.suggest_int("n_unit", 80, 240, step=40),
         'num_layers': trial.suggest_int("num_layers", 1, 2),
+        'bi': trial.suggest_int("bi", 0,1),
         'batch_size': trial.suggest_int("batch_size", 10, 50, step=10)
     }
 
@@ -324,7 +325,7 @@ def init(file_name):
         # begin hyperparameter tuning experiments
         study = optuna.create_study(
             direction="minimize", sampler=optuna.samplers.TPESampler())
-        study.optimize(objective, n_trials=5)
+        study.optimize(objective, n_trials=15)
         best_trial = study.best_trial
 
         for key, value in best_trial.params.items():
@@ -377,3 +378,13 @@ if __name__ == "__main__":
 # num_layers: 1
 # batch_size: 10
 # average test loss: 27.0022
+
+# LSTM(
+#   (dropout): Dropout(p=0.34681952549291417, inplace=False)
+#   (batchnorm): BatchNorm1d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+#   (lstm): LSTM(36, 160, num_layers=2, batch_first=True)
+#   (fc1): Linear(in_features=160, out_features=160, bias=True)
+#   (fc2): Linear(in_features=160, out_features=36, bias=True)
+#   (relu): ReLU()
+#   (softmax): LogSoftmax(dim=1)
+# )
