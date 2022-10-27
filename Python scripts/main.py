@@ -96,7 +96,7 @@ def set_params():
     store['model_params'] = {}
     store['model_params']['input_size'] = len(store['labels'])
     store['model_params']['num_classes'] = store['model_params']['input_size']
-    store['model_params']['epochs'] = 50
+    store['model_params']['epochs'] = 100
 
 
 def get_model(params, lstm):
@@ -348,12 +348,12 @@ def objective(trial):
     params = {
         'optimizer': trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"]),
         'learning_rate': trial.suggest_float("learning_rate", 1e-5, 1e-1),
-        'weight_decay': trial.suggest_float("weight_decay", 1e-5, 1),
+        'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-4),
         'dropout_rate': trial.suggest_float("dropout_rate", 0.0, 1.0),
         'n_unit': trial.suggest_int("n_unit", 80, 240, step=40),
-        'num_layers': trial.suggest_int("num_layers", 1, 2),
+        'num_layers': trial.suggest_int("num_layers", 1, 3),
         'bi': trial.suggest_int("bi", 0, 1),
-        'batch_size': trial.suggest_int("batch_size", 10, 40, step=10)
+        'batch_size': trial.suggest_int("batch_size", 10, 30, step=10)
     }
 
     model = build_model(params)
@@ -374,7 +374,7 @@ def init(file_name):
         # begin hyperparameter tuning experiments
         study = optuna.create_study(
             direction="minimize", sampler=optuna.samplers.TPESampler())
-        study.optimize(objective, n_trials=30)
+        study.optimize(objective, n_trials=50)
         best_trial = study.best_trial
 
         for key, value in best_trial.params.items():
@@ -400,8 +400,8 @@ def init(file_name):
 
         # refit a model configured with the optimal params and retrieve model state with lowest validation loss
         best_model = build_model(params=best_trial.params)
-        best_model_state, _, _ = get_optimal_model(
-            best_trial.params, store['model_params']['epochs'])
+        best_model_state, _, _ = get_optimal_model(best_trial.params)
+
         # _, epochs, _  = get_optimal_model(best_trial.params, store['model_params']['epochs'])
         # store['model_params']['epochs'] = epochs
         # _, _, lstm = get_optimal_model(best_trial.params, store['model_params']['epochs'])
@@ -412,7 +412,7 @@ def init(file_name):
 
         # store optimal model for prediction task
         best_model.load_state_dict(best_model_state)
-        # store['model'] = lstm
+        store['model'] = best_model
 
     else:
         build_traces_dicts(store['file_name'])

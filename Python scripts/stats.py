@@ -84,7 +84,8 @@ warm_start_runs_new = [
     "M1_simulated_M1_warm_5.xes_25_.csv",
     "M1_simulated_M1_simulated_long.xes_25_.csv",
     "M1_simulated_M1_simulated_short.xes_25_.csv",
-    "M2_ws_all_states_simulated.csv"
+    "M2_ws_all_states_simulated.csv",
+    "20221027_235647_M1_warm_5_simulated.csv"
 ]
 
 ################################################# without confidence #################################################
