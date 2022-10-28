@@ -47,12 +47,12 @@ def load_model():
 
     lstm = build_model(params=params)
 
-    lstm.load_state_dict(
-        torch.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
+    # lstm.load_state_dict(
+    #     torch.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
 
-    # _, epochs, _  = get_optimal_model(params)
-    # store['model_params']['epochs'] = epochs
-    # _, _, lstm = get_optimal_model(params)
+    _, epochs, _  = get_optimal_model(params)
+    store['model_params']['epochs'] = epochs
+    _, _, lstm = get_optimal_model(params)
 
     # store optimal model for prediction task
     store['model'] = lstm
@@ -187,7 +187,7 @@ def get_model(params, lstm):
     return mean(list(eval_loss.values())[-1])
 
 
-def get_optimal_model(params):
+def get_optimal_model(params:dict):
     """train and eval model and save model state (weights) for each epoch using optimal model from hyperparameter tuning experiment. Retrieve model state from best epoch trial."""
 
     global store
@@ -261,8 +261,15 @@ def get_optimal_model(params):
 
             loss = loss / len(train_target)
 
+            # if loss < 0.1:
+            #     break
+
             # eval_loss[epoch].append(model.get_numpy(loss).item())
             eval_loss[epoch].append(model.get_numpy(loss).item())
+
+        # if loss < 0.1:
+        #         break
+
         best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
 
         if epoch % EVAL_EVERY == 0:
@@ -307,6 +314,8 @@ def run_test():
         for i, y in enumerate(ys):
             loss += criterion(y_hat[i], y)
 
+        loss = loss / len(test_target)
+
         test_iter.append(batch_test_index)
         test_loss.append(model.get_numpy(loss).item())
 
@@ -336,7 +345,7 @@ def make_prediction(input: dict) -> float:
     return output_
 
 
-def build_model(params):
+def build_model(params:dict):
     return model.LSTM(store['model_params']['num_classes'], store['model_params']['input_size'], params)
 
 
@@ -348,7 +357,7 @@ def objective(trial):
     params = {
         'optimizer': trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"]),
         'learning_rate': trial.suggest_float("learning_rate", 1e-5, 1e-1),
-        'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-4),
+        'weight_decay': trial.suggest_float("weight_decay", 1e-2, 1e-1),
         'dropout_rate': trial.suggest_float("dropout_rate", 0.0, 1.0),
         'n_unit': trial.suggest_int("n_unit", 80, 240, step=40),
         'num_layers': trial.suggest_int("num_layers", 1, 3),
@@ -363,13 +372,13 @@ def objective(trial):
     return loss
 
 
-def init(file_name):
+def init(file_name:str.__class__):
     """builds new model if model state 'filename.model.pt' is not stored. Else load stored model state from memory"""
 
     global store
     store['file_name'] = file_name
-    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
-        # if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
+    #if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
+    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
 
         # begin hyperparameter tuning experiments
         study = optuna.create_study(
@@ -399,19 +408,19 @@ def init(file_name):
             json.dump(best_trial.params, outfile)
 
         # refit a model configured with the optimal params and retrieve model state with lowest validation loss
-        best_model = build_model(params=best_trial.params)
-        best_model_state, _, _ = get_optimal_model(best_trial.params)
+        # best_model = build_model(params=best_trial.params)
+        # best_model_state, _, _ = get_optimal_model(best_trial.params)
 
-        # _, epochs, _  = get_optimal_model(best_trial.params, store['model_params']['epochs'])
-        # store['model_params']['epochs'] = epochs
-        # _, _, lstm = get_optimal_model(best_trial.params, store['model_params']['epochs'])
+        _, epochs, _  = get_optimal_model(best_trial.params)
+        store['model_params']['epochs'] = epochs
+        _, _, best_model = get_optimal_model(best_trial.params)
 
         # save model state (weigths etc)
-        torch.save(best_model_state, 'saved_models/' +
-                   store['file_name'].split('/')[-1]+'.model.pt')
+        # torch.save(best_model_state, 'saved_models/' +
+        #            store['file_name'].split('/')[-1]+'.model.pt')
 
         # store optimal model for prediction task
-        best_model.load_state_dict(best_model_state)
+        # best_model.load_state_dict(best_model_state)
         store['model'] = best_model
 
     else:

@@ -168,7 +168,7 @@ summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
                   *[
                   "BPI2015_all_ws_prefix_cost_bi_1_frequency.csv",
                   "M1_simulated_uni.csv",
-                  "20221027_172341_M1_simulated.csv"
+                  "20221028_122549_M1_simulated.csv"
                   ])
 
 # ################################################# compare to confidence #################################################
