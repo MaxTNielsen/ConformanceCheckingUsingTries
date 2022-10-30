@@ -322,19 +322,19 @@ public class Trie {
         if (prefixProbCache.containsKey(prefKey)) {
             return prefixProbCache.get(prefKey);
         } else {
-            StringBuilder jsonString = new StringBuilder();
-            jsonString.append("{\"trace\":[");
+            StringBuilder jsonInput = new StringBuilder();
+            jsonInput.append("{\"trace\":[");
             if (prefixNodes.length > 1) {
                 int i = 0;
                 for (; i < prefixNodes.length - 2; i++) {
-                    jsonString.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\",");
+                    jsonInput.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\",");
                 }
-                jsonString.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\"");
+                jsonInput.append("\"").append(service.deAlphabetize(prefixNodes[i].toCharArray()[0])).append("\"");
             } else {
-                jsonString.append("\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"");
+                jsonInput.append("\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"");
             }
-            jsonString.append("], \"target\":\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"}");
-            double prefProb = Math.round((1 - p.getPrefixProb("pred", jsonString.toString())) * 1000.0) / 1000.0;
+            jsonInput.append("], \"target\":\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"}");
+            double prefProb = Math.round((1 - p.getPrefixProb("pred", jsonInput.toString())) * 1000.0) / 1000.0;
             prefixProbCache.put(prefKey, prefProb);
             return prefProb;
         }

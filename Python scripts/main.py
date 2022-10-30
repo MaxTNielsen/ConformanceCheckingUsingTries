@@ -187,7 +187,7 @@ def get_model(params, lstm):
     return mean(list(eval_loss.values())[-1])
 
 
-def get_optimal_model(params:dict):
+def get_optimal_model(params: dict):
     """train and eval model and save model state (weights) for each epoch using optimal model from hyperparameter tuning experiment. Retrieve model state from best epoch trial."""
 
     global store
@@ -267,7 +267,7 @@ def get_optimal_model(params:dict):
         best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
 
         if mean(eval_loss[epoch]) < 0.1:
-                break
+            break
 
         if epoch % EVAL_EVERY == 0:
             pass
@@ -328,21 +328,30 @@ def run_test():
 
 def make_prediction(input: dict) -> float:
     global store
+    trace = [label for label in input['trace']
+             if label in store['labels_to_idx']]
     tensor = utils.preprocess_input(
-        trace=input['trace'], label_to_idx=store['labels_to_idx'])
+        trace=trace, label_to_idx=store['labels_to_idx'])
     store['model'].eval()
     output = store['model'](tensor)
     output = torch.exp(output['out'][0])
     output = output.detach().numpy()
-    # if input['target'] in store['labels_to_idx']:
-    #     output_idx = store['labels_to_idx'][input['target']]
-    #     output_ = output[-1][output_idx].item()
-    # else:
-    output_ = np.mean(np.mean(output))
+    targets = input['trace'][1:]+[input['target']]
+    targets = [label for label in targets if label in store['labels_to_idx']]
+    output_ = 0
+    for idx, target in enumerate(targets):
+        if target in store['labels_to_idx']:
+            output_idx = store['labels_to_idx'][target]
+            output_ += output[idx][output_idx].item()
+        else:
+            output_ += np.mean(output[idx])
+    output_ = output_/len(targets)
+
+
     return output_
 
 
-def build_model(params:dict):
+def build_model(params: dict):
     return model.LSTM(store['model_params']['num_classes'], store['model_params']['input_size'], params)
 
 
@@ -352,11 +361,11 @@ def objective(trial):
     params = {
         'optimizer': trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"]),
         'learning_rate': trial.suggest_float("learning_rate", 1e-5, 1e-1),
-        'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-1),
+        'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-4),
         'dropout_rate': trial.suggest_float("dropout_rate", 0.0, 1.0),
         'n_unit': trial.suggest_int("n_unit", 50, 250, step=50),
-        'num_layers': trial.suggest_int("num_layers", 1, 2),
-        'bi': trial.suggest_int("bi", 0, 1),
+        'num_layers': trial.suggest_int("num_layers", 1, 3),
+        'bi': trial.suggest_int("bi", 0, 0),
         'batch_size': trial.suggest_int("batch_size", 10, 30, step=5)
     }
 
@@ -367,18 +376,18 @@ def objective(trial):
     return loss
 
 
-def init(file_name:str.__class__):
+def init(file_name: str.__class__):
     """builds new model if model state 'filename.model.pt' is not stored. Else load stored model state from memory"""
 
     global store
     store['file_name'] = file_name
     if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
-    #if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
+        # if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
         build_traces_dicts(filename=store['file_name'])
         set_params()
 
         inputs, targets = utils.create_dataset(
-        store['traces_dict'], store['labels_to_idx'])
+            store['traces_dict'], store['labels_to_idx'])
 
         train, eval, test = utils.load_data(0.2, inputs, targets)
 
@@ -397,7 +406,7 @@ def init(file_name:str.__class__):
 
         # build test_dataloader and then store it in global dict
         train_dataloader = DataLoader(
-        store['train_dataset'], batch_size=best_trial.params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
+            store['train_dataset'], batch_size=best_trial.params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
 
         val_dataloader = DataLoader(
             store['eval_dataset'], batch_size=best_trial.params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)

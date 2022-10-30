@@ -1,3 +1,5 @@
+from operator import truediv
+import string
 import torch as torch
 from torch.utils.data import random_split
 from torch.utils.data import DataLoader
@@ -82,8 +84,7 @@ def preprocess_input(trace: list, label_to_idx: dict) -> float:
     n_activities = len(l)
     tensor = torch.zeros(len(trace), n_activities)
     for li, activity in enumerate(trace):
-        if activity in label_to_idx:
-            tensor[li][label_to_idx[activity]] = 1
+        tensor[li][label_to_idx[activity]] = 1
     tensor = tensor.reshape(1, tensor.shape[0], tensor.shape[1])
 
     return tensor
