@@ -6,7 +6,6 @@ import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Trie {
 
@@ -60,10 +59,6 @@ public class Trie {
         if (minLengthToEnd > 0) {
             StringBuilder sb = new StringBuilder(trace.size());
             for (String event : trace) {
-
-                /*if(event.equals("O"))
-                    System.out.println("");*/
-
                 current.addLinkedTraceIndex(traceIndex);
                 TrieNode child = new TrieNode(event, maxChildren, minLengthToEnd - 1, minLengthToEnd - 1, minLengthToEnd - 1 == 0 ? true : false, current);
                 TrieNode returned;
@@ -108,20 +103,6 @@ public class Trie {
     }
 
     public void printTraces() {
-//        StringBuilder result = new StringBuilder();
-//        TrieNode current;
-//        for (TrieNode  leaf: leaves)
-//        {
-//            current = leaf;
-//            result = new StringBuilder();
-//            while (current != root)
-//            {
-//                result.append(current.getContent()+",");
-//                current = current.getParent();
-//            }
-//
-//            System.out.println(result.reverse().toString());
-//        }
         for (String s : traceIndexer.values())
             System.out.println(s);
     }
@@ -138,26 +119,14 @@ public class Trie {
         TrieNode result;
         int size = trace.size();
         int lengthDifference = Integer.MAX_VALUE;
-        for (int i = 0; i < size; i++)
-//        for (String event : trace)
-        {
+        for (int i = 0; i < size; i++) {
             result = current.getChild(trace.get(i));
-            // result = current.getChildWithLeastPathLengthDifference(trace.get(i), size - i);
 
             if (result == null && current == startFromThisNode) return null;
             else if (result == null) return current;
             else {
                 TrieNode result2 = result;
-                //result2 = result.getChildWithLeastPathLengthDifference(size-(i+1));
-
-//                if (Math.abs(result2.getMinPathLengthToEnd() - (size - (i+1))) <= lengthDifference)
-                //               {
-                // we still have a promising direction
                 current = result;
-//                    lengthDifference = Math.abs(result.getMinPathLengthToEnd() - (size - (i+1)));
-//                }
-//                else
-//                    return current.getParent();
             }
         }
         return current;
@@ -262,6 +231,7 @@ public class Trie {
         switch (costType) {
             case "standard":
                 computeConfidenceCostStandard(this.root);
+                //computeScaledConfidenceCost(this.root, false);
                 break;
             case "avg":
                 //computeConfidenceCostAVG(this.root, isWeighted);

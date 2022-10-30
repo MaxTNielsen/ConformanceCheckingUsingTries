@@ -77,15 +77,13 @@ warm_start_runs_old = [
 ]
 
 warm_start_runs_new = [
-    "BPI2015_ws_all_states_frequency.csv",
+    "20221030_102011_BPI2015_frequency.csv",
     "M1_simulated_M1.xes_25_.csv",
-    #"M1_ws_no_prefix_simulated.csv",
     "M1_simulated_M1_warm_2.xes_25_.csv",
     "M1_simulated_M1_warm_5.xes_25_.csv",
     "M1_simulated_M1_simulated_long.xes_25_.csv",
     "M1_simulated_M1_simulated_short.xes_25_.csv",
-    "M2_ws_all_states_simulated.csv",
-    "20221027_235647_M1_warm_5_simulated.csv"
+    "20221030_101009_M2_simulated.csv"
 ]
 
 ################################################# without confidence #################################################
@@ -102,6 +100,24 @@ summarize_results(PREFIX_PATH_OLD_OCC, dims_14, avg_costs_14,
 
 summarize_results(PREFIX_PATH_NO_CONF, dims_25, avg_costs_25,
                   *warm_start_runs_new)
+
+################################################# test #################################################
+TEST = "output files/test/"
+
+print("")
+print("#"*30+" test "+"#"*30)
+print("")
+
+
+summarize_results(TEST, dims_25, avg_costs_25,
+                  *[
+                    "M1_simulated_M1.xes_25_.csv",
+                    "M1_simulated_M1_warm_2.xes_25_.csv",
+                    "M1_simulated_M1_warm_5.xes_25_.csv",
+                    "M1_simulated_M1_simulated_long.xes_25_.csv",
+                    "M1_simulated_M1_simulated_short.xes_25_.csv"
+                  ])
+
 
 ################################################# with confidence #################################################
 
@@ -168,7 +184,8 @@ summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
                   *[
                   "BPI2015_all_ws_prefix_cost_bi_1_frequency.csv",
                   "M1_simulated_uni.csv",
-                  "20221028_122549_M1_simulated.csv"
+                  "20221028_122549_M1_simulated.csv",
+                  "20221030_153855_M1__simulated.csv"
                   ])
 
 # ################################################# compare to confidence #################################################
@@ -209,3 +226,8 @@ summarize_results(PREFIX_PATH_ONLY_PREF_PROB, dims_25, avg_costs_25,
 #     print("increase in avg cost with {}% for {} ".format(
 #         round(((results[0]/results[1])-1)*100, 2), "short trace log"))
 # print("")
+# Avg conf 5.59 - Avg compl 0.5 - Avg confi 0.0 - Avg total 5.63 - Avg time 1.13 - for M1_simulated_M1.xes_25_.csv
+# Avg conf 5.08 - Avg compl 2.29 - Avg confi 0.0 - Avg total 6.32 - Avg time 0.89 - for M1_simulated_M1_warm_2.xes_25_.csv 
+# Avg conf 5.41 - Avg compl 2.56 - Avg confi 0.0 - Avg total 6.15 - Avg time 0.67 - for M1_simulated_M1_warm_5.xes_25_.csv
+# Avg conf 9.23 - Avg compl 0.39 - Avg confi 0.0 - Avg total 9.26 - Avg time 2.74 - for M1_simulated_M1_simulated_long.xes_25_.csv
+# Avg conf 5.73 - Avg compl 0.89 - Avg confi 0.0 - Avg total 5.76 - Avg time 0.62 - for M1_simulated_M1_simulated_short.xes_25_.csv 

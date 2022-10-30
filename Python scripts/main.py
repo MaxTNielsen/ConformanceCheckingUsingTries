@@ -37,7 +37,9 @@ store = {
     'filename': str.__class__,
     'traces_dict': dict,
     'model_params': dict,
-    'test_dataset': utils.Dataset.__class__
+    'test_dataset': utils.Dataset.__class__,
+    'train_dataset': utils.Dataset.__class__,
+    'eval_dataset': utils.Dataset.__class__
 }
 
 
@@ -47,12 +49,12 @@ def load_model():
 
     lstm = build_model(params=params)
 
-    # lstm.load_state_dict(
-    #     torch.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
+    lstm.load_state_dict(
+        torch.load('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'))
 
-    _, epochs, _  = get_optimal_model(params)
-    store['model_params']['epochs'] = epochs
-    _, _, lstm = get_optimal_model(params)
+    # _, epochs, _  = get_optimal_model(params)
+    # store['model_params']['epochs'] = epochs
+    # _, _, lstm = get_optimal_model(params)
 
     # store optimal model for prediction task
     store['model'] = lstm
@@ -104,34 +106,32 @@ def get_model(params, lstm):
 
     global store
 
-    inputs, targets = utils.create_dataset(
-        store['traces_dict'], store['labels_to_idx'])
+    # inputs, targets = utils.create_dataset(
+    #     store['traces_dict'], store['labels_to_idx'])
 
-    train, test = utils.load_data(0.2, inputs, targets)
+    # train, test = utils.load_data(0.2, inputs, targets)
 
-    store['test_dataset'] = test
+    # store['test_dataset'] = test
 
-    val_size = int(0.2 * len(train))
-    train_size = len(train) - val_size
+    # val_size = int(0.2 * len(train))
+    # train_size = len(train) - val_size
 
-    train_data, val_data = random_split(
-        train, [train_size, val_size], generator=torch.Generator().manual_seed(42))
+    # train_data, val_data = random_split(
+    #     train, [train_size, val_size], generator=torch.Generator().manual_seed(42))
 
     train_dataloader = DataLoader(
-        train_data, batch_size=params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
+        store['train_dataset'], batch_size=params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
 
     val_dataloader = DataLoader(
-        val_data, batch_size=params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
+        store['eval_dataset'], batch_size=params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
 
-    store['train_dataloader'] = train_dataloader
-    store['eval_dataloader'] = val_dataloader
+    # store['train_dataloader'] = train_dataloader
+    # store['eval_dataloader'] = val_dataloader
 
     if model.use_cuda:
         lstm.cuda()
 
     criterion = nn.NLLLoss()
-    # optimizer = torch.optim.Adam(lstm.parameters(), lr=params['learning_rate'],
-    #                              weight_decay=params['weight_decay'], amsgrad=True)
 
     optimizer = getattr(optim, params['optimizer'])(lstm.parameters(
     ), lr=params['learning_rate'], weight_decay=params['weight_decay'])
@@ -148,7 +148,7 @@ def get_model(params, lstm):
 
         # Train network
         lstm.train()
-        for batch_train_index, (train_batch, train_target) in enumerate(store['train_dataloader']):
+        for batch_train_index, (train_batch, train_target) in enumerate(train_dataloader):
 
             train_outputs = lstm(model.get_variable(train_batch))
 
@@ -169,7 +169,7 @@ def get_model(params, lstm):
         eval_loss[epoch] = []
 
         lstm.eval()
-        for eval_batch_index, (eval_batch, eval_target) in enumerate(store['eval_dataloader']):
+        for eval_batch_index, (eval_batch, eval_target) in enumerate(val_dataloader):
 
             eval_outputs = lstm(model.get_variable(eval_batch))
 
@@ -261,16 +261,13 @@ def get_optimal_model(params:dict):
 
             loss = loss / len(train_target)
 
-            # if loss < 0.1:
-            #     break
-
             # eval_loss[epoch].append(model.get_numpy(loss).item())
             eval_loss[epoch].append(model.get_numpy(loss).item())
 
-        # if loss < 0.1:
-        #         break
-
         best_model_state[epoch] = copy.deepcopy(lstm.state_dict())
+
+        if mean(eval_loss[epoch]) < 0.1:
+                break
 
         if epoch % EVAL_EVERY == 0:
             pass
@@ -295,7 +292,7 @@ def get_optimal_model(params:dict):
 
 
 def run_test():
-    """validate optimal model on independent test data, set aside from the train, val and test split"""
+    """validate optimal model on independent test data, set aside from the train, eval and test split"""
 
     global store
     criterion = nn.NLLLoss()
@@ -337,11 +334,11 @@ def make_prediction(input: dict) -> float:
     output = store['model'](tensor)
     output = torch.exp(output['out'][0])
     output = output.detach().numpy()
-    if input['target'] in store['labels_to_idx']:
-        output_idx = store['labels_to_idx'][input['target']]
-        output_ = output[-1][output_idx].item()
-    else:
-        output_ = np.mean(output[-1])
+    # if input['target'] in store['labels_to_idx']:
+    #     output_idx = store['labels_to_idx'][input['target']]
+    #     output_ = output[-1][output_idx].item()
+    # else:
+    output_ = np.mean(np.mean(output))
     return output_
 
 
@@ -351,18 +348,16 @@ def build_model(params:dict):
 
 def objective(trial):
     global store
-    build_traces_dicts(filename=store['file_name'])
-    set_params()
 
     params = {
         'optimizer': trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"]),
         'learning_rate': trial.suggest_float("learning_rate", 1e-5, 1e-1),
-        'weight_decay': trial.suggest_float("weight_decay", 1e-2, 1e-1),
+        'weight_decay': trial.suggest_float("weight_decay", 0.0, 1e-1),
         'dropout_rate': trial.suggest_float("dropout_rate", 0.0, 1.0),
-        'n_unit': trial.suggest_int("n_unit", 80, 240, step=40),
-        'num_layers': trial.suggest_int("num_layers", 1, 3),
+        'n_unit': trial.suggest_int("n_unit", 50, 250, step=50),
+        'num_layers': trial.suggest_int("num_layers", 1, 2),
         'bi': trial.suggest_int("bi", 0, 1),
-        'batch_size': trial.suggest_int("batch_size", 10, 30, step=10)
+        'batch_size': trial.suggest_int("batch_size", 10, 30, step=5)
     }
 
     model = build_model(params)
@@ -377,22 +372,41 @@ def init(file_name:str.__class__):
 
     global store
     store['file_name'] = file_name
-    #if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
-    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
+    if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.pt'):
+    #if not exists('saved_models/'+store['file_name'].split('/')[-1]+'.model.hyperparams.json'):
+        build_traces_dicts(filename=store['file_name'])
+        set_params()
+
+        inputs, targets = utils.create_dataset(
+        store['traces_dict'], store['labels_to_idx'])
+
+        train, eval, test = utils.load_data(0.2, inputs, targets)
+
+        store['train_dataset'] = train
+        store['eval_dataset'] = eval
+        store['test_dataset'] = test
 
         # begin hyperparameter tuning experiments
         study = optuna.create_study(
             direction="minimize", sampler=optuna.samplers.TPESampler())
-        study.optimize(objective, n_trials=50)
+        study.optimize(objective, n_trials=30)
         best_trial = study.best_trial
 
         for key, value in best_trial.params.items():
             print("{}: {}".format(key, value))
 
         # build test_dataloader and then store it in global dict
+        train_dataloader = DataLoader(
+        store['train_dataset'], batch_size=best_trial.params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
+
+        val_dataloader = DataLoader(
+            store['eval_dataset'], batch_size=best_trial.params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
+
         test_dataloader = DataLoader(
             store['test_dataset'], batch_size=best_trial.params['batch_size'], shuffle=False, collate_fn=utils.collate_fn)
 
+        store['train_dataloader'] = train_dataloader
+        store['eval_dataloader'] = val_dataloader
         store['test_dataloader'] = test_dataloader
 
         # save the dataloaders for consistency
@@ -408,19 +422,19 @@ def init(file_name:str.__class__):
             json.dump(best_trial.params, outfile)
 
         # refit a model configured with the optimal params and retrieve model state with lowest validation loss
-        # best_model = build_model(params=best_trial.params)
-        # best_model_state, _, _ = get_optimal_model(best_trial.params)
+        best_model = build_model(params=best_trial.params)
+        best_model_state, _, _ = get_optimal_model(best_trial.params)
 
-        _, epochs, _  = get_optimal_model(best_trial.params)
-        store['model_params']['epochs'] = epochs
-        _, _, best_model = get_optimal_model(best_trial.params)
+        # _, epochs, _  = get_optimal_model(best_trial.params)
+        # store['model_params']['epochs'] = epochs
+        # _, _, best_model = get_optimal_model(best_trial.params)
 
         # save model state (weigths etc)
-        # torch.save(best_model_state, 'saved_models/' +
-        #            store['file_name'].split('/')[-1]+'.model.pt')
+        torch.save(best_model_state, 'saved_models/' +
+                   store['file_name'].split('/')[-1]+'.model.pt')
 
         # store optimal model for prediction task
-        # best_model.load_state_dict(best_model_state)
+        best_model.load_state_dict(best_model_state)
         store['model'] = best_model
 
     else:

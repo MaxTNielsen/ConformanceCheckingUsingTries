@@ -133,6 +133,10 @@ public class Runner {
             subLog.put("simulated", "input/M-models/M1_sim.xes");
             logs.put("M1_warm_5", new HashMap<>(subLog));
             subLog.clear();
+            subLog.put("log", "input/M-models/M1.xes");
+            subLog.put("simulated", "input/M-models/M1_sim.xes");
+            logs.put("M1_", new HashMap<>(subLog));
+            subLog.clear();
 
 
             ConformanceCheckerType checkerType = TRIE_STREAMING_TRIPLECOCC;
@@ -141,7 +145,7 @@ public class Runner {
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "M1";
+                String sLog = "M1_";
                 String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);

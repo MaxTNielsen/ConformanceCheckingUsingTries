@@ -1,5 +1,6 @@
 import torch as torch
 from torch.utils.data import random_split
+from torch.utils.data import DataLoader
 
 import time
 import math
@@ -35,7 +36,13 @@ def load_data(test_split, inputs, targets):
     train_eval_dataset, test_dataset = random_split(
         dataset, [train_size, test_size], generator=torch.Generator().manual_seed(42))
 
-    return train_eval_dataset, test_dataset
+    val_size = int(0.2 * len(train_eval_dataset))
+    train_size = len(train_eval_dataset) - val_size
+
+    train_data, val_data = random_split(
+        train_eval_dataset, [train_size, val_size], generator=torch.Generator().manual_seed(42))
+
+    return train_data, val_data, test_dataset
 
 
 def create_dataset(traces_dict, label_to_idx):

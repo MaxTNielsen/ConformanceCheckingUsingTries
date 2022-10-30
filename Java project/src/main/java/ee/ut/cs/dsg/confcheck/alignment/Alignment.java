@@ -8,14 +8,11 @@ import java.util.List;
 public class Alignment {
     private List<Move> moves;
 
-    private List<String> fullTrace;
-
     private int totalCost;
 
     public Alignment(Alignment other) {
         this.moves = other.getMoves();
         this.totalCost = other.getTotalCost();
-        this.fullTrace = other.getFullTrace();
     }
 
     public Alignment() {
@@ -52,15 +49,7 @@ public class Alignment {
 
             if (!m.getModelMove().equals(">>")) modelTrace.append(m.getModelMove());
         }
-
-        if(fullTrace != null) {
-            for (String s: fullTrace) {
-                trace.append(s);
-            }
-        }
-        else{
-            trace = logTrace;
-        }
+        trace = logTrace;
         result.append("Trace: ").append(trace).append("\n");
         result.append("Log: ").append(logTrace).append("\n");
         result.append("Mod: ").append(modelTrace).append("\n");
@@ -138,17 +127,5 @@ public class Alignment {
         StringBuilder sb = new StringBuilder();
         this.getMoves().stream().filter(x -> !x.getModelMove().equals(">>")).forEach(e -> sb.append(e));
         return sb.toString();
-    }
-
-    public void setTotalCost(int totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public List<String> getFullTrace() {
-        return fullTrace;
-    }
-
-    public void setFullTrace(List<String> trace) {
-        fullTrace = new ArrayList<>(trace);
     }
 }

@@ -10,22 +10,19 @@ import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.lang.Math;
 
 public class TripleCOCC extends ConformanceChecker {
 
     protected final CostFunction costFunction;
     // Streaming variables
-    final protected HashMap<String, TreeMap<Integer, TrieNode>> warmStartMap = modelTrie.getWarmStart();
     protected int minDecayTime = 3;
     protected int averageTrieLength = 0;
     protected float decayTimeMultiplier = 0.3F;
     protected boolean replayWithLogMoves = true;
-    protected boolean isStandardAlign;
+    protected boolean isStandardAlign; // if true then compute alignments without confidence cost
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
-    private final boolean isWarmStartAllStates;
-    private final Hashtable<String, List<String>> tracesBuffer = new Hashtable<>(); // only for debugging the alignments - remove in production
+    private final boolean isWarmStartAllStates; // used to try either approaches to warm-starting
 
     public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
         super(trie, logCost, modelCost, maxStatesInQueue);
@@ -70,12 +67,6 @@ public class TripleCOCC extends ConformanceChecker {
 
         // iterate over the trace - choose event by event
         // modify everything into accepting event instead of list of events
-        int k = 0;
-        if (Objects.equals(caseId, "13")) {
-            k = Integer.parseInt(caseId);
-        }
-
-        int p = k;
         if (statesInBuffer.containsKey(caseId)) {
             // case exists, fetch last state
             caseStatesInBuffer = statesInBuffer.get(caseId);
@@ -87,13 +78,6 @@ public class TripleCOCC extends ConformanceChecker {
         }
 
         for (String event : trace) {
-            if (tracesBuffer.containsKey(caseId)) {
-                tracesBuffer.get(caseId).add(event);
-            } else {
-                tracesBuffer.put(caseId, new ArrayList<>());
-                tracesBuffer.get(caseId).add(event);
-            }
-
             // sync moves
             // we iterate over all states
             for (Iterator<Map.Entry<String, State>> states = currentStates.entrySet().iterator(); states.hasNext(); ) {
@@ -154,6 +138,7 @@ public class TripleCOCC extends ConformanceChecker {
                 traceSuffix = previousState.getTracePostfix();
                 traceSuffix.addAll(traceEvent);
 
+                // add model moves
                 List<State> modelMoveStates = handleModelMoves(traceSuffix, previousState, null);
 
                 // add log move
@@ -165,7 +150,7 @@ public class TripleCOCC extends ConformanceChecker {
                     interimCurrentStates.add(logMoveState);
                 }
 
-                // add model moves
+                // converge on the minimum cost
                 currentMinCost = getCurrentMinCost(interimCurrentStates, currentMinCost, modelMoveStates);
 
                 List<State> warmStartMoves = new ArrayList<>();
@@ -347,32 +332,27 @@ public class TripleCOCC extends ConformanceChecker {
     }
 
     private List<State> handleWarmStartMoves(List<String> suffix, State state, double currMinCost) {
-        List<String> suffixToCheck = new ArrayList<>(suffix);
-        List<String> fullTrace = state.getAlignment().getPrefixTrace();
-        int preFixCost = state.getAlignment().getTraceSize() + state.getCompletenessCost();
-        return new ArrayList<>(makeWarmStartMoves(suffixToCheck, preFixCost, currMinCost, fullTrace));
-    }
-
-    private List<State> makeWarmStartMoves(List<String> trace, int preFixCost, double currMinCost, List<String> prefixTraceMoves) {
         List<State> warmStartStates = new ArrayList<>();
-        List<String> traceToCheck = new ArrayList<>(trace);
-        TreeMap<Integer, TrieNode> warmStartNodes = warmStartMap.get(traceToCheck.get(0));
+        List<String> prefixTraceMoves = state.getAlignment().getPrefixTrace();
+        int preFixCost = state.getAlignment().getTraceSize();
+        List<String> traceToCheck = new ArrayList<>(suffix);
+        TreeMap<Integer, TrieNode> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
         traceToCheck.remove(0);
 
         if (warmStartNodes != null) {
             for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
                 TrieNode warmStartNode = entry.getValue();
-                int completenessCost = Math.max(entry.getKey(), preFixCost);
+                int completenessCost = Math.max(entry.getKey(), preFixCost); // tax the ws move with the correct cost
 
-                // we only consider warm-start moves that are below the minimum cost
+                // we only consider warm-start moves that are below or equal to the upperbound on minimum cost
                 if (completenessCost <= currMinCost) {
                     Alignment a = new Alignment();
-                    for (String move: prefixTraceMoves) {
+                    for (String move : prefixTraceMoves) {
                         Move m = new Move(move, ">>", 1);
                         a.appendMove(m);
                     }
                     a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
-                    // a.setTotalCost(completenessCost);
+
                     // we attempt to make synchronous moves on the suffix of the warm-start trace
                     TrieNode fromNode = warmStartNode;
                     Alignment syncAlign = new Alignment(a);
@@ -453,29 +433,20 @@ public class TripleCOCC extends ConformanceChecker {
                     decayTime = computeDecayTime(s.getAlignment());
                     if (s.getDecayTime() == decayTime & s.getTracePostfix().size() == 0) {
                         statesToReturn.add(s);
-                        /*Alignment a = s.getAlignment();
-                        a.setFullTrace(tracesBuffer.get(caseId));
-                        s.setAlignment(a);
-                        return s;*/
                     }
                 }
             }
 
-            // use when confidence is meaningful
+            // state cost is an upper bound of alignment cost thus getting the optimal alignment by comparing alignment costs
             if (!finalState) {
                 double minCost = Double.MAX_VALUE;
                 State bestState = null;
                 for (State st : statesToReturn) {
-                    if (st.getWeightedSumOfCosts() <= minCost) {
-                        minCost = st.getWeightedSumOfCosts();
+                    if (st.getAlignment().getTotalCost() <= minCost) {
+                        minCost = st.getAlignment().getTotalCost();
                         bestState = st;
                     }
                 }
-
-                assert bestState != null;
-                Alignment a = bestState.getAlignment();
-                a.setFullTrace(tracesBuffer.get(caseId));
-                bestState.setAlignment(a);
                 return bestState;
             }
 
