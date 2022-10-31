@@ -345,9 +345,7 @@ def make_prediction(input: dict) -> float:
             output_ += output[idx][output_idx].item()
         else:
             output_ += np.mean(output[idx])
-    output_ = output_/len(targets)
-
-
+    output_ = output_ / len(targets)
     return output_
 
 
