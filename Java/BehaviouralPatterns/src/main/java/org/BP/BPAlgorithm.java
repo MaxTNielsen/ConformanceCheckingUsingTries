@@ -28,11 +28,11 @@ public class BPAlgorithm {
             sb.append(pathComponents[i]).append("\\");
         }
         input_dir = sb.append("input").toString();
-        // run once to create required properties file
-        /*try (OutputStream output = Files.newOutputStream(Paths.get(dir_path + "/src/main/resources/javaOfflinePreProcessor.properties"))) {
+
+        try (OutputStream output = Files.newOutputStream(Paths.get("javaOfflinePreProcessor.properties"))) {
 
             Properties javaOfflinePreProcessor = new Properties();
-            javaOfflinePreProcessor.setProperty("JAVA_BIN", "C:\\Program Files\\Java\\jdk-11.0.16");
+            javaOfflinePreProcessor.setProperty("JAVA_BIN", "C:\\Users\\tuetr\\Java\\jdk-11.0.16.1");
             javaOfflinePreProcessor.setProperty("OFFLINE_PREPROCESSOR_JAR", "C:\\Users\\tuetr\\Desktop\\master thesis\\" +
                     "Trie approach\\OCC projects\\ConformanceCheckingUsingTries\\Java\\BehaviroualPatterns\\lib");
 
@@ -43,11 +43,11 @@ public class BPAlgorithm {
 
         } catch (IOException io) {
             io.printStackTrace();
-        }*/
+        }
     }
 
     public void runAlgorithm() throws Exception {
-        XesLogSource source = new XesLogSource(input_dir + "\\log\\M1.xes");
+        XesLogSource source = new XesLogSource(input_dir+"\\log\\M1.xes");
 
         File file = new File(input_dir + "\\model\\test.tpn");
 
