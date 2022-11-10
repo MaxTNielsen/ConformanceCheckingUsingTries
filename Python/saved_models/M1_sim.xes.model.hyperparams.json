@@ -1,0 +1,1 @@
+{"optimizer": "RMSprop", "learning_rate": 0.004013442184175993, "weight_decay": 0.0009170278380727831, "dropout_rate": 0.04350153452186423, "n_unit": 150, "num_layers": 2, "bi": 1, "batch_size": 15}
