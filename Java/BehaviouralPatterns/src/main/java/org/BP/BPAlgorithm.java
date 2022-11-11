@@ -32,9 +32,9 @@ public class BPAlgorithm {
         try (OutputStream output = Files.newOutputStream(Paths.get("javaOfflinePreProcessor.properties"))) {
 
             Properties javaOfflinePreProcessor = new Properties();
-            javaOfflinePreProcessor.setProperty("JAVA_BIN", "C:\\Users\\tuetr\\Java\\jdk-11.0.16.1");
+            javaOfflinePreProcessor.setProperty("JAVA_BIN", "C:\\Users\\tuetr\\Java\\jdk-11.0.16.1\\bin\\java");
             javaOfflinePreProcessor.setProperty("OFFLINE_PREPROCESSOR_JAR", "C:\\Users\\tuetr\\Desktop\\master thesis\\" +
-                    "Trie approach\\OCC projects\\ConformanceCheckingUsingTries\\Java\\BehaviroualPatterns\\lib");
+                    "Trie approach\\OCC projects\\ConformanceCheckingUsingTries\\Java\\BehaviroualPatterns\\lib\\region-based-conformance-offline-preprocessor-v2.jar");
 
             // save properties to project root folder
             javaOfflinePreProcessor.store(output, null);
@@ -47,12 +47,9 @@ public class BPAlgorithm {
     }
 
     public void runAlgorithm() throws Exception {
-        XesLogSource source = new XesLogSource(input_dir+"\\log\\M1.xes");
+        XesLogSource source = new XesLogSource("input\\log\\test.xes");
 
-        File file = new File(input_dir + "\\model\\test.tpn");
-
-        ///System.out.println(input_dir + "\\model\\test.tpn");
-        SimpleConformance conformance = new SimpleConformance(file);
+        SimpleConformance conformance = new SimpleConformance(new File("input\\model\\test.tpn"));
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         env
