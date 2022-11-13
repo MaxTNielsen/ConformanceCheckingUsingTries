@@ -46,7 +46,7 @@ public class BPAlgorithm {
         }
     }
 
-    public void runAlgorithm() throws Exception {
+    protected void runAlgorithm() throws Exception {
         XesLogSource source = new XesLogSource("input\\log\\test.xes");
 
         SimpleConformance conformance = new SimpleConformance(new File("input\\model\\test.tpn"));

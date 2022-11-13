@@ -91,9 +91,6 @@ def map_net_activity(net, actmap):
                 t.label = actmap[t.label]
 
 
-"""(n62, 'W_Wijzigen contractgegevens')"""
-
-
 def modify_place_name(net):
     """Append p to place names so that regular expression can be used to map 
     markings back and forth to its integer representation.

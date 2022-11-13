@@ -314,7 +314,8 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
         logger.info('Computing the state probability of both train_df and test_df')
         train_hmmconf_feature = list()
         test_hmmconf_feature = list()
-        columns = ['caseid','activity', 'case_prefix'] 
+        #columns = ['caseid','activity', 'case_prefix'] 
+        columns = ['caseid','activity'] 
         #columns += list(state_id_df['state'].values)
         columns += ['emitconf', 'stateconf', 'finalconf', 'injected_distance', 'completeness']
 
@@ -333,10 +334,15 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
             injected_dict = injected_dist_rows[-1][2]
             completeness = completeness_rows[-1][2]
 
-            hmmconf_feature = [caseid, act, ''.join(case_prefixes[caseid])] #+ list(logfwd) 
+          # hmmconf_feature = [caseid, act, ''.join(case_prefixes[caseid])] #+ list(logfwd) 
+            hmmconf_feature = [caseid, act]
             hmmconf_feature += [emitconf, stateconf, finalconf, injected_dict, completeness]
             train_hmmconf_feature.append(hmmconf_feature)
         
+        train_hmmconf_feature_df = pd.DataFrame.from_records(train_hmmconf_feature, columns=columns)
+
+        columns = ['caseid','activity','execution time']
+        columns += ['emitconf', 'stateconf', 'finalconf', 'injected_distance', 'completeness']
         case_prefixes.clear()
         for row in test_event_df[['caseid', 'activity', 'activity_id']].itertuples(index=False):
             caseid = row.caseid
@@ -346,17 +352,21 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
             act = row.activity
             case_prefixes[caseid].append(act)
 
+
+            start_i = time.time()
             logfwd, finalconf, exception = tracker.replay_event(caseid, event)
+            end_i = time.time()
+            trace_time = round(((end_i - start_i) * 1000),4)
             emitconf = conf_observer.emitconf[caseid][-1]
             stateconf = conf_observer.stateconf[caseid][-1]
             injected_dict = injected_dist_rows[-1][2]
             completeness = completeness_rows[-1][2]
 
-            hmmconf_feature = [caseid, act, ''.join(case_prefixes[caseid])] #+ list(logfwd)  
+            # hmmconf_feature = [caseid, act, ''.join(case_prefixes[caseid])] #+ list(logfwd)
+            hmmconf_feature = [caseid, act, trace_time] #+ list(logfwd)  
             hmmconf_feature += [emitconf, stateconf, finalconf, injected_dict, completeness]
             test_hmmconf_feature.append(hmmconf_feature)
 
-        train_hmmconf_feature_df = pd.DataFrame.from_records(train_hmmconf_feature, columns=columns)
         test_hmmconf_feature_df = pd.DataFrame.from_records(test_hmmconf_feature, columns=columns)
         print('Train hmmconf feature df: \n{}'.format(train_hmmconf_feature_df.head()))
         print('Test hmmconf feature df: \n{}'.format(test_hmmconf_feature_df.head()))
@@ -402,10 +412,13 @@ if __name__ == '__main__':
     BPI_LOGS = os.path.join(DATA_FP, 'BPI-logs')
     M_LOGS = os.path.join(DATA_FP, 'M-logs')
 
-    model_type = BPI_MODELS
-    log_type = BPI_LOGS
+    model_type = M_MODELS
+    log_type = M_LOGS
+    
+    # LOGS = ["BPI_2012", "BPI_2017", "BPI_2020","M10", "M1", "M2",
+    #        "M3", "M4", "M5", "M6", "M7", "M8", "M9"]
 
-    LOGS = ["BPI_2012", "BPI_2017", "M10", "M1", "M2",
+    LOGS = ["BPI_2012", "BPI_2017", "M1", "M2",
            "M3", "M4", "M5", "M6", "M7", "M8", "M9"]
 
 
@@ -416,8 +429,8 @@ if __name__ == '__main__':
         f_ = extract_log_name(filename).group()
         data_dir = os.path.join(log_type, f_)
         for log in os.listdir(data_dir):
-            msg = 'Model: {}, ' \
-                'Log: {}, '
+            msg = '\n Model: {}, ' \
+                'Log: {} \n'
             msg = msg.format(filename, log)
             print(msg)
             out_fp = os.path.join(result_dir, log)
