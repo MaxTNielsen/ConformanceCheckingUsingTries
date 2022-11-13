@@ -204,6 +204,16 @@ def sizeof_tracker_mb(t):
     return sizeof_tracker(t) / 1e6
 
 
+class ConformanceObserver:
+    def __init__(self):
+        self.emitconf = defaultdict(list)
+        self.stateconf = defaultdict(list)
+
+    def update(self, status):
+        self.emitconf[status.caseid].append(status.last_emitconf)
+        self.stateconf[status.caseid].append(status.last_stateconf)
+
+
 def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
     print('Start stress test...')
     start = time.time()
@@ -246,12 +256,9 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
 
     print('Setting up HMM...')
     def is_inv(t): return t.label is None
-    rg, inv_states = hmmconf.build_reachability_graph(
-        net, init_marking, is_inv)
-    sorted_states = sorted(
-        list(rg.states), key=lambda s: (s.data['disc'], s.name))
-    node_map = {key: val for val, key in enumerate(
-        map(lambda state: state.name, sorted_states))}
+    rg, inv_states = hmmconf.build_reachability_graph( net, init_marking, is_inv)
+    sorted_states = sorted(list(rg.states), key=lambda s: (s.data['disc'], s.name))
+    node_map = {key: val for val, key in enumerate( map(lambda state: state.name, sorted_states))}
     int2state = {val: key for key, val in node_map.items()}
     state2int = {val: key for key, val in int2state.items()}
 
@@ -259,8 +266,7 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
     init = hmmconf.get_init_marking(rg)
     startprob = hmmconf.compute_startprob(rg, state2int, is_inv_rg)
     conf_obsmap = {i: i for i in obs2int.values()}
-    confmat = hmmconf.compute_confmat(
-        rg, init, is_inv_rg, state2int, conf_obsmap)
+    confmat = hmmconf.compute_confmat(rg, init, is_inv_rg, state2int, conf_obsmap)
 
     params = estimate_conform_params(
         filtered_df, state2int, obs2int, net_orig, init_marking_orig, final_marking_orig, is_inv
@@ -301,6 +307,7 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
     # memory test
     print('Doing memory test...')
     print('Make conformance tracker...')
+
     tracker = hmmconf.ConformanceTracker(
         hmm, max_n_case=EXPERIMENT_CONFIGS[MAX_N_CASE])
 
