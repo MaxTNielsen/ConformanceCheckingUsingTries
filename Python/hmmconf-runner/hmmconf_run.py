@@ -204,16 +204,6 @@ def sizeof_tracker_mb(t):
     return sizeof_tracker(t) / 1e6
 
 
-class ConformanceObserver:
-    def __init__(self):
-        self.emitconf = defaultdict(list)
-        self.stateconf = defaultdict(list)
-
-    def update(self, status):
-        self.emitconf[status.caseid].append(status.last_emitconf)
-        self.stateconf[status.caseid].append(status.last_stateconf)
-
-
 def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
     print('Start stress test...')
     start = time.time()
