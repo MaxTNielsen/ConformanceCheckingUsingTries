@@ -51,7 +51,7 @@ public class IncrementalPrefixAlignment {
         parameters.setModelElementsToLabelMap(modelElementsToLabelMap);
         parameters.setSearchAlgorithm(IncrementalReplayer.SearchAlgorithm.A_STAR);
         parameters.setUseSolutionUpperBound(true);
-        parameters.setLookBackWindow(2);
+        //parameters.setLookBackWindow(2);
         parameters.setExperiment(true);
         if (parameters.isExperiment()) {
             return applyMeasurementAware(net, initialMarking, finalMarking, log, parameters);

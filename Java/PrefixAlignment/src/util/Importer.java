@@ -80,7 +80,7 @@ public class Importer {
         return dataSetFiles;
     }
 
-    public static Hashtable<String, List<String>> getLogsAndNets(String name) {
+    public static Hashtable<String, List<String>> getLogsAndModels(String name) {
         List<Path> dataSetFiles = null;
         Hashtable<String, List<String>> files = new Hashtable<>();
         Pattern pattern = Pattern.compile(".pnml", Pattern.CASE_INSENSITIVE);

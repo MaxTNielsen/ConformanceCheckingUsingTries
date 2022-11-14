@@ -2,3 +2,6 @@
 *output/
 *lib/
 *.class
+*src/main/resources/
+*target/
+*misc/

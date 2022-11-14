@@ -40,19 +40,19 @@ public class Runner {
         String formattedDate = dateFormat.format(date);
 
         List<String> datasetNames = new ArrayList<>();
-        /*datasetNames.add("M1");
-        datasetNames.add("M2");*/
-        //datasetNames.add("M3");
-        //datasetNames.add("M4");
-        //datasetNames.add("M5");
-        //datasetNames.add("M6");
-        //datasetNames.add("M7");
-        datasetNames.add("M8");
-        datasetNames.add("M9");
-        datasetNames.add("M10");
-        datasetNames.add("BPI_2012");
-        datasetNames.add("BPI_2017");
-        datasetNames.add("BPI_2020");
+        datasetNames.add("M1"); // working
+        datasetNames.add("M2"); // working
+        //datasetNames.add("M3"); // not working
+        datasetNames.add("M4"); // working
+        //datasetNames.add("M5"); // not working
+        //datasetNames.add("M6"); // not working
+        //datasetNames.add("M7"); // not working
+        datasetNames.add("M8"); // working
+        datasetNames.add("M9"); // working
+        //datasetNames.add("M10"); // not working
+        datasetNames.add("BPI_2012"); // working
+        datasetNames.add("BPI_2017"); // working
+        datasetNames.add("BPI_2020"); // working
 
         for (String name : datasetNames) {
 
@@ -64,7 +64,7 @@ public class Runner {
                 e.printStackTrace();
             }*/
 
-            Hashtable<String, List<String>> files = Importer.getLogsAndNets(name);
+            Hashtable<String, List<String>> files = Importer.getLogsAndModels(name);
             List<String> sNetPaths = files.get("net");
             for (String netPath : sNetPaths) {
 
