@@ -12,7 +12,7 @@ import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 import java.util.*;
 import java.lang.Math;
 
-public class TripleCOCC extends ConformanceChecker {
+public class C_3PO extends ConformanceChecker {
 
     protected final CostFunction costFunction;
     // Streaming variables
@@ -24,7 +24,7 @@ public class TripleCOCC extends ConformanceChecker {
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
     private final boolean isWarmStartAllStates; // used to try either approaches to warm-starting
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
+    public C_3PO(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
         super(trie, logCost, modelCost, maxStatesInQueue);
         this.rnd = new Random(19);
         this.maxTrials = maxTrials;
@@ -42,11 +42,11 @@ public class TripleCOCC extends ConformanceChecker {
         }
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
+    public C_3PO(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
         this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType, urls, log, isWarmStartAllStates);
     }
 
-    public TripleCOCC(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
+    public C_3PO(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
         this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType, urls, log, isWarmStartAllStates);
     }
 

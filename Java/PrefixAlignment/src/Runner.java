@@ -52,7 +52,7 @@ public class Runner {
         //datasetNames.add("M10"); // not working
         datasetNames.add("BPI_2012"); // working
         datasetNames.add("BPI_2017"); // working
-        datasetNames.add("BPI_2020"); // working
+        //datasetNames.add("BPI_2020"); // working
 
         for (String name : datasetNames) {
 

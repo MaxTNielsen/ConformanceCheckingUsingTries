@@ -52,7 +52,7 @@ import java.util.stream.Stream;
 
 import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING;
-import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING_TRIPLECOCC;
+import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING_C_3PO;
 import static ee.ut.cs.dsg.confcheck.util.Configuration.LogSortType;
 //import static sun.misc.Version.print;
 
@@ -72,7 +72,7 @@ public class Runner {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
             String formattedDate = dateFormat.format(date);
 
-            String pathPrefix = "output/TripleCOCC_runs/";
+            String pathPrefix = "output/C-3PO/";
             String fileType = ".csv";
 
             HashMap<String, HashMap<String, String>> logs = new HashMap<>();
@@ -138,9 +138,9 @@ public class Runner {
             logs.put("M1_", new HashMap<>(subLog));
             subLog.clear();
 
-            ConformanceCheckerType checkerType = TRIE_STREAMING_TRIPLECOCC;
+            ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
-            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
@@ -152,7 +152,7 @@ public class Runner {
                 try {
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, sLogPath);
 
-                    if (checkerType == TRIE_STREAMING_TRIPLECOCC)
+                    if (checkerType == TRIE_STREAMING_C_3PO)
                         res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
                     else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
 
@@ -259,7 +259,7 @@ public class Runner {
                 logPaths[3] = sLogPathSimShort;
                 logPaths[4] = sLogPathSimLong;
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
-                ConformanceCheckerType checkerType1 = checkerType == TRIE_STREAMING_TRIPLECOCC ? TRIE_STREAMING : TRIE_STREAMING_TRIPLECOCC;
+                ConformanceCheckerType checkerType1 = checkerType == TRIE_STREAMING_C_3PO ? TRIE_STREAMING : TRIE_STREAMING_C_3PO;
                 ConformanceCheckerType[] checkers = new ConformanceCheckerType[2];
                 checkers[0] = checkerType;
                 checkers[1] = checkerType1;
@@ -270,7 +270,7 @@ public class Runner {
                         String pathName = pathPrefix + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + c.toString().length() + "_" + fileType;
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, c, sLogPath_complete);
-                            if (c == TRIE_STREAMING_TRIPLECOCC)
+                            if (c == TRIE_STREAMING_C_3PO)
                                 res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", c));
 
                             else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", c));
@@ -290,18 +290,18 @@ public class Runner {
             } else if (runType == "validation") {
                 List<String> datasetNames = new ArrayList<>();
                 datasetNames.add("M1");
-                /*datasetNames.add("M2");
-                datasetNames.add("M3");
+                datasetNames.add("M2");
+                //datasetNames.add("M3");
                 datasetNames.add("M4");
-                datasetNames.add("M5");
+                /*datasetNames.add("M5");
                 datasetNames.add("M6");
-                datasetNames.add("M7");
+                datasetNames.add("M7");*/
                 datasetNames.add("M8");
                 datasetNames.add("M9");
-                datasetNames.add("M10");*/
-                /*datasetNames.add("BPI_2012");
+                //datasetNames.add("M10");
+                datasetNames.add("BPI_2012");
                 datasetNames.add("BPI_2017");
-                datasetNames.add("BPI_2020");*/
+                /*datasetNames.add("BPI_2020");*/
 
                 for (String sLog : datasetNames) {
                     String sLogType;
@@ -324,7 +324,7 @@ public class Runner {
                         String pathName = pathPrefix + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + checkerType.toString().length() + fileType;
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, checkerType, logPathComplete);
-                            if (checkerType == TRIE_STREAMING_TRIPLECOCC)
+                            if (checkerType == TRIE_STREAMING_C_3PO)
                                 res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
 
                             else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
@@ -614,7 +614,7 @@ public class Runner {
             // AlphabetService service = new AlphabetService();
 
             ConformanceChecker checker;
-            String className = confCheckerType == TRIE_STREAMING_TRIPLECOCC ? "ee.ut.cs.dsg.confcheck.TripleCOCC" : "ee.ut.cs.dsg.confcheck.StreamingConformanceChecker";
+            String className = confCheckerType == TRIE_STREAMING_C_3PO ? "ee.ut.cs.dsg.confcheck.C_3PO" : "ee.ut.cs.dsg.confcheck.StreamingConformanceChecker";
             JavaClassLoader javaClassLoader = new JavaClassLoader();
             Class<?>[] type;
             Object[] params;
@@ -627,7 +627,7 @@ public class Runner {
                 params = new Object[]{t, 1, 1, 100000, 100000};
                 javaClassLoader.invokeClass(className, type, params);
 
-            } else if (confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+            } else if (confCheckerType == TRIE_STREAMING_C_3PO) {
                 // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap urls, String logName, boolean isWarmStartAllStates
                 HashMap<String, String> urls = new HashMap<>();
                 urls.put("init", "http://127.0.0.1:8000/init");
@@ -696,7 +696,7 @@ public class Runner {
             checker = null;
             if (LogSortType.NONE == LogSortType.LEXICOGRAPHIC_DESC || LogSortType.NONE == LogSortType.TRACE_LENGTH_DESC) {
                 for (int i = tracesToSort.size() - 1; i >= 0; i--) {
-                    if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+                    if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
                         totalTime = computeAlignment2(tracesToSort, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType, t);
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
@@ -706,7 +706,7 @@ public class Runner {
 //
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
-                    if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_TRIPLECOCC) {
+                    if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
                         totalTime = computeAlignment2(tracesToSort, sampleTracesMap, totalTime, devChecker, i, result, javaClassLoader, confCheckerType, t);
                     } /*else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
@@ -768,12 +768,12 @@ public class Runner {
         executionTime = System.currentTimeMillis() - start;
         totalTime += executionTime;
         if (alg != null) {
-            if (checkerType == TRIE_STREAMING_TRIPLECOCC)
-                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
-                //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+            if (checkerType == TRIE_STREAMING_C_3PO)
+                //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
+                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
             else
-                result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
-                //result.add(i + "," + alg.getTotalCost() + "," + executionTime);
+                //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
+                result.add(i + "," + alg.getTotalCost() + "," + executionTime);
         } else {
             System.out.println("Couldn't find an alignment under the given constraints");
             result.add(Integer.toString(i) + ",9999999," + executionTime);

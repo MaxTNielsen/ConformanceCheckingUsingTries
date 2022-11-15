@@ -412,8 +412,8 @@ if __name__ == '__main__':
     BPI_LOGS = os.path.join(DATA_FP, 'BPI-logs')
     M_LOGS = os.path.join(DATA_FP, 'M-logs')
 
-    model_type = BPI_MODELS
-    log_type = BPI_LOGS
+    model_type = M_MODELS
+    log_type = M_LOGS
     
     # LOGS = ["BPI_2012", "BPI_2017", "BPI_2020","M10", "M1", "M2",
     #        "M3", "M4", "M5", "M6", "M7", "M8", "M9"]
@@ -421,7 +421,7 @@ if __name__ == '__main__':
     # LOGS = ["BPI_2012", "BPI_2017", "M1", "M2",
     #       "M3", "M4", "M5", "M6", "M7", "M8", "M9"]
     
-    LOGS = ["BPI_2017","M3", "M4", "M5", "M6", "M7", "M8", "M9"]
+    LOGS = ["BPI_2017","BPI_2012","M1","M2","M4","M8", "M9"]
 
 
     for filename in os.listdir(model_type):

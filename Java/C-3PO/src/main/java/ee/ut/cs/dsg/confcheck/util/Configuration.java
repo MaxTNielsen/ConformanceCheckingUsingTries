@@ -10,7 +10,7 @@ public class Configuration {
         TRIE_RANDOM,
         TRIE_RANDOM_STATEFUL,
         TRIE_STREAMING,
-        TRIE_STREAMING_TRIPLECOCC
+        TRIE_STREAMING_C_3PO
     }
 
     public enum LogSortType
