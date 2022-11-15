@@ -311,6 +311,11 @@ public class Runner {
                     else {
                         sLogType = "simulatedLog";
                     }
+
+                    String logDir = Paths.get(pathPrefix, sLog).toString();
+                    File directory = new File(logDir);
+                    boolean r = directory.mkdir();
+
                     Hashtable<String, String> log = getLogs(sLog, sLogType);
                     String sProxyLogPath = log.get(sLogType);
                     log.remove(sLogType);
@@ -321,7 +326,7 @@ public class Runner {
                     for (String key : setOfKeys) {
                         String logPath = log.get(key);
                         int pos = logPath.lastIndexOf("\\");
-                        String pathName = pathPrefix + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + checkerType.toString().length() + fileType;
+                        String pathName = logDir + "\\" + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + checkerType.toString().length() + fileType;
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, checkerType, logPathComplete);
                             if (checkerType == TRIE_STREAMING_C_3PO)
