@@ -1,7 +1,5 @@
-import sys
 import pandas as pd
 import numpy as np
-import stats
 import os
 import re
 from statistics import mean
@@ -14,14 +12,11 @@ def get_log_type(filename:str) -> str:
     res = re.search(logs_pattern, filename)
     return res.group() if res is not None else 'sim'
 
-def get_occ_dicts(dir_path: str, isC_3PO:bool=False) -> dict:
+def get_occ_dicts(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
     """ params:
                 dir_path : directory path to occ results
         returns:
-                nested dict with dataframes containing the average for a given log over all runs
-        keys:
-                first level : M1, .. , BPI_2017 (all logs)
-                second level : sim, completeness20, completeness 50
+                concatenated df with results from all logs
     """
     log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in LOGS}
     temp_df = {log_n:{log_t:{} for log_t in LOG_TYPES} for log_n in LOGS}
@@ -59,18 +54,30 @@ def get_occ_dicts(dir_path: str, isC_3PO:bool=False) -> dict:
                 log_dfs[log][log_type]['Completeness cost'] = np.array(compl_cost)
             log_dfs[log][log_type]['Conformance cost'] = np.array(conf_cost)
             log_dfs[log][log_type]['ExecutionTime'] = np.array(exe_times)
-            
+
+    df_list = []
+    for log_n, log_types in log_dfs.items():
+        for log_t, results in log_types.items():
+            results['model'] = len(results) * [log_n]
+            results['log_type'] = len(results) * [log_t]
+            df_list.append(results)
+
+    log_dfs = pd.concat(df_list, ignore_index=True)
+
+    log_dfs['Conformance cost'] = log_dfs['Conformance cost'].astype(float)
+    log_dfs['ExecutionTime'] = log_dfs['ExecutionTime'].astype(float)
+
+    if isC_3PO:
+        log_dfs['Completeness cost'] = log_dfs['Completeness cost'].astype(float)
+
     return log_dfs
 
 
-def get_hmmconf_dict(dir_path: str):
+def get_hmmconf_dict(dir_path: str) -> pd.DataFrame.__class__:
     """ params:
-                dir_path : directory path to hmmconf results
+                dir_path : directory path to occ results
         returns:
-                nested dict with dataframes containing the results for a given log
-        keys:
-                first level : M1, .. , BPI_2017 (all logs)
-                second level : sim, completeness20, completeness 50
+                concatenated df with results from all logs
     """
     log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in LOGS}
     temp_df = {log_n:{log_t:list() for log_t in LOG_TYPES} for log_n in LOGS}
@@ -89,6 +96,20 @@ def get_hmmconf_dict(dir_path: str):
             df_concat = pd.concat((temp_df[log_name][log_type]))
             by_row_index = df_concat.groupby(df_concat.index)
             log_dfs[log_name][log_type] = by_row_index.mean()
+            log_dfs[log_name][log_type].rename(columns={
+                'execution time': 'ExecutionTime',
+                'caseid': 'TraceId'
+            }, inplace=True)
+
+
+    df_list = []
+    for log_n, log_types in log_dfs.items():
+        for log_t, results in log_types.items():
+            results['model'] = len(results) * [log_n]
+            results['log_type'] = len(results) * [log_t]
+            df_list.append(results)
+
+    log_dfs = pd.concat(df_list, ignore_index=True)
 
     return log_dfs
 
