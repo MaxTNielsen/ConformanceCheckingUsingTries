@@ -139,3 +139,22 @@ def get_hmmconf_dict(dir_path: str) -> pd.DataFrame.__class__:
 #         msg = "mean compl cost {} for log {}"
 #         print(msg.format(mean(compl_cost), 'M1_sim_5_runs'))
 #         print(msg.format(mean(occ_dict['run_1']['M1']['sim'][occ_dict['run_1']['M1']['sim'].columns[2]].values), 'M1_sim'))
+
+
+# cumulative plot of conformance with hmmconf
+# hmmconf_mean_conf = hmmconf_df.groupby(['model','log_type','TraceId']).agg({'finalconf': np.mean}).reset_index()
+# hmmconf_mean_conf.rename(columns={'finalconf':'Conformance cost'})
+# hmmconf_mean_conf['occ'] = len(hmmconf_mean_conf) * ['hmmconf']
+# C_3PO_test['occ'] = len(C_3PO_test) * ['C-3PO']
+
+# # copy the data
+# C_3PO_test_min_max_scaled = C_3PO_test.copy()
+  
+# # apply normalization techniques
+# C_3PO_test_min_max_scaled['Conformance cost'] = (C_3PO_test_min_max_scaled['Conformance cost'] - C_3PO_test_min_max_scaled['Conformance cost'].min()) / (C_3PO_test_min_max_scaled['Conformance cost'].max() - C_3PO_test_min_max_scaled['Conformance cost'].min())  
+
+# cumu_df = pd.concat([hmmconf_mean_conf, C_3PO_test])
+
+# sns.histplot(x='Conformance cost', data=cumu_df, hue='occ', bins=len(cumu_df), stat="density",
+#              element="step", fill=False, cumulative=True, common_norm=False);
+# plt.title("Cumulative distribution function");
