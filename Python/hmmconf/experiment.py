@@ -356,14 +356,14 @@ def run(model_fp: str, data_fp: str, conf_out: str, model_name, log_name):
                 start_i = time.time()
                 logfwd, finalconf, exception = tracker.replay_event(caseid, event)
                 end_i = time.time()
-                trace_time = round(((end_i - start_i) * 1000),4)
+                event_time = ((end_i - start_i) * 1000)
                 emitconf = conf_observer.emitconf[caseid][-1]
                 stateconf = conf_observer.stateconf[caseid][-1]
                 injected_dict = injected_dist_rows[-1][2]
                 completeness = completeness_rows[-1][2]
 
                 # hmmconf_feature = [caseid, act, ''.join(case_prefixes[caseid])] #+ list(logfwd)
-                hmmconf_feature = [caseid, act, trace_time] #+ list(logfwd)  
+                hmmconf_feature = [caseid, act, event_time] #+ list(logfwd)  
                 hmmconf_feature += [emitconf, stateconf, finalconf, injected_dict, completeness]
                 test_hmmconf_feature.append(hmmconf_feature)
 
@@ -421,7 +421,9 @@ if __name__ == '__main__':
     # LOGS = ["BPI_2012", "BPI_2017", "M1", "M2",
     #       "M3", "M4", "M5", "M6", "M7", "M8", "M9"]
     
-    LOGS = ["BPI_2017","BPI_2012","M1","M2","M4","M8", "M9"]
+    #LOGS = ["BPI_2017","BPI_2012","M1","M2","M4","M8", "M9"]
+
+    LOGS = ["M1"]
 
 
     for filename in os.listdir(model_type):

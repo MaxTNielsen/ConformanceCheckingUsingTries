@@ -1,31 +1,24 @@
-import org.processmining.models.connections.GraphLayoutConnection;
-import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
-import org.processmining.models.semantics.petrinet.Marking;
-import algorithm.IncrementalPrefixAlignment;
+import algorithm.LocalOfflineConformance;
 import org.deckfour.xes.in.XesXmlParser;
 import org.deckfour.xes.model.XLog;
 import org.processmining.acceptingpetrinet.models.impl.AcceptingPetriNetImpl;
+import org.processmining.models.connections.GraphLayoutConnection;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
+import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
 import org.processmining.models.graphbased.directed.petrinet.impl.PetrinetFactory;
-import org.processmining.onlineconformance.models.IncrementalReplayResult;
-import org.processmining.onlineconformance.models.PartialAlignment;
+import org.processmining.models.semantics.petrinet.Marking;
 import org.processmining.plugins.pnml.base.Pnml;
 import org.xmlpull.v1.XmlPullParserException;
 import util.Importer;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
-
-import static org.junit.Assert.assertTrue;
 
 public class Runner {
 
