@@ -56,13 +56,13 @@ public class Runner {
 
         for (String name : datasetNames) {
 
-            /*try {
+            try {
                 Path tempDirectory = Files.createTempDirectory(OUTPUT_PREFIX + "\\" + name + "\\");
                 assertTrue(Files.exists(tempDirectory));
                 Files.createDirectory(Paths.get(OUTPUT_PREFIX + "\\" + name + "\\"));
             } catch(Exception e) {
                 e.printStackTrace();
-            }*/
+            }
 
             Hashtable<String, List<String>> files = Importer.getLogsAndModels(name);
             List<String> sNetPaths = files.get("net");

@@ -239,7 +239,7 @@ public class Trie {
                 break;
             case "avg":
                 computeConfidenceCostAVG(this.root, isWeighted);
-                computeScaledConfidenceCost(this.root, !isWeighted);
+                //computeScaledConfidenceCost(this.root, !isWeighted);
                 if (isWeighted) {
                     prefixProbCache = null;
                     System.gc();

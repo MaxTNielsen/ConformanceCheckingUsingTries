@@ -592,7 +592,7 @@ public class Runner {
                 urls.put("pred", "http://127.0.0.1:8000/predictions");
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class, boolean.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, true, "avg", new HashMap<String, String>(), logName, true};
+                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), logName, true};
                 //params = new Object[]{t, 1, 1, 100000, 100000, false, "prob", urls, logName, true};
                 javaClassLoader.invokeClass(className, type, params);
                 //validateTrieEnrichmentLogic(t);
@@ -699,7 +699,7 @@ public class Runner {
         if (alg != null) {
             if (checkerType == TRIE_STREAMING_C_3PO)
                 //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
-                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
             else
                 //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
                 result.add(i + "," + alg.getTotalCost() + "," + executionTime);
