@@ -130,14 +130,23 @@ public class Runner {
             logs.put("M1_", new HashMap<>(subLog));
             subLog.clear();
 
+            // preparing for real-life data set validation
+            String realLifeDir = Paths.get("..","..", "real-life-dataset", "Hospital Billing").toString();
+            String rlLogPath = Paths.get(realLifeDir).resolve("Hospital Billing - Event Log.xes").toString();
+            String proxyPath = Paths.get(realLifeDir).resolve("frequency_hospital_billing.xes").toString();
+            subLog.put("log", rlLogPath);
+            subLog.put("frequency", proxyPath);
+            logs.put("RL", new HashMap<>(subLog));
+            subLog.clear();
+
             ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
-            String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "M1_";
-                String sLogType = "simulated";
+                String sLog = "RL";
+                String sLogType = "frequency";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
@@ -145,7 +154,7 @@ public class Runner {
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, sLogPath);
 
                     if (checkerType == TRIE_STREAMING_C_3PO)
-                        res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
+                        res.add(0, String.format("TraceId, Activity, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
                     else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
 
                     FileWriter wr = new FileWriter(pathName);
@@ -642,7 +651,8 @@ public class Runner {
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
-                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
+                        totalTime = computeAlignment3(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
+                        //totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
                     }
                 }
             }
@@ -654,6 +664,69 @@ public class Runner {
         }
         return result;
     }
+
+
+    private static long computeAlignment3(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) {
+        long start;
+        long traceTime;
+        long executionTime;
+        Alignment alg;
+        State state;
+        List<String> trace = new ArrayList<>();
+
+        int pos = tracesToSort.get(i).indexOf((char) 63);
+
+        String actualTrace = tracesToSort.get(i).substring(pos + 1);
+        for (char c : actualTrace.toCharArray()) {
+            trace.add(new StringBuilder().append(c).toString());
+        }
+
+        traceTime = System.currentTimeMillis();
+        Class<?>[] types;
+        Object[] params;
+
+        for (String e : trace) {
+            start = System.currentTimeMillis();
+            List<String> tempList = new ArrayList<>();
+            tempList.add(e);
+            params = new Object[]{tempList, Integer.toString(i)};
+            types = new Class[]{List.class, String.class};
+            javaClassLoader.invokeCheck(params, types);
+            //}
+
+            params = new Object[]{Integer.toString(i), false};
+            types = new Class[]{String.class, boolean.class};
+
+            state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
+
+            alg = null;
+
+            try {
+                alg = state.getAlignment();
+            } catch (NullPointerException except) {
+                System.out.println("Optimal alignment state was not found");
+            }
+
+            executionTime = System.currentTimeMillis() - start;
+            //totalTime += executionTime;
+            if (alg != null) {
+                if (checkerType == TRIE_STREAMING_C_3PO)
+                    //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
+                    result.add(i + "," + t.getService().deAlphabetize(e.toCharArray()[0]) + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                else
+                    //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
+                    result.add(i + "," + alg.getTotalCost() + "," + executionTime);
+            } else {
+                System.out.println("Couldn't find an alignment under the given constraints");
+                result.add(Integer.toString(i) + ",9999999," + executionTime);
+            }
+        }
+
+        executionTime = System.currentTimeMillis() - traceTime;
+        totalTime += executionTime;
+        return totalTime;
+    }
+
 
     private static long computeAlignment2(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) {
         long start;
@@ -679,34 +752,36 @@ public class Runner {
             params = new Object[]{tempList, Integer.toString(i)};
             types = new Class[]{List.class, String.class};
             javaClassLoader.invokeCheck(params, types);
-        }
+          }
 
-        params = new Object[]{Integer.toString(i), false};
-        types = new Class[]{String.class, boolean.class};
+            params = new Object[]{Integer.toString(i), false};
+            types = new Class[]{String.class, boolean.class};
 
-        state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
+            state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
 
-        alg = null;
+            alg = null;
 
-        try {
-            alg = state.getAlignment();
-        } catch (NullPointerException e) {
-            System.out.println("Optimal alignment state was not found");
-        }
+            try {
+                alg = state.getAlignment();
+            } catch (NullPointerException except) {
+                System.out.println("Optimal alignment state was not found");
+            }
 
-        executionTime = System.currentTimeMillis() - start;
-        totalTime += executionTime;
-        if (alg != null) {
-            if (checkerType == TRIE_STREAMING_C_3PO)
-                //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
-                result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
-            else
-                //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
-                result.add(i + "," + alg.getTotalCost() + "," + executionTime);
-        } else {
-            System.out.println("Couldn't find an alignment under the given constraints");
-            result.add(Integer.toString(i) + ",9999999," + executionTime);
-        }
+            executionTime = System.currentTimeMillis() - start;
+            totalTime += executionTime;
+
+            if (alg != null) {
+                if (checkerType == TRIE_STREAMING_C_3PO)
+                    //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
+                    result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                else
+                    //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
+                    result.add(i + "," + alg.getTotalCost() + "," + executionTime);
+            } else {
+                System.out.println("Couldn't find an alignment under the given constraints");
+                result.add(Integer.toString(i) + ",9999999," + executionTime);
+            }
+
         return totalTime;
     }
 
