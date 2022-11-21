@@ -40,9 +40,11 @@ def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
                 temp_df[dir__][f_key]['conf'].append(t[t.columns[1]].values.tolist())
                 temp_df[dir__][f_key]['exe'].append(t[t.columns[-1]].values.tolist())
                 if isC_3PO:
-                    if 'compl' not in temp_df[dir__][f_key]:
+                    if 'compl' not in temp_df[dir__][f_key] or 'confi' not in temp_df[dir__][f_key]:
                         temp_df[dir__][f_key]['compl'] = []
+                        temp_df[dir__][f_key]['confi'] = []
                     temp_df[dir__][f_key]['compl'].append(t[t.columns[2]].values.tolist())
+                    temp_df[dir__][f_key]['confi'].append(t[t.columns[3]].values.tolist())
                     del t[t.columns[2]]
                     del t[t.columns[2]]
                     t.rename(columns = {' total cost':'total cost'}, inplace = True)
@@ -56,7 +58,9 @@ def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
             conf_cost = (mean([int(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['conf'])))
             if isC_3PO:
                 compl_cost = (mean([int(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['compl'])))
+                confi_cost = (mean([int(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['confi'])))
                 log_dfs[log][log_type]['Completeness cost'] = np.array(compl_cost)
+                log_dfs[log][log_type]['Confidence cost'] = np.array(confi_cost)
             log_dfs[log][log_type]['Conformance cost'] = np.array(conf_cost)
             log_dfs[log][log_type]['ExecutionTime'] = np.array(exe_times)
 
@@ -74,6 +78,7 @@ def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
 
     if isC_3PO:
         log_dfs['Completeness cost'] = log_dfs['Completeness cost'].astype(float)
+        log_dfs['Confidence cost'] = log_dfs['Confidence cost'].astype(float)
 
     return log_dfs
 
