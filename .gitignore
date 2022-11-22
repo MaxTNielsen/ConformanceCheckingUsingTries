@@ -1,5 +1,5 @@
 *.txt
 *input/
 *output/
-*stress-test/
+*stress-test-data/
 *real-life-dataset/
