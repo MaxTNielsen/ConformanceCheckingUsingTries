@@ -11,6 +11,7 @@ public class Trie {
 
     private final TrieNode root;
     private List<TrieNode> leaves;
+    //private final HashMap<String, TreeMap<Integer, ArrayList<TrieNode>>> warmStart;
     private final HashMap<String, TreeMap<Integer, TrieNode>> warmStart;
     private final int maxChildren;
     private int internalTraceIndex = 0;
@@ -76,10 +77,19 @@ public class Trie {
                 } else {
                     // build warm start map
                     if (warmStart.containsKey(current.getContent())) {
+                        /*TreeMap<Integer, ArrayList<TrieNode>> tMap = warmStart.get(current.getContent());
+                        if(tMap.containsKey(current.getLevel() - 1))
+                            tMap.get(current.getLevel() - 1).add(current);
+                        else {
+                            tMap.put(current.getLevel() - 1, new ArrayList<>());
+                            tMap.get(current.getLevel() - 1).add(current);
+                        }*/
                         warmStart.get(current.getContent()).put(current.getLevel() - 1, current);
                     } else {
                         warmStart.put(current.getContent(), new TreeMap<>());
                         warmStart.get(current.getContent()).put(current.getLevel() - 1, current);
+                        /*warmStart.get(current.getContent()).put(current.getLevel() - 1, new ArrayList<>());
+                        warmStart.get(current.getContent()).get(current.getLevel() - 1).add(current);*/
                     }
                 }
             }
@@ -87,7 +97,6 @@ public class Trie {
             numberOfEvents += sb.length();
             traceIndexer.put(traceIndex, sb.toString());
         }
-
     }
 
     public TrieNode getRoot() {
@@ -173,6 +182,10 @@ public class Trie {
     public int getNumberOfEvents() {
         return numberOfEvents;
     }
+
+    /*public HashMap<String, TreeMap<Integer, ArrayList<TrieNode>>> getWarmStart() {
+        return warmStart;
+    }*/
 
     public HashMap<String, TreeMap<Integer, TrieNode>> getWarmStart() {
         return warmStart;
