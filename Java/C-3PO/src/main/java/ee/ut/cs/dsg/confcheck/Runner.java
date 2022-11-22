@@ -133,7 +133,7 @@ public class Runner {
             // preparing for real-life data set validation
             String realLifeDir = Paths.get("..","..", "real-life-dataset", "Hospital Billing").toString();
             String rlLogPath = Paths.get(realLifeDir).resolve("Hospital Billing - Event Log.xes").toString();
-            String proxyPath = Paths.get(realLifeDir).resolve("frequency_hospital_billing.xes").toString();
+            String proxyPath = Paths.get(realLifeDir).resolve("frequency_hospital_billing_freq_50_dist_3.xes").toString();
             subLog.put("log", rlLogPath);
             subLog.put("frequency", proxyPath);
             logs.put("RL", new HashMap<>(subLog));
@@ -835,7 +835,7 @@ public class Runner {
         return totalTime;
     }
 
-    private static XLog loadLog(String inputProxyLogFile) {
+    public static XLog loadLog(String inputProxyLogFile) {
         XLog inputProxyLog;//, inputSamplelog;
         XEventClass dummyEvClass = new XEventClass("DUMMY", 99999);
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
@@ -856,7 +856,7 @@ public class Runner {
         return null;
     }
 
-    private static Trie constructTrie(String inputProxyLogFile) {
+    public static Trie constructTrie(String inputProxyLogFile) {
         XLog inputProxyLog = loadLog(inputProxyLogFile);
         XEventClass dummyEvClass = new XEventClass("DUMMY", 99999);
         XEventClassifier eventClassifier = XLogInfoImpl.NAME_CLASSIFIER;
