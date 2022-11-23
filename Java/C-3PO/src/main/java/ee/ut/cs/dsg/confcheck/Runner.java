@@ -125,8 +125,8 @@ public class Runner {
             subLog.put("simulated", "input/M-models/M1_sim.xes");
             logs.put("M1_warm_5", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input/M-models/M1.xes");
-            subLog.put("simulated", "input/M-models/M1_sim.xes");
+            subLog.put("log", "input/trie stream/M1.xes");
+            subLog.put("simulated", "input/trie stream/M1_sim.xes");
             logs.put("M1_", new HashMap<>(subLog));
             subLog.clear();
 
@@ -141,12 +141,12 @@ public class Runner {
 
             ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
-            String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "RL";
-                String sLogType = "frequency";
+                String sLog = "M1_";
+                String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
                 String pathName = pathPrefix + formattedDate + "_" + sLog + "_" + sLogType + fileType;
