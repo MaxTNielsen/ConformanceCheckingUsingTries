@@ -388,7 +388,7 @@ public class C_3PO extends ConformanceChecker {
                 }
             }
         }
-        /*if (warmStartNodes != null) {
+       /* if (warmStartNodes != null) {
             for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
                 // tax the ws move with the correct cost
                 int completenessCost = Math.max(entry.getKey(), preFixCost);
