@@ -336,11 +336,11 @@ public class C_3PO extends ConformanceChecker {
         List<String> prefixTraceMoves = state.getAlignment().getPrefixTrace();
         int preFixCost = state.getAlignment().getTraceSize();
         List<String> traceToCheck = new ArrayList<>(suffix);
-        //TreeMap<Integer, ArrayList<TrieNode>> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
-        TreeMap<Integer, TrieNode> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
+        TreeMap<Integer, ArrayList<TrieNode>> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
+        //TreeMap<Integer, TrieNode> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
         traceToCheck.remove(0);
 
-        /*if (warmStartNodes != null) {
+        if (warmStartNodes != null) {
             for (Map.Entry<Integer, ArrayList<TrieNode>> entry : warmStartNodes.entrySet()) {
                 // tax the ws move with the correct cost
                 int completenessCost = Math.max(entry.getKey(), preFixCost);
@@ -387,8 +387,8 @@ public class C_3PO extends ConformanceChecker {
                     }
                 }
             }
-        }*/
-        if (warmStartNodes != null) {
+        }
+        /*if (warmStartNodes != null) {
             for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
                 // tax the ws move with the correct cost
                 int completenessCost = Math.max(entry.getKey(), preFixCost);
@@ -434,7 +434,7 @@ public class C_3PO extends ConformanceChecker {
                     warmStartStates.addAll(handleModelMoves(traceToCheck, s, null));
                 }
             }
-        }
+        }*/
         return warmStartStates;
     }
 
