@@ -85,8 +85,8 @@ public class Runner {
             subLog.put("reduced", "input/BPI2015/reducedLogActivity.xml");
             logs.put("BPI2015", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input/BPI2017/sampledLog.xml");
-            subLog.put("simulated", "input/BPI2017/simulatedLog.xml");
+            subLog.put("log", "input/trie stream/BPI_2017_1k_sample.xes");
+            subLog.put("simulated", "input/trie stream/BPI_2012_simulatedLog.xml");
             subLog.put("clustered", "input/BPI2017/sampledClusteredLog.xml");
             subLog.put("random", "input/BPI2017/randomLog.xml");
             subLog.put("frequency", "input/BPI2017/frequencyLog.xml");
@@ -141,7 +141,7 @@ public class Runner {
 
             ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
-            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
@@ -290,17 +290,17 @@ public class Runner {
                 List<String> datasetNames = new ArrayList<>();
                 datasetNames.add("M1");
                 datasetNames.add("M2");
-                //datasetNames.add("M3");
+                //datasetNames.add("M3"); // not working in other algorithms
                 datasetNames.add("M4");
-                /*datasetNames.add("M5");
-                datasetNames.add("M6");
-                datasetNames.add("M7");*/
+                /*datasetNames.add("M5"); // not working in other algorithms
+                datasetNames.add("M6"); // not working in other algorithms
+                datasetNames.add("M7");*/ // not working in other algorithms
                 datasetNames.add("M8");
                 datasetNames.add("M9");
-                //datasetNames.add("M10");
+                //datasetNames.add("M10"); // not working in other algorithms
                 datasetNames.add("BPI_2012");
                 datasetNames.add("BPI_2017");
-                /*datasetNames.add("BPI_2020");*/
+                /*datasetNames.add("BPI_2020");*/ // not working with this algorithm
 
                 for (String sLog : datasetNames) {
                     String sLogType;

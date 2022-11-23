@@ -337,7 +337,6 @@ public class C_3PO extends ConformanceChecker {
         int preFixCost = state.getAlignment().getTraceSize();
         List<String> traceToCheck = new ArrayList<>(suffix);
         TreeMap<Integer, ArrayList<TrieNode>> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
-        //TreeMap<Integer, TrieNode> warmStartNodes = modelTrie.getWarmStart().get(traceToCheck.get(0));
         traceToCheck.remove(0);
 
         if (warmStartNodes != null) {
@@ -388,53 +387,6 @@ public class C_3PO extends ConformanceChecker {
                 }
             }
         }
-       /* if (warmStartNodes != null) {
-            for (Map.Entry<Integer, TrieNode> entry : warmStartNodes.entrySet()) {
-                // tax the ws move with the correct cost
-                int completenessCost = Math.max(entry.getKey(), preFixCost);
-                TrieNode warmStartNode = entry.getValue();
-                // we only consider warm-start moves that are below or equal to the upperbound on minimum cost
-                if (completenessCost <= currMinCost) {
-                    Alignment a = new Alignment();
-                    for (String move : prefixTraceMoves) {
-                        Move m = new Move(move, ">>", 1);
-                        a.appendMove(m);
-                    }
-                    a.appendMove(new Move(warmStartNode.getContent(), warmStartNode.getContent(), 0));
-
-                    // we attempt to make synchronous moves on the suffix of the warm-start trace
-                    TrieNode fromNode = warmStartNode;
-                    Alignment syncAlign = new Alignment(a);
-                    for (String activity : traceToCheck) {
-                        TrieNode toNode = fromNode.getChild(activity);
-                        Move m;
-                        if (toNode != null) {
-                            m = new Move(toNode.getContent(), toNode.getContent(), 0);
-                            syncAlign.appendMove(m);
-                            fromNode = toNode;
-                            continue;
-                        }
-                        break;
-                    }
-
-                    // test if we have made a full match on suffix
-                    if (syncAlign.getMoves().size() == (traceToCheck.size() + 1 + prefixTraceMoves.size())) {
-                        State syncState = new State(syncAlign, new ArrayList<>(), fromNode, updateCost(completenessCost + fromNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, fromNode, fromNode), computeDecayTime(syncAlign), completenessCost);
-                        warmStartStates.add(syncState);
-                        break;
-                    }
-
-                    State s = new State(a, traceToCheck, warmStartNode, updateCost(completenessCost + warmStartNode.getScaledConfCost(), MoveType.SYNCHRONOUS_MOVE, warmStartNode, warmStartNode), computeDecayTime(a), completenessCost);
-
-                    // compute log move state from warm-start node
-                    State logMove = handleLogMove(new ArrayList<>(), s, "");
-                    warmStartStates.add(logMove);
-
-                    //compute model move state from warm-start node
-                    warmStartStates.addAll(handleModelMoves(traceToCheck, s, null));
-                }
-            }
-        }*/
         return warmStartStates;
     }
 

@@ -17,6 +17,7 @@ import org.deckfour.xes.info.impl.XLogInfoImpl;
 import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
+import org.openjdk.jol.info.GraphLayout;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -53,7 +54,7 @@ public class Runner {
         try {
             Scanner scanner = new Scanner(new File(logPath));
             String line = null;
-            results.add("TraceId, Activity, Conformance cost, Confidence cost, ExecutionTime\n");
+            results.add("TraceId,Activity,Conformance cost,Confidence cost,ExecutionTime\n");
             while (scanner.hasNextLine()) {
                 long start;
                 long executionTime;
@@ -90,6 +91,13 @@ public class Runner {
         }
 
         writeResults(basePath);
+
+        //long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        //long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        //long actualMemUsed=afterUsedMem-beforeUsedMem;
+        //Long memorySize = GraphLayout.parseInstance(checker).totalSize();
+        //https://www.baeldung.com/java-size-of-object
+
 
         /*BeamlineAbstractSource source = new BeamlineAbstractSource() {
             @Override
