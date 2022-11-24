@@ -54,7 +54,7 @@ public class Runner {
         try {
             Scanner scanner = new Scanner(new File(logPath));
             String line = null;
-            results.add("TraceId,Activity,Conformance cost,Confidence cost,ExecutionTime\n");
+            results.add("TraceId,Activity,Conformance cost,Confidence cost,Memory size\n");
             while (scanner.hasNextLine()) {
                 long start;
                 long executionTime;
@@ -69,7 +69,7 @@ public class Runner {
                 Date time = XTimeExtension.instance().extractTimestamp(logs.get(0).get(0).get(0));
                 List<String> e = new ArrayList<>();
                 e.add(Character.toString(service.alphabetize(activityName)));
-                start = System.currentTimeMillis();
+                //start = System.nanoTime();;
                 checker.check(e, caseId);
                 state = checker.getCurrentOptimalState(caseId, false);
                 alg = null;
@@ -78,8 +78,10 @@ public class Runner {
                 } catch (NullPointerException except) {
                     System.out.println("Optimal alignment state was not found");
                 }
-                executionTime = System.currentTimeMillis() - start;
-                String msg = String.format("%s,%s,%s,%s,%s\n",caseId, t.getService().deAlphabetize(e.get(0).toCharArray()[0]), alg.getTotalCost(), state.getNode().getConfidenceCost(), executionTime);
+                //executionTime = System.nanoTime() - start;
+                Long memorySizeAfter = GraphLayout.parseInstance(checker).totalSize();
+                //Long memorySizeBefore = GraphLayout.parseInstance(checker).totalSize();
+                String msg = String.format("%s,%s,%s,%s,%s\n",caseId, t.getService().deAlphabetize(e.get(0).toCharArray()[0]), alg.getTotalCost(), state.getNode().getConfidenceCost(), memorySizeAfter);
                 results.add(msg);
                 System.out.printf(msg);
             }
