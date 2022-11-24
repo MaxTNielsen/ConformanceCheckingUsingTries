@@ -19,7 +19,6 @@ public class TrieNode {
     private int level = 0;
     private int numChildren = 0;
     private double confidenceCost;
-
     private double scaledConfCost;
 
     public State getAlignmentState() {
