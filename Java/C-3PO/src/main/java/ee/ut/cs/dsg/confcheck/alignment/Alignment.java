@@ -2,10 +2,11 @@ package ee.ut.cs.dsg.confcheck.alignment;
 
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Alignment {
+public class Alignment implements Serializable {
     private List<Move> moves;
 
     private int totalCost;

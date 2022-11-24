@@ -3,11 +3,14 @@ package ee.ut.cs.dsg.confcheck;
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import java.sql.Timestamp;
+import java.time.Instant;
 
-public class State implements Comparable<State>{
+public class State implements Comparable<State>, Serializable {
     private Alignment alignment;
     private List<String> tracePostfix;
     private TrieNode node;
@@ -17,6 +20,8 @@ public class State implements Comparable<State>{
     private State parentState;
     private int decayTime;
     private final String ID = String.valueOf(UUID.randomUUID().hashCode());
+
+    private final Timestamp instant = Timestamp.from(Instant.now());
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar)
     {
@@ -196,5 +201,9 @@ public class State implements Comparable<State>{
 
     public String getID() {
         return ID;
+    }
+
+    public Timestamp getInstant() {
+        return instant;
     }
 }

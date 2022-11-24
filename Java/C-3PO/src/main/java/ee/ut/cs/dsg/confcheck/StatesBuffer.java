@@ -3,13 +3,14 @@ package ee.ut.cs.dsg.confcheck;
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 //
 
-public class StatesBuffer {
+public class StatesBuffer implements Serializable {
 
     protected HashMap<String, State> currentStates;
 

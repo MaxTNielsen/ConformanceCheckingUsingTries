@@ -5,9 +5,10 @@ import ee.ut.cs.dsg.confcheck.util.PredictionsClient;
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Trie {
+public class Trie implements Serializable {
 
     private final TrieNode root;
     private List<TrieNode> leaves;

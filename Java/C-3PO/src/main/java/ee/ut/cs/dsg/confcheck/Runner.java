@@ -320,11 +320,11 @@ public class Runner {
                     log.remove(sLogType);
                     String logPathComplete = log.get(sLog + ".xes");
                     Set<String> setOfKeys = log.keySet();
-
+                    System.out.printf("checkerType: %s - log: %s%n", checkerType, sLog);
                     for (String key : setOfKeys) {
                         String logPath = log.get(key);
                         int pos = logPath.lastIndexOf("\\");
-                        System.out.printf("checkerType: %s - log: %s - log type: %s%n", checkerType, sLog, logPath.substring(pos + 1));
+                        System.out.printf("log type: %s%n",logPath.substring(pos + 1));
                         String pathName = logDir + "\\" + sLog + "_" + sLogType + "_" + logPath.substring(pos + 1) + "_" + checkerType.toString().length() + fileType;
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, checkerType, logPathComplete);

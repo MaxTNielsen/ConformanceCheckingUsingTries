@@ -2,19 +2,16 @@ package ee.ut.cs.dsg.confcheck;
 
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.alignment.Move;
-import ee.ut.cs.dsg.confcheck.cost.CostFunction;
-import ee.ut.cs.dsg.confcheck.cost.DualProgressiveCostFunction;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
-import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
+import java.io.Serializable;
 import java.util.*;
 import java.lang.Math;
 
-public class C_3PO extends ConformanceChecker {
+public class C_3PO extends ConformanceChecker implements Serializable {
 
-    protected final CostFunction costFunction;
     // Streaming variables
     protected int minDecayTime = 3;
     protected int averageTrieLength = 0;
@@ -24,12 +21,9 @@ public class C_3PO extends ConformanceChecker {
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
     private final boolean isWarmStartAllStates; // used to try either approaches to warm-starting
 
-    public C_3PO(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, CostFunction costFunction, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
-        super(trie, logCost, modelCost, maxStatesInQueue);
-        this.rnd = new Random(19);
+    public C_3PO(Trie trie, int logCost, int modelCost, int maxCasesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
+        super(trie, logCost, modelCost, maxCasesInQueue);
         this.maxTrials = maxTrials;
-        inspectedLogTraces = new Trie(trie.getMaxChildren(), new AlphabetService());
-        this.costFunction = costFunction;
         this.isStandardAlign = isStandardAlign;
         this.isWarmStartAllStates = isWarmStartAllStates;
 
@@ -40,14 +34,6 @@ public class C_3PO extends ConformanceChecker {
         if (!this.isStandardAlign) {
             modelTrie.computeConfidenceCostForAllNodes(costType, urls, log);
         }
-    }
-
-    public C_3PO(Trie trie, int logCost, int modelCost, int maxStatesInQueue, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
-        this(trie, logCost, modelCost, maxStatesInQueue, 10000, isStandardAlign, costType, urls, log, isWarmStartAllStates);
-    }
-
-    public C_3PO(Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
-        this(trie, logCost, modelCost, maxStatesInQueue, maxTrials, new DualProgressiveCostFunction(), isStandardAlign, costType, urls, log, isWarmStartAllStates);
     }
 
     public Alignment check(List<String> trace) {
@@ -73,7 +59,6 @@ public class C_3PO extends ConformanceChecker {
             currentStates = caseStatesInBuffer.getCurrentStates();
 
         } else {
-            // if sync move(s) --> add sync move(s) to currentStates. If one of the moves will not be sync move, then start checking from that move.
             currentStates.put(new Alignment().toString(), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
         }
 
@@ -667,8 +652,7 @@ public class C_3PO extends ConformanceChecker {
     }
 
     protected double updateCost(double currCost, MoveType mv, TrieNode prevEta, TrieNode eta) {
-        if (mv == MoveType.LOG_MOVE)
-            return currCost;
+        if (mv == MoveType.LOG_MOVE) return currCost;
         return currCost - prevEta.getScaledConfCost() + eta.getScaledConfCost();
     }
 

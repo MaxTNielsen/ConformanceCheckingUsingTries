@@ -2,7 +2,9 @@ package ee.ut.cs.dsg.confcheck.alignment;
 
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
     private String logMove;
     private String modelMove;
     private int cost;

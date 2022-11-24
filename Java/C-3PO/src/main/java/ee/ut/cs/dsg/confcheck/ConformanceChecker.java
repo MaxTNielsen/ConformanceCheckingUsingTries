@@ -6,15 +6,14 @@ import ee.ut.cs.dsg.confcheck.cost.CostFunction;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class ConformanceChecker {
+public abstract class ConformanceChecker implements Serializable {
     protected final Trie modelTrie;
     protected final int logMoveCost ;
     protected final int modelMoveCost ;
-
     protected PriorityQueue<State> nextChecks;
-
     protected HashMap<String, State> tracesInBuffer;
     protected HashMap<String, StatesBuffer> statesInBuffer;
     protected int cntr=1;
@@ -40,204 +39,25 @@ public abstract class ConformanceChecker {
 
     protected Trie inspectedLogTraces;
     protected Random rnd;
-    public ConformanceChecker(Trie modelTrie)
-    {
-       this(modelTrie, 1, 1);
 
-    }
-
-    public ConformanceChecker(Trie modelTrie, int logCost, int modelCost)
-    {
-        this(modelTrie, logCost, modelCost, 10000);
-
-    }
-    public ConformanceChecker(Trie modelTrie, int logCost, int modelCost, int maxStatesInQueue)
+    public ConformanceChecker(Trie modelTrie, int logCost, int modelCost, int maxCasesInQueue)
     {
         this.modelTrie = modelTrie;
         this.logMoveCost = logCost;
         this.modelMoveCost = modelCost;
 
         states = new ArrayList<>();
-        this.maxStatesInQueue = maxStatesInQueue;
-        nextChecks = new PriorityQueue<>(maxStatesInQueue);
+        this.maxStatesInQueue = maxCasesInQueue;
+        nextChecks = new PriorityQueue<>(maxCasesInQueue);
         tracesInBuffer = new HashMap<>();
         statesInBuffer = new HashMap<>();
-//        this.seenBefore = new HashSet<>();
     }
 
     public abstract Alignment check(List<String> trace);
-//    {
-//        nextChecks.clear();
-//        seenBefore.clear();
-//        states.clear();
-//
-//        cntr=0;
-//        traceSize = trace.size();
-//        maxModelTraceSize = modelTrie.getRoot().getMaxPathLengthToEnd();
-//        TrieNode node;
-//        Alignment alg = new Alignment();
-//        List<String> traceSuffix;
-//        State state = new State(alg,trace, modelTrie.getRoot(),0);
-//        nextChecks.add(state);
-//        states.add(state);
-//        State candidateState = null;
-//        String event;
-//        int numTrials=0;
-//        while(nextChecks.size() >0 && numTrials < maxTrials)
-//        {
-////            System.out.println("Queue size is "+nextChecks.size());
-////            if (cntr %100 ==0)
-////            {
-////                state = states.get((int)Math.random()*states.size());
-////                nextChecks.remove(state);
-////                cntr=1;
-////            }
-////            else {
-//                state = nextChecks.poll();
-////                states.remove(state);
-////            }
-//
-////            System.out.println("Cost so far "+state.getCostSoFar());
-////            System.out.println("Alignment cost so far "+state.getAlignment().getTotalCost());
-//            numTrials++;
-//
-//
-//            event = null;
-//            traceSuffix = state.getTracePostfix();
-//
-//            // we have to check what is remaining
-//            if (traceSuffix.size() == 0 && state.getNode().isEndOfTrace())// We're done
-//            {
-//                //return state.getAlignment();
-//
-//                if (candidateState == null)
-//                {
-//                    candidateState = new State(state.getAlignment(), state.getTracePostfix(),state.getNode(), state.getAlignment().getTotalCost());
-////                    System.out.println("Better alignment reached with cost "+candidateState.getAlignment().getTotalCost());
-////                    leastCostSoFar = Math.min(leastCostSoFar, candidateState.getAlignment().getTotalCost());
-//                    cntr=0;
-//                }
-//                else if (state.getAlignment().getTotalCost() < candidateState.getAlignment().getTotalCost())
-//                {
-//                    leastCostSoFar = Math.min(leastCostSoFar, candidateState.getAlignment().getTotalCost());
-//                    candidateState = new State(state.getAlignment(), state.getTracePostfix(),state.getNode(), state.getAlignment().getTotalCost());
-////                    System.out.println("Better alignment reached with cost "+candidateState.getAlignment().getTotalCost());
-//
-//                    cntr=0;
-//                }
-//
-//               // candidates.add(candidateState);
-////                System.out.println("Remaining alignments to check " +nextChecks.size());
-////                System.out.println("Best alignment so far " +candidateState.getCostSoFar());
-////                return candidateState.getAlignment();
-//               continue;
-//            }
-//            else if (traceSuffix.size() ==0)
-//            {
-//                // we still have model moves to do
-//                // we should pick the shortest path to an end node
-////                System.out.println("Log trace ended! We can only follow the shortest path of the model behavior to the end");
-//                alg = state.getAlignment();
-//
-//                node = state.getNode();
-//                node = node.getChildOnShortestPathToTheEnd();
-//                while (node != null)
-//                {
-//                    Move modelMove = new Move(">>", node.getContent(),1);
-//                    alg.appendMove(modelMove);
-//                    node = node.getChildOnShortestPathToTheEnd();
-//                }
-////                System.out.println("Alignment found costs "+alg.getTotalCost());
-//                if (candidateState == null)
-//                {
-////                    leastCostSoFar = Math.min(leastCostSoFar, candidateState.getAlignment().getTotalCost());
-//                    candidateState = new State(alg, traceSuffix,null, alg.getTotalCost());
-////                    System.out.println("Better alignment reached with cost "+candidateState.getAlignment().getTotalCost());
-//
-//                    cntr=0;
-//                }
-//                else if (alg.getTotalCost() < candidateState.getAlignment().getTotalCost())
-//                {
-//                    leastCostSoFar = Math.min(leastCostSoFar, candidateState.getAlignment().getTotalCost());
-//                    candidateState = new State(alg, traceSuffix,null, alg.getTotalCost());
-////                    System.out.println("Better alignment reached with cost "+candidateState.getAlignment().getTotalCost());
-//
-//                    cntr=0;
-//                }
-//                else
-//                {
-////                    System.out.println("Current alignment is more expensive "+alg.getTotalCost());
-//                }
-//                continue;
-//            }
-//            else if (state.getNode().isEndOfTrace())
-//            {
-////                System.out.println("Model trace ended! We can only follow the remaining log trace to the end");
-//                alg = state.getAlignment();
-//                for (String ev: state.getTracePostfix())
-//                {
-//                    Move logMove = new Move(ev, ">>",1);
-//                    alg.appendMove(logMove);
-//                }
-//                if (candidateState == null)
-//                {
-//                    candidateState = new State(alg, traceSuffix,null, alg.getTotalCost());
-////                    System.out.println("Better alignment reached with cost "+candidateState.getAlignment().getTotalCost());
-////                    leastCostSoFar = Math.min(leastCostSoFar, candidateState.getAlignment().getTotalCost());
-//                    cntr=0;
-//                }
-//                else if (alg.getTotalCost() < candidateState.getAlignment().getTotalCost())
-//                {
-//                    leastCostSoFar = Math.min(leastCostSoFar, candidateState.getAlignment().getTotalCost());
-//                    candidateState = new State(alg, traceSuffix,null, alg.getTotalCost());
-////                    System.out.println("Better alignment reached with cost "+candidateState.getAlignment().getTotalCost());
-//
-//                    cntr=0;
-//                }
-//                continue;
-//            }
-//            else {
-//                event = traceSuffix.remove(0);
-//                node = state.getNode().getChild(event);
-//            }
-//            if (node != null) // we found a match => synchronous move
-//            {
-//
-//                Move syncMove = new Move(event,event,0);
-//                alg = state.getAlignment();
-//                alg.appendMove(syncMove);
-////                if (node.isEndOfTrace() &&  traceSuffix.size()==0) // we should stop
-////                    return alg;
-////                state = new State(alg,traceSuffix,node, state.getCostSoFar());
-////                state = new State(alg,traceSuffix,node,computeCostV2(node.getMinPathLengthToEnd(),traceSuffix.size(),0,false));
-////                state = new State(alg,traceSuffix,node, maxModelTraceSize+traceSize - (node.getLevel() + (traceSize-traceSuffix.size())));//Math.abs(node.getLevel() - traceSuffix.size())-2);
-//
-//                int cost = maxModelTraceSize + traceSize -(state.getNode().getLevel() + (traceSize-traceSuffix.size()) ) - (alg.getMoves().size() - alg.getTotalCost());
-//                State syncMoveState;
-//                syncMoveState = new State(alg,traceSuffix,node,cost);
-//                addStateToTheQueue(syncMoveState, candidateState);
-////
-//                handleLogMove(traceSuffix, state, candidateState, event);
-//                handleModelMoves(traceSuffix, state, candidateState);
-//
-//            }
-//            // On 27th of May 2021. we need to give the option to a log move as well as a model move
-//            else // there is no match, we have to make the model move and the log move
-//            {
-//                // let make the log move if there are still more moves
-//                handleLogMove(traceSuffix, state, candidateState, event);
-//                handleModelMoves(traceSuffix, state, candidateState);
-//
-//            }
-//        }
-//        return candidateState != null? candidateState.getAlignment():null;
-//        //return alg;
-//    }
 
     protected abstract List<State> handleModelMoves(List<String> traceSuffix, State state, State candidateState);
 
     protected abstract State handleLogMove(List<String> traceSuffix, State state, String event);
-
 
     protected void addStateToTheQueue(State state, State candidateState) {
 
@@ -361,5 +181,25 @@ public abstract class ConformanceChecker {
 
     public Alignment check2(List<String> trace, boolean b, String toString) {
         return null;
+    }
+
+    public int tracesInBuffer(){
+        return statesInBuffer.size();
+    }
+
+    public int statesInBuffer(String id){
+        if(statesInBuffer.containsKey(id))
+            return statesInBuffer.get(id).getCurrentStates().size();
+        return 1;
+    }
+
+    public StatesBuffer getTracesInBuffer(String id){
+        if(statesInBuffer.containsKey(id))
+            return this.statesInBuffer.get(id);
+        return new StatesBuffer(new HashMap<>());
+    }
+
+    public HashMap<String, StatesBuffer> getCasesInBuffer(){
+        return this.statesInBuffer;
     }
 }

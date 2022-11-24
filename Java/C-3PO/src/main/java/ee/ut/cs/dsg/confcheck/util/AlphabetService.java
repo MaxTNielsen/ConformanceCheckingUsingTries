@@ -1,9 +1,10 @@
 package ee.ut.cs.dsg.confcheck.util;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
-public class AlphabetService {
+public class AlphabetService implements Serializable {
 
     HashMap<String, Character> activityToAlphabet = new HashMap<>();
     HashMap<Character, String> alphabetToActivity = new HashMap<>();

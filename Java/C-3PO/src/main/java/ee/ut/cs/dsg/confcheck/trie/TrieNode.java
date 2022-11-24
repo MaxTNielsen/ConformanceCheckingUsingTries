@@ -3,10 +3,11 @@ package ee.ut.cs.dsg.confcheck.trie;
 import ee.ut.cs.dsg.confcheck.State;
 import ee.ut.cs.dsg.confcheck.util.Utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrieNode {
+public class TrieNode implements Serializable {
 
     private String content; // This is a numerical representation of the activity label. Should be part of a lookup table
     private int maxChildren;
