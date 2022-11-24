@@ -5,6 +5,7 @@ import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 public class State implements Comparable<State>{
     private Alignment alignment;
@@ -15,6 +16,7 @@ public class State implements Comparable<State>{
     private int completenessCost = 0;
     private State parentState;
     private int decayTime;
+    private final String ID = String.valueOf(UUID.randomUUID().hashCode());
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar)
     {
@@ -190,5 +192,9 @@ public class State implements Comparable<State>{
 
     public void setAlignment(Alignment a){
         this.alignment = a;
+    }
+
+    public String getID() {
+        return ID;
     }
 }

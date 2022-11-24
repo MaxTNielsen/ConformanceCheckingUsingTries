@@ -1,67 +1,13 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/Widgets-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/Uitopia-0.6-20190913.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/statistics-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/HybridILPMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/collections-generic-4.01.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/UITopiaResources-0.6-20190913.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/PNetReplayer-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/xpp3-1.1.4c.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/PetriNetSimulator-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/eclipse-collections-9.2.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/gson-2.3.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/slickerbox-1.0rc1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/bsh-2.0b4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/Log-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/colt-1.2.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/saxon-9he.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ProcessTree-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/InductiveMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ProM-Models-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/fastutil-7.1.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/flanagan-0.9alpha.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/trove4j-3.0.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/xstream-1.4.9.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/FilterableSortableTablePanel-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/AlphaMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/XESLite-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ProM-Framework-6.10.110.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/BPMN-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/approxlib-1.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ProjectedRecallAndPrecision-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/jcalendar-1.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/commons-collections4-4.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ilp-solver-wrapper-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/AccessCPN-unknown.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/InductiveMinerDeprecated-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/noisefiltering-event-logic-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ETConformance-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/BasicUtils-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/guava-16.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/OperationalSupport-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/lpsolve55j.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/Alignment-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/commons-math3-3.6.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/fodina-20161216.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/DecomposedReplayer-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/fake-context-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/LpSolve-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/NoiseFiltering-0.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/log-util-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/PetriNets-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/Spex-1.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/OpenXES-20181205.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/noisefiltering-event-prom-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/StochasticPetriNets-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/graph-algorithms-1.0.20180719.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ProM-Plugins-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ProM-Contexts-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/ApacheUtils-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ConformanceCheckingUsingTries/Java/C-3PO/lib/EfficientStorage-latest.jar!/" />
+      <root url="file://$PROJECT_DIR$/../C-3PO/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../C-3PO/lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../C-3PO/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../C-3PO/lib" recursive="false" type="SOURCES" />
   </library>
 </component>
