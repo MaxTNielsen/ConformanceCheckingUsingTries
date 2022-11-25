@@ -170,6 +170,7 @@ public class TrieNode implements Serializable {
         return this.getPrefix();
     }
 
+    @Override
     public boolean equals(Object other) {
         if (other instanceof TrieNode) {
             TrieNode otherNode = (TrieNode) other;

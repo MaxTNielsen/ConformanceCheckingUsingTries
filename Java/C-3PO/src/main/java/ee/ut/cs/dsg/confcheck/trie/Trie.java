@@ -67,6 +67,20 @@ public class Trie implements Serializable {
                 if (returned == child) // we added a new node to the trie
                 {
                     size++;
+                    // build warm start map - nodes in this block are new additions to the trie
+                    if (warmStart.containsKey(returned.getContent())) {
+                        TreeMap<Integer, ArrayList<TrieNode>> tMap = warmStart.get(returned.getContent());
+                        if (tMap.containsKey(returned.getLevel() - 1)) {
+                            tMap.get(returned.getLevel() - 1).add(returned);
+                        } else {
+                            tMap.put(returned.getLevel() - 1, new ArrayList<>());
+                            tMap.get(returned.getLevel() - 1).add(returned);
+                        }
+                    } else {
+                        warmStart.put(returned.getContent(), new TreeMap<>());
+                        warmStart.get(returned.getContent()).put(returned.getLevel() - 1, new ArrayList<>());
+                        warmStart.get(returned.getContent()).get(returned.getLevel() - 1).add(returned);
+                    }
                 }
                 current = returned;
 
@@ -74,15 +88,14 @@ public class Trie implements Serializable {
                 sb.append(event);
                 if (returned.isEndOfTrace()) {
                     leaves.add(returned);
-                } else {
+                } /*else {
                     // build warm start map
                     if (warmStart.containsKey(current.getContent())) {
                         TreeMap<Integer, ArrayList<TrieNode>> tMap = warmStart.get(current.getContent());
-                        if(tMap.containsKey(current.getLevel() - 1)) {
+                        if (tMap.containsKey(current.getLevel() - 1)) {
                             if (!tMap.get(current.getLevel() - 1).contains(current))
                                 tMap.get(current.getLevel() - 1).add(current);
-                        }
-                        else {
+                        } else {
                             tMap.put(current.getLevel() - 1, new ArrayList<>());
                             tMap.get(current.getLevel() - 1).add(current);
                         }
@@ -91,7 +104,7 @@ public class Trie implements Serializable {
                         warmStart.get(current.getContent()).put(current.getLevel() - 1, new ArrayList<>());
                         warmStart.get(current.getContent()).get(current.getLevel() - 1).add(current);
                     }
-                }
+                }*/
             }
             current.addLinkedTraceIndex(traceIndex);
             numberOfEvents += sb.length();
@@ -240,7 +253,7 @@ public class Trie implements Serializable {
         switch (costType) {
             case "min":
                 computeConfidenceCostMin(this.root, isWeighted);
-                computeScaledConfidenceCost(this.root, !isWeighted);
+                // computeScaledConfidenceCost(this.root, !isWeighted);
                 if (isWeighted) {
                     prefixProbCache = null;
                     System.gc();
@@ -335,16 +348,16 @@ public class Trie implements Serializable {
             //children.get(0).setScaledConfCost(0);
             computeAndUsePrefProbOnly(children.get(0));
         } else {*/
-            for (TrieNode n : children) {
-                if (!n.isEndOfTrace()) {
-                    double prefProb = getPrefProb(n);
-                    if (prefProb > maxConf) {
-                        maxConf = prefProb;
-                    }
-                    n.setScaledConfCost(getPrefProb(n));
-                    computeAndUsePrefProbOnly(n);
+        for (TrieNode n : children) {
+            if (!n.isEndOfTrace()) {
+                double prefProb = getPrefProb(n);
+                if (prefProb > maxConf) {
+                    maxConf = prefProb;
                 }
-           // }
+                n.setScaledConfCost(getPrefProb(n));
+                computeAndUsePrefProbOnly(n);
+            }
+            // }
         }
     }
 

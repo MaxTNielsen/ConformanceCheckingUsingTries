@@ -39,7 +39,7 @@ public class Runner {
 
         String basePath = sb.append("stress-test-data").toString();
         String logPath = Paths.get(basePath, "stream").toString();
-        String proxyPath = Paths.get(basePath, "stress_test_log.xes").toString();
+        String proxyPath = Paths.get(basePath, "proxy_log_freq_50_dist_3.xes").toString();
 
         //long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         //long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
@@ -54,12 +54,13 @@ public class Runner {
         try {
             Scanner scanner = new Scanner(new File(logPath));
             String line = null;
-            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemorySizeCases,MemorySizeTraces\n");
+            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,actualMemUsed,beforeUsedMem\n");
+            long initUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
             while (scanner.hasNextLine()) {
                 long start;
                 long executionTime;
-                long memorySizeCases;
-                long memorySizeStates;
+                long memorySizeCases = 0;
+                long memorySizeStates = 0;
                 State state;
                 Alignment alg;
                 line = scanner.nextLine();
@@ -71,6 +72,7 @@ public class Runner {
                 Date time = XTimeExtension.instance().extractTimestamp(logs.get(0).get(0).get(0));
                 List<String> e = new ArrayList<>();
                 e.add(Character.toString(service.alphabetize(activityName)));
+                long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
                 start = System.nanoTime();
                 checker.check(e, caseId);
                 state = checker.getCurrentOptimalState(caseId, false);
@@ -80,11 +82,13 @@ public class Runner {
                 } catch (NullPointerException except) {
                     System.out.println("Optimal alignment state was not found");
                 }
-                memorySizeCases = GraphLayout.parseInstance(checker.getCasesInBuffer()).totalSize();
-                memorySizeStates = GraphLayout.parseInstance(checker.getTracesInBuffer(caseId)).totalSize();
+                /*memorySizeCases = GraphLayout.parseInstance(checker.getCasesInBuffer()).totalSize();
+                memorySizeStates = GraphLayout.parseInstance(checker.getTracesInBuffer(caseId)).totalSize();*/
                 executionTime = System.nanoTime() - start;
+                long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+                long actualMemUsed=afterUsedMem-beforeUsedMem;
                 String msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
-                        alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, memorySizeCases, memorySizeStates);
+                        alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem);
                 results.add(msg);
                 System.out.printf(msg);
             }

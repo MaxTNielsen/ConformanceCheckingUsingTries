@@ -62,23 +62,22 @@ def plot_line_plot_comparison(ditct1: dict, dict2: dict, logname: str, label1: s
     plt.show()
 
 
-def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, stat: str, bar_labels: list, ylabel: str, title: str):
+def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dict, stat: str, bar_labels: list, ylabel: str, title: str):
     x = np.arange(len(labels))
-    width = 0.35
+    width = 0.2
 
-    fig, ax = plt.subplots()
-    ax.bar(labels, list(dict1[stat].values()), width, label=bar_labels[0])
-    rects2 = ax.bar(x + 0.15 + width/2,
-                    list(dict2[stat].values()), width, label=bar_labels[1])
+    fig, ax = plt.subplots(figsize=(8,8))
+
+    rects1 = ax.bar(x - width, list(dict1[stat].values()), width, label=bar_labels[0])
+    rects2 = ax.bar(x, list(dict2[stat].values()), width, label=bar_labels[1])
+    rects3 = ax.bar(x + width, list(dict3[stat].values()), width, label=bar_labels[2])                
 
     ax.set_ylabel(ylabel)
     ax.set_title(title)
+    ax.set_xticks(x, labels)
     ax.legend()
     plt.xticks(rotation=90)
-    plt.show()
-
-    ax.bar_label(rects2, padding=3)
-    fig.tight_layout()
+    plt.tight_layout()
     plt.show()
 
 
@@ -98,7 +97,7 @@ def print_procentual(s_key:str, dim:str, dict1:dict, dict2:dict) -> None:
     mean2 = round(mean(list(dict2[s_key].values())),3)
     p = round((mean1-mean2)/mean2*100,3)
     dec_inc = "Decrease" if p < 0 else "Increase"
-    print("{} {} in {}: {}".format(dec_inc, '%', dim,p))
+    return "{} {} in {}: {}".format(dec_inc, '%', dim,p)
 
 """dataset keys"""
 # print(dataset_keys)

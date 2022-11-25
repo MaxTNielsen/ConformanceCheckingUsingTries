@@ -69,31 +69,31 @@ public class Runner {
 
             HashMap<String, HashMap<String, String>> logs = new HashMap<>();
             HashMap<String, String> subLog = new HashMap<>();
-            subLog.put("log", "input/BPI2012/sampledLog.xml");
-            subLog.put("simulated", "input/BPI2012/simulatedLog.xml");
+            subLog.put("log", "input/trie stream/BPI_2012_1k_sample.xes");
+            subLog.put("simulated", "input/trie stream/BPI2012_frequencyLog.xml");
             subLog.put("clustered", "input/BPI2012/sampledClusteredLog.xml");
             subLog.put("random", "input/BPI2012/randomLog.xml");
             subLog.put("frequency", "input/BPI2012/frequencyLog.xml");
             subLog.put("reduced", "input/BPI2012/reducedLogActivity.xml");
             logs.put("BPI2012", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input/BPI2015/sampledLog.xml");
+           /* subLog.put("log", "input/BPI2015/sampledLog.xml");
             subLog.put("simulated", "input/BPI2015/simulatedLog.xml");
             subLog.put("clustered", "input/BPI2015/sampledClusteredLog.xml");
             subLog.put("random", "input/BPI2015/randomLog.xml");
             subLog.put("frequency", "input/BPI2015/frequencyLog.xml");
             subLog.put("reduced", "input/BPI2015/reducedLogActivity.xml");
             logs.put("BPI2015", new HashMap<>(subLog));
-            subLog.clear();
+            subLog.clear();*/
             subLog.put("log", "input/trie stream/BPI_2017_1k_sample.xes");
-            subLog.put("simulated", "input/trie stream/BPI_2012_simulatedLog.xml");
+            subLog.put("simulated", "input/trie stream/BPI_2017_simulatedLog.xml");
             subLog.put("clustered", "input/BPI2017/sampledClusteredLog.xml");
             subLog.put("random", "input/BPI2017/randomLog.xml");
             subLog.put("frequency", "input/BPI2017/frequencyLog.xml");
             subLog.put("reduced", "input/BPI2017/reducedLogActivity.xml");
             logs.put("BPI2017", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input/BPI2019/sampledLog.xml");
+            /*subLog.put("log", "input/BPI2019/sampledLog.xml");
             subLog.put("simulated", "input/BPI2019/simulatedLog.xml");
             subLog.put("clustered", "input/BPI2019/sampledClusteredLog.xml");
             subLog.put("random", "input/BPI2019/randomLog.xml");
@@ -116,7 +116,7 @@ public class Runner {
             subLog.put("sim_short", "input/M-models/M1_simulated_short.xes");
             subLog.put("sim_long", "input/M-models/M1_simulated_long.xes");
             logs.put("M1", new HashMap<>(subLog));
-            subLog.clear();
+            subLog.clear();*/
             subLog.put("log", "input/M-models/M2.xes");
             subLog.put("simulated", "input/M-models/M2_sim.xes");
             logs.put("M2", new HashMap<>(subLog));
@@ -125,6 +125,11 @@ public class Runner {
             subLog.put("simulated", "input/M-models/M1_sim.xes");
             logs.put("M1_warm_5", new HashMap<>(subLog));
             subLog.clear();
+            subLog.put("log", "input/trie stream/M1.xes");
+            subLog.put("simulated", "input/trie stream/M1_sim.xes");
+            logs.put("M1_", new HashMap<>(subLog));
+            subLog.clear();
+
             subLog.put("log", "input/trie stream/M1.xes");
             subLog.put("simulated", "input/trie stream/M1_sim.xes");
             logs.put("M1_", new HashMap<>(subLog));
@@ -141,11 +146,11 @@ public class Runner {
 
             ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
-            String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "M1_";
+                String sLog = "BPI2012";
                 String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
@@ -154,7 +159,7 @@ public class Runner {
                     List<String> res = testOnConformanceApproximationResults(sProxyLogPath, sLogPath, checkerType, sLogPath);
 
                     if (checkerType == TRIE_STREAMING_C_3PO)
-                        res.add(0, String.format("TraceId, Activity, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
+                        res.add(0, String.format("TraceId, Activity, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s, TraceLength", checkerType));
                     else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
 
                     FileWriter wr = new FileWriter(pathName);
@@ -290,14 +295,14 @@ public class Runner {
                 List<String> datasetNames = new ArrayList<>();
                 datasetNames.add("M1");
                 datasetNames.add("M2");
-                //datasetNames.add("M3"); // not working in other algorithms
+                datasetNames.add("M3"); // not working in other algorithms
                 datasetNames.add("M4");
-                /*datasetNames.add("M5"); // not working in other algorithms
+                datasetNames.add("M5"); // not working in other algorithms
                 datasetNames.add("M6"); // not working in other algorithms
-                datasetNames.add("M7");*/ // not working in other algorithms
+                datasetNames.add("M7"); // not working in other algorithms
                 datasetNames.add("M8");
                 datasetNames.add("M9");
-                //datasetNames.add("M10"); // not working in other algorithms
+                datasetNames.add("M10"); // not working in other algorithms
                 datasetNames.add("BPI_2012");
                 datasetNames.add("BPI_2017");
                 /*datasetNames.add("BPI_2020");*/ // not working with this algorithm
@@ -329,7 +334,7 @@ public class Runner {
                         try {
                             List<String> res = testOnConformanceApproximationResults(sProxyLogPath, logPath, checkerType, logPathComplete);
                             if (checkerType == TRIE_STREAMING_C_3PO)
-                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s", checkerType));
+                                res.add(0, String.format("TraceId, Conformance cost, Completeness cost, Confidence cost, total cost, ExecutionTime_%1$s, traceLength", checkerType));
 
                             else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
 
@@ -666,7 +671,7 @@ public class Runner {
     }
 
 
-    private static long computeAlignment3(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) {
+/*    private static long computeAlignment3(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) {
         long start;
         long traceTime;
         long executionTime;
@@ -725,7 +730,7 @@ public class Runner {
         executionTime = System.currentTimeMillis() - traceTime;
         totalTime += executionTime;
         return totalTime;
-    }
+    }*/
 
 
     private static long computeAlignment2(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) { //, C_3PO c_3PO)
@@ -776,7 +781,7 @@ public class Runner {
             if (alg != null) {
                 if (checkerType == TRIE_STREAMING_C_3PO)
                     //result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getScaledConfCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.toString(t.getService()));
-                    result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime);
+                    result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + executionTime + "," + alg.getTraceSize());
                 else
                     //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
                     result.add(i + "," + alg.getTotalCost() + "," + executionTime);

@@ -6,9 +6,7 @@ import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
-import java.sql.Timestamp;
-import java.time.Instant;
+
 
 public class State implements Comparable<State>, Serializable {
     private Alignment alignment;
@@ -133,7 +131,6 @@ public class State implements Comparable<State>, Serializable {
             return -1;
         else
             return 0;
-
     }
 
     public String toString() {
@@ -144,7 +141,6 @@ public class State implements Comparable<State>, Serializable {
         result.append(String.format("Suffix: %s\n", tracePostfix));
         result.append(String.format("Decay time: %d\n", decayTime));
         return result.toString();
-
     }
 
     public void addTracePostfix(List <String> tracePostfix)

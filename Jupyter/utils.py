@@ -232,51 +232,5 @@ def get_bp_df(dir_path: str) -> pd.DataFrame.__class__:
 
     return log_dfs
 
-
 # data_set_dir = os.path.join('..','input','experiment-data')
 # get_trace_map(os.path.join(data_set_dir, 'BPI_2012','BPI_2012_1k_sample.xes'))
-
-# """check wether conformance and completeness should be averaged"""
-
-# def verify_conf_compl(occ_dict:dict, isC_3PO:bool=False) -> None: 
-#     exe_times = []
-#     conf_cost = []
-#     compl_cost = []
-#     for run_dir in ['run_1','run_2','run_3','run_4','run_5']:
-#         exe_times.append(occ_dict[run_dir]['M1']['sim'][occ_dict[run_dir]['M1']['sim'].columns[-1]].values)
-#         conf_cost.append(occ_dict[run_dir]['M1']['sim'][occ_dict[run_dir]['M1']['sim'].columns[1]].values)
-#         if isC_3PO:
-#             compl_cost.append(occ_dict[run_dir]['M1']['sim'][occ_dict[run_dir]['M1']['sim'].columns[2]].values)
-
-#     exe_times = (mean([int(ele) for ele in tp]) for tp in list(zip(*exe_times)))
-#     conf_cost = (mean([int(ele) for ele in tp]) for tp in list(zip(*conf_cost)))
-#     if isC_3PO:
-#         compl_cost = (mean([int(ele) for ele in tp]) for tp in list(zip(*compl_cost)))
-
-#     msg = "mean conf cost {} for log {}"
-#     print(msg.format(mean(conf_cost), 'M1_sim_5_runs'))
-#     print(msg.format(mean(occ_dict['run_1']['M1']['sim'][occ_dict['run_1']['M1']['sim'].columns[1]].values), 'M1_sim'))
-
-#     if isC_3PO:
-#         msg = "mean compl cost {} for log {}"
-#         print(msg.format(mean(compl_cost), 'M1_sim_5_runs'))
-#         print(msg.format(mean(occ_dict['run_1']['M1']['sim'][occ_dict['run_1']['M1']['sim'].columns[2]].values), 'M1_sim'))
-
-
-# cumulative plot of conformance with hmmconf
-# hmmconf_mean_conf = hmmconf_df.groupby(['model','log_type','TraceId']).agg({'finalconf': np.mean}).reset_index()
-# hmmconf_mean_conf.rename(columns={'finalconf':'Conformance cost'})
-# hmmconf_mean_conf['occ'] = len(hmmconf_mean_conf) * ['hmmconf']
-# C_3PO_test['occ'] = len(C_3PO_test) * ['C-3PO']
-
-# # copy the data
-# C_3PO_test_min_max_scaled = C_3PO_test.copy()
-  
-# # apply normalization techniques
-# C_3PO_test_min_max_scaled['Conformance cost'] = (C_3PO_test_min_max_scaled['Conformance cost'] - C_3PO_test_min_max_scaled['Conformance cost'].min()) / (C_3PO_test_min_max_scaled['Conformance cost'].max() - C_3PO_test_min_max_scaled['Conformance cost'].min())  
-
-# cumu_df = pd.concat([hmmconf_mean_conf, C_3PO_test])
-
-# sns.histplot(x='Conformance cost', data=cumu_df, hue='occ', bins=len(cumu_df), stat="density",
-#              element="step", fill=False, cumulative=True, common_norm=False);
-# plt.title("Cumulative distribution function");
