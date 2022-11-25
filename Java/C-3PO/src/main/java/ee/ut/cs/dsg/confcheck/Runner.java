@@ -586,7 +586,7 @@ public class Runner {
             Class<?>[] type;
             Object[] params;
 
-
+            //C_3PO c_3PO = new C_3PO(t, 1, 1, 100, 100000, false, "avg", new HashMap<>(), "", true);
             if (confCheckerType == TRIE_STREAMING) {
                 // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials
 
@@ -601,7 +601,7 @@ public class Runner {
                 urls.put("pred", "http://127.0.0.1:8000/predictions");
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class, boolean.class};
-                params = new Object[]{t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), logName, true};
+                params = new Object[]{t, 1, 1, 10000, 100000, false, "avg", new HashMap<String, String>(), logName, true};
                 //params = new Object[]{t, 1, 1, 100000, 100000, false, "prob", urls, logName, true};
                 javaClassLoader.invokeClass(className, type, params);
                 //validateTrieEnrichmentLogic(t);
@@ -642,7 +642,7 @@ public class Runner {
             if (LogSortType.NONE == LogSortType.LEXICOGRAPHIC_DESC || LogSortType.NONE == LogSortType.TRACE_LENGTH_DESC) {
                 for (int i = tracesToSort.size() - 1; i >= 0; i--) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
-                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
+                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t); //, c_3PO)
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     }
@@ -651,7 +651,7 @@ public class Runner {
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
-                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
+                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t); //, c_3PO)
                         //totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
                     }
                 }
@@ -728,7 +728,7 @@ public class Runner {
     }
 
 
-    private static long computeAlignment2(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) {
+    private static long computeAlignment2(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) { //, C_3PO c_3PO)
         long start;
         long executionTime;
         Alignment alg;
@@ -746,18 +746,21 @@ public class Runner {
         Class<?>[] types;
         Object[] params;
 
+
         for (String e : trace) {
             List<String> tempList = new ArrayList<>();
             tempList.add(e);
             params = new Object[]{tempList, Integer.toString(i)};
             types = new Class[]{List.class, String.class};
             javaClassLoader.invokeCheck(params, types);
+            //c_3PO.check(tempList, Integer.toString(i));
           }
 
             params = new Object[]{Integer.toString(i), false};
             types = new Class[]{String.class, boolean.class};
 
             state = javaClassLoader.invokeGetCurrentOptimalState(params, types);
+            //state = c_3PO.getCurrentOptimalState(Integer.toString(i), false);
 
             alg = null;
 

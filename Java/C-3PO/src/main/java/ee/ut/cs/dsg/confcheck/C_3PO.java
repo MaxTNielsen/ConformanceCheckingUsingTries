@@ -7,6 +7,8 @@ import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 import ee.ut.cs.dsg.confcheck.util.Configuration.MoveType;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.*;
 import java.lang.Math;
 
@@ -20,6 +22,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
     protected boolean isStandardAlign; // if true then compute alignments without confidence cost
     protected boolean discountedDecayTime = true; // if set to false then uses fixed minDecayTime value
     private final boolean isWarmStartAllStates; // used to try either approaches to warm-starting
+    private final PriorityQueue<CaseWatermark> casesCleanUpRecord = new PriorityQueue<>(new CaseComparator());
 
     public C_3PO(Trie trie, int logCost, int modelCost, int maxCasesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates) {
         super(trie, logCost, modelCost, maxCasesInQueue);
@@ -53,13 +56,14 @@ public class C_3PO extends ConformanceChecker implements Serializable {
 
         // iterate over the trace - choose event by event
         // modify everything into accepting event instead of list of events
-        if (statesInBuffer.containsKey(caseId)) {
+        if (casesInBuffer.containsKey(caseId)) {
             // case exists, fetch last state
-            caseStatesInBuffer = statesInBuffer.get(caseId);
+            caseStatesInBuffer = casesInBuffer.get(caseId);
             currentStates = caseStatesInBuffer.getCurrentStates();
 
         } else {
             currentStates.put(new Alignment().toString(), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
+            casesCleanUpRecord.add(new CaseWatermark(caseId));
         }
 
         for (String event : trace) {
@@ -98,8 +102,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
                 }
 
                 for (State s : syncMoveStates) {
-                    alg = s.getAlignment();
-                    currentStates.put(alg.toString(), s);
+                    currentStates.put(s.getAlignment().toString(), s);
                 }
 
                 syncMoveStates.clear();
@@ -172,8 +175,20 @@ public class C_3PO extends ConformanceChecker implements Serializable {
             caseStatesInBuffer.setCurrentStates(currentStates);
         }
 
-        statesInBuffer.put(caseId, caseStatesInBuffer);
+        casesInBuffer.put(caseId, caseStatesInBuffer);
+        cleanUp(); // removing old case entries
         return currentStates;
+    }
+
+    private void cleanUp() {
+        int casesTotal = casesInBuffer.size();
+        if (casesTotal > maxCasesInBuffer) {
+            int i = 0;
+            do {
+                casesInBuffer.remove(Objects.requireNonNull(casesCleanUpRecord.poll()).caseID);
+                i++;
+            } while (i < casesTotal - maxCasesInBuffer);
+        }
     }
 
     protected List<State> handleModelMoves(List<String> traceSuffix, State state, State dummyState) {
@@ -218,7 +233,6 @@ public class C_3PO extends ConformanceChecker implements Serializable {
                 currentNodes.clear();
                 currentNodes.add(state.getNode());
             }
-
         }
 
         if (matchingNodes.size() == 0) {
@@ -385,8 +399,8 @@ public class C_3PO extends ConformanceChecker implements Serializable {
         List<State> newestStates = new ArrayList<>();
         List<State> oldestStates = new ArrayList<>();
         List<State> statesToReturn = new ArrayList<>();
-        if (statesInBuffer.containsKey(caseId)) {
-            caseStatesInBuffer = statesInBuffer.get(caseId);
+        if (casesInBuffer.containsKey(caseId)) {
+            caseStatesInBuffer = casesInBuffer.get(caseId);
             currentStates = caseStatesInBuffer.getCurrentStates();
             List<State> statesList = new ArrayList<>(currentStates.values());
             for (State s : statesList) {
@@ -660,5 +674,20 @@ public class C_3PO extends ConformanceChecker implements Serializable {
         if (discountedDecayTime)
             return Math.max(Math.round((averageTrieLength - alg.getTraceSize()) * decayTimeMultiplier), minDecayTime);
         return minDecayTime;
+    }
+
+    class CaseWatermark implements Serializable{
+        private final String caseID;
+        private final Timestamp timestamp = Timestamp.from(Instant.now());
+        public CaseWatermark(String caseID) {
+            this.caseID = caseID;
+        }
+    }
+
+    class CaseComparator implements Comparator<CaseWatermark>, Serializable {
+        @Override
+        public int compare(CaseWatermark o1, CaseWatermark o2) {
+            return o1.timestamp.compareTo(o2.timestamp);
+        }
     }
 }

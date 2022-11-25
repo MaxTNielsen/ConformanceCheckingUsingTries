@@ -1,10 +1,7 @@
 package ee.ut.cs.dsg.confcheck;
 
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
-import ee.ut.cs.dsg.confcheck.alignment.Move;
-import ee.ut.cs.dsg.confcheck.cost.CostFunction;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
-import ee.ut.cs.dsg.confcheck.trie.TrieNode;
 
 import java.io.Serializable;
 import java.util.*;
@@ -15,9 +12,9 @@ public abstract class ConformanceChecker implements Serializable {
     protected final int modelMoveCost ;
     protected PriorityQueue<State> nextChecks;
     protected HashMap<String, State> tracesInBuffer;
-    protected HashMap<String, StatesBuffer> statesInBuffer;
+    protected HashMap<String, StatesBuffer> casesInBuffer;
     protected int cntr=1;
-    protected int maxStatesInQueue;
+    protected int maxCasesInBuffer;
 //    private HashSet<State> seenBefore;
     protected ArrayList<State> states;
 
@@ -47,10 +44,10 @@ public abstract class ConformanceChecker implements Serializable {
         this.modelMoveCost = modelCost;
 
         states = new ArrayList<>();
-        this.maxStatesInQueue = maxCasesInQueue;
+        this.maxCasesInBuffer = maxCasesInQueue;
         nextChecks = new PriorityQueue<>(maxCasesInQueue);
         tracesInBuffer = new HashMap<>();
-        statesInBuffer = new HashMap<>();
+        casesInBuffer = new HashMap<>();
     }
 
     public abstract Alignment check(List<String> trace);
@@ -69,12 +66,12 @@ public abstract class ConformanceChecker implements Serializable {
 //            seenBefore.add(state);
 //        if (state.getCostSoFar() < 0)
 //            return;
-        if (cntr==maxStatesInQueue) {
+        if (cntr== maxCasesInBuffer) {
 //            System.out.println("Max queue size reached. New state is not added!");
             return;
         }
         cntr++;
-        if (nextChecks.size() == maxStatesInQueue)
+        if (nextChecks.size() == maxCasesInBuffer)
         {
 //            System.out.println("Max queue size reached. New state is not added!");
 //           if (state.getCostSoFar() < nextChecks.peek().getCostSoFar())
@@ -183,23 +180,23 @@ public abstract class ConformanceChecker implements Serializable {
         return null;
     }
 
-    public int tracesInBuffer(){
-        return statesInBuffer.size();
+    public int sizeOfCasesInBuffer(){
+        return casesInBuffer.size();
     }
 
     public int statesInBuffer(String id){
-        if(statesInBuffer.containsKey(id))
-            return statesInBuffer.get(id).getCurrentStates().size();
+        if(casesInBuffer.containsKey(id))
+            return casesInBuffer.get(id).getCurrentStates().size();
         return 1;
     }
 
     public StatesBuffer getTracesInBuffer(String id){
-        if(statesInBuffer.containsKey(id))
-            return this.statesInBuffer.get(id);
+        if(casesInBuffer.containsKey(id))
+            return this.casesInBuffer.get(id);
         return new StatesBuffer(new HashMap<>());
     }
 
     public HashMap<String, StatesBuffer> getCasesInBuffer(){
-        return this.statesInBuffer;
+        return this.casesInBuffer;
     }
 }

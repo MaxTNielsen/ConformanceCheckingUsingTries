@@ -6,14 +6,8 @@ import ee.ut.cs.dsg.confcheck.cost.CostFunction;
 import ee.ut.cs.dsg.confcheck.cost.DualProgressiveCostFunction;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.trie.TrieNode;
-import ee.ut.cs.dsg.confcheck.util.AlphabetService;
-import ee.ut.cs.dsg.confcheck.util.Configuration;
-import org.cpntools.accesscpn.model.graphics.Align;
-import org.processmining.logfiltering.algorithms.ProtoTypeSelectionAlgo;
 
-import java.sql.Array;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class StreamingConformanceChecker extends ConformanceChecker {
 
@@ -292,8 +286,8 @@ public class StreamingConformanceChecker extends ConformanceChecker {
         List<State> newestStates = new ArrayList<>();
         List<State> oldestStates = new ArrayList<>();
         boolean isEndOfTrace;
-        if (statesInBuffer.containsKey(caseId)) {
-            caseStatesInBuffer = statesInBuffer.get(caseId);
+        if (casesInBuffer.containsKey(caseId)) {
+            caseStatesInBuffer = casesInBuffer.get(caseId);
             currentStates = caseStatesInBuffer.getCurrentStates();
             statesList.addAll(currentStates.values());
             for (State s : statesList) {
@@ -502,9 +496,9 @@ public class StreamingConformanceChecker extends ConformanceChecker {
         // iterate over the trace - choose event by event
         // modify everything into accepting event instead of list of events
 
-        if (statesInBuffer.containsKey(caseId)) {
+        if (casesInBuffer.containsKey(caseId)) {
             // case exists, fetch last state
-            caseStatesInBuffer = statesInBuffer.get(caseId);
+            caseStatesInBuffer = casesInBuffer.get(caseId);
             currentStates = caseStatesInBuffer.getCurrentStates();
 
         } else {
@@ -631,7 +625,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
             caseStatesInBuffer.setCurrentStates(currentStates);
         }
 
-        statesInBuffer.put(caseId, caseStatesInBuffer);
+        casesInBuffer.put(caseId, caseStatesInBuffer);
         return currentStates;
 
     }

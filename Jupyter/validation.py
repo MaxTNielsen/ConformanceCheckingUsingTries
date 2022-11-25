@@ -15,7 +15,7 @@ LOG_TYPES_CONF = ["confidence20", "confidence50"]
 
 LOG_TYPES_NORMAL = ["sim", "sample"]
 
-LOG_TYPES = LOG_TYPES_COMPL + LOG_TYPES_CONF + LOG_TYPES_NORMAL
+LOG_TYPES = LOG_TYPES_COMPL + LOG_TYPES_NORMAL # // LOG_TYPES_CONF
 
 
 def get_dataset_metrics(prefix_path: str, dims: dict, avg_costs: dict, regex_f: object) -> dict:

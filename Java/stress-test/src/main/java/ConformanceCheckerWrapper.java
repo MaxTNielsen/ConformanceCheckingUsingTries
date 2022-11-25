@@ -1,5 +1,4 @@
 import beamline.events.BEvent;
-import beamline.miners.behavioalconformance.model.OnlineConformanceScore;
 import beamline.models.algorithms.StreamMiningAlgorithm;
 import ee.ut.cs.dsg.confcheck.C_3PO;
 import ee.ut.cs.dsg.confcheck.State;
@@ -30,6 +29,8 @@ public class ConformanceCheckerWrapper extends StreamMiningAlgorithm<OnlineConfo
     private OnlineConformanceResults last;
     private Trie trie;
 
+    private boolean isMemoryExperiment = false;
+
     public ConformanceCheckerWrapper(int logCost, int modelCost, int maxStatesInQueue, int maxTrials, boolean isStandardAlign, String costType, HashMap<String, String> urls, String log, boolean isWarmStartAllStates, String proxyPath) {
         init();
         this.last = new OnlineConformanceResults(service);
@@ -42,10 +43,10 @@ public class ConformanceCheckerWrapper extends StreamMiningAlgorithm<OnlineConfo
         State state;
         Alignment alg;
         long start;
-        long executionTime = 0;
-        long memorySizeCases;
-        long memorySizeStates;
-        int totalCases = checker.tracesInBuffer();
+        long executionTime;
+        long memorySizeCases = 0;
+        long memorySizeStates = 0;
+        int totalCases = checker.sizeOfCasesInBuffer();
         int totalStates = checker.statesInBuffer(event.getTraceName());
         List<String> e = new ArrayList<>();
         e.add(Character.toString(service.alphabetize(event.getEventName())));
@@ -59,8 +60,10 @@ public class ConformanceCheckerWrapper extends StreamMiningAlgorithm<OnlineConfo
             System.out.println("Optimal alignment state was not found");
         }
         executionTime = System.nanoTime() - start;
-        memorySizeCases = GraphLayout.parseInstance(checker.getCasesInBuffer()).totalSize();
-        memorySizeStates = GraphLayout.parseInstance(checker.getTracesInBuffer(event.getTraceName())).totalSize();
+        if(isMemoryExperiment){
+            memorySizeCases = GraphLayout.parseInstance(checker.getCasesInBuffer()).totalSize();
+            memorySizeStates = GraphLayout.parseInstance(checker.getTracesInBuffer(event.getTraceName())).totalSize();
+        }
         this.last.setLastEvent(event);
         this.last.setConformance(alg.getTotalCost());
         this.last.setConfidence(state.getNode().getConfidenceCost());

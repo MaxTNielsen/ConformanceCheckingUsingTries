@@ -19,9 +19,6 @@ public class State implements Comparable<State>, Serializable {
     private int completenessCost = 0;
     private State parentState;
     private int decayTime;
-    private final String ID = String.valueOf(UUID.randomUUID().hashCode());
-
-    private final Timestamp instant = Timestamp.from(Instant.now());
 
     public State(Alignment alignment, List<String> tracePostfix, TrieNode node, int costSoFar)
     {
@@ -197,13 +194,5 @@ public class State implements Comparable<State>, Serializable {
 
     public void setAlignment(Alignment a){
         this.alignment = a;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public Timestamp getInstant() {
-        return instant;
     }
 }
