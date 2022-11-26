@@ -48,8 +48,8 @@ def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
                     del t[t.columns[2]] ## delete completeness
                     del t[t.columns[2]] ## delete confidence
                     del t[t.columns[2]] ## delete total cost - not needed
-                del t[t.columns[-1]] ## delete conformance
-                del t[t.columns[1]] ## delete execution time
+                del t[t.columns[-1]] ## delete execution time
+                del t[t.columns[1]] ## delete conformance
                 log_dfs[dir__][f_key] = t
     
     for log in LOGS:

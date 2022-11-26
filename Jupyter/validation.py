@@ -84,8 +84,8 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
 #mean, std, time
 def get_statistics(dataset_dict: dict, dataset_id: list) -> dict:
     return {'sum': {id: sum(dataset_dict[id]['conf']) for id in dataset_id}, 'mean': {id: mean(dataset_dict[id]['conf']) for id in dataset_id},
-            'std': {id: stdev(dataset_dict[id]['conf']) for id in dataset_id}, 'time': {id: mean(dataset_dict[id]['time']) for id in dataset_id},
-            'time_std': {id: stdev(dataset_dict[id]['time']) for id in dataset_id}}
+            'std': {id: stdev(dataset_dict[id]['conf']) for id in dataset_id}, 'time': {id: mean(np.asarray(dataset_dict[id]['time']) / np.asarray(dataset_dict[id]['trace_length'])) for id in dataset_id},
+            'time_std': {id: stdev(np.asarray(dataset_dict[id]['time']) / np.asarray(dataset_dict[id]['trace_length'])) for id in dataset_id}}
 
 
 def print_stat(s_key:str, dict1:dict, dict2:dict, name1:str, name2:str) -> None:
@@ -105,7 +105,7 @@ def print_procentual(s_key:str, dim:str, dict1:dict, dict2:dict) -> None:
 log_names = ['BPI_2012', 'BPI_2017', 'BPI_2020', 'M1',
              'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10']
 
-normal_output = ['BPI_2012_sim_sample', 'BPI_2017_sim_sample', 'M1_sim', 'M2_sim',
+normal_output = ['BPI_2012_sample', 'BPI_2017_sample', 'M1_sim', 'M2_sim',
                  'M3_sim', 'M4_sim', 'M5_sim', 'M6_sim', 'M7_sim', 'M8_sim', 'M9_sim', 'M10_sim']
 
 confidence_output = [
@@ -117,9 +117,11 @@ confidence_output = [
 ]
 
 completeness_output = [
-    'BPI_2012_sim_completeness20_sample', 'BPI_2012_sim_completeness50_sample', 'BPI_2017_sim_completeness20_sample', 'BPI_2017_sim_completeness50_sample',
-    'M1_sim_completeness20', 'M1_sim_completeness50', 'M2_sim_completeness20', 'M2_sim_completeness50', 'M3_sim_completeness20',
-    'M3_sim_completeness50', 'M4_sim_completeness20', 'M4_sim_completeness50', 'M5_sim_completeness20', 'M5_sim_completeness50',
-    'M6_sim_completeness20', 'M6_sim_completeness50', 'M7_sim_completeness20', 'M7_sim_completeness50', 'M8_sim_completeness20',
-    'M8_sim_completeness50', 'M9_sim_completeness20', 'M9_sim_completeness50', 'M10_sim_completeness20', 'M10_sim_completeness50'
+    'BPI_2012_completeness20_sample', 'BPI_2012_completeness50_sample',
+    'BPI_2017_completeness20_sample', 'BPI_2017_completeness50_sample',
+    'M1_sim_completeness20', 'M1_sim_completeness50', 'M2_sim_completeness20', 'M2_sim_completeness50',
+    'M3_sim_completeness20', 'M3_sim_completeness50', 'M4_sim_completeness20', 'M4_sim_completeness50', 
+    'M5_sim_completeness20', 'M5_sim_completeness50', 'M6_sim_completeness20', 'M6_sim_completeness50', 
+    'M7_sim_completeness20', 'M7_sim_completeness50', 'M8_sim_completeness20', 'M8_sim_completeness50', 
+    'M9_sim_completeness20', 'M9_sim_completeness50', 'M10_sim_completeness20', 'M10_sim_completeness50'
 ]

@@ -88,7 +88,7 @@ public class Trie implements Serializable {
                 sb.append(event);
                 if (returned.isEndOfTrace()) {
                     leaves.add(returned);
-                } /*else {
+                } /*//else {
                     // build warm start map
                     if (warmStart.containsKey(current.getContent())) {
                         TreeMap<Integer, ArrayList<TrieNode>> tMap = warmStart.get(current.getContent());
@@ -104,11 +104,18 @@ public class Trie implements Serializable {
                         warmStart.get(current.getContent()).put(current.getLevel() - 1, new ArrayList<>());
                         warmStart.get(current.getContent()).get(current.getLevel() - 1).add(current);
                     }
-                }*/
+               // }*/
             }
             current.addLinkedTraceIndex(traceIndex);
             numberOfEvents += sb.length();
             traceIndexer.put(traceIndex, sb.toString());
+        }
+    }
+
+    public void reduceWarmStartMap() {
+        int avgTraceLength = getAvgTraceLength() / 2;
+        for (Map.Entry<String, TreeMap<Integer, ArrayList<TrieNode>>> entry : warmStart.entrySet()) {
+            entry.getValue().entrySet().removeIf(item -> item.getKey() > avgTraceLength);
         }
     }
 

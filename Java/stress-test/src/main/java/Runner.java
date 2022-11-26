@@ -39,7 +39,7 @@ public class Runner {
 
         String basePath = sb.append("stress-test-data").toString();
         String logPath = Paths.get(basePath, "stream").toString();
-        String proxyPath = Paths.get(basePath, "proxy_log_freq_50_dist_3.xes").toString();
+        String proxyPath = Paths.get(basePath, "stress_test_proxy_log.xes").toString();
 
         //long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         //long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
@@ -48,13 +48,13 @@ public class Runner {
 
         init();
         Trie t = constructTrie(proxyPath);
-        C_3PO checker = new C_3PO(t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), "", true);
+        C_3PO checker = new C_3PO(t, 1, 1, 5000, 100000, false, "avg", new HashMap<String, String>(), "", true);
 
         XesXmlParser parser = new XesXmlParser();
         try {
             Scanner scanner = new Scanner(new File(logPath));
             String line = null;
-            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,actualMemUsed,beforeUsedMem\n");
+            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem\n");
             long initUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
             while (scanner.hasNextLine()) {
                 long start;
