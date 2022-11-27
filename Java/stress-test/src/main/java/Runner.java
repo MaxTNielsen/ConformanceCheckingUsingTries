@@ -16,6 +16,8 @@ import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
 import org.openjdk.jol.info.GraphLayout;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -54,8 +56,7 @@ public class Runner {
         try {
             Scanner scanner = new Scanner(new File(logPath));
             String line = null;
-            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem\n");
-            long initUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,Time\n");
             while (scanner.hasNextLine()) {
                 long start;
                 long executionTime;
@@ -87,8 +88,9 @@ public class Runner {
                 executionTime = System.nanoTime() - start;
                 long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
                 long actualMemUsed=afterUsedMem-beforeUsedMem;
-                String msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
-                        alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem);
+                String instant=Timestamp.from(Instant.now()).toString();
+                String msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
+                        alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem, instant);
                 results.add(msg);
                 System.out.printf(msg);
             }

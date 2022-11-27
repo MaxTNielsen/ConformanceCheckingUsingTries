@@ -101,11 +101,18 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
     x = np.arange(len(labels))
     width = 0.2
 
-    fig, ax = plt.subplots(figsize=(8,8))
+    fig, ax = plt.subplots(figsize=(10,10))
 
     rects1 = ax.bar(x - width, list(dict1[stat].values()), width, label=bar_labels[0])
     rects2 = ax.bar(x, list(dict2[stat].values()), width, label=bar_labels[1])
     rects3 = ax.bar(x + width, list(dict3[stat].values()), width, label=bar_labels[2])                
+
+    # for i,bar in enumerate(ax.patches):
+    #     value = bar.get_height()
+    #     text = f'{round(value,2)}'
+    #     text_x = bar.get_x() + bar.get_width() / 2
+    #     text_y = bar.get_y() + value + np.log(1)
+    #     ax.text(text_x, text_y, text, ha='center',color='r',size=8, rotation=90)
 
     ax.set_ylabel(ylabel)
     ax.set_title(title)
@@ -162,7 +169,7 @@ def print_procentual(s_key:str, dim:str, dict1:dict, dict2:dict) -> None:
 
 
 # plot_bar_chart_comparison(completeness_output, no_compl_no_conf_compl_stats,
-#                           no_conf_ws_root_stats, no_conf_ws_all_stats,'time', ['standard', 'ws_root', 'ws_all'], "time (m/s)", "avg miliseconds pr event in log")
+#                           no_conf_ws_root_stats, no_conf_ws_all_stats,'time', ['standard', 'ws_root', 'ws_all'], "time (m/s)", "avg miliseconds pr event in log", True)
 
 # print("ws_root time comparison with standard - "+print_procentual('time','time',no_conf_ws_root_stats, no_compl_no_conf_compl_stats))
 # print(40*"--")
