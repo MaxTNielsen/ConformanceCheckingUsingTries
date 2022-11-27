@@ -328,21 +328,6 @@ public class StreamingConformanceChecker extends ConformanceChecker {
                     } else if ((s.getDecayTime() == oldestState.getDecayTime() & s.getTracePostfix().size() == oldestState.getTracePostfix().size())) {
                         oldestStates.add(s);
                     }
-
-                    /*
-                    System.out.println(s.toString());
-                    currentCost = s.getCostSoFar();
-                    postfixSize = s.getTracePostfix().size();
-                    minLengthToEnd = s.getNode().getMinPathLengthToEnd();
-                    isEndOfTrace = s.getNode().isEndOfTrace();
-                    if((postfixSize+minLengthToEnd)==0 || (postfixSize==0 && isEndOfTrace)){
-                        return s;
-                    } else if ((postfixSize+minLengthToEnd+currentCost)<=minAdditionalCost){
-                        minAdditionalCost = postfixSize+minLengthToEnd+currentCost;
-                        optimalStates.add(s);
-                    }
-
-                     */
                 } else {
                     // just want to return the latest / current state. This state is prefix-alignment type, not full alignment
                     if (discountedDecayTime) {

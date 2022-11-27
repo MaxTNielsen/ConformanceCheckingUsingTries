@@ -50,7 +50,6 @@ import static ee.ut.cs.dsg.confcheck.util.Configuration.LogSortType;
 
 
 public class Runner {
-
     private static AlphabetService service;
 
     public static void main(String... args) throws UnknownHostException {
@@ -70,10 +69,10 @@ public class Runner {
             HashMap<String, HashMap<String, String>> logs = new HashMap<>();
             HashMap<String, String> subLog = new HashMap<>();
             subLog.put("log", "input/trie stream/BPI_2012_1k_sample.xes");
-            subLog.put("simulated", "input/trie stream/BPI_2012_frequencyLog.xml");
+            //subLog.put("simulated", "input/trie stream/BPI_2012_frequencyLog.xml");
             subLog.put("clustered", "input/BPI2012/sampledClusteredLog.xml");
             subLog.put("random", "input/BPI2012/randomLog.xml");
-            subLog.put("frequency", "input/BPI2012/frequencyLog.xml");
+            subLog.put("frequency", "input/trie stream/BPI_2012_frequencyLog.xml");
             subLog.put("reduced", "input/BPI2012/reducedLogActivity.xml");
             logs.put("BPI2012", new HashMap<>(subLog));
             subLog.clear();
@@ -144,13 +143,13 @@ public class Runner {
             logs.put("RL", new HashMap<>(subLog));
             subLog.clear();
 
-            ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
+            ConformanceCheckerType checkerType = TRIE_STREAMING; //_C_3PO;
 
             String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
-                String sLog = "BPI2012";
+                String sLog = "M1_";
                 String sLogType = "simulated";
                 String sLogPath = logs.get(sLog).get("log");
                 String sProxyLogPath = logs.get(sLog).get(sLogType);
@@ -160,7 +159,7 @@ public class Runner {
 
                     if (checkerType == TRIE_STREAMING_C_3PO)
                         res.add(0, String.format("TraceId,Activity,Conformance cost,Completeness cost,Confidence cost,total cost,TraceLength,ExecutionTime_%1$s", checkerType));
-                    else res.add(0, String.format("TraceId, total cost,ExecutionTime_%1$s", checkerType));
+                    else res.add(0, String.format("TraceId,total cost,TraceLength,ExecutionTime_%1$s", checkerType));
 
                     FileWriter wr = new FileWriter(pathName);
                     for (String s : res) {
@@ -293,29 +292,29 @@ public class Runner {
                 }
             } else if (runType == "validation") {
                 List<String> datasetNames = new ArrayList<>();
-                /*datasetNames.add("M1");
+                datasetNames.add("M1");
                 datasetNames.add("M2");
-                //datasetNames.add("M3"); // not working in other algorithms
+                datasetNames.add("M3"); // not working in other algorithms
                 datasetNames.add("M4");
-                *//*datasetNames.add("M5"); // not working in other algorithms
+                datasetNames.add("M5"); // not working in other algorithms
                 datasetNames.add("M6"); // not working in other algorithms
-                datasetNames.add("M7"); // not working in other algorithms*//*
+                datasetNames.add("M7"); // not working in other algorithms
                 datasetNames.add("M8");
-                datasetNames.add("M9");*/
-                //datasetNames.add("M10"); // not working in other algorithms
+                datasetNames.add("M9");
+                datasetNames.add("M10"); // not working in other algorithms
                 datasetNames.add("BPI_2012");
                 datasetNames.add("BPI_2017");
                 /*datasetNames.add("BPI_2020");*/ // not working with this algorithm
 
                 for (String sLog : datasetNames) {
-                    String sLogType = "sim";
-                   /* if(sLog.charAt(0) == 'M') {
+                    //String sLogType = "sim";
+                    String sLogType;
+                    if(sLog.charAt(0) == 'M') {
                         sLogType = "sim";
                     }
                     else {
-                        sLogType = "Sim";
+                        sLogType = "frequency";
                     }
-*/
                     String logDir = Paths.get(pathPrefix, sLog).toString();
                     File directory = new File(logDir);
                     boolean r = directory.mkdir();
@@ -336,7 +335,7 @@ public class Runner {
                             if (checkerType == TRIE_STREAMING_C_3PO)
                                 res.add(0, String.format("TraceId,Conformance cost,Completeness cost,Confidence cost,total cost,TraceLength,ExecutionTime_%1$s", checkerType));
 
-                            else res.add(0, String.format("TraceId,total cost,TraceLength,ExecutionTime_%1$s", checkerType));
+                            else res.add(0, String.format("TraceId,Conformance cost,TraceLength,ExecutionTime_%1$s", checkerType));
 
                             FileWriter wr = new FileWriter(pathName);
                             for (String s : res) {
@@ -591,7 +590,7 @@ public class Runner {
             Class<?>[] type;
             Object[] params;
 
-            //C_3PO c_3PO = new C_3PO(t, 1, 1, 100, 100000, false, "avg", new HashMap<>(), "", true);
+            //C_3PO c_3PO = new C_3PO(t, 1, 1, 10000, 100000, false, "avg", new HashMap<>(), "", true);
             if (confCheckerType == TRIE_STREAMING) {
                 // params: Trie trie, int logCost, int modelCost, int maxStatesInQueue, int maxTrials
 
@@ -647,7 +646,7 @@ public class Runner {
             if (LogSortType.NONE == LogSortType.LEXICOGRAPHIC_DESC || LogSortType.NONE == LogSortType.TRACE_LENGTH_DESC) {
                 for (int i = tracesToSort.size() - 1; i >= 0; i--) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
-                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t); //, c_3PO)
+                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);  //, c_3PO);
                     } else {
                         totalTime = computeAlignment(tracesToSort, checker, sampleTracesMap, totalTime, devChecker, i, result);
                     }
@@ -656,8 +655,8 @@ public class Runner {
             else {
                 for (int i = 0; i < tracesToSort.size(); i++) {
                     if (confCheckerType == TRIE_STREAMING || confCheckerType == TRIE_STREAMING_C_3PO) {
-                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t); //, c_3PO)
-                        //totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
+                        //totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t, c_3PO);
+                        totalTime = computeAlignment2(tracesToSort, totalTime, i, result, javaClassLoader, confCheckerType, t);
                     }
                 }
             }
@@ -733,7 +732,7 @@ public class Runner {
     }*/
 
 
-    private static long computeAlignment2(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) { //, C_3PO c_3PO)
+    private static long computeAlignment2(List<String> tracesToSort, long totalTime, int i, ArrayList<String> result, JavaClassLoader javaClassLoader, ConformanceCheckerType checkerType, Trie t) { //, C_3PO c_3PO) {
         long start;
         long executionTime;
         Alignment alg;
@@ -784,7 +783,7 @@ public class Runner {
                     result.add(i + "," + alg.getTotalCost() + "," + state.getCompletenessCost() + "," + state.getNode().getConfidenceCost() + "," + state.getWeightedSumOfCosts() + "," + alg.getTraceSize() + ","  + executionTime);
                 else
                     //result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.toString(t.getService()));
-                    result.add(i + "," + alg.getTotalCost() + "," + executionTime + "," + alg.getTraceSize());
+                    result.add(i + "," + alg.getTotalCost() + "," + alg.getTraceSize() + "," + executionTime);
             } else {
                 System.out.println("Couldn't find an alignment under the given constraints");
                 result.add(Integer.toString(i) + ",9999999," + executionTime);

@@ -83,9 +83,9 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
 
 #mean, std, time
 def get_statistics(dataset_dict: dict, dataset_id: list) -> dict:
-    return {'sum': {id: sum(dataset_dict[id]['conf']) for id in dataset_id}, 'mean': {id: mean(dataset_dict[id]['conf']) for id in dataset_id},
-            'std': {id: stdev(dataset_dict[id]['conf']) for id in dataset_id}, 'time': {id: mean(np.asarray(dataset_dict[id]['time']) / np.asarray(dataset_dict[id]['trace_length'])) for id in dataset_id},
-            'time_std': {id: stdev(np.asarray(dataset_dict[id]['time']) / np.asarray(dataset_dict[id]['trace_length'])) for id in dataset_id}}
+    return {'sum': {id: sum(dataset_dict[id]['conf']) for id in dataset_id},
+            'mean': {id: mean(dataset_dict[id]['conf']) for id in dataset_id}, 'std': {id: stdev(dataset_dict[id]['conf']) for id in dataset_id},
+            'time': {id: mean(np.asarray(dataset_dict[id]['time']) / np.asarray(dataset_dict[id]['trace_length'])) for id in dataset_id}}
 
 
 def print_stat(s_key:str, dict1:dict, dict2:dict, name1:str, name2:str) -> None:
