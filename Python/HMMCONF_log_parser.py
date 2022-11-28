@@ -9,7 +9,7 @@ import re
 
 FIELDS = ['T:concept:name', 'E:concept:name', 'id']
 BASE_PATH = os.path.join('output', 'hmmconf')
-INDIR = os.path.join(BASE_PATH, 'csv_logs')
+INDIR = os.path.join(BASE_PATH, 'M7')
 OUTDIR = os.path.join(BASE_PATH, 'hmmconf_logs')
 
 
@@ -49,8 +49,8 @@ def get_traces(root: object, nspace: str) -> list:
 
 
 if __name__ == '__main__':
-    preprocess_logs("input/trie-stream/M-models/", 'M-model')
-    preprocess_logs("input/trie-stream/BPI-logs/", 'BPI-logs')
+    # preprocess_logs("input/trie-stream/M-models/", 'M-model')
+    # preprocess_logs("input/trie-stream/BPI-logs/", 'BPI-logs')
     if not os.path.isdir(OUTDIR):
         os.mkdir(OUTDIR)
 

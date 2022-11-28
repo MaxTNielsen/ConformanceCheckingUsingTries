@@ -42,14 +42,14 @@ public class Runner {
         List<String> datasetNames = new ArrayList<>();
         //datasetNames.add("M1"); // working
         //datasetNames.add("M2"); // working
-        //datasetNames.add("M3"); // not working
+        datasetNames.add("M3"); // not working
         //datasetNames.add("M4"); // working
         //datasetNames.add("M5"); // not working
         //datasetNames.add("M6"); // not working
-        datasetNames.add("M7"); // not working
+        //datasetNames.add("M7"); // not working
         //datasetNames.add("M8"); // working
         //datasetNames.add("M9"); // working
-        datasetNames.add("M10"); // not working
+        //datasetNames.add("M10"); // not working
         //datasetNames.add("BPI_2012"); // working
         //datasetNames.add("BPI_2017"); // working
         //datasetNames.add("BPI_2020"); // working

@@ -5,9 +5,7 @@ import re
 from statistics import mean
 import xml.etree.ElementTree as ET
 
-#LOGS = ["BPI_2017","BPI_2012","M1","M2","M4","M8","M9"]
-NOT_BP_LOGS = ['M4','M9']
-LOGS = ["BPI_2017","BPI_2012","M1","M2","M8"]
+LOGS = ["BPI_2017","BPI_2012","M1","M2","M3","M4","M5","M6","M7","M8","M9","M10"]
 LOG_TYPES = ['completeness20', 'completeness50', 'sim']
 
 def get_log_type(filename:str) -> str:
@@ -15,20 +13,18 @@ def get_log_type(filename:str) -> str:
     res = re.search(logs_pattern, filename)
     return res.group() if res is not None else 'sim'
 
-def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
+def get_occ_dfs(dir_path:str, logs:str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
     """ params:
                 dir_path : directory path to occ results
         returns:
                 concatenated df with results from all logs
     """
-    log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in LOGS}
-    temp_df = {log_n:{log_t:{} for log_t in LOG_TYPES} for log_n in LOGS}
+    log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in logs}
+    temp_df = {log_n:{log_t:{} for log_t in LOG_TYPES} for log_n in logs}
     
     for dir_ in os.listdir(dir_path):
         run_dir = os.path.join(dir_path, dir_)
         for dir__ in os.listdir(run_dir):
-            if dir__ in NOT_BP_LOGS:
-                    continue
             log_dir = os.path.join(run_dir, dir__)
             for f_ in os.listdir(log_dir):
                 f_path = os.path.join(log_dir, f_)
@@ -52,7 +48,7 @@ def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
                 del t[t.columns[1]] ## delete conformance
                 log_dfs[dir__][f_key] = t
     
-    for log in LOGS:
+    for log in logs:
         for log_type in LOG_TYPES:
             exe_times = (mean([int(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['exe'])))
             conf_cost = (mean([int(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['conf'])))
@@ -83,18 +79,16 @@ def get_occ_dfs(dir_path: str, isC_3PO:bool=False) -> pd.DataFrame.__class__:
     return log_dfs
 
 
-def get_hmmconf_df(dir_path: str) -> pd.DataFrame.__class__:
+def get_hmmconf_df(dir_path: str, logs:str) -> pd.DataFrame.__class__:
     """ params:
                 dir_path : directory path to occ results
         returns:
                 concatenated df with results from all logs
     """
-    log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in LOGS}
-    temp_df = {log_n:{log_t:list() for log_t in LOG_TYPES} for log_n in LOGS}
+    log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in logs}
+    temp_df = {log_n:{log_t:list() for log_t in LOG_TYPES} for log_n in logs}
     
     for dir_ in os.listdir(dir_path):
-        if dir_ in NOT_BP_LOGS:
-            continue
         log_dir = os.path.join(dir_path, dir_)
         for f_ in os.listdir(log_dir):
             f_path = os.path.join(log_dir, f_)
@@ -103,7 +97,7 @@ def get_hmmconf_df(dir_path: str) -> pd.DataFrame.__class__:
             temp_df[dir_][f_key].append(t)
     
 
-    for log_name in LOGS:
+    for log_name in logs:
         for log_type in LOG_TYPES:
             df_concat = pd.concat((temp_df[log_name][log_type]))
             by_row_index = df_concat.groupby(df_concat.index)
@@ -160,14 +154,14 @@ def preprocess_bp_results(data_frame:pd.DataFrame.__class__):
         'caseId': 'TraceId',
         }, inplace=True)
 
-def get_bp_df(dir_path: str) -> pd.DataFrame.__class__:
+def get_bp_df(dir_path: str, logs:str) -> pd.DataFrame.__class__:
     """ params:
                 dir_path : directory path to occ results
         returns:
                 concatenated df with results from all logs
     """
-    log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in LOGS}
-    temp_df = {log_n:{log_t:{} for log_t in LOG_TYPES} for log_n in LOGS}
+    log_dfs = {log_n:{log_t:pd.DataFrame.__class__ for log_t in LOG_TYPES} for log_n in logs}
+    temp_df = {log_n:{log_t:{} for log_t in LOG_TYPES} for log_n in logs}
     bp_log_paths = dict()
     traces_to_idx = dict()
 
@@ -202,7 +196,7 @@ def get_bp_df(dir_path: str) -> pd.DataFrame.__class__:
                 del t[t.columns[2]]
                 log_dfs[dir__][f_key] = t
     
-    for log in LOGS:
+    for log in logs:
         for log_type in LOG_TYPES:
             conf_cost = (mean([float(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['conf'])))
             compl_cost = (mean([float(ele) for ele in tp]) for tp in list(zip(*temp_df[log][log_type]['compl'])))

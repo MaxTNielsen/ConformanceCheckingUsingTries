@@ -423,7 +423,8 @@ if __name__ == '__main__':
     
     #LOGS = ["BPI_2017","BPI_2012","M1","M2","M4","M8", "M9"]
 
-    LOGS = ["M1"]
+    #LOGS = ["M3","M5", "M7", "M6","M10"]
+    LOGS = ["M7", "M6","M10"]
 
 
     for filename in os.listdir(model_type):
