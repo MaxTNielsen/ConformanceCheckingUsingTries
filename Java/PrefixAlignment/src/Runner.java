@@ -40,29 +40,33 @@ public class Runner {
         String formattedDate = dateFormat.format(date);
 
         List<String> datasetNames = new ArrayList<>();
-        datasetNames.add("M1"); // working
-        datasetNames.add("M2"); // working
+        //datasetNames.add("M1"); // working
+        //datasetNames.add("M2"); // working
         //datasetNames.add("M3"); // not working
-        datasetNames.add("M4"); // working
+        //datasetNames.add("M4"); // working
         //datasetNames.add("M5"); // not working
         //datasetNames.add("M6"); // not working
-        //datasetNames.add("M7"); // not working
-        datasetNames.add("M8"); // working
-        datasetNames.add("M9"); // working
-        //datasetNames.add("M10"); // not working
-        datasetNames.add("BPI_2012"); // working
-        datasetNames.add("BPI_2017"); // working
+        datasetNames.add("M7"); // not working
+        //datasetNames.add("M8"); // working
+        //datasetNames.add("M9"); // working
+        datasetNames.add("M10"); // not working
+        //datasetNames.add("BPI_2012"); // working
+        //datasetNames.add("BPI_2017"); // working
         //datasetNames.add("BPI_2020"); // working
 
         for (String name : datasetNames) {
 
-            try {
+            /*try {
                 Path tempDirectory = Files.createTempDirectory(OUTPUT_PREFIX + "\\" + name + "\\");
                 assertTrue(Files.exists(tempDirectory));
                 Files.createDirectory(Paths.get(OUTPUT_PREFIX + "\\" + name + "\\"));
             } catch(Exception e) {
                 e.printStackTrace();
-            }
+            }*/
+
+            String logDir = Paths.get(OUTPUT_PREFIX, name).toString();
+            File directory = new File(logDir);
+            boolean r = directory.mkdir();
 
             Hashtable<String, List<String>> files = Importer.getLogsAndModels(name);
             List<String> sNetPaths = files.get("net");

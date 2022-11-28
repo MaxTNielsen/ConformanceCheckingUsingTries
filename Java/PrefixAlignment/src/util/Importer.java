@@ -62,7 +62,7 @@ public class Importer {
         final Matcher[] matcher = new Matcher[1];
         List<Path> dataSetFiles;
 
-        try (Stream<Path> walk = Files.walk(Paths.get("input\\"))) {
+        try (Stream<Path> walk = Files.walk(Paths.get("input\\trie stream"))) {
             dataSetFiles = walk.filter(p -> {
                 matcher[0] = pattern.matcher(p.toString());
                 return matcher[0].find();

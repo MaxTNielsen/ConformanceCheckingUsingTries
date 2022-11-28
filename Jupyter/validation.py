@@ -115,14 +115,13 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
     #     ax.text(text_x, text_y, text, ha='center',color='r',size=8, rotation=90)
 
     ax.set_ylabel(ylabel)
-    ax.set_title(title)
+    #ax.set_title(title)
     ax.set_xticks(x, labels)
     ax.legend()
     plt.xticks(rotation=90)
     if isLog:
         plt.yscale("log")
     plt.tight_layout()
-    plt.show()
 
 
 #mean, std, time

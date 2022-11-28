@@ -292,7 +292,7 @@ public class Runner {
                 }
             } else if (runType == "validation") {
                 List<String> datasetNames = new ArrayList<>();
-                datasetNames.add("M1");
+                /*datasetNames.add("M1");
                 datasetNames.add("M2");
                 datasetNames.add("M3"); // not working in other algorithms
                 datasetNames.add("M4");
@@ -303,8 +303,8 @@ public class Runner {
                 datasetNames.add("M9");
                 datasetNames.add("M10"); // not working in other algorithms
                 datasetNames.add("BPI_2012");
-                datasetNames.add("BPI_2017");
-                /*datasetNames.add("BPI_2020");*/ // not working with this algorithm
+                datasetNames.add("BPI_2017");*/
+                datasetNames.add("BPI_2020"); // not working with this algorithm
 
                 for (String sLog : datasetNames) {
                     //String sLogType = "sim";
