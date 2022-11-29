@@ -5,7 +5,6 @@ import re
 from statistics import mean
 import xml.etree.ElementTree as ET
 
-LOGS = ["BPI_2017","BPI_2012","M1","M2","M3","M4","M5","M6","M7","M8","M9","M10"]
 LOG_TYPES = ['completeness20', 'completeness50', 'sim']
 
 def get_log_type(filename:str) -> str:

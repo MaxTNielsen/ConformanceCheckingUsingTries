@@ -1,8 +1,10 @@
 import ee.ut.cs.dsg.confcheck.C_3PO;
 import ee.ut.cs.dsg.confcheck.State;
+import ee.ut.cs.dsg.confcheck.StreamingConformanceChecker;
 import ee.ut.cs.dsg.confcheck.alignment.Alignment;
 import ee.ut.cs.dsg.confcheck.trie.Trie;
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
+import ee.ut.cs.dsg.confcheck.util.Configuration;
 import org.deckfour.xes.classification.XEventAttributeClassifier;
 import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.classification.XEventClassifier;
@@ -25,6 +27,8 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import static ee.ut.cs.dsg.confcheck.Runner.loadLog;
+import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING;
+import static ee.ut.cs.dsg.confcheck.util.Configuration.ConformanceCheckerType.TRIE_STREAMING_C_3PO;
 
 public class Runner {
     final static List<String> results = new ArrayList<>();
@@ -50,13 +54,21 @@ public class Runner {
 
         init();
         Trie t = constructTrie(proxyPath);
-        C_3PO checker = new C_3PO(t, 1, 1, 5000, 100000, false, "avg", new HashMap<String, String>(), "", true);
+        C_3PO checker = new C_3PO(t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), "", true);
+        //StreamingConformanceChecker checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
+        Configuration.ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
+
 
         XesXmlParser parser = new XesXmlParser();
         try {
             Scanner scanner = new Scanner(new File(logPath));
             String line = null;
-            results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,Time\n");
+
+            if (checkerType == TRIE_STREAMING_C_3PO)
+                results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,Time\n");
+            else
+                results.add("TraceId,Activity,Conformance cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,Time\n");
+
             while (scanner.hasNextLine()) {
                 long start;
                 long executionTime;
@@ -89,9 +101,16 @@ public class Runner {
                 long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
                 long actualMemUsed=afterUsedMem-beforeUsedMem;
                 String instant=Timestamp.from(Instant.now()).toString();
-                String msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
-                        alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem, instant);
-                results.add(msg);
+                String msg;
+                if (checkerType == TRIE_STREAMING_C_3PO) {
+                    msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
+                            alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem, instant);
+                    results.add(msg);
+                }
+                else {
+                    msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId,service.deAlphabetize(activityName.toCharArray()[0]),alg.getTotalCost(),checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(),alg.getMoves().size(),executionTime, actualMemUsed, beforeUsedMem, instant);
+                    results.add(msg);
+                }
                 System.out.printf(msg);
             }
             scanner.close();
