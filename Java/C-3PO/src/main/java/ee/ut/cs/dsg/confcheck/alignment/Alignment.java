@@ -75,6 +75,15 @@ public class Alignment implements Serializable {
         return result.toString();
     }
 
+    public String toString(boolean compressed) {
+        StringBuilder result = new StringBuilder();
+        for (Move m : moves) {
+            result.append(m.toString(true));
+        }
+        if(moves.size() > 50)
+            return result.substring(moves.size()-50,moves.size());
+        return result.append(totalCost).toString();
+    }
 
     /*public String toString(AlphabetService service) {
         StringBuilder result = new StringBuilder();

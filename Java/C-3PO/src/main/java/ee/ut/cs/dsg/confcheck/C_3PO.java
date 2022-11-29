@@ -62,7 +62,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
             currentStates = caseStatesInBuffer.getCurrentStates();
 
         } else {
-            currentStates.put(new Alignment().toString(), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
+            currentStates.put(new Alignment().toString(true), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
             casesCleanUpRecord.add(new CaseWatermark(caseId));
         }
 
@@ -102,7 +102,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
                 }
 
                 for (State s : syncMoveStates) {
-                    currentStates.put(s.getAlignment().toString(), s);
+                    currentStates.put(s.getAlignment().toString(true), s);
                 }
 
                 syncMoveStates.clear();
@@ -155,7 +155,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
 
                 int previousStateDecayTime = previousState.getDecayTime();
                 if (previousStateDecayTime < 2) {
-                    currentStates.remove(previousState.getAlignment().toString());
+                    currentStates.remove(previousState.getAlignment().toString(true));
                 } else {
                     previousState.setDecayTime(previousStateDecayTime - 1);
                 }
@@ -164,7 +164,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
             // add new states with the lowest cost
             for (State s : interimCurrentStates) {
                 if (s.getWeightedSumOfCosts() == currentMinCost) {
-                    currentStates.put(s.getAlignment().toString(), s);
+                    currentStates.put(s.getAlignment().toString(true), s);
                 }
             }
         }

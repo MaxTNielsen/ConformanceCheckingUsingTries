@@ -292,12 +292,12 @@ public class Runner {
                 }
             } else if (runType == "validation") {
                 List<String> datasetNames = new ArrayList<>();
-                /*datasetNames.add("M1");
-                datasetNames.add("M2");*/
+                //datasetNames.add("M1");
+                datasetNames.add("M2");
                 //datasetNames.add("M3"); // not working in other algorithms
                 //datasetNames.add("M4");
                 //datasetNames.add("M5"); // not working in other algorithms
-                datasetNames.add("M6"); // not working in other algorithms
+                //datasetNames.add("M6"); // not working in other algorithms
                 //datasetNames.add("M7"); // not working in other algorithms
                 /*datasetNames.add("M8");
                 datasetNames.add("M9");*/
@@ -567,10 +567,10 @@ public class Runner {
 
     private static ArrayList<String> testOnConformanceApproximationResults(String inputProxyLogFile, String inputSampleLogFile, ConformanceCheckerType confCheckerType, String logName) {
         init();
-        long start_ = System.nanoTime();
+        //long start_ = System.nanoTime();
         Trie t = constructTrie(inputProxyLogFile);
-        long trieConstructionTime = System.nanoTime() - start_;
-        System.out.printf("Time to construct the trie: %s", trieConstructionTime);
+        //long trieConstructionTime = System.nanoTime() - start_;
+        //System.out.printf("Time to construct the trie: %s", trieConstructionTime);
         ArrayList<String> result = new ArrayList<>();
 
         //Configuration variables
@@ -887,14 +887,14 @@ public class Runner {
                 }
             }
 
-            System.out.println("Number of unique activities " + count);
+            //System.out.println("Number of unique activities " + count);
 
             //Let's construct the trie from the proxy log
             Trie t = new Trie(count, service);
             List<String> templist;
 //            count=1;
             //count=0;
-            System.out.println("Proxy log size "+inputProxyLog.size());
+            //System.out.println("Proxy log size "+inputProxyLog.size());
             for (XTrace trace : inputProxyLog) {
                 templist = new ArrayList<String>();
                 for (XEvent e : trace) {

@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-plt.rcParams.update({'font.size': 15})
+#plt.rcParams.update({'font.size': 15})
 import os
 import copy
 import csv
@@ -146,15 +146,15 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
     plt.show()
 
 def plot_bar_chart_comparison_(labels: list, dict1: dict, dict2: dict, dict3: dict, stat: str, bar_labels: list, ylabel: str, title: str, isLog:bool=False, isLegend:bool=True):
-    x = np.arange(len(labels))
-    width = 0.2
+    x = np.arange(0,len(labels)*2,2)
+    width = 0.4
 
-    fig, ax = plt.subplots(figsize=(10,5))
+    fig, ax = plt.subplots(figsize=(10,8))
     rects1 = ax.barh(x - width, list(dict1[stat].values()), width, label=bar_labels[0])
     rects2 = ax.barh(x, list(dict2[stat].values()), width, label=bar_labels[1])
-    rects3 = ax.barh(x + width, list(dict3[stat].values()), width, label=bar_labels[2])    
+    rects3 = ax.barh(x + width, list(dict3[stat].values()), width, label=bar_labels[2])
 
-    ax.set(yticks= x + width, yticklabels=labels, ylim=[2*width - 1, len(labels)])
+    ax.set(yticks= x + width, yticklabels=labels, ylim=[2*width, len(labels)*2-width])
     ax.set_xlabel(ylabel)
 
     if isLegend:
@@ -163,7 +163,7 @@ def plot_bar_chart_comparison_(labels: list, dict1: dict, dict2: dict, dict3: di
     if isLog:
         plt.xscale("log")
     plt.tight_layout()
-    #plt.show()
+    plt.show()
 
 
 #mean, std, time
@@ -184,36 +184,36 @@ def print_procentual(s_key:str, dim:str, dict1:dict, dict2:dict) -> None:
     dec_inc = "Decrease" if p < 0 else "Increase"
     return "{} {} in {}: {}".format(dec_inc, '%', dim,p)
 
-INPUT_DIR = os.path.join('..','output')
+# INPUT_DIR = os.path.join('..','output')
 
-dims_14 = {'conf': 1, 'trace_length': 2, 'time': 3}
-avg_costs_14 = {'conf': [], 'trace_length': [], 'time': []}
+# dims_14 = {'conf': 1, 'trace_length': 2, 'time': 3}
+# avg_costs_14 = {'conf': [], 'trace_length': [], 'time': []}
 
-dims_25 = {'conf': 1, 'compl': 2, 'confi': 3, 'total': 4, 'trace_length': 5, 'time': 6}
-avg_costs_25 = {'conf': [], 'compl': [], 'confi': [], 'total': [], 'trace_length': [], 'time': []}
+# dims_25 = {'conf': 1, 'compl': 2, 'confi': 3, 'total': 4, 'trace_length': 5, 'time': 6}
+# avg_costs_25 = {'conf': [], 'compl': [], 'confi': [], 'total': [], 'trace_length': [], 'time': []}
 
-no_compl_no_conf_dict, dict_keys = get_dataset_metrics(
-   INPUT_DIR+"/tripleocc_runs/no_compl_no_conf", dims=dims_14, avg_costs=avg_costs_14, regex_f=extract_filename)
-# no_compl_avg_dict, _ = get_dataset_metrics(
-#     INPUT_DIR+"/tripleocc_runs/no_compl_avg", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
-# no_compl_min_dict, _ = get_dataset_metrics(x
-#     INPUT_DIR+"/tripleocc_runs/no_compl_min", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
-no_conf_ws_all_states_dict, _  = get_dataset_metrics(
-    INPUT_DIR+"/tripleocc_runs/no_conf_ws_all_states", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
-no_conf_ws_root_dict, dict_keys_ = get_dataset_metrics(
-    INPUT_DIR+"/tripleocc_runs/no_conf_ws_root", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
-
-
-no_compl_no_conf_compl_stats = get_statistics(no_compl_no_conf_dict, normal_output)
-no_conf_ws_root_stats = get_statistics(no_conf_ws_root_dict, normal_output)
-no_conf_ws_all_stats = get_statistics(no_conf_ws_all_states_dict, normal_output)
+# no_compl_no_conf_dict, dict_keys = get_dataset_metrics(
+#    INPUT_DIR+"/tripleocc_runs/no_compl_no_conf", dims=dims_14, avg_costs=avg_costs_14, regex_f=extract_filename)
+# # no_compl_avg_dict, _ = get_dataset_metrics(
+# #     INPUT_DIR+"/tripleocc_runs/no_compl_avg", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
+# # no_compl_min_dict, _ = get_dataset_metrics(x
+# #     INPUT_DIR+"/tripleocc_runs/no_compl_min", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
+# no_conf_ws_all_states_dict, _  = get_dataset_metrics(
+#     INPUT_DIR+"/tripleocc_runs/no_conf_ws_all_states", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
+# no_conf_ws_root_dict, dict_keys_ = get_dataset_metrics(
+#     INPUT_DIR+"/tripleocc_runs/no_conf_ws_root", dims=dims_25, avg_costs=avg_costs_25, regex_f=extract_filename)
 
 
-plot_bar_chart_comparison_(normal_labels, no_compl_no_conf_compl_stats,
-                          no_conf_ws_root_stats, no_conf_ws_all_stats, 'mean', ['ws_none', 'ws_from_root', 'ws_from_all'], "alignment cost", "avg alignment cost pr log")
+# no_compl_no_conf_compl_stats = get_statistics(no_compl_no_conf_dict, completeness_output)
+# no_conf_ws_root_stats = get_statistics(no_conf_ws_root_dict, completeness_output)
+# no_conf_ws_all_stats = get_statistics(no_conf_ws_all_states_dict, completeness_output)
 
-print("ws_root time comparison with standard - "+print_procentual('time','time',no_conf_ws_root_stats, no_compl_no_conf_compl_stats))
-print(40*"--")
-print("ws_all time comparison with standard - "+print_procentual('time','time',no_conf_ws_all_stats, no_compl_no_conf_compl_stats))
-print(40*"--")
-print("ws_all time comparison with ws_root - "+print_procentual('time','time',no_conf_ws_all_stats, no_conf_ws_root_stats))
+
+# plot_bar_chart_comparison_(completeness_labels, no_compl_no_conf_compl_stats,
+#                           no_conf_ws_root_stats, no_conf_ws_all_stats, 'mean', ['ws_none', 'ws_from_root', 'ws_from_all'], "alignment cost", "avg alignment cost pr log")
+
+# print("ws_root time comparison with standard - "+print_procentual('time','time',no_conf_ws_root_stats, no_compl_no_conf_compl_stats))
+# print(40*"--")
+# print("ws_all time comparison with standard - "+print_procentual('time','time',no_conf_ws_all_stats, no_compl_no_conf_compl_stats))
+# print(40*"--")
+# print("ws_all time comparison with ws_root - "+print_procentual('time','time',no_conf_ws_all_stats, no_conf_ws_root_stats))
