@@ -1,10 +1,14 @@
 package ee.ut.cs.dsg.confcheck.alignment;
 
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
+import it.unimi.dsi.fastutil.Hash;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Alignment implements Serializable {
     private List<Move> moves;
@@ -75,31 +79,32 @@ public class Alignment implements Serializable {
         return result.toString();
     }
 
-    public String toString(boolean compressed) {
+    public String toString(boolean compressed, int completenessCost) {
         StringBuilder result = new StringBuilder();
-        for (Move m : moves) {
+        //HashMap<String, Integer> encode = new HashMap<>();
+        for(Move m : moves) {
             result.append(m.toString(true));
         }
-        if(moves.size() > 50)
-            return result.substring(moves.size()-50,moves.size());
-        return result.append(totalCost).toString();
-    }
-
-    /*public String toString(AlphabetService service) {
-        StringBuilder result = new StringBuilder();
-        StringBuilder logTrace = new StringBuilder();
-        StringBuilder modelTrace = new StringBuilder();
-        result.append(String.format("Total cost:%d\n", totalCost));
-        for (Move m : moves) {
-            result.append(m.toString(service) + "\n");
-            if (!m.getLogMove().equals(">>")) logTrace.append(service.deAlphabetize(m.getLogMove().charAt(0)));
-            if (!m.getModelMove().equals(">>")) modelTrace.append(service.deAlphabetize(m.getModelMove().charAt(0)));
-        }
-        result.append("Log: " + logTrace.toString() + "\n");
-        result.append("Mod: " + modelTrace.toString());
+        //result.append(totalCost);
+        result.append(totalCost).append(completenessCost);
         return result.toString();
-
-    }*/
+        /*for (Move m : moves) {
+            String temp = m.toString(true);
+            if (encode.containsKey(temp)) {
+                encode.put(temp, encode.get(temp) + 1);
+            } else {
+                encode.put(temp, 1);
+            }
+            //result.append(m.toString(true));
+        }
+        encode.put("conf", totalCost);
+        encode.put("comp", completenessCost);
+        String mapAsString = encode.keySet().stream()
+                .map(key -> encode.get(key).toString())
+                .collect(Collectors.joining());
+        result.append(mapAsString);
+        return result.toString();*/
+    }
 
     public List<Move> getMoves() {
         List<Move> result = new ArrayList<>();

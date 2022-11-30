@@ -5,7 +5,6 @@ import os
 import copy
 import csv
 import re
-import math
 from statistics import mean, stdev
 
 
@@ -57,16 +56,6 @@ completeness_labels = [
     'M9_20', 'M9_50', 'M10_20', 'M10_50'
 ]
 
-time_plot_1 = ['M10_sim_completeness20', 'M10_sim_completeness50', 'M6_sim_completeness20',
-                'M6_sim_completeness50','M7_sim_completeness20', 'M7_sim_completeness50']
-
-time_plot_2 = [
-    'BPI_2012_completeness20_sample', 'BPI_2012_completeness50_sample',
-    'BPI_2017_completeness20_sample', 'BPI_2017_completeness50_sample',
-    'M1_sim_completeness20', 'M1_sim_completeness50', 'M2_sim_completeness20', 'M2_sim_completeness50',
-    'M3_sim_completeness20', 'M3_sim_completeness50', 'M4_sim_completeness20', 'M4_sim_completeness50', 
-    'M5_sim_completeness20', 'M5_sim_completeness50', 'M8_sim_completeness20', 'M8_sim_completeness50','M9_sim_completeness20', 'M9_sim_completeness50'
-]
 
 def get_dataset_metrics(prefix_path: str, dims: dict, avg_costs: dict, regex_f: object) -> dict:
     dataset_dicts = {}
@@ -125,17 +114,6 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
     # ax.bar_label(rects2, padding=3, rotation=90)
     # ax.bar_label(rects3, padding=3, rotation=90)
 
-    # for i,bar in enumerate(ax.patches):
-    #     value = bar.get_height()
-    #     text = f'{round(value,2)}'
-    #     text_x = bar.get_x() + bar.get_width() / 2
-    #     text_y = bar.get_y() + value + np.log(1)
-    #     ax.text(text_x, text_y, text, ha='center',color='r',size=8, rotation=90)
-
-    #ax.invert_yaxis()
-    # ax.set_ylabel(ylabel)
-    # ax.yaxis.tick_right()
-    # ax.yaxis.set_label_position("right")
     #ax.set_title(title)
     ax.set_xticks(x, labels)
     ax.legend(loc=2)
@@ -143,7 +121,7 @@ def plot_bar_chart_comparison(labels: list, dict1: dict, dict2: dict, dict3: dic
     if isLog:
         plt.yscale("log")
     plt.tight_layout()
-    plt.show()
+    #plt.show()
 
 def plot_bar_chart_comparison_(labels: list, dict1: dict, dict2: dict, dict3: dict, stat: str, bar_labels: list, ylabel: str, title: str, isLog:bool=False, isLegend:bool=True):
     x = np.arange(0,len(labels)*2,2)
@@ -163,7 +141,7 @@ def plot_bar_chart_comparison_(labels: list, dict1: dict, dict2: dict, dict3: di
     if isLog:
         plt.xscale("log")
     plt.tight_layout()
-    plt.show()
+    #plt.show()
 
 
 #mean, std, time
