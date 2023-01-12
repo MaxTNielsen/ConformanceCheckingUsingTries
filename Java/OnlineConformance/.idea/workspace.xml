@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11350d37-ff0c-4694-9f88-c92259a4a05d" name="Changes" comment="" />
+    <list default="true" id="11350d37-ff0c-4694-9f88-c92259a4a05d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Jupyter/analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Jupyter/analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Jupyter/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Jupyter/validation.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +94,7 @@
       <workItem from="1667995902581" duration="2968000" />
       <workItem from="1669113081366" duration="133000" />
       <workItem from="1669461058282" duration="52000" />
+      <workItem from="1671653260898" duration="4000" />
     </task>
     <servers />
   </component>

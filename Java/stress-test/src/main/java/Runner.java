@@ -54,7 +54,8 @@ public class Runner {
 
         init();
         Trie t = constructTrie(proxyPath);
-        C_3PO checker = new C_3PO(t, 1, 1, 100000, 100000, false, "avg", new HashMap<String, String>(), "", true);
+        //System.out.println(t.getAvgTraceLength());
+        C_3PO checker = new C_3PO(t, 1, 1, 10000, 100000, false, "avg", new HashMap<String, String>(), "", true);
         //StreamingConformanceChecker checker = new StreamingConformanceChecker(t, 1, 1, 100000, 100000);
         Configuration.ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
@@ -65,10 +66,10 @@ public class Runner {
             String line = null;
 
             if (checkerType == TRIE_STREAMING_C_3PO)
-                results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,Time\n");
+                results.add("TraceId,Activity,Conformance cost,Confidence cost,Completeness cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,decayTime,traceSize,Time\n");
             else
-                results.add("TraceId,Activity,Conformance cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,Time\n");
-
+                results.add("TraceId,Activity,Conformance cost,Total states,Total cases,Alignment length,ExecutionTime,MemUsedPerEvent,TotalUsedMem,decayTime,Time\n");
+            long exetimeStart = System.currentTimeMillis();
             while (scanner.hasNextLine()) {
                 long start;
                 long executionTime;
@@ -103,17 +104,21 @@ public class Runner {
                 String instant=Timestamp.from(Instant.now()).toString();
                 String msg;
                 if (checkerType == TRIE_STREAMING_C_3PO) {
-                    msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
-                            alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(), alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem, instant);
+                    msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId, service.deAlphabetize(activityName.toCharArray()[0]),
+                            alg.getTotalCost(), state.getNode().getConfidenceCost(), state.getCompletenessCost(), checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(),
+                            alg.getMoves().size(), executionTime, actualMemUsed, beforeUsedMem, state.getDecayTime(),alg.getTraceSize(),instant);
                     results.add(msg);
                 }
                 else {
-                    msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId,service.deAlphabetize(activityName.toCharArray()[0]),alg.getTotalCost(),checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(),alg.getMoves().size(),executionTime, actualMemUsed, beforeUsedMem, instant);
+                    msg = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",caseId,service.deAlphabetize(activityName.toCharArray()[0]),alg.getTotalCost(),checker.statesInBuffer(caseId), checker.sizeOfCasesInBuffer(),
+                            alg.getMoves().size(),executionTime, actualMemUsed, beforeUsedMem, state.getDecayTime(), instant);
                     results.add(msg);
                 }
                 System.out.printf(msg);
             }
             scanner.close();
+            long exeTimeTotal = System.currentTimeMillis() - exetimeStart;
+            System.out.printf("total execution time %s", exeTimeTotal);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {

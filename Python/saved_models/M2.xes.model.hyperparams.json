@@ -1,0 +1,1 @@
+{"optimizer": "Adam", "learning_rate": 0.007396617080660467, "weight_decay": 0.0009366636453325938, "dropout_rate": 0.1026727689006911, "n_unit": 50, "num_layers": 1, "bi": 1, "batch_size": 20}

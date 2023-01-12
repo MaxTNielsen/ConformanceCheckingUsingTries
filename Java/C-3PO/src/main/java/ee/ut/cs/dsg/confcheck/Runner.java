@@ -124,13 +124,8 @@ public class Runner {
             subLog.put("simulated", "input/M-models/M1_sim.xes");
             logs.put("M1_warm_5", new HashMap<>(subLog));
             subLog.clear();
-            subLog.put("log", "input/trie stream/M1.xes");
-            subLog.put("simulated", "input/trie stream/M1_sim.xes");
-            logs.put("M1_", new HashMap<>(subLog));
-            subLog.clear();
-
-            subLog.put("log", "input/trie stream/M1.xes");
-            subLog.put("simulated", "input/trie stream/M1_sim.xes");
+            subLog.put("log", "input/trie stream/M2.xes");
+            subLog.put("simulated", "input/trie stream/M2_sim.xes");
             logs.put("M1_", new HashMap<>(subLog));
             subLog.clear();
 
@@ -143,9 +138,9 @@ public class Runner {
             logs.put("RL", new HashMap<>(subLog));
             subLog.clear();
 
-            ConformanceCheckerType checkerType = TRIE_STREAMING;//_C_3PO;
+            ConformanceCheckerType checkerType = TRIE_STREAMING_C_3PO;
 
-            String runType = "validation"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
+            String runType = "specific"; //"specific" for unique log/proxy combination, "logSpecific" for all proxies in one log, "general" for running all logs, "warm-start" for running warm-start logs
 
             if (runType == "specific") {
                 // run for specific log
@@ -293,7 +288,7 @@ public class Runner {
             } else if (runType == "validation") {
                 List<String> datasetNames = new ArrayList<>();
                 datasetNames.add("M1");
-                datasetNames.add("M2");
+                /*datasetNames.add("M2");
                 datasetNames.add("M3"); // not working in other algorithms
                 datasetNames.add("M4");
                 datasetNames.add("M5"); // not working in other algorithms
@@ -301,9 +296,9 @@ public class Runner {
                 datasetNames.add("M7"); // not working in other algorithms
                 datasetNames.add("M8");
                 datasetNames.add("M9");
-                datasetNames.add("M10"); // not working in other algorithms
-                datasetNames.add("BPI_2012");
-                datasetNames.add("BPI_2017");
+                datasetNames.add("M10"); // not working in other algorithms*/
+                /*datasetNames.add("BPI_2012");
+                datasetNames.add("BPI_2017");*/
                 //datasetNames.add("BPI_2020"); // not working with this algorithm
 
                 for (String sLog : datasetNames) {
@@ -313,7 +308,7 @@ public class Runner {
                         sLogType = "sim";
                     }
                     else {
-                        sLogType = "frequency";
+                        sLogType = "sim";
                     }
                     String logDir = Paths.get(pathPrefix, sLog).toString();
                     File directory = new File(logDir);
@@ -607,8 +602,8 @@ public class Runner {
                 urls.put("pred", "http://127.0.0.1:8000/predictions");
 
                 type = new Class[]{Trie.class, int.class, int.class, int.class, int.class, boolean.class, String.class, HashMap.class, String.class, boolean.class};
-                params = new Object[]{t, 1, 1, 10000, 100000, false, "avg", new HashMap<String, String>(), logName, true};
-                //params = new Object[]{t, 1, 1, 100000, 100000, false, "prob", urls, logName, true};
+                params = new Object[]{t, 1, 1, 10000, 100000, true, "avg", new HashMap<String, String>(), logName, true};
+                //params = new Object[]{t, 1, 1, 10000, 100000, false, "avg", urls, logName, true};
                 javaClassLoader.invokeClass(className, type, params);
                 //validateTrieEnrichmentLogic(t);
             }

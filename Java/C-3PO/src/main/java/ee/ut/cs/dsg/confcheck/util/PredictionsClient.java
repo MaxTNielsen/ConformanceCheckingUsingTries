@@ -87,7 +87,10 @@ public class PredictionsClient {
                 getPrefixProb(urlKey, jsonInputString);
             }
         } catch (NullPointerException | IOException e) {
+            //getPrefixProb(urlKey, jsonInputString);
             e.printStackTrace();
+        } finally {
+            closeConnection();
         }
         return retVal;
     }

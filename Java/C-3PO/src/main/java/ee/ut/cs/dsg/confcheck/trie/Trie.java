@@ -250,7 +250,7 @@ public class Trie implements Serializable {
         if (isWeighted) {
             this.p = new PredictionsClient(urls);
             Map<String, String> params = new HashMap<>();
-            params.put("filename", logName);
+            params.put("filename", "input/M-models/M2.xes");
             if (p.initModel("init", params) != 200) {
                 costType = "";
                 System.out.println("Model not initialized and confidence cost skipped all together");
@@ -260,7 +260,7 @@ public class Trie implements Serializable {
         switch (costType) {
             case "min":
                 computeConfidenceCostMin(this.root, isWeighted);
-                // computeScaledConfidenceCost(this.root, !isWeighted);
+                computeScaledConfidenceCost(this.root, !isWeighted);
                 if (isWeighted) {
                     prefixProbCache = null;
                     System.gc();
@@ -268,7 +268,7 @@ public class Trie implements Serializable {
                 break;
             case "avg":
                 computeConfidenceCostAVG(this.root, isWeighted);
-                //computeScaledConfidenceCost(this.root, !isWeighted);
+                computeScaledConfidenceCost(this.root, isWeighted);
                 if (isWeighted) {
                     prefixProbCache = null;
                     System.gc();
@@ -388,6 +388,11 @@ public class Trie implements Serializable {
             jsonInput.append("], \"target\":\"").append(service.deAlphabetize(target.getContent().toCharArray()[0])).append("\"}");
             double prefProb = Math.round((1 - p.getPrefixProb("pred", jsonInput.toString())) * 1000.0) / 1000.0;
             prefixProbCache.put(prefKey, prefProb);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return prefProb;
         }
     }

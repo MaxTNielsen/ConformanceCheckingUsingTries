@@ -494,7 +494,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
             } else {
                 decayTime = minDecayTime;
             }
-            currentStates.put(new Alignment().toString(true,0), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0, decayTime + 1)); // larger decay time because this is decremented in this iteration
+            currentStates.put(new Alignment().toString(true), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0, decayTime + 1)); // larger decay time because this is decremented in this iteration
         }
 
         for (String event : trace) {
@@ -535,7 +535,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
 
                 for (State s : syncMoveStates) {
                     alg = s.getAlignment();
-                    currentStates.put(alg.toString(true,0), s);
+                    currentStates.put(alg.toString(true), s);
                 }
                 //caseStatesInBuffer.setCurrentStates(currentStates);
                 //statesInBuffer.put(caseId, caseStatesInBuffer);
@@ -586,7 +586,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
 
                 int previousStateDecayTime = previousState.getDecayTime();
                 if (previousStateDecayTime < 2) {
-                    currentStates.remove(previousState.getAlignment().toString(true,0));
+                    currentStates.remove(previousState.getAlignment().toString(true));
                 } else {
                     previousState.setDecayTime(previousStateDecayTime - 1);
                 }
@@ -596,7 +596,7 @@ public class StreamingConformanceChecker extends ConformanceChecker {
             // add new states with the lowest cost
             for (State s : interimCurrentStates) {
                 if (s.getCostSoFar() == currentMinCost) {
-                    currentStates.put(s.getAlignment().toString(true,0), s);
+                    currentStates.put(s.getAlignment().toString(true), s);
                 }
             }
 

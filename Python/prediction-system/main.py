@@ -1,5 +1,5 @@
 # %%
-from predictionsys.log_parser import get_traces
+from log_parser import get_traces
 import model
 import utils
 
@@ -433,7 +433,7 @@ def init(file_name: str.__class__):
 
 
 if __name__ == "__main__":
-    FILE_NAME = "input/M-models/M1_sim.xes"
+    FILE_NAME = "input/M-models/M3.xes"
     init(FILE_NAME)
     run_test()
 # %%

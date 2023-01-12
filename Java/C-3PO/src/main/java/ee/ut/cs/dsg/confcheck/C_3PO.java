@@ -62,7 +62,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
             currentStates = caseStatesInBuffer.getCurrentStates();
 
         } else {
-            currentStates.put(new Alignment().toString(true,0), new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
+            currentStates.put(new Alignment().toString(true) + 0, new State(new Alignment(), new ArrayList<String>(), modelTrie.getRoot(), 0.0, computeDecayTime(new Alignment()) + 1)); // larger decay time because this is decremented in this iteration
             casesCleanUpRecord.add(new CaseWatermark(caseId));
         }
 
@@ -102,7 +102,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
                 }
 
                 for (State s : syncMoveStates) {
-                    currentStates.put(s.getAlignment().toString(true,s.getCompletenessCost()), s);
+                    currentStates.put(s.getAlignment().toString(true) + s.getCompletenessCost(), s);
                 }
 
                 syncMoveStates.clear();
@@ -155,7 +155,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
 
                 int previousStateDecayTime = previousState.getDecayTime();
                 if (previousStateDecayTime < 2) {
-                    currentStates.remove(previousState.getAlignment().toString(true,previousState.getCompletenessCost()));
+                    currentStates.remove(previousState.getAlignment().toString(true) + previousState.getCompletenessCost());
                 } else {
                     previousState.setDecayTime(previousStateDecayTime - 1);
                 }
@@ -164,7 +164,7 @@ public class C_3PO extends ConformanceChecker implements Serializable {
             // add new states with the lowest cost
             for (State s : interimCurrentStates) {
                 if (s.getWeightedSumOfCosts() == currentMinCost) {
-                    currentStates.put(s.getAlignment().toString(true,s.getCompletenessCost()), s);
+                    currentStates.put(s.getAlignment().toString(true) + s.getCompletenessCost(), s);
                 }
             }
         }
@@ -671,8 +671,10 @@ public class C_3PO extends ConformanceChecker implements Serializable {
     }
 
     protected int computeDecayTime(Alignment alg) {
-        if (discountedDecayTime)
-            return Math.max(Math.round((averageTrieLength - alg.getTraceSize()) * decayTimeMultiplier), minDecayTime);
+        if (discountedDecayTime) {
+            int decTime = Math.max(Math.round((averageTrieLength - alg.getTraceSize()) * decayTimeMultiplier), minDecayTime);
+            return decTime;
+        }
         return minDecayTime;
     }
 
@@ -682,6 +684,10 @@ public class C_3PO extends ConformanceChecker implements Serializable {
         public CaseWatermark(String caseID) {
             this.caseID = caseID;
         }
+    }
+
+    private String getCompressedNodeRepresentation(TrieNode node){
+        return Arrays.toString(node.toString().split("->"));
     }
 
     class CaseComparator implements Comparator<CaseWatermark>, Serializable {

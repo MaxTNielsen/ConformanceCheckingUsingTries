@@ -1,14 +1,10 @@
 package ee.ut.cs.dsg.confcheck.alignment;
 
 import ee.ut.cs.dsg.confcheck.util.AlphabetService;
-import it.unimi.dsi.fastutil.Hash;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Alignment implements Serializable {
     private List<Move> moves;
@@ -79,28 +75,27 @@ public class Alignment implements Serializable {
         return result.toString();
     }
 
-    public String toString(boolean compressed, int completenessCost) {
+    public String toString(boolean compressed) {
         StringBuilder result = new StringBuilder();
-        //HashMap<String, Integer> encode = new HashMap<>();
+        //HashMap<String, Integer> encoder = new HashMap<>();
         for(Move m : moves) {
             result.append(m.toString(true));
         }
-        //result.append(totalCost);
-        result.append(totalCost).append(completenessCost);
+        result.append(totalCost);
         return result.toString();
         /*for (Move m : moves) {
             String temp = m.toString(true);
-            if (encode.containsKey(temp)) {
-                encode.put(temp, encode.get(temp) + 1);
+            if (encoder.containsKey(temp)) {
+                encoder.put(temp, encode.get(temp) + 1);
             } else {
-                encode.put(temp, 1);
+                encoder.put(temp, 1);
             }
             //result.append(m.toString(true));
         }
-        encode.put("conf", totalCost);
-        encode.put("comp", completenessCost);
-        String mapAsString = encode.keySet().stream()
-                .map(key -> encode.get(key).toString())
+        encoder.put("conf", totalCost);
+        encoder.put("comp", completenessCost);
+        String mapAsString = encoder.keySet().stream()
+                .map(key -> encoder.get(key).toString())
                 .collect(Collectors.joining());
         result.append(mapAsString);
         return result.toString();*/

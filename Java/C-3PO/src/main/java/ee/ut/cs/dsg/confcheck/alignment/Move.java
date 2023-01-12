@@ -28,7 +28,7 @@ public class Move implements Serializable {
 
     public String toString(boolean compressed)
     {
-        return String.valueOf(logMove + modelMove) + cost;
+        return String.valueOf(logMove+modelMove+cost);
     }
 
     public String toString(AlphabetService service)
